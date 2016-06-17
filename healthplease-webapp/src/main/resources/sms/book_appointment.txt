@@ -1,0 +1,2 @@
+Dear {name},
+Your appointment for {testName} with {labName} has been booked on {date}, between Appointment Slot {slot} of amount {price}

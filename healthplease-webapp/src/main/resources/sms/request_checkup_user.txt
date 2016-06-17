@@ -1,0 +1,8 @@
+Hello {name}
+
+Thank you for requesting a check up.
+You will shortly receive a call from Health Please convenience team.
+
+Best Regards,
+Convenience Team
+HealthPlease.in

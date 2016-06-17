@@ -1,0 +1,5 @@
+Dear {name},
+Thank you for requesting a call back.
+You will receive a call Soon.
+Best Regards,
+Health Please Convenience Team

@@ -1,0 +1,106 @@
+package com.rns.healthplease.web.bo.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LabTest {
+	
+	private Integer id;
+	private String name;
+	private String description;
+	private Integer price;
+	private String category;
+	private boolean isTestPackage;
+	private String abbrevation;
+	private String fastingInfo;
+	private List<LabTest> childTests;
+	private List<TestParameter> parameters;
+	private String reportSent;
+	private Integer discount;
+	private Integer srNo;
+	
+	public Integer getPrice() {
+		return price;
+	}
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public List<LabTest> getChildTests() {
+		if(childTests == null) {
+			childTests = new ArrayList<LabTest>();
+		}
+		return childTests;
+	}
+	public void setChildTests(List<LabTest> childTests) {
+		this.childTests = childTests;
+	}
+	public String getAbbrevation() {
+		return abbrevation;
+	}
+	public void setAbbrevation(String abbrevation) {
+		this.abbrevation = abbrevation;
+	}
+	public String getFastingInfo() {
+		return fastingInfo;
+	}
+	public void setFastingInfo(String fastingInfo) {
+		this.fastingInfo = fastingInfo;
+	}
+	public boolean isTestPackage() {
+		return isTestPackage;
+	}
+	public void setTestPackage(boolean isTestPackage) {
+		this.isTestPackage = isTestPackage;
+	}
+	public List<TestParameter> getParameters() {
+		return parameters;
+	}
+	public void setParameters(List<TestParameter> parameters) {
+		this.parameters = parameters;
+	}
+	public String getReportSent() {
+		return reportSent;
+	}
+	public void setReportSent(String reportSent) {
+		this.reportSent = reportSent;
+	}
+	public Integer getSrNo() {
+		return srNo;
+	}
+	public void setSrNo(Integer srNo) {
+		this.srNo = srNo;
+	}
+	public Integer getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+	
+
+}

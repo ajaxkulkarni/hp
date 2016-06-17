@@ -1,0 +1,139 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/assets/" />
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<context:component-scan base-package="com.rns.healthplease.web.controller" />
+	
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<bean id="viewResolver1" class="org.springframework.web.servlet.view.XmlViewResolver">
+        <property name="order" value="1"/>
+        <property name="location" value="/WEB-INF/hp-views.xml"/>
+    </bean>
+
+	<bean id="viewResolver2"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="2" />
+	</bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <!-- <property name="url" value="jdbc:mysql://localhost:3306/healthplease?zeroDateTimeBehavior=convertToNull" />
+        <property name="username" value="root" />
+        <property name="password" value="'asd'" /> -->
+        <property name="url" value="jdbc:mysql://localhost:3306/hp?zeroDateTimeBehavior=convertToNull" />
+        <property name="username" value="root" />
+        <property name="password" value="Hp_admin123" />
+        <property name="testOnReturn" value="true" />
+        <property name="testOnBorrow" value="true" />
+        <property name="testWhileIdle" value="true" />
+        <property name="validationQuery" value="SELECT 1" />
+    </bean>
+
+	<!-- Hibernate 4 SessionFactory Bean definition -->
+	<bean id="hibernate4AnnotatedSessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.rns.healthplease.web.dao.domain.Users</value>
+				<value>com.rns.healthplease.web.dao.domain.Users1</value>
+				<value>com.rns.healthplease.web.dao.domain.Appointments</value>
+				<value>com.rns.healthplease.web.dao.domain.AppoinAddresses</value>
+				<value>com.rns.healthplease.web.dao.domain.Locations</value>
+				<value>com.rns.healthplease.web.dao.domain.AppointmentStatus</value>
+				<value>com.rns.healthplease.web.dao.domain.LabLocations</value>
+				<value>com.rns.healthplease.web.dao.domain.Labs</value>
+				<value>com.rns.healthplease.web.dao.domain.PaymentStatus</value>
+				<value>com.rns.healthplease.web.dao.domain.Slabs</value>
+				<value>com.rns.healthplease.web.dao.domain.Slots</value>
+				<value>com.rns.healthplease.web.dao.domain.Tests</value>
+				<value>com.rns.healthplease.web.dao.domain.TestLabs</value>
+				<value>com.rns.healthplease.web.dao.domain.LabBlockedSlots</value>
+				<value>com.rns.healthplease.web.dao.domain.LabActiveDaysStatus</value>
+				<value>com.rns.healthplease.web.dao.domain.Groups</value>
+				<value>com.rns.healthplease.web.dao.domain.AppointmentTests</value>
+				<value>com.rns.healthplease.web.dao.domain.AppFileLocations</value>
+				<value>com.rns.healthplease.web.dao.domain.RequestCollections</value>
+				<value>com.rns.healthplease.web.dao.domain.TestPackages</value>
+				<value>com.rns.healthplease.web.dao.domain.LocationWiseLabCharges</value>
+				<value>com.rns.healthplease.web.dao.domain.TestCategories</value>
+				<value>com.rns.healthplease.web.dao.domain.TestFactorsMap</value>
+				<value>com.rns.healthplease.web.dao.domain.TestFactors</value>
+				<value>com.rns.healthplease.web.dao.domain.CancelReasons</value>
+				<value>com.rns.healthplease.web.dao.domain.AppointmentTestResults</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+				<!-- <prop key="hibernate.connection.release_mode">after_statement</prop> -->
+				<!-- <prop key="connection.provider_class"> org.hibernate.connection.C3P0ConnectionProvider 
+					</prop> -->
+			</props>
+		</property>
+	</bean>
+
+	<bean id="userBo" class="com.rns.healthplease.web.bo.impl.UserBoImpl">
+	    <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	    <property name="threadPoolTaskExecutor" ref="executor" />
+	</bean>
+	
+	<bean id="labBo" class="com.rns.healthplease.web.bo.impl.LabBoImpl">
+	    <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	    <property name="threadPoolTaskExecutor" ref="executor" />
+	</bean>
+	
+	<bean id="adminBo" class="com.rns.healthplease.web.bo.impl.AdminBoImpl">
+	    <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	    <property name="threadPoolTaskExecutor" ref="executor" />
+	</bean>
+
+	<bean id="manager" class="com.rns.healthplease.web.bo.impl.HPSessionManagerImpl"
+		scope="session">
+		<aop:scoped-proxy proxy-target-class="false" />
+	</bean>
+	
+	<bean id="executor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="maxPoolSize" value="10" />
+		<property name="WaitForTasksToCompleteOnShutdown" value="true" />
+	</bean>
+
+	<!-- For Excel Upload -->
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- max upload size in bytes -->
+		<property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
+
+		<!-- max size of file in memory (in bytes) -->
+		<property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+
+	</bean>
+
+</beans>

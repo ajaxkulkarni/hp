@@ -1,0 +1,2 @@
+Hello {name},
+Your Report of {testName} is ready and will be emailed to your registered email Address shortly.

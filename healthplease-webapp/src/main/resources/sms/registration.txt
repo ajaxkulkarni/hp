@@ -1,0 +1,2 @@
+Hello {name},
+Thank you for validating your email address. You are a member of Health Please.

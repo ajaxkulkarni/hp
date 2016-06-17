@@ -1,0 +1,2 @@
+Hello,
+Appointment ID {id} booked for {date} {slot} has been cancelled. 

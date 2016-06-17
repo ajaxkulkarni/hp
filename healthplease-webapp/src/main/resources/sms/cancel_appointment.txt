@@ -1,0 +1,2 @@
+Hello {name},
+As per your request, appointment ID {id} has been cancelled. We look forward to serve you in future.

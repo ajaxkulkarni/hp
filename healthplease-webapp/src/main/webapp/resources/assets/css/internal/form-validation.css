@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 31, 2015, 12:05:48 PM
+    Author     : Vikas sharma
+*/
+
+.my-error {
+    border-color: #843534 !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483 !important;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483 !important;
+}
+
+.my-success {
+    border-color: #2b542c !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168 !important;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168 !important;
+}
+
+div.error_container ol li {
+		list-style-type: disc !important;
+}
+div.error_container {
+		display: none
+}
+.error_container label.error {
+		display: inline;
+}

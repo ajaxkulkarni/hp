@@ -1,0 +1,368 @@
+package com.rns.healthplease.web.util;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
+import org.hibernate.Session;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import com.rns.healthplease.web.bo.domain.Appointment;
+import com.rns.healthplease.web.bo.domain.HPCalendar;
+import com.rns.healthplease.web.bo.domain.HPDay;
+import com.rns.healthplease.web.bo.domain.HPWeek;
+import com.rns.healthplease.web.bo.domain.Lab;
+import com.rns.healthplease.web.bo.domain.LabTest;
+import com.rns.healthplease.web.bo.domain.PaymentStatus;
+import com.rns.healthplease.web.bo.domain.PaymentType;
+import com.rns.healthplease.web.bo.domain.Slot;
+import com.rns.healthplease.web.bo.domain.User;
+import com.rns.healthplease.web.dao.api.AppointmentDao;
+import com.rns.healthplease.web.dao.api.UserDao;
+import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
+import com.rns.healthplease.web.dao.domain.TestLabs;
+import com.rns.healthplease.web.dao.domain.Tests;
+import com.rns.healthplease.web.dao.domain.Users;
+import com.rns.healthplease.web.dao.domain.Users1;
+import com.rns.healthplease.web.dao.impl.UserDaoImpl;
+
+public class CommonUtils implements Constants {
+
+	public static Date convertDate(String date) {
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		try {
+			return sdf.parse(date);
+		} catch (ParseException e) {
+
+		}
+		return null;
+	}
+
+	public static String convertDate(Date date) {
+		if(date == null) {
+			return "";
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		return sdf.format(date);
+	}
+
+	public static String getGender(Character gender) {
+		if (gender == null) {
+			return null;
+		}
+		if (StringUtils.equalsIgnoreCase(gender.toString(), "M")) {
+			return GENDER_MALE;
+		}
+		return GENDER_FEMALE;
+	}
+
+	public static PaymentType getPaymentType(String paymentType) {
+		if (PaymentType.cod.name().equals(paymentType)) {
+			return PaymentType.cod;
+		}
+		if (PaymentType.online.name().equals(paymentType)) {
+			return PaymentType.online;
+		}
+		return null;
+	}
+
+	public static com.rns.healthplease.web.bo.domain.PaymentStatus getPaymentStatus(String status) {
+		if (com.rns.healthplease.web.bo.domain.PaymentStatus.SUCCESS.equals(status)) {
+			return PaymentStatus.SUCCESS;
+		}
+		return PaymentStatus.FAILURE;
+	}
+
+	public static String generatePasswordForuser(Users1 loginDetails) {
+		return StringUtils.substring(loginDetails.getUsername(), 0, 1) + new Random().nextInt(10000);
+	}
+
+	public static List<Integer> splitValues(String testIds) {
+		if (StringUtils.isEmpty(testIds)) {
+			return null;
+		}
+		String[] values = StringUtils.split(testIds, ",");
+		if (values == null || values.length == 0) {
+			return null;
+		}
+		List<Integer> ids = new ArrayList<Integer>();
+		for (int i = 0; i < values.length; i++) {
+			if (StringUtils.isEmpty(values[i])) {
+				continue;
+			}
+			try {
+				ids.add(Integer.valueOf(values[i]));
+			} catch (Exception e) {
+			}
+		}
+		return ids;
+	}
+
+	public static List<String> getDatesAsStrings(List<Date> blockedDates) {
+		if (CollectionUtils.isEmpty(blockedDates)) {
+			return null;
+		}
+		List<String> strings = new ArrayList<String>();
+		for (Date date : blockedDates) {
+			strings.add(convertDate(date));
+		}
+		return strings;
+	}
+
+	public static String getDatesAsString(List<Date> blockedDates) {
+		if (CollectionUtils.isEmpty(blockedDates)) {
+			return null;
+		}
+		StringBuilder result = new StringBuilder();
+		for (Date date : blockedDates) {
+			result.append(convertDate(date)).append("*");
+		}
+		return result.toString();
+	}
+
+	public static Date getDate(int day, int month, int year) {
+		Calendar cal = Calendar.getInstance();
+		cal.set(year, month - 1, day);
+		return cal.getTime();
+	}
+
+	public static List<LabTest> prepareTests(String testIds) {
+		List<LabTest> tests = new ArrayList<LabTest>();
+		List<Integer> ids = CommonUtils.splitValues(testIds);
+		if (ids == null) {
+			return null;
+		}
+		for (Integer id : ids) {
+			LabTest test = new LabTest();
+			test.setId(id);
+			tests.add(test);
+		}
+		return tests;
+	}
+
+	public static HPCalendar getCalendar(int month, int year, List<Date> blockedDates) {
+		HPCalendar calendar = new HPCalendar();
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, month);
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		cal.set(Calendar.YEAR, year);
+
+		int myMonth = cal.get(Calendar.MONTH);
+		HPWeek week = new HPWeek();
+		boolean incompleteWeek = false;
+		while (myMonth == cal.get(Calendar.MONTH)) {
+			int weekDay = cal.get(Calendar.DAY_OF_WEEK);
+			if (weekDay == 2) {
+				calendar.getWeeks().add(week);
+				incompleteWeek = true;
+				if (CollectionUtils.isNotEmpty(calendar.getWeeks())) {
+					week = new HPWeek();
+					incompleteWeek = true;
+				}
+			}
+			HPDay day = new HPDay();
+			if (new Date().compareTo(cal.getTime()) > 0) {
+				day.setActive("P");
+			} else if (isBlockedDate(cal.getTime(), blockedDates)) {
+				day.setActive("B");
+			} else {
+				day.setActive("A");
+			}
+			day.setDay(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+			switch (weekDay) {
+			case 1:
+				week.setSunday(day);
+				break;
+			case 2:
+				week.setMonday(day);
+				break;
+			case 3:
+				week.setTuesday(day);
+				break;
+			case 4:
+				week.setWednesday(day);
+				break;
+			case 5:
+				week.setThursday(day);
+				break;
+			case 6:
+				week.setFriday(day);
+				break;
+			case 7:
+				week.setSaturday(day);
+				break;
+
+			default:
+				break;
+			}
+			cal.add(Calendar.DAY_OF_MONTH, 1);
+		}
+		if (incompleteWeek) {
+			calendar.getWeeks().add(week);
+		}
+		return calendar;
+
+	}
+
+	private static boolean isBlockedDate(Date time, List<Date> blockedDates) {
+		if (CollectionUtils.isEmpty(blockedDates)) {
+			return false;
+		}
+		for (Date date : blockedDates) {
+			if (DateUtils.isSameDay(time, date)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static List<Slot> getSlots(String[] blockedSlots) {
+		if(blockedSlots == null || blockedSlots.length == 0) {
+			return null;
+		}
+		List<Slot> slots = new ArrayList<Slot>();
+		for(String slotId: blockedSlots) {
+			Slot slot = new Slot();
+			slot.setId(Integer.valueOf(slotId));
+			slots.add(slot);
+		}
+		return slots;
+	}
+	
+	public static File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException 
+	{
+	        File convFile = new File("report");
+	        multipart.transferTo(convFile);
+	        return convFile;
+	}
+	
+	public static CommonsMultipartFile fileToMultipart(File file) 
+	{
+		DiskFileItem fileItem = new DiskFileItem("file", "text/plain", false, file.getName(), (int) file.length(), file.getParentFile());
+		try {
+			fileItem.getOutputStream();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		CommonsMultipartFile multipart = new CommonsMultipartFile(fileItem);
+		return multipart;
+	}
+	
+	public static String readFile(String contentPath) throws FileNotFoundException {
+		ClassLoader classLoader = new CommonUtils().getClass().getClassLoader();
+		URL resource = classLoader.getResource(contentPath);
+		File file = new File(resource.getFile());
+		Scanner scanner = new Scanner(file);
+		StringBuilder result = new StringBuilder();
+		while (scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			result.append(line).append("\n");
+		}
+
+		scanner.close();
+		return result.toString();
+	}
+	
+	public static void populateLabUsers(Appointment appointment, Session session) {
+		UserDao userDao = new UserDaoImpl();
+		List<Users> labUsers = userDao.getUsersForLab(appointment.getLab().getId(), session);
+		if(CollectionUtils.isEmpty(labUsers)) {
+			return;
+		}
+		List<Users> admins = userDao.getAdmins(session);
+		if(CollectionUtils.isNotEmpty(admins)) {
+			labUsers.addAll(admins);
+		}
+		for(Users users: labUsers) {
+			User user = new User();
+			DataConverters.getUser(users, user);
+			appointment.getLab().getUsers().add(user);
+		}
+	}
+
+	public static String getAffirmation(Character printRequired) {
+		if(null != printRequired && YES == printRequired.charValue()) {
+			return "Yes";
+		}
+		return "No";
+	}
+
+	public static String getTests(List<LabTest> tests) {
+		if(CollectionUtils.isEmpty(tests)) {
+			return "";
+		}
+		StringBuilder builder = new StringBuilder();
+		for(LabTest labTest: tests) {
+			builder.append(labTest.getName()).append(",");
+		}
+		return builder.toString();
+	}
+	
+	public static void setAppointments(User user, Appointment appointment) {
+		if (appointment.getStatus() == null) {
+			return;
+		}
+		if (appointment.getStatus().getId() == 1) {
+			user.getPendingAppointments().add(appointment);
+		} else if (appointment.getStatus().getId() == 2) {
+			user.getCancelledAppointments().add(appointment);
+		}
+		if (DateUtils.isSameDay(appointment.getDate(), new Date())) {
+			user.getTodaysAppointments().add(appointment);
+		}
+	}
+
+	public static boolean getBoolean(String value) {
+		if(StringUtils.isEmpty(value)) {
+			return false;
+		}
+		if(YES == value.charAt(0)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static void calculatePrice(Lab lab, Appointment appointment, AppointmentDao appointmentDao, Session session) {
+		List<LabTest> tests = new ArrayList<LabTest>();
+		Integer totalPrice = 0;
+		for (LabTest test : appointment.getTests()) {
+			Tests testById = appointmentDao.getTestById(test.getId(), session);
+			if (testById == null) {
+				continue;
+			}
+			TestLabs testLabs = appointmentDao.getTestLabsForTestLab(testById.getId(), lab.getId(), session);
+			if (testLabs == null) {
+				continue;
+			}
+			if(CollectionUtils.isEmpty(test.getParameters())) {
+				test = DataConverters.getTest(testById);
+			}
+			test.setPrice(Integer.valueOf(testLabs.getLabPrice()));
+			totalPrice = totalPrice + Integer.valueOf(testLabs.getLabPrice());
+			tests.add(test);
+		}
+		lab.setTestPrice(totalPrice);
+		LocationWiseLabCharges charges = appointmentDao.getLocationCharges(lab.getId(), appointment.getLocation().getId(), session);
+		if (charges != null) {
+			lab.setPickUpCharge(Integer.valueOf(charges.getPickUpCharge()));
+			totalPrice = totalPrice + lab.getPickUpCharge();
+		}
+		lab.setPrice(totalPrice);
+		appointment.setTests(tests);
+	}
+	
+}

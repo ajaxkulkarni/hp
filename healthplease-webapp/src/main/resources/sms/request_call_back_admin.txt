@@ -1,0 +1,6 @@
+Hello Admin,
+There is a call back request from: - 
+
+Name: - {name}
+Contact No: - {phone}
+Email Address: - {email}

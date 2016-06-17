@@ -1,0 +1,1 @@
+A new appointment has been booked for {labName} through HealthPlease.in on {date} {slot} .Please check Lab dashboard on www.HealthPlease.in or official email for more details.
