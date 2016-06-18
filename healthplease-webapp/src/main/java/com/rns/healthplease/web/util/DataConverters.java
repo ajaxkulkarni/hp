@@ -227,7 +227,7 @@ public class DataConverters {
 			parameter.setName(factor.getName());
 			parameter.setUnit(factor.getUnit());
 			parameter.setNormalValue(factor.getNormalVal());
-			AppointmentTestResults results = new AppointmentDaoImpl().getAppointmentTestResult(appointments.getId(), factors.getTest().getId(), factors.getId(), session);
+			AppointmentTestResults results = new AppointmentDaoImpl().getAppointmentTestResult(appointments.getId(), factors.getTest().getId(), factors.getTestFactors().getId(), session);
 			if(results != null) {
 				parameter.setActualValue(results.getActualValue());
 			}
