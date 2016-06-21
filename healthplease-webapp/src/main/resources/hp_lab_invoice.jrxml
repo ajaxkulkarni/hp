@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-22T01:21:01 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="429"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["F:\\Resoneuronance\\Health Chekup Labs Project\\Docs\\reports\\"]]></defaultValueExpression>
 	</parameter>
@@ -29,16 +32,16 @@
 				<reportElement x="7" y="0" width="539" height="95" uuid="758eec19-c5ca-4d1f-9d06-2d9c9d5040cf"/>
 			</rectangle>
 			<textField>
-				<reportElement x="166" y="18" width="211" height="22" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592"/>
+				<reportElement x="140" y="6" width="404" height="34" forecolor="#FF0703" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592"/>
 				<textElement>
-					<font fontName="Courier New" size="14" isBold="true" isStrikeThrough="false"/>
+					<font fontName="SansSerif" size="24" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{labName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="136" y="47" width="333" height="20" uuid="44dd132c-1c05-4a19-80a8-f4c67b8b0e29"/>
+				<reportElement x="106" y="50" width="434" height="20" uuid="44dd132c-1c05-4a19-80a8-f4c67b8b0e29"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{labAddress}]]></textFieldExpression>
 			</textField>
@@ -47,124 +50,113 @@
 				<imageExpression><![CDATA["http://db.puneconnect.com/site_media/company_logos/Health_Please_Logo_png.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="166" y="67" width="100" height="20" uuid="55db8816-1f81-472a-89c6-766b1449025d"/>
-				<text><![CDATA[Patient Bill]]></text>
+				<reportElement x="250" y="75" width="100" height="20" uuid="55db8816-1f81-472a-89c6-766b1449025d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="106" splitType="Stretch">
 			<textField>
-				<reportElement x="106" y="20" width="100" height="20" uuid="4ddb8961-e1f1-4bd8-bff4-e3d2faecdcd3"/>
+				<reportElement x="90" y="20" width="100" height="20" uuid="4ddb8961-e1f1-4bd8-bff4-e3d2faecdcd3"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{patientName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="300" y="20" width="100" height="20" uuid="471cfb7b-1391-4a57-ad19-a78b468adfd7"/>
+				<reportElement x="273" y="20" width="100" height="20" uuid="471cfb7b-1391-4a57-ad19-a78b468adfd7"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{doctorName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="481" y="20" width="100" height="20" uuid="c44bf93a-b5ce-4bf2-98ca-cfeccf219c8e"/>
+				<reportElement x="460" y="0" width="100" height="20" uuid="c44bf93a-b5ce-4bf2-98ca-cfeccf219c8e"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{phone}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="6" y="0" width="100" height="20" uuid="3504d8aa-bdfb-4a49-9248-1da609180fcc"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
-				<text><![CDATA[Appointment Id.]]></text>
+				<text><![CDATA[Appointment Id.:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="6" y="20" width="100" height="20" uuid="05f8688b-d20f-4877-a3f9-4ac9d0919504"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
-				<text><![CDATA[Patient Name             :]]></text>
+				<text><![CDATA[Patient Name   :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="218" y="20" width="100" height="20" uuid="3f813984-0ab5-4312-8ca6-1730ee78c7f3"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
-				<text><![CDATA[Ref. By.                      :]]></text>
+				<text><![CDATA[Ref. By.    :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="218" y="0" width="100" height="20" uuid="8e2d4ef4-63c5-49f9-a91b-ae077aa50e37"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
-				<text><![CDATA[Bill NO.]]></text>
+				<text><![CDATA[Bill NO.    :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="20" width="100" height="20" uuid="dd8d8d7e-3395-4ba9-b029-ebd868600ea9"/>
+				<reportElement x="390" y="0" width="100" height="20" uuid="dd8d8d7e-3395-4ba9-b029-ebd868600ea9"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
-				<text><![CDATA[Phone NO.                            :]]></text>
+				<text><![CDATA[Phone No.    :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="401" y="40" width="100" height="20" uuid="55a770c4-7d6a-4165-9ced-aa97d5c44c02"/>
+				<reportElement x="390" y="20" width="100" height="20" uuid="55a770c4-7d6a-4165-9ced-aa97d5c44c02"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
-				<text><![CDATA[Date]]></text>
+				<text><![CDATA[Date             :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="300" y="0" width="100" height="20" uuid="03bc7136-c117-433d-9a07-ed7a7495097c"/>
+				<reportElement x="273" y="0" width="100" height="20" uuid="03bc7136-c117-433d-9a07-ed7a7495097c"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{invoiceId}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="106" y="0" width="100" height="20" uuid="71c91e3b-ee6a-43c4-aa7c-41d2287a22ef"/>
+				<reportElement x="90" y="0" width="100" height="20" uuid="71c91e3b-ee6a-43c4-aa7c-41d2287a22ef"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{appointmentId}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="481" y="40" width="100" height="20" uuid="78f05bb5-180e-47a7-b876-8e80f8235f9a"/>
+				<reportElement x="460" y="20" width="100" height="20" uuid="78f05bb5-180e-47a7-b876-8e80f8235f9a"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{appointmentDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="7" y="40" width="100" height="20" uuid="0ab0b3c2-fa4c-4e5a-a52e-225d69afefc1"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
-				<text><![CDATA[Address            :]]></text>
+				<text><![CDATA[Address           :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="106" y="40" width="100" height="20" uuid="c22d44ec-9d6d-481d-9b87-edbf79aded88"/>
+				<reportElement x="90" y="40" width="100" height="20" uuid="c22d44ec-9d6d-481d-9b87-edbf79aded88"/>
 				<textElement>
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="400" y="0" width="100" height="20" uuid="8ee51e52-6256-4df3-8c93-8c1a713452be"/>
-				<textElement>
-					<font fontName="Courier New"/>
-				</textElement>
-				<text><![CDATA[Patient Code]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="481" y="0" width="100" height="20" uuid="6eddb49d-8782-46fb-97dd-3c53a3ae5fcc"/>
-				<textElement>
-					<font fontName="Courier New"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{patientId}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>

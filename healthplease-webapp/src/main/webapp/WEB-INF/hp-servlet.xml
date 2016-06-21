@@ -41,9 +41,9 @@
         <!-- <property name="url" value="jdbc:mysql://localhost:3306/healthplease?zeroDateTimeBehavior=convertToNull" />
         <property name="username" value="root" />
         <property name="password" value="'asd'" /> -->
-        <property name="url" value="jdbc:mysql://localhost:3306/hp?zeroDateTimeBehavior=convertToNull" />
+        <property name="url" value="jdbc:mysql://localhost:3306/healthplease?zeroDateTimeBehavior=convertToNull" />
         <property name="username" value="root" />
-        <property name="password" value="Hp_admin123" />
+        <property name="password" value="" />
         <property name="testOnReturn" value="true" />
         <property name="testOnBorrow" value="true" />
         <property name="testWhileIdle" value="true" />
