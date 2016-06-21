@@ -24,7 +24,7 @@ import com.rns.healthplease.web.bo.domain.LabTest;
 
 public class JasperUtil {
 
-	private static final String LAB_REPORT_TEMPLATE = "hp_lab_report_2.jasper";
+	private static final String LAB_REPORT_TEMPLATE = "hp_lab_report.jasper";
 	private static final String LAB_INVOICE_TEMPLATE = "hp_lab_invoice.jasper";
 
 	public static byte[] generateReport(Map<String, Object> parameters, JRBeanCollectionDataSource testsSource, String template) throws JRException, IOException {

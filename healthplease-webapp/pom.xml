@@ -174,7 +174,13 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>5.0.1</version>
+			<version>6.1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-fonts</artifactId>
+			<version>6.0.0</version>
 		</dependency>
 
 	</dependencies>
@@ -200,7 +206,7 @@
 					<path>/hp</path>
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 	</build>
 </project>
