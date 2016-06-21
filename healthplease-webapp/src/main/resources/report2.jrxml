@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3515439f-2e5b-4788-a9ad-7f8b90acd397">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="srNo" class="java.lang.Integer"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="price" class="java.lang.Integer"/>
+	<field name="discount" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="62" height="20" uuid="bd828d52-c283-43b4-a77d-086768c4255d"/>
+				<textElement>
+					<font fontName="Courier New" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Sr. No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="0" width="100" height="20" uuid="6d46006a-9a99-4e42-9e31-f49bad9c3d12"/>
+				<textElement>
+					<font fontName="Courier New" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="0" width="91" height="20" uuid="be9f9ec6-97c2-47ac-83d9-92327fe10f68"/>
+				<textElement>
+					<font fontName="Courier New" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Listed Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="0" width="62" height="20" uuid="2ed3935c-f867-4659-bc8e-0bc68ef80cb7"/>
+				<textElement>
+					<font fontName="Courier New" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Discount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="482" y="0" width="100" height="20" uuid="8cb2f12e-7a98-4950-a0d0-ab63098952b5"/>
+				<textElement>
+					<font fontName="Courier New" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Net Charges]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="74" y="0" width="100" height="20" uuid="0f7661b5-88e1-409f-bb59-2fba1a6aaeba"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="302" y="0" width="100" height="20" uuid="38e715e9-5195-46d9-8306-2bbd35def6d2"/>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="0" width="100" height="20" uuid="66b9fd32-81c7-4f1b-a8c2-cb0683c9a17a"/>
+				<textFieldExpression><![CDATA[$F{discount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="0" width="100" height="20" uuid="bdbcf931-52f8-4c3d-892f-6c13d097b5b4"/>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="65f61e76-b677-4bb0-bc99-311ab3e2df2c"/>
+				<textFieldExpression><![CDATA[$F{srNo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
