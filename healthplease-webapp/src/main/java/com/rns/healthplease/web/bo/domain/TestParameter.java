@@ -7,6 +7,7 @@ public class TestParameter {
 	private String unit;
 	private String normalValue;
 	private String actualValue;
+	private String type;
 	
 	public Integer getId() {
 		return id;
@@ -37,6 +38,12 @@ public class TestParameter {
 	}
 	public void setActualValue(String actualValue) {
 		this.actualValue = actualValue;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

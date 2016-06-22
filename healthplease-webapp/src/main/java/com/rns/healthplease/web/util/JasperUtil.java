@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -25,6 +26,7 @@ import com.rns.healthplease.web.bo.domain.LabTest;
 public class JasperUtil {
 
 	private static final String LAB_REPORT_TEMPLATE = "hp_lab_report.jasper";
+	private static final String LAB_REPORT_TEMPLATE_DESC = "hp_lab_report_descriptive.jasper";
 	private static final String LAB_INVOICE_TEMPLATE = "hp_lab_invoice.jasper";
 
 	public static byte[] generateReport(Map<String, Object> parameters, JRBeanCollectionDataSource testsSource, String template) throws JRException, IOException {
@@ -93,7 +95,11 @@ public class JasperUtil {
 		parameters.put("doctorName", appointment.getDoctorName());
 
 		JRBeanCollectionDataSource testSource = new JRBeanCollectionDataSource(appointment.getTests());
-		appointment.setReportData(generateReport(parameters, testSource, LAB_REPORT_TEMPLATE));
+		String reportName = LAB_REPORT_TEMPLATE;
+		if(CollectionUtils.isNotEmpty(appointment.getTests()) && CollectionUtils.isNotEmpty(appointment.getTests().get(0).getParameters()) && StringUtils.equalsIgnoreCase("D", appointment.getTests().get(0).getParameters().get(0).getType())) {
+			reportName = LAB_REPORT_TEMPLATE_DESC;
+		}
+		appointment.setReportData(generateReport(parameters, testSource, reportName));
 
 	}
 

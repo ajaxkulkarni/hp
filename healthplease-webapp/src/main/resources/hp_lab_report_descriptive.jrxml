@@ -24,7 +24,7 @@
 	<title>
 		<band height="91" splitType="Stretch">
 			<textField>
-				<reportElement x="120" y="0" width="420" height="40" forecolor="#FF0400" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592"/>
+				<reportElement x="130" y="0" width="380" height="40" forecolor="#FF0400" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592"/>
 				<textElement>
 					<font fontName="SansSerif" size="24" isBold="true"/>
 				</textElement>
@@ -34,23 +34,23 @@
 				<reportElement x="27" y="0" width="88" height="63" uuid="8b35d50b-29bb-49db-9afe-b7d5897a74c5"/>
 				<imageExpression><![CDATA["http://db.puneconnect.com/site_media/company_logos/Health_Please_Logo_png.png"]]></imageExpression>
 			</image>
-			<rectangle>
-				<reportElement mode="Transparent" x="6" y="-4" width="538" height="83" forecolor="#000000" uuid="0b84bcb9-0336-4194-9735-47be5034f8d9"/>
-			</rectangle>
 			<textField>
-				<reportElement x="120" y="43" width="420" height="20" uuid="acdc6b51-0271-4978-b45d-b3af01681203"/>
+				<reportElement x="130" y="50" width="415" height="20" uuid="acdc6b51-0271-4978-b45d-b3af01681203"/>
 				<textFieldExpression><![CDATA[$P{labAddress}]]></textFieldExpression>
 			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="550" height="83" forecolor="#000000" uuid="0b84bcb9-0336-4194-9735-47be5034f8d9"/>
+			</rectangle>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="78" splitType="Stretch">
+		<band height="92" splitType="Stretch">
 			<textField>
 				<reportElement x="440" y="40" width="100" height="20" uuid="c44bf93a-b5ce-4bf2-98ca-cfeccf219c8e"/>
 				<textFieldExpression><![CDATA[$P{appointmentId}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="15" y="0" width="100" height="20" uuid="3504d8aa-bdfb-4a49-9248-1da609180fcc"/>
+				<reportElement x="15" y="0" width="115" height="20" uuid="3504d8aa-bdfb-4a49-9248-1da609180fcc"/>
 				<text><![CDATA[Reg No.                      :]]></text>
 			</staticText>
 			<staticText>
@@ -63,18 +63,18 @@
 			</staticText>
 			<staticText>
 				<reportElement x="340" y="0" width="100" height="20" uuid="8e2d4ef4-63c5-49f9-a91b-ae077aa50e37"/>
-				<text><![CDATA[ Age                           : ]]></text>
+				<text><![CDATA[ Age                          : ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="340" y="20" width="100" height="20" uuid="dd8d8d7e-3395-4ba9-b029-ebd868600ea9"/>
-				<text><![CDATA[Sex                            :]]></text>
+				<text><![CDATA[ Sex                          :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="340" y="40" width="100" height="20" uuid="55a770c4-7d6a-4165-9ced-aa97d5c44c02"/>
 				<text><![CDATA[ Appointment Id        :]]></text>
 			</staticText>
 			<line>
-				<reportElement x="6" y="74" width="538" height="1" uuid="a51036ad-6f28-4f47-bb72-5498521ef769"/>
+				<reportElement x="0" y="70" width="550" height="1" uuid="a51036ad-6f28-4f47-bb72-5498521ef769"/>
 			</line>
 			<textField>
 				<reportElement x="440" y="20" width="100" height="20" uuid="56642065-e049-4c14-8697-07b9d3a7f36a"/>
@@ -96,6 +96,13 @@
 				<reportElement x="120" y="40" width="100" height="20" uuid="c743ad68-ba1d-42a0-ac8b-1dbc8b94e273"/>
 				<textFieldExpression><![CDATA[$P{doctorName}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="120" y="72" width="100" height="20" uuid="0115642b-ec04-414a-ac04-c97d42a56193"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -104,19 +111,12 @@
 	<detail>
 		<band height="107" splitType="Stretch">
 			<subreport>
-				<reportElement x="10" y="32" width="200" height="55" uuid="8cd85150-b315-4f57-bb63-5356cb7a1099"/>
+				<reportElement x="6" y="0" width="474" height="90" uuid="8cd85150-b315-4f57-bb63-5356cb7a1099"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<subreportParameter name="testValues"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{parameters})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "hp_report_params.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "hp_report_params_descriptive.jasper"]]></subreportExpression>
 			</subreport>
-			<textField>
-				<reportElement x="120" y="2" width="100" height="20" uuid="c8746232-1373-4397-bde2-4bdc2c18bb89"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
-			</textField>
 		</band>
 	</detail>
 	<columnFooter>

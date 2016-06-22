@@ -152,10 +152,20 @@ Custom Fonts
 																	<td>${testParameter.name}</td>
 																	<td>
 																		<c:if test="${test.reportSent == 'Y' }">
-																			<input type="text" name="tests[${t.index}].parameters[${p.index}].actualValue" value="${testParameter.actualValue}" readonly="readonly" />
+																			<c:if test="${testParameter.type == 'D' }">
+																				<textarea name="tests[${t.index}].parameters[${p.index}].actualValue" rows="5" cols="50" readonly="readonly">${testParameter.actualValue}</textarea>
+																			</c:if>
+																			<c:if test="${testParameter.type != 'D' }">
+																				<input type="text" name="tests[${t.index}].parameters[${p.index}].actualValue" value="${testParameter.actualValue}" readonly="readonly" />
+																			</c:if>
 																		</c:if>
 																		<c:if test="${test.reportSent == null  || test.reportSent == 'N'}">
-																			<input type="text" name="tests[${t.index}].parameters[${p.index}].actualValue" value="${testParameter.actualValue}" />
+																			<c:if test="${testParameter.type == 'D' }">
+																				<textarea name="tests[${t.index}].parameters[${p.index}].actualValue" rows="5" cols="50" maxlength="250">${testParameter.actualValue}</textarea>
+																			</c:if>
+																			<c:if test="${testParameter.type != 'D' }">
+																				<input type="text" name="tests[${t.index}].parameters[${p.index}].actualValue" value="${testParameter.actualValue}" />
+																			</c:if>
 																		</c:if>
 																		<input type="hidden" name="tests[${t.index}].parameters[${p.index}].id" value="${testParameter.id}" />
 																	</td>

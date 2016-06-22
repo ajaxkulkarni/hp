@@ -17,6 +17,7 @@ public class TestFactors implements java.io.Serializable {
 	private String unit;
 	private String method;
 	private String normalVal;
+	private String factorType;
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -58,6 +59,14 @@ public class TestFactors implements java.io.Serializable {
 	}
 	public void setNormalVal(String normalVal) {
 		this.normalVal = normalVal;
+	}
+	
+	@Column(name = "factor_type")
+	public String getFactorType() {
+		return factorType;
+	}
+	public void setFactorType(String factorType) {
+		this.factorType = factorType;
 	}
 
 }
