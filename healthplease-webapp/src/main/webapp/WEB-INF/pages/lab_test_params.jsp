@@ -164,7 +164,7 @@ Custom Fonts
 																				<textarea name="tests[${t.index}].parameters[${p.index}].actualValue" rows="5" cols="50" maxlength="250">${testParameter.actualValue}</textarea>
 																			</c:if>
 																			<c:if test="${testParameter.type != 'D' }">
-																				<input type="text" name="tests[${t.index}].parameters[${p.index}].actualValue" value="${testParameter.actualValue}" />
+																				<input type="number" step="any" name="tests[${t.index}].parameters[${p.index}].actualValue" value="${testParameter.actualValue}" />
 																			</c:if>
 																		</c:if>
 																		<input type="hidden" name="tests[${t.index}].parameters[${p.index}].id" value="${testParameter.id}" />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-22T20:48:26 -->
+<!-- 2016-06-23T23:52:16 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -26,7 +26,7 @@
 	<title>
 		<band height="121" splitType="Stretch">
 			<textField>
-				<reportElement x="170" y="10" width="380" height="40" forecolor="#030000" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592"/>
+				<reportElement x="180" y="10" width="380" height="40" forecolor="#030000" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592"/>
 				<textElement>
 					<font fontName="SansSerif" size="24" isBold="true"/>
 				</textElement>
@@ -41,12 +41,12 @@
 				<textFieldExpression><![CDATA[$P{labAddress}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="8" y="0" width="538" height="100" forecolor="#000000" uuid="0b84bcb9-0336-4194-9735-47be5034f8d9"/>
+				<reportElement mode="Transparent" x="15" y="0" width="538" height="100" forecolor="#000000" uuid="0b84bcb9-0336-4194-9735-47be5034f8d9"/>
 			</rectangle>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="77" splitType="Stretch">
+		<band height="80" splitType="Stretch">
 			<textField>
 				<reportElement x="120" y="0" width="100" height="20" uuid="c44bf93a-b5ce-4bf2-98ca-cfeccf219c8e"/>
 				<textFieldExpression><![CDATA[$P{appointmentId}]]></textFieldExpression>
@@ -94,7 +94,7 @@
 				<reportElement x="340" y="40" width="100" height="20" uuid="1f98b87e-fe02-436a-9d5b-67d45abf6002"/>
 				<text><![CDATA[Date                           :]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="dd/mm/yyyy">
 				<reportElement x="440" y="40" width="100" height="20" uuid="15eac993-9c2d-473f-87a0-aede3e285dd0"/>
 				<textElement>
 					<font fontName="SansSerif"/>
@@ -107,9 +107,9 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="127" splitType="Stretch">
+		<band height="153" splitType="Stretch">
 			<subreport>
-				<reportElement x="10" y="50" width="200" height="55" uuid="8cd85150-b315-4f57-bb63-5356cb7a1099"/>
+				<reportElement x="10" y="50" width="543" height="80" uuid="8cd85150-b315-4f57-bb63-5356cb7a1099"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<subreportParameter name="testValues"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{parameters})]]></dataSourceExpression>
@@ -118,7 +118,7 @@
 			<textField>
 				<reportElement x="250" y="20" width="100" height="20" uuid="c8746232-1373-4397-bde2-4bdc2c18bb89"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font size="12" isBold="true" isItalic="false" isUnderline="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
