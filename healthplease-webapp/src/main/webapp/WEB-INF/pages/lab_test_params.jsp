@@ -132,7 +132,9 @@ Custom Fonts
 													<a data-toggle="collapse" data-parent="#accordion"
 														href="#${test.id}">${test.name}</a>
 													<c:if test="${test.reportSent == 'Y' }">
-														<i class="fa fa-check-square" style='float:right' aria-hidden="true"></i>
+													
+<!-- 														<i class="fa fa-check-square" style='float:right' aria-hidden="true"></i> -->
+															<img src="<c:url value="/resources/images/ico.png"/>" style='float:right' height="14px" width="14px"/>
 													</c:if>
 												</h4>
 											</div>

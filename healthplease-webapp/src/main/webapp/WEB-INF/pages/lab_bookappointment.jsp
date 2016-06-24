@@ -244,7 +244,7 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPincode">Patient's Pincode</label>  
               <div class="">
-                <input id="idappointmentPincode" name="address.zipCode" placeholder="Pincode" class="form-control input-md"  type="text" required="required"/>      
+                <input id="idappointmentPincode" type ="number" name="address.zipCode" placeholder="Pincode" class="form-control input-md"  type="text" required="required"/>      
               </div>
               <div class="" id="idAppPPincodeErr"></div>
             </div>
