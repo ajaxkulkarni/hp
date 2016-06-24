@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import org.apache.commons.io.FileUtils;
@@ -325,12 +326,18 @@ public class UserTest {
 		parameters.put("appointmentDate", "2013-06-08");
 		parameters.put("labAddress", "Flat No 6,Alliance Excellency, 720/14, Navi peth, Pune 30, 411030");
 		//parameters.put("labTests", testsSource);
-		byte[] bytes = JasperUtil.generateReport(parameters, testsSource, "hp_lab_report_2.jasper");
+		byte[] bytes;
+		try {
+			bytes = JasperUtil.generateReport(parameters, testsSource, "hp_lab_report_2.jasper");
+			BufferedOutputStream stream = null;
+			stream = new BufferedOutputStream(new FileOutputStream("test.pdf"));
+			stream.write(bytes);
+			stream.close();
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		BufferedOutputStream stream = null;
-		stream = new BufferedOutputStream(new FileOutputStream("test.pdf"));
-		stream.write(bytes);
-		stream.close();
 	}
 	
 	@Test
