@@ -313,7 +313,7 @@ public class BusinessConverters {
 		if(appointment.getUser() == null) {
 			return "" + appointment.getId();
 		}
-		return CommonUtils.convertDate(appointment.getUser().getFirstName()) + "_" + appointment.getId();
+		return CommonUtils.convertDate(appointment.getDate()) + "_" + appointment.getId();
 	}
 
 	public static RequestCollections getRequestCollections(RequestForm form) {

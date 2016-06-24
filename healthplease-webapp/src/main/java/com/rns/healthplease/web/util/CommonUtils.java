@@ -59,6 +59,14 @@ public class CommonUtils implements Constants {
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 		return sdf.format(date);
 	}
+	
+	public static String convertDate(Date date, String format) {
+		if(date == null) {
+			return "";
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		return sdf.format(date);
+	}
 
 	public static String getGender(Character gender) {
 		if (gender == null) {
@@ -363,6 +371,10 @@ public class CommonUtils implements Constants {
 		}
 		lab.setPrice(totalPrice);
 		appointment.setTests(tests);
+	}
+	
+	public static String getStringValue(String value) {
+		return value == null ? "" : value;
 	}
 	
 }

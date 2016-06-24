@@ -87,10 +87,10 @@ public class JasperUtil {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("labName", appointment.getLab().getName());
 		parameters.put("patientName", appointment.getUser().getFirstName());
-		parameters.put("patientGender", appointment.getUser().getGender());
+		parameters.put("patientGender", CommonUtils.getStringValue(appointment.getUser().getGender()));
 		parameters.put("patientAge", String.valueOf(appointment.getUser().getAge() == null ? "" : appointment.getUser().getAge()));
 		parameters.put("appointmentId", String.valueOf(appointment.getId()));
-		parameters.put("appointmentDate", CommonUtils.convertDate(appointment.getDate()));
+		parameters.put("appointmentDate", CommonUtils.convertDate(appointment.getDate(), Constants.DATE_FORMAT_2));
 		parameters.put("labAddress", appointment.getLab().getAddress());
 		parameters.put("doctorName", appointment.getDoctorName());
 
@@ -110,7 +110,7 @@ public class JasperUtil {
 		parameters.put("patientGender", appointment.getUser().getGender());
 		parameters.put("patientAge", String.valueOf(appointment.getUser().getAge()));
 		parameters.put("appointmentId", appointment.getId());
-		parameters.put("appointmentDate", CommonUtils.convertDate(appointment.getDate()));
+		parameters.put("appointmentDate", CommonUtils.convertDate(appointment.getDate(), Constants.DATE_FORMAT_2));
 		parameters.put("labAddress", appointment.getLab().getAddress());
 		parameters.put("doctorName", appointment.getDoctorName());
 		parameters.put("patientId", appointment.getUser().getId());

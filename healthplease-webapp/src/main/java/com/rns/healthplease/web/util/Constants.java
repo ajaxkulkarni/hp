@@ -18,6 +18,7 @@ public interface Constants {
 	
 	char YES = 'Y';
 	String DATE_FORMAT = "yyyy-MM-dd";
+	String DATE_FORMAT_2 = "dd-MM-yyyy";
 	String GENDER_FEMALE = "Female";
 	String GENDER_MALE = "Male";
 	String RESPONSE_OK = "OK";

@@ -207,12 +207,15 @@ public class MailUtil implements Constants, Runnable {
 
 	private void attachReport(Message message, Appointment appointment, String result) throws MessagingException, IOException {
 		Multipart mp = new MimeMultipart();
-		BodyPart messageBody = new MimeBodyPart();
-		messageBody.setContent(result, "text/html");
+		BodyPart fileBody = new MimeBodyPart();
 		DataSource source = new FileDataSource(getReport(appointment));
-		messageBody.setDataHandler(new DataHandler(source));
-		messageBody.setFileName(BusinessConverters.getReportName(appointment));
-		mp.addBodyPart(messageBody);
+		fileBody.setDataHandler(new DataHandler(source));
+		fileBody.setFileName(BusinessConverters.getReportName(appointment));
+		BodyPart messsageBody = new MimeBodyPart();
+		messsageBody.setText(result);
+		messsageBody.setContent(result, "text/html");
+		mp.addBodyPart(fileBody);
+		mp.addBodyPart(messsageBody);
 		message.setContent(mp);
 		String subject = StringUtils.replace(message.getSubject(), "{labName}", appointment.getLab().getName());
 		subject = StringUtils.replace(subject, "{testName}", appointment.getTests().get(0).getName());
@@ -264,7 +267,7 @@ public class MailUtil implements Constants, Runnable {
 	private static Map<String, String> MAIL_SUBJECTS = Collections.unmodifiableMap(new HashMap<String, String>() {
 		{
 			put(MAIL_TYPE_ACTIVATION, "Account activation");
-			put(MAIL_TYPE_REPORT_UPLOAD, "Delivery: Your {testName} test report from {labName}");
+			put(MAIL_TYPE_REPORT_UPLOAD, "Delivery: Your test report from {labName}");
 			put(MAIL_TYPE_BOOK_APP_USER, "Congratulations! Your appointment is booked successfully!");
 			put(MAIL_TYPE_BOOK_APP_LAB, "New Appointment booked for {labName}");
 			put(MAIL_TYPE_REGISTRATION, "Thank you for choosing Health Please");
