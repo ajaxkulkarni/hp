@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<div class="col-lg-3 col-md-3">
+	<div class="col-lg-2 col-md-2">
 		<div class="row">
 			<div class="col-md-12 column margintop20">
 				<ul class="nav nav-pills nav-stacked classCustomAMenu">
