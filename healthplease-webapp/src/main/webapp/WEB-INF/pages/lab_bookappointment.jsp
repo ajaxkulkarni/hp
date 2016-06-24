@@ -463,7 +463,7 @@ $(document).ready(function(){
         $(function() {
             $( "#idAppointmentDate").datepicker({
             	changeMonth: true,
-            	minDate: +1,
+            	minDate: 0,
             	maxDate:"+2M",
             	dateFormat:"yy-mm-dd",
             	beforeShowDay: function(date) {
