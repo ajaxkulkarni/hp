@@ -45,6 +45,7 @@ public class Appointments implements java.io.Serializable {
 	private String email;
 	private String mobileNo;
 	private Integer age;
+	private String gender;
 	private char isRequirePrint;
 	private char isConfirmed;
 	private Integer createdBy;
@@ -358,5 +359,14 @@ public class Appointments implements java.io.Serializable {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	@Column(name = "gender")
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 }

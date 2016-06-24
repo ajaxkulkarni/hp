@@ -172,6 +172,11 @@
     	 $("#report_form").submit();
      }
      
+     function saveReport() {
+    	 $("#is_send_mail").val('P');
+    	 $("#report_form").submit();
+     }
+     
      
      function generateReportData(app,id) {
     	 var reportData = "";

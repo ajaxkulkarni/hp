@@ -248,6 +248,10 @@
               </div>
               <div class="" id="idAppPPincodeErr"></div>
             </div>
+            <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
+				<input id="id_report_checkbox" name="printRequired" class="" style="width: 20px; height: 20px;" value="Y" type="checkbox"> 
+				Need printed report
+			</div>
 			</div>
           </div>
 

@@ -185,6 +185,8 @@ public class DataConverters {
 		appointment.getUser().setFirstName(appointments.getName());
 		appointment.getUser().setEmail(appointments.getEmail());
 		appointment.getUser().setPhone(appointments.getMobileNo());
+		appointment.getUser().setAge(appointments.getAge());
+		appointment.getUser().setGender(appointments.getGender());
 		appointment.setDate(appointments.getDate());
 		appointment.setDoctorName(appointments.getDoctorName());
 		appointment.setTests(getTests(appointments, appointmentDao, session));
@@ -231,6 +233,7 @@ public class DataConverters {
 			AppointmentTestResults results = new AppointmentDaoImpl().getAppointmentTestResult(appointments.getId(), factors.getTest().getId(), factors.getTestFactors().getId(), session);
 			if(results != null) {
 				parameter.setActualValue(results.getActualValue());
+				parameter.setRemark(results.getRemarks());
 			}
 			parameters.add(parameter);
 		}

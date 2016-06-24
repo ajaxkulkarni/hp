@@ -309,7 +309,7 @@ public class CommonUtils implements Constants {
 		for(LabTest labTest: tests) {
 			builder.append(labTest.getName()).append(",");
 		}
-		return builder.toString();
+		return StringUtils.removeEnd(builder.toString(), ",");
 	}
 	
 	public static void setAppointments(User user, Appointment appointment) {

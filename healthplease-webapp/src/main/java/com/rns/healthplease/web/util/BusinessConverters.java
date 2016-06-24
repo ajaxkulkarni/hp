@@ -206,6 +206,7 @@ public class BusinessConverters {
 		appointments.setMobileNo(appointment.getUser().getPhone());
 		appointments.setName(appointment.getUser().getFirstName());
 		appointments.setAge(appointment.getUser().getAge());
+		appointments.setGender(appointment.getUser().getGender());
 		appointments.setSlots(BusinessConverters.getSlots(appointment.getSlot()));
 		appointments.setStatus(BusinessConverters.getStatus(appointment.getStatus()));
 		appointments.setUser(BusinessConverters.getUsers(appointment.getUser()));
@@ -349,7 +350,10 @@ public class BusinessConverters {
 			AppointmentTestResults result = getAppointmentTestResult(appointmentId, testId, parameter);
 			AppointmentTestResults existingResult = new AppointmentDaoImpl().getAppointmentTestResult(appointmentId, testId, parameter.getId(), session);
 			if(existingResult != null) {
-				result.setId(existingResult.getId());
+				existingResult.setActualValue(result.getActualValue());
+				existingResult.setRemarks(result.getRemarks());
+				results.add(existingResult);
+				continue;
 			}
 			results.add(result);
 		}
@@ -364,6 +368,7 @@ public class BusinessConverters {
 		TestFactors testFactor = new TestFactors();
 		testFactor.setId(parameter.getId());
 		result.setFactor(testFactor);
+		result.setRemarks(parameter.getRemark());
 		return result;
 	}
 

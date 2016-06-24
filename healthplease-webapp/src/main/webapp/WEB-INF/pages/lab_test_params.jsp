@@ -145,6 +145,7 @@ Custom Fonts
 															<th>Test Values</th>
 															<th>Units</th>
 															<th>Normal Values</th>
+															<th>Remarks</th>
 														</thead>
 														<tbody>
 															<c:forEach items="${test.parameters}" var="testParameter" varStatus="p">
@@ -164,13 +165,21 @@ Custom Fonts
 																				<textarea name="tests[${t.index}].parameters[${p.index}].actualValue" rows="5" cols="50" maxlength="250">${testParameter.actualValue}</textarea>
 																			</c:if>
 																			<c:if test="${testParameter.type != 'D' }">
-																				<input type="number" step="any" name="tests[${t.index}].parameters[${p.index}].actualValue" value="${testParameter.actualValue}" />
+																				<input type="text" name="tests[${t.index}].parameters[${p.index}].actualValue" value="${testParameter.actualValue}" />
 																			</c:if>
 																		</c:if>
 																		<input type="hidden" name="tests[${t.index}].parameters[${p.index}].id" value="${testParameter.id}" />
 																	</td>
 																	<td>${testParameter.unit}</td>
 																	<td>${testParameter.normalValue}</td>
+																	<td>
+																		<c:if test="${test.reportSent == 'Y' }">
+																			<input type="text" name="tests[${t.index}].parameters[${p.index}].remark" value="${testParameter.remark}" readonly="readonly" />
+																		</c:if>
+																		<c:if test="${test.reportSent == null  || test.reportSent == 'N'}">
+																			<input type="text" name="tests[${t.index}].parameters[${p.index}].remark" value="${testParameter.remark}" />
+																		</c:if>
+																	</td>
 																</tr>
 															</c:forEach>
 															
@@ -186,6 +195,7 @@ Custom Fonts
 								</div>
 								<button type="button" class="btn btn-primary" onclick="sendReport()">Send</button>
 								<button type="submit" class="btn btn-primary">Export</button>
+								<button type="submit" class="btn btn-primary" onclick="saveReport()">Save</button>
 								</div>
 							</form>
 							<!-- .panel-body -->

@@ -417,7 +417,9 @@ public class HPLabControllerWeb implements Constants {
 		currentAppointment.setStatus(new AppointmentStatus(3));
 		setTestValues(currentAppointment, appointment, testIds);
 		//currentAppointment.setPrepareReport(PdfUtil.createPdf(currentAppointment));
-		JasperUtil.getReport(currentAppointment);
+		if(appointment.getPrintRequired() == null || 'P' != appointment.getPrintRequired()) {
+			JasperUtil.getReport(currentAppointment);
+		}
 		if(appointment.getPrintRequired()!= null && YES == appointment.getPrintRequired().charValue()) {
 			String result = labBo.uploadReport(currentAppointment);
 			if(RESPONSE_OK.equals(result)) {
@@ -432,12 +434,15 @@ public class HPLabControllerWeb implements Constants {
 			}
 			manager.setResult(result);
 		}
+		if(appointment.getPrintRequired() != null && 'P' == appointment.getPrintRequired()) {
+			return new RedirectView(generateReportView);
+		}
 		byte[] reportData = currentAppointment.getReportData();
 		if(reportData == null) {
 			return new RedirectView(generateReportView);
 		}
 		writeToResponse(response, reportData);
-		return new RedirectView(LAB_PREPARE_REPORT_GET_URL);
+		return new RedirectView(generateReportView);
 	}
 
 	private void writeToResponse(HttpServletResponse response, byte[] reportData) {
@@ -498,6 +503,7 @@ public class HPLabControllerWeb implements Constants {
 			for(TestParameter param:labTest.getParameters()) {
 				if(parameter.getId().intValue() == param.getId().intValue()) {
 					param.setActualValue(parameter.getActualValue());
+					param.setRemark(parameter.getRemark());
 					params.add(param);
 				}
 			}
