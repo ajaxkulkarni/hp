@@ -173,7 +173,49 @@
 <div class="clearfix"></div><br />
 <!--Main div where content get loaded-->
 <div class="" id="loadUser" name="loadUser">
-
+<table class="table table-bordered table-responsive">
+                    <tbody><tr>
+                    <th>#</th>
+                    <th>Test Name</th>
+                    <th>Test Category</th>
+                    <th>Test Charge</th>
+                    <th colspan="2" align="center">Actions</th>
+                    </tr>                <tr>
+                <td>1</td>
+                <td>Hemogram CBC</td>
+                <td>
+                    <!--select box generation-->
+                <select>
+                    <option value=""></option>
+                                <option value="1" selected="selected">
+                HEAMATOLOGY                </option>
+                                <option value="2">
+                SEROLOGY                </option>
+                                <option value="3">
+                HORMONAL TEST	                </option>
+                                <option value="4">
+                BIOCHEMISTRY	                </option>
+                                <option value="5">
+                BACTERIOLOGY	                </option>
+                                <option value="6">
+                CLINICAL PATHOLOGY                </option>
+                                <option value="7">
+                OTHER TEST                </option>
+                                <option value="8">
+                MICROBIOLOGY                </option>
+                                </select>
+                    
+                </td>
+                
+                <td>180</td>
+               
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=gettest&amp;id=1" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=1&amp;action=deletetest&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr></tbody></table>
 </div>   
 </div>
 </div> 

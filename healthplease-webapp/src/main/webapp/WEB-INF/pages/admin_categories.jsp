@@ -51,7 +51,100 @@
 <div class="clearfix"></div><br/>
 <!--Main div where content get loaded-->
 <div class="" id="loadUser" name="loadUser">
-
+<table class="table table-bordered table-responsive">
+                    <tbody><tr>
+                    <th>#</th>
+                    <th>Category Name</th>
+                    <th colspan="2" align="center">Actions</th>
+                    </tr>                <tr>
+                <td>1</td>
+                <td>HEAMATOLOGY</td>
+               
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getcategory&amp;id=1" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=1&amp;action=deletecategory&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>2</td>
+                <td>SEROLOGY</td>
+               
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getcategory&amp;id=2" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=2&amp;action=deletecategory&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>3</td>
+                <td>HORMONAL TEST	</td>
+               
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getcategory&amp;id=3" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=3&amp;action=deletecategory&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>4</td>
+                <td>BIOCHEMISTRY	</td>
+               
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getcategory&amp;id=4" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=4&amp;action=deletecategory&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>5</td>
+                <td>BACTERIOLOGY	</td>
+               
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getcategory&amp;id=5" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=5&amp;action=deletecategory&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>6</td>
+                <td>CLINICAL PATHOLOGY</td>
+               
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getcategory&amp;id=6" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=6&amp;action=deletecategory&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>7</td>
+                <td>OTHER TEST</td>
+               
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getcategory&amp;id=7" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=7&amp;action=deletecategory&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>8</td>
+                <td>MICROBIOLOGY</td>
+               
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getcategory&amp;id=8" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=8&amp;action=deletecategory&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                </tbody></table>
 </div>    
 <!--Paging div will get content soon-->
 <div class="" id="pagination">

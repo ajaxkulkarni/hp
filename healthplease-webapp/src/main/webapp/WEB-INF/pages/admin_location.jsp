@@ -50,6 +50,122 @@
 <div class="clearfix"></div><br />
 <!--Main div where content get loaded-->
 <div class="" id="loadUser" name="loadUser">
+<table class="table table-bordered table-responsive">
+                    <tbody><tr>
+                    <th>#</th>
+                    <th>Location Name</th>
+                    <th colspan="2" align="center">Actions</th>
+                    </tr>                <tr>
+                <td>7</td>
+                <td>Vishrantwadi</td>
+                
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getlocation&amp;id=7" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=7&amp;action=deletelocation&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>8</td>
+                <td>Viman Nagar</td>
+                
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getlocation&amp;id=8" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=8&amp;action=deletelocation&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>9</td>
+                <td>Shastri Nagar</td>
+                
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getlocation&amp;id=9" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=9&amp;action=deletelocation&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>10</td>
+                <td>Kalyani Nagar</td>
+                
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getlocation&amp;id=10" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=10&amp;action=deletelocation&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>11</td>
+                <td>Koregaon Park</td>
+                
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getlocation&amp;id=11" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=11&amp;action=deletelocation&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>12</td>
+                <td>Koregaon Park ext.</td>
+                
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getlocation&amp;id=12" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=12&amp;action=deletelocation&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>13</td>
+                <td>Tingre Nagar</td>
+                
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getlocation&amp;id=13" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=13&amp;action=deletelocation&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>14</td>
+                <td>Dhanori</td>
+                
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getlocation&amp;id=14" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=14&amp;action=deletelocation&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>15</td>
+                <td>Phule Nagar</td>
+                
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getlocation&amp;id=15" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=15&amp;action=deletelocation&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                                <tr>
+                <td>16</td>
+                <td>Bund Garden Road</td>
+                
+                <td align="center">
+                <a href="javascript:void(0);" class="js-edituser" data-value="action=getlocation&amp;id=16" data-page_no="1"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+                <td align="center">
+                <a href="javascript:void(0)" class="js-deleteuser" data-value="delete_id=16&amp;action=deletelocation&amp;page_no=1"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                </td>
+                </tr>
+                </tbody></table>
 
 </div>    
 <!--Paging div will get content soon-->
