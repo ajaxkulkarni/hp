@@ -4,6 +4,7 @@ package com.rns.healthplease.web.dao.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -41,11 +42,11 @@ public class Tests implements java.io.Serializable {
 	private String isFastRequired;
 	private String shortDesc;
 	private String longDesc;
-	/*private int createdBy;
+	private int createdBy;
 	private Date createdDate;
 	private short updatedBy;
 	private Date updatedDate;
-	private int isDeleted;*/
+	private int isDeleted;
 	private Set<TestLabs> testLabs = new HashSet<TestLabs>(0);
 	private Set<AppointmentTests> appointmentTests = new HashSet<AppointmentTests>(0);
 	private Set<TestFactorsMap> testFactors = new HashSet<TestFactorsMap>(0);
@@ -165,7 +166,7 @@ public class Tests implements java.io.Serializable {
 		this.longDesc = longDesc;
 	}
 
-	/*@Column(name = "created_by", nullable = false)
+	@Column(name = "created_by", nullable = false)
 	public int getCreatedBy() {
 		return this.createdBy;
 	}
@@ -208,7 +209,7 @@ public class Tests implements java.io.Serializable {
 
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
-	}*/
+	}
 	
 	@OneToMany(mappedBy = "test")
 	public Set<TestLabs> getTestLabs() {

@@ -44,7 +44,6 @@ import com.rns.healthplease.web.bo.domain.TestParameter;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
 import com.rns.healthplease.web.util.JasperUtil;
-import com.rns.healthplease.web.util.LoggingUtil;
 
 @Controller
 public class HPLabControllerWeb implements Constants {
@@ -293,30 +292,14 @@ public class HPLabControllerWeb implements Constants {
 	public ModelAndView downloadExcel(ModelMap model, String header) {
 		List<Appointment> appointments = new ArrayList<Appointment>();
 		appointments = manager.getUser().getTodaysAppointments();
-		appointments = getAppointmentsByType(header);
+		appointments = CommonUtils.getAppointmentsByType(manager,header);
 		ModelAndView modelAndView = new ModelAndView(EXCEL_VIEW, MODEL_APPOINTMENTS, appointments);
 		return modelAndView;
 	}
 
-	private List<Appointment> getAppointmentsByType(String header) {
-		if (PENDING_HEADER.equals(StringUtils.trimToEmpty(header))) {
-			return manager.getUser().getPendingAppointments();
-		} else if (CANCELLED_HEADER.equals(StringUtils.trimToEmpty(header))) {
-			return manager.getUser().getCancelledAppointments();
-		} else if (TOTAL_HEADER.equals(StringUtils.trimToEmpty(header))) {
-			return manager.getUser().getAppointments();
-		}
-		return manager.getUser().getTodaysAppointments();
-	}
 
 	@RequestMapping(value = "/" + CANEL_APPOINTMENT_LAB_POST_URL, method = RequestMethod.POST)
 	public RedirectView cancelAppointment(ModelMap model, Appointment appointment) {
-		/*Appointment appointment = new Appointment();
-		appointment.setId(appointmentId);
-		AppointmentStatus status = new AppointmentStatus(2);
-		status.setCancelId(reason);
-		status.setCancellationReason(reasonDescription);
-		appointment.setStatus(status);*/
 		appointment.setUser(manager.getUser());
 		appointment.setLab(manager.getUser().getLab());
 		userBo.cancelAppointment(appointment);
@@ -372,13 +355,11 @@ public class HPLabControllerWeb implements Constants {
 
 	@RequestMapping(value = "/getAppointmentDetails", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody String getAppointment(Integer appointmentId, String header, ModelMap model) {
-		LoggingUtil.logMessage("Getting Appointment..");
-		List<Appointment> appointments = getAppointmentsByType(header);
+		List<Appointment> appointments = CommonUtils.getAppointmentsByType(manager,header);
 		Appointment app = null;
 		if(CollectionUtils.isEmpty(appointments)) {
 			return null;
 		}
-		LoggingUtil.logMessage("ID :" + appointmentId);
 		for (Appointment appointment : appointments) {
 			System.out.println(appointment.getId().intValue());
 			if (appointment.getId().intValue() == appointmentId) {

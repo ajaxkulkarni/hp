@@ -56,58 +56,38 @@
 <div id="msg" class="container"></div>
 
 <div class="" id="div_add">
-<a href="<%=Constants.ADMIN_EDIT_CATEOGORY_GET_URL %>" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Category</a>
+<a href="<%=Constants.ADMIN_EDIT_TEST_GET_URL%>" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Test</a>
 </div>
 
 <div class="clearfix"></div><br/>
 <!--Main div where content get loaded-->
 <div class="" id="loadUser" name="loadUser">
-<table id="categories_table" class="table table-bordered table-responsive">
+<table id="tests_table" class="table table-bordered table-responsive">
                     <tbody><tr>
                     <th>#</th>
-                    <th>Category Name</th>
+                    <th>Test Name</th>
                     <th colspan="2" align="center">Actions</th>
                     </tr>                
-                <c:forEach items="${categories}" var="cat" varStatus="i">
+                <c:forEach items="${tests}" var="test" varStatus="i">
                 <tr>
                 	<td>${i.index + 1}</td>
-                	<td>${cat.categoryName}</td>
+                	<td>${test.name}</td>
                 	<td align="center">
-                		<a href="<%=Constants.ADMIN_EDIT_CATEOGORY_GET_URL%>?id=${cat.id}&name=${cat.categoryName}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
+                		<a href="<%=Constants.ADMIN_EDIT_TEST_GET_URL%>?id=${test.id}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
                 	</td>
                 	<td align="center">
-                		<a href="" class="js-deleteuser" onclick="confirmDelete('${cat.categoryName}','${cat.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
+                		<a href="" class="js-deleteuser" onclick="confirmDelete('${test.name}','${test.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
                 	</td>
                 </tr>
                 </c:forEach>
                 </tbody></table>
                 
 </div>    
-<!--Paging div will get content soon-->
-<!-- <div class="" id="pagination">
-    <table class='table table-bordered table-responsive'>
-    <tr>
-        <td colspan="7" align="center">
-            <div class="pagination-wrap">
-                <ul class="pagination">
-                <ol id="paging">
-                <li>
-                	<a href='#' style='color:red;' class='js-pageDisplay'>#c</a>
-                </li>
-                <li>
-                	<a href='#' class='js-pageDisplay'>#n</a>
-                </li>
-                </ol>
-               </ul>
-             </div>
-        </td>
-    </tr>
-    </table>    
-</div>    -->
 
-<form id="cat_form" action="<%=Constants.ADMIN_DELETE_CATEGORY_POST_URL %>" method="post">
 
-<input type="hidden" id="cat_id" name="id"/>
+<form id="test_form" action="<%=Constants.ADMIN_DELETE_TEST_POST_URL %>" method="post">
+
+<input type="hidden" id="test_id" name="id"/>
 
 </form>
 
@@ -132,36 +112,14 @@
 <script>
 
 $(document).ready(function(){
-	 $("#categories_table").paging({limit:10});
-	 /* $("#categories_table").paging(1337,{ // make 1337 elements navigatable
-		    format: '[< ncnnn! >]', // define how the navigation should look like and in which order onFormat() get's called
-		    perpage: 10, // show 10 elements per page
-		    onFormat: function (type) {
-		        switch (type) {
-		        case 'block': // n and c
-		            return '<a href="#">' + this.value + '</a>';
-		        case 'next': // >
-		            return '<a href="#">&gt;</a>';
-		        case 'prev': // <
-		            return '<a href="#">&lt;</a>';
-		        case 'first': // [
-		            return '<a href="#">first</a>';
-		        case 'last': // ]
-		            return '<a href="#">last</a>';
-		        }
-		    }
-		}); */
-	 /* $("#categories_table").easyPaging(1000, {
-		    onSelect: function(page) {
-		        console.log("You are on page " + page + " and you will select elements "+(this.slice[0]+1) + "-" + this.slice[1]+"!!!");
-		    }
-		}); */
+	 $("#tests_table").paging({limit:20});
+	 
 }); 
    
    function confirmDelete(name,id) {
-	   if(confirm("Are you sure you want to delete category " + name + " ?")) {
-		   $("#cat_id").val(id);
-		   $("#cat_form").submit();
+	   if(confirm("Are you sure you want to delete test " + name + " ?")) {
+		   $("#test_id").val(id);
+		   $("#test_form").submit();
 	   }
    }
    

@@ -8,6 +8,7 @@ public class LabTest {
 	private Integer id;
 	private String name;
 	private String description;
+	private String longDescription;
 	private Integer price;
 	private String category;
 	private boolean isTestPackage;
@@ -18,6 +19,7 @@ public class LabTest {
 	private String reportSent;
 	private Integer discount;
 	private Integer srNo;
+	private Integer deliveryDays;
 	
 	public Integer getPrice() {
 		return price;
@@ -100,6 +102,18 @@ public class LabTest {
 	}
 	public void setDiscount(Integer discount) {
 		this.discount = discount;
+	}
+	public Integer getDeliveryDays() {
+		return deliveryDays;
+	}
+	public void setDeliveryDays(Integer deliveryDays) {
+		this.deliveryDays = deliveryDays;
+	}
+	public String getLongDescription() {
+		return longDescription;
+	}
+	public void setLongDescription(String longDescription) {
+		this.longDescription = longDescription;
 	}
 	
 

@@ -131,6 +131,21 @@ public class BusinessConverters {
 		}
 		Labs labs = new Labs();
 		labs.setId(lab.getId());
+		if(StringUtils.isNotEmpty(lab.getName())) {
+			labs.setLabName(lab.getName());
+		}
+		if(StringUtils.isNotEmpty(lab.getAddress())) {
+			labs.setAddress(lab.getAddress());
+		}
+		if(StringUtils.isNotEmpty(lab.getContact())) {
+			labs.setMobileNo(lab.getContact());
+		}
+		if(StringUtils.isNotEmpty(lab.getEmail())) {
+			labs.setLabEmail(lab.getEmail());
+		}
+		if(lab.getAppointmentsPerSlot()!= null) {
+			labs.setBookAppPerSlot(Byte.valueOf(lab.getAppointmentsPerSlot().toString()));
+		}
 		return labs;
 	}
 
@@ -140,6 +155,9 @@ public class BusinessConverters {
 		}
 		Locations locations = new Locations();
 		locations.setId(location.getId());
+		if(StringUtils.isNotEmpty(location.getName())) {
+			locations.setLocationName(location.getName());
+		}
 		return locations;
 	}
 
@@ -250,10 +268,35 @@ public class BusinessConverters {
 		return appointmentTests;
 	}
 
-	private static Tests getTest(LabTest test) {
+	public static Tests getTest(LabTest test) {
 		Tests tests = new Tests();
 		tests.setId(test.getId());
+		setTestDetails(test, tests);
 		return tests;
+	}
+
+	public static void setTestDetails(LabTest test, Tests tests) {
+		if(StringUtils.isNotEmpty(test.getName())) {
+			tests.setTestName(test.getName());
+		}
+		if(StringUtils.isNotEmpty(test.getAbbrevation())) {
+			tests.setTestAbvr(test.getAbbrevation());
+		}
+		if(StringUtils.isNotEmpty(test.getDescription())) {
+			tests.setShortDesc(test.getDescription());
+		}
+		if(StringUtils.isNotEmpty(test.getLongDescription())) {
+			tests.setLongDesc(test.getLongDescription());
+		}
+		if(StringUtils.isNotEmpty(test.getFastingInfo())) {
+			tests.setIsFastRequired(test.getFastingInfo());
+		}
+		if(test.getDeliveryDays() != null) {
+			tests.setDeliveryDays(Short.valueOf(test.getDeliveryDays().toString()));
+		}
+		if(StringUtils.isNoneEmpty(test.getFastingInfo())) {
+			tests.setIsFastRequired(test.getFastingInfo());
+		}
 	}
 
 	public static LabActiveDaysStatus getLabActiveDaysStatus(Labs labs, Date date) {
@@ -304,7 +347,7 @@ public class BusinessConverters {
 
 	public static String getReportName(Appointment appointment) {
 		if (appointment.getReport() != null) {
-			return appointment.getReport().getName();
+			return StringUtils.appendIfMissing(appointment.getReport().getName(), ".pdf");
 		}
 		return prepareReportName(appointment) + ".pdf";
 	}

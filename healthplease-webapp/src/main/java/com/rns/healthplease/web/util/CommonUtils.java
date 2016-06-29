@@ -21,6 +21,7 @@ import org.hibernate.Session;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.rns.healthplease.web.bo.api.HPSessionManager;
 import com.rns.healthplease.web.bo.domain.Appointment;
 import com.rns.healthplease.web.bo.domain.HPCalendar;
 import com.rns.healthplease.web.bo.domain.HPDay;
@@ -286,8 +287,13 @@ public class CommonUtils implements Constants {
 	}
 	
 	public static void populateLabUsers(Appointment appointment, Session session) {
+		Lab lab = appointment.getLab();
+		getLabUsers(session, lab);
+	}
+
+	public static void getLabUsers(Session session, Lab lab) {
 		UserDao userDao = new UserDaoImpl();
-		List<Users> labUsers = userDao.getUsersForLab(appointment.getLab().getId(), session);
+		List<Users> labUsers = userDao.getUsersForLab(lab.getId(), session);
 		if(CollectionUtils.isEmpty(labUsers)) {
 			return;
 		}
@@ -298,7 +304,7 @@ public class CommonUtils implements Constants {
 		for(Users users: labUsers) {
 			User user = new User();
 			DataConverters.getUser(users, user);
-			appointment.getLab().getUsers().add(user);
+			lab.getUsers().add(user);
 		}
 	}
 
@@ -371,6 +377,17 @@ public class CommonUtils implements Constants {
 		}
 		lab.setPrice(totalPrice);
 		appointment.setTests(tests);
+	}
+	
+	public static List<Appointment> getAppointmentsByType(HPSessionManager manager,String header) {
+		if (PENDING_HEADER.equals(StringUtils.trimToEmpty(header))) {
+			return manager.getUser().getPendingAppointments();
+		} else if (CANCELLED_HEADER.equals(StringUtils.trimToEmpty(header))) {
+			return manager.getUser().getCancelledAppointments();
+		} else if (TOTAL_HEADER.equals(StringUtils.trimToEmpty(header))) {
+			return manager.getUser().getAppointments();
+		}
+		return manager.getUser().getTodaysAppointments();
 	}
 	
 	public static String getStringValue(String value) {

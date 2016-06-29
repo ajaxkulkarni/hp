@@ -46,10 +46,16 @@
 
 <div class="" id="div_add">
     <h3>Lab Listing</h3>
-    <select id="lab" name="lab">
-        <option value="">Please Select One</option>
-        <option value='4'>Agarwal's Pathology</opiton><option value='5'>Ankur Pathology Lab</opiton><option value='7'>Care First</opiton><option value='1'>Dhanwantari Path Lab</opiton><option value='8'>DTH Labs</opiton><option value='3'>N M Medical</opiton><option value='6'>PrimeX Health</opiton>    </select>
-    <a id="goToLab" href="javascript:void(0);" class="btn btn-large btn-info" id="add">&nbsp; Go To Lab Dashboard</a>
+    <form action="<%=Constants.ADMIN_VIEW_LAB_DASHBOARD_POST_URL %>" method="post">
+    <select id="lab" name="id">
+     <option value="">Please Select One</option>
+    <c:forEach items="${labs}" var="lab">
+    	<option value="${lab.id}">${lab.name}</option>
+    </c:forEach>
+    </select>
+   <!--  <a id="goToLab" href="javascript:void(0);" class="btn btn-large btn-info" id="add">&nbsp; Go To Lab Dashboard</a> -->
+    <button id="goToLab" type="submit" class="btn btn-large btn-info" id="add">&nbsp; Go To Lab Dashboard</button>
+    </form>
 </div>
 
 <div class="clearfix"></div><br />

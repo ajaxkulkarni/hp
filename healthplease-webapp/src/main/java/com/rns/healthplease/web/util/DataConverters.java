@@ -153,9 +153,11 @@ public class DataConverters {
 		LabTest labTest = new LabTest();
 		labTest.setId(test.getId());
 		labTest.setName(test.getTestName());
-		labTest.setDescription(test.getLongDesc());
+		labTest.setDescription(test.getShortDesc());
+		labTest.setLongDescription(test.getLongDesc());
 		labTest.setAbbrevation(test.getTestAbvr());
 		labTest.setFastingInfo(test.getIsFastRequired());
+		labTest.setDeliveryDays(Integer.valueOf(test.getDeliveryDays()));
 		if (test.getTestCategory() != null) {
 			labTest.setCategory(test.getTestCategory().getCategoryName());
 		}
@@ -241,6 +243,7 @@ public class DataConverters {
 	}
 
 	public static void addChildTests(LabTest labTest, List<TestPackages> packages) {
+		labTest.setChildTests(new ArrayList<LabTest>());
 		for (TestPackages testPackages : packages) {
 			labTest.getChildTests().add(DataConverters.getTest(testPackages.getChildTest()));
 		}

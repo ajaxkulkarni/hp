@@ -43,6 +43,11 @@ public interface Constants {
 	String MODEL_TEST = "test";
 	String MODEL_LAB = "lab";
 	String MODEL_LAB_VIEW = "labView";
+	String MODEL_CATEGORY = "category";
+	String MODEL_CATEGORIES = "categories";
+	String MODEL_USERS = "users";
+	String MODEL_LOCATION = "location";
+	
 	
 	String EXCEL_VIEW = "excelView"; 
 	String PDF_VIEW = "pdfView";
@@ -56,7 +61,7 @@ public interface Constants {
 	String ERROR_REGISTRATION = "User already Exists!";
 	String ERROR_INVALID_APPOINTMENT_DETAILS = "Invalid Appointment Details!";
 	String ERROR_FORGOT_PWD_NO_USER = "No user found with given Email.";
-	
+	String ERROR_INVALID_TEST_DETAILS = "Test does not exist!";
 
 	String BOOK_APPOINTMENT_POST_URL = "bookAppointment";
 	String USER_HOME_GET_URL = "userhome.htm";
@@ -135,8 +140,36 @@ public interface Constants {
 	String LAB_TEST_PARAMS_PAGE = "lab_test_params";
 	String CHANGE_PASSWORD_SETTINGS_URL_POST = "changePasswordSettings";
 	String LAB_INVOICE_GET_URL = "generateInvoice.htm";
-	
-
+	String ADMIN_APPOINTMENTS_BETWEEN_GET_URL = "adminAppointmentsBetween.htm";
+	String ADMIN_GET_APPOINTMENTS_FOR_DATES_POST_URL = "adminGetAppointmentsForDates";
+	String ADMIN_DOWNLOAD_EXCEL_GET_URL = "adminDownloadExcel";
+	String ADMIN_UPLOAD_REPORT_POST_URL = "adminUploadReport";
+	String ADMIN_CANCEL_APPOINTMENT_POST_URL = "adminCancelAppointment";
+	String ADMIN_EDIT_CATEOGORY_POST_URL = "adminEditCateogory";
+	String ADMIN_EDIT_CATEOGORY_GET_URL = "adminEditCateogory.htm";
+	String ADMIN_CATEGORIES_GET_URL = "adminCategories.htm";
+	String ADMIN_CATEGORIES_PAGE = "admin_categories";
+	String ADMIN_EDIT_CATEGORY_PAGE = "admin_edit_category";
+	String ADMIN_DELETE_CATEGORY_POST_URL = "adminDeleteCategory";
+	String ADMIN_EDIT_TEST_POST_URL = "adminEditTest";
+	String ADMIN_EDIT_TEST_PAGE = "admin_edit_test";
+	String ADMIN_EDIT_TEST_GET_URL = "adminEditTest.htm";
+	String ADMIN_TESTS_PAGE = "admin_tests";
+	String ADMIN_TESTS_GET_URL = "adminTests.htm";
+	String ADMIN_DELETE_TEST_POST_URL = "adminDeleteTest";
+	String ADMIN_LABS_PAGE = "admin_lab";
+	String ADMIN_LABS_GET_URL = "adminLabs.htm";
+	String ADMIN_EDIT_LAB_POST_URL = "adminEditLab";
+	String ADMIN_EDIT_LAB_USERS_POST_URL = "adminEditLabUsers";
+	String ADMIN_DELETE_LOCATION_POST_URL = "adminDeleteLocation";
+	String ADMIN_EDIT_LOCATION_POST_URL = "adminEditLocation";
+	String ADMIN_EDIT_LOCATION_PAGE = "admin_edit_location";
+	String ADMIN_EDIT_LOCATION_GET_URL = "adminEditLocation.htm";
+	String ADMIN_LOCATIONS_PAGE = "admin_location";
+	String ADMIN_LOCATIONS_GET_URL = "adminLocations.htm";
+	String ADMIN_LAB_DASHBOARD_PAGE = "admin_load_lab";
+	String ADMIN_LAB_DASHBOARD_GET_URL = "adminLabDashboards.htm";
+	String ADMIN_VIEW_LAB_DASHBOARD_POST_URL = "adminViewLabDashboard";
 	
 	String MAIL_TYPE_ACTIVATION = "activationMail";
 	String MAIL_TYPE_REPORT_UPLOAD = "reportUpload";

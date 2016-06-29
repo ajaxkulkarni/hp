@@ -18,6 +18,7 @@ import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
 import com.rns.healthplease.web.dao.domain.Slots;
+import com.rns.healthplease.web.dao.domain.TestCategories;
 import com.rns.healthplease.web.dao.domain.TestLabs;
 import com.rns.healthplease.web.dao.domain.TestPackages;
 import com.rns.healthplease.web.dao.domain.Tests;
@@ -73,5 +74,13 @@ public interface AppointmentDao {
 	CancelReasons getCancelReason(Integer cancelId, Session session);
 
 	AppointmentTestResults getAppointmentTestResult(Integer appointmentId, Integer testId,Integer factorId, Session session);
+
+	List<Appointments> getAppointmentsForDateRange(Date date1, Date date2, Session session);
+
+	List<TestCategories> getAllTestCategories(Session session);
+
+	TestCategories getTestCategoryByName(String category, Session session);
+
+	List<Labs> getAllLabs(Session session);
 
 }

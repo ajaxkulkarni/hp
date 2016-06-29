@@ -20,6 +20,7 @@ import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
 import com.rns.healthplease.web.dao.domain.Slots;
+import com.rns.healthplease.web.dao.domain.TestCategories;
 import com.rns.healthplease.web.dao.domain.TestLabs;
 import com.rns.healthplease.web.dao.domain.TestPackages;
 import com.rns.healthplease.web.dao.domain.Tests;
@@ -215,8 +216,16 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		return createQuery.list();
 	}
 	
+	@Override
+	public List<Appointments> getAppointmentsForDateRange(Date date1, Date date2, Session session) {
+		Query createQuery = session.createQuery("from Appointments where date>=:from_date AND date<=:to_date  ORDER BY id DESC");
+		createQuery.setDate("from_date", date1);
+		createQuery.setDate("to_date", date2);
+		return createQuery.list();
+	}
+	
 	public List<Appointments> getAllAppointments(Session session) {
-		Query createQuery = session.createQuery("from Appointments");
+		Query createQuery = session.createQuery("from Appointments order by id DESC");
 		return createQuery.list();
 	}
 	
@@ -237,6 +246,29 @@ public class AppointmentDaoImpl implements AppointmentDao {
 			return null;
 		}
 		return list.get(0);
+	}
+	
+	@Override
+	public List<TestCategories> getAllTestCategories(Session session) {
+		Query createQuery = session.createQuery("from TestCategories order by id DESC");
+		return createQuery.list();
+	}
+	
+	@Override
+	public TestCategories getTestCategoryByName(String category, Session session) {
+		Query createQuery = session.createQuery("from TestCategories where categoryName=:name");
+		createQuery.setString("name", category);
+		List<TestCategories> categories = createQuery.list();
+		if(CollectionUtils.isEmpty(categories)) {
+			return null;
+		}
+		return categories.get(0);
+	}
+	
+	@Override
+	public List<Labs> getAllLabs(Session session) {
+		Query createQuery = session.createQuery("from Labs order by id DESC");
+		return createQuery.list();
 	}
 	
 }

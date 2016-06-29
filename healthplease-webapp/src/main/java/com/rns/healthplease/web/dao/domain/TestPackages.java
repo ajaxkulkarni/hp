@@ -44,7 +44,7 @@ public class TestPackages implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@NotFound(action = NotFoundAction.IGNORE)
 	@JoinColumn(name = "child_test_id")
 	public Tests getChildTest() {
@@ -57,7 +57,8 @@ public class TestPackages implements java.io.Serializable {
 	}
 
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@NotFound(action = NotFoundAction.IGNORE)
 	@JoinColumn(name = "parent_test_id")
 	public Tests getParentTest() {
 		return parentTest;
