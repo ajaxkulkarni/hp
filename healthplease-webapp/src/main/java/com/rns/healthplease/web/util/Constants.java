@@ -170,6 +170,10 @@ public interface Constants {
 	String ADMIN_LAB_DASHBOARD_PAGE = "admin_load_lab";
 	String ADMIN_LAB_DASHBOARD_GET_URL = "adminLabDashboards.htm";
 	String ADMIN_VIEW_LAB_DASHBOARD_POST_URL = "adminViewLabDashboard";
+	String ADMIN_PARAMETERS_PAGE = "admin_parameters";
+	String MODEL_PARAMETERS = "parameters";
+	String ADMIN_PARAMETERS_GET_URL = "adminParameters.htm";
+	
 	
 	String MAIL_TYPE_ACTIVATION = "activationMail";
 	String MAIL_TYPE_REPORT_UPLOAD = "reportUpload";

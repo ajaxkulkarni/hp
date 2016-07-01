@@ -7,6 +7,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -392,6 +393,28 @@ public class CommonUtils implements Constants {
 	
 	public static String getStringValue(String value) {
 		return value == null ? "" : value;
+	}
+
+	public static String getGenderValue(String genderValues, int i) {
+		if(StringUtils.isEmpty(genderValues)) {
+			return null;
+		}
+		String[] genderValueArray = StringUtils.split(genderValues);
+		if(genderValueArray.length < 2) {
+			return null;
+		}
+		return genderValueArray[i];
+	}
+	
+	public static List<String> getStrings(String stringValues) {
+		if(StringUtils.isEmpty(stringValues)) {
+			return null;
+		}
+		String[] stringArray = StringUtils.split(stringValues);
+		if(stringArray.length == 0) {
+			return null;
+		}
+		return Arrays.asList(stringValues);
 	}
 	
 }

@@ -18,6 +18,17 @@ public class TestFactors implements java.io.Serializable {
 	private String method;
 	private String normalVal;
 	private String factorType;
+	private String genderValues;
+	
+	@Column(name = "gender_values")
+	public String getGenderValues() {
+		return genderValues;
+	}
+	
+	public void setGenderValues(String genderValues) {
+		this.genderValues = genderValues;
+	}
+	
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

@@ -326,5 +326,11 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_LABS, adminBo.getAllLabs());
 		return ADMIN_LAB_DASHBOARD_PAGE;
 	}
+	
+	@RequestMapping(value = "/" + ADMIN_PARAMETERS_GET_URL, method = RequestMethod.GET)
+	public String initParameters(ModelMap model) {
+		model.addAttribute(MODEL_PARAMETERS, adminBo.getAllTestParemeters());
+		return ADMIN_PARAMETERS_PAGE;
+	}
 
 }

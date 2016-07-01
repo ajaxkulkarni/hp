@@ -1,5 +1,7 @@
 package com.rns.healthplease.web.bo.domain;
 
+import java.util.List;
+
 public class TestParameter {
 	
 	private Integer id;
@@ -9,6 +11,9 @@ public class TestParameter {
 	private String actualValue;
 	private String type;
 	private String remark;
+	private String normalValueMale;
+	private String normalValueFemale;
+	private List<String> methods;
 	
 	public Integer getId() {
 		return id;
@@ -51,6 +56,24 @@ public class TestParameter {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public String getNormalValueMale() {
+		return normalValueMale;
+	}
+	public void setNormalValueMale(String normalValueMale) {
+		this.normalValueMale = normalValueMale;
+	}
+	public String getNormalValueFemale() {
+		return normalValueFemale;
+	}
+	public void setNormalValueFemale(String normalValueFemale) {
+		this.normalValueFemale = normalValueFemale;
+	}
+	public List<String> getMethods() {
+		return methods;
+	}
+	public void setMethods(List<String> methods) {
+		this.methods = methods;
 	}
 	
 }

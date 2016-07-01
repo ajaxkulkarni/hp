@@ -25,6 +25,8 @@
 							class="glyphicon glyphicon-chevron-right"></span> Lab</a></li>
 					<li><a href="<%=Constants.ADMIN_LAB_DASHBOARD_GET_URL%>"><span
 							class="glyphicon glyphicon-chevron-right"></span> Lab Dashboard</a></li>
+					<li><a href="<%=Constants.ADMIN_PARAMETERS_GET_URL%>"><span
+							class="glyphicon glyphicon-chevron-right"></span> Test Parameters</a></li>
 					<li><a href=""><span
 							class="glyphicon glyphicon-chevron-right"></span> Slots</a></li>
 					<li><a href=""><span

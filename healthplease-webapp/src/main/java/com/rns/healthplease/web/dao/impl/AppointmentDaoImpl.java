@@ -21,6 +21,7 @@ import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
 import com.rns.healthplease.web.dao.domain.Slots;
 import com.rns.healthplease.web.dao.domain.TestCategories;
+import com.rns.healthplease.web.dao.domain.TestFactors;
 import com.rns.healthplease.web.dao.domain.TestLabs;
 import com.rns.healthplease.web.dao.domain.TestPackages;
 import com.rns.healthplease.web.dao.domain.Tests;
@@ -271,4 +272,9 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		return createQuery.list();
 	}
 	
+	@Override
+	public List<TestFactors> getAllTestFactors(Session session) {
+		Query createQuery = session.createQuery("from TestFactors");
+		return createQuery.list();
+	}
 }

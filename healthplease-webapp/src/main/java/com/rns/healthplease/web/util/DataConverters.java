@@ -219,27 +219,40 @@ public class DataConverters {
 		return labTests;
 	}
 	
-	private static List<TestParameter> getTestParameters(Set<TestFactorsMap> testFactors, Appointments appointments, Session session) {
+	public static List<TestParameter> getTestParameters(Set<TestFactorsMap> testFactors, Appointments appointments, Session session) {
 		if(CollectionUtils.isEmpty(testFactors)) {
 			return null;
 		}
 		List<TestParameter> parameters = new ArrayList<TestParameter>();
 		for(TestFactorsMap factors:testFactors) {
-			TestParameter parameter = new TestParameter();
 			TestFactors factor = factors.getTestFactors();
-			parameter.setId(factor.getId());
-			parameter.setName(factor.getName());
-			parameter.setUnit(factor.getUnit());
-			parameter.setNormalValue(factor.getNormalVal());
-			parameter.setType(factor.getFactorType());
-			AppointmentTestResults results = new AppointmentDaoImpl().getAppointmentTestResult(appointments.getId(), factors.getTest().getId(), factors.getTestFactors().getId(), session);
-			if(results != null) {
-				parameter.setActualValue(results.getActualValue());
-				parameter.setRemark(results.getRemarks());
+			if(factor == null) {
+				continue;
 			}
+			TestParameter parameter = getTestParameter(factor);
+			if(appointments != null) {
+				AppointmentTestResults results = new AppointmentDaoImpl().getAppointmentTestResult(appointments.getId(), factors.getTest().getId(), factors.getTestFactors().getId(), session);
+				if(results != null) {
+					parameter.setActualValue(results.getActualValue());
+					parameter.setRemark(results.getRemarks());
+				}
+			} 
 			parameters.add(parameter);
 		}
 		return parameters;
+	}
+
+	public static TestParameter getTestParameter(TestFactors factor) {
+		TestParameter parameter = new TestParameter();
+		parameter.setId(factor.getId());
+		parameter.setName(factor.getName());
+		parameter.setUnit(factor.getUnit());
+		parameter.setNormalValue(factor.getNormalVal());
+		parameter.setType(factor.getFactorType());
+		parameter.setNormalValueMale(CommonUtils.getGenderValue(factor.getGenderValues(),0));
+		parameter.setNormalValueFemale(CommonUtils.getGenderValue(factor.getGenderValues(),1));
+		parameter.setMethods(CommonUtils.getStrings(factor.getMethod()));
+		return parameter;
 	}
 
 	public static void addChildTests(LabTest labTest, List<TestPackages> packages) {
