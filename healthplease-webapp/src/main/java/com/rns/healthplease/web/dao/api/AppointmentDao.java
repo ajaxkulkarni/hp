@@ -19,6 +19,7 @@ import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
 import com.rns.healthplease.web.dao.domain.Slots;
 import com.rns.healthplease.web.dao.domain.TestCategories;
+import com.rns.healthplease.web.dao.domain.TestFactors;
 import com.rns.healthplease.web.dao.domain.TestLabs;
 import com.rns.healthplease.web.dao.domain.TestPackages;
 import com.rns.healthplease.web.dao.domain.Tests;
@@ -82,5 +83,7 @@ public interface AppointmentDao {
 	TestCategories getTestCategoryByName(String category, Session session);
 
 	List<Labs> getAllLabs(Session session);
+
+	List<TestFactors> getAllTestFactors(Session session);
 
 }
