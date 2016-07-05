@@ -197,9 +197,9 @@
                                     </select>
                             </div>
                         </form>
-                        <table id="appointments_table" class="table table-striped table-hover">
+                        <table id="appointments_table" class="table table-striped table-hover paginate">
                                 <thead>
-                                        <tr>    
+                                         <tr class="page_header">
                                                 <th>Appointment<br/> ID
                                                 </th>
                                                 <th>Appointment<br/> Date
@@ -274,6 +274,8 @@
                                      </c:forEach>
                                 </tbody>
                         </table> 
+                        <ul class="pagination" id="pagination_list">
+						</ul>
                     <!-- Modal Strts-->
                     <div id="myModal" class="modal fade" data-backdrop="static">
 
@@ -374,12 +376,15 @@
 
 <%@include file="user_footer.jsp" %>
 <script src="<c:url value="/resources/js/paging.js"/>"></script> 
-
+<script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
 <script type="text/javascript">
 
 $(document).ready(function () {
 	
-	$("#appointments_table").paging({limit:$("#limit").val()});
+	$(document).ready(function(){
+		paginateTable(10,0);
+	}); 
+
 	
     $('.classDates').datepicker({
     	dateFormat: "yy-mm-dd",

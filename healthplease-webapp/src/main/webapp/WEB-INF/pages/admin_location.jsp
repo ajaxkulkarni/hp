@@ -62,8 +62,8 @@
 <div class="clearfix"></div><br/>
 <!--Main div where content get loaded-->
 <div class="" id="loadUser" name="loadUser">
-<table id="locs_table" class="table table-bordered table-responsive">
-                    <tbody><tr>
+<table id="locs_table" class="table table-bordered table-responsive paginate">
+                    <tbody><tr class="page_header">
                     <th>#</th>
                     <th>Location Name</th>
                     <th colspan="2" align="center">Actions</th>
@@ -83,7 +83,9 @@
                 </tbody></table>
                 
 </div>    
-<!--Paging div will get content soon-->
+<ul class="pagination" id="pagination_list">
+</ul>
+
 
 
 <form id="loc_form" action="<%=Constants.ADMIN_DELETE_LOCATION_POST_URL %>" method="post">
@@ -109,11 +111,11 @@
 <%--<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="/resources/js/jquery.paging.min.js"/>"></script>
 <script src="<c:url value="/resources/js/jquery.easy-paging.js"/>"></script> --%>
-
+<script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
 <script>
 
 $(document).ready(function(){
-	 $("#locs_table").paging({limit:10});
+	paginateTable(10,0);
 	 
 }); 
    

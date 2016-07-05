@@ -59,9 +59,9 @@ border-radius:5px;
 
 </div></div>
 
-<div class="container" style="margin-bottom:2%;background-color:#eee">
+<div class="container" style="margin-bottom:2%;background-color:#fff">
 	<div class="row">
-		<div class="col-sm-4" style="border:none">
+		<div class="col-sm-6" style="border:none">
 			<div class="card">
 				<div class="cardheader">
 			          <h2>Basic Package</h2>
@@ -94,7 +94,7 @@ border-radius:5px;
 						
 			</div>
 		</div>
-	   <div class="col-sm-4" style="border:none;">
+	   <div class="col-sm-6" style="border:none;">
 		<div class="card">
 				<div class="cardheader">
 			          <h2>Basic Package + Diagnostic Test</h2>
@@ -125,8 +125,9 @@ border-radius:5px;
 			    </div>		
 			</div>
 		</div>
-		
-		<div class="col-sm-4" style="border:none;">
+	</div>
+	<div class="row">
+		<div class="col-sm-6" style="border:none;">
 		<div class="card">
 				<div class="cardheader">
 			          <h2>Package1</h2>
@@ -157,11 +158,9 @@ border-radius:5px;
 			    </div>		
 			</div>
 		
-	</div>	</div>
+	</div>	
 	
-	<div class="row">
-		
-	    <div class="col-sm-4" style="border:none">
+	    <div class="col-sm-6" style="border:none">
 	    <div class="card">
 				<div class="cardheader">
 			          <h2>Package1 + Diagnostics Tests</h2>
@@ -192,7 +191,10 @@ border-radius:5px;
 			    </div>		
 			</div>
 		</div>
-		<div class="col-sm-4" style="border:none">
+		</div>
+		
+		<div class="row">
+		<div class="col-sm-6" style="border:none">
 		<div class="card">
 				<div class="cardheader">
 			          <h2>Package2</h2>
@@ -223,7 +225,7 @@ border-radius:5px;
 			    </div>		
 			</div>
 		</div>
-	    <div class="col-sm-4" style="border:none">
+	    <div class="col-sm-6" style="border:none">
 	    <div class="card">
 				<div class="cardheader">
 			          <h2>Package2 + Diagnostics Tests</h2>
@@ -255,11 +257,11 @@ border-radius:5px;
 			</div>
 		</div>
 		
-	</div>
+	</div></div>
 	
 	<div class="row">
-		<div class="col-sm-4" style="border:none"></div>
-		<div class="col-sm-4" style="border:none">
+		<div class="col-sm-3" style="border:none"></div>
+		<div class="col-sm-6" style="border:none">
 		<div class="card">
 				<div class="cardheader">
 			          <h2>Package 3 + Diagnostics Tests</h2>

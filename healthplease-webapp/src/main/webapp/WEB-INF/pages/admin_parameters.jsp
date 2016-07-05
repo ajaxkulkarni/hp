@@ -68,8 +68,9 @@
 <div class="clearfix"></div><br/>
 <!--Main div where content get loaded-->
 <div class="" id="loadUser" name="loadUser">
-<table id="par_table" class="table table-bordered table-responsive">
-                    <tbody><tr>
+<table id="par_table" class="table table-bordered table-responsive paginate">
+                    <tbody>
+					<tr class="page_header">
                     <th>#</th>
                     <th>Parameter Name</th>
                     <th>Normal Value</th>
@@ -103,7 +104,8 @@
                 </tbody></table>
                 
 </div>    
-<!--Paging div will get content soon-->
+<ul class="pagination" id="pagination_list">
+</ul>
 
 
 <form id="par_form" action="" method="post">
@@ -116,7 +118,10 @@
 <!--Add user ends here-->
 
 <script>
-   
+$(document).ready(function(){
+	paginateTable(21,0);
+}); 
+
 </script>
     
    </div>  
@@ -129,14 +134,11 @@
 <%--<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="/resources/js/jquery.paging.min.js"/>"></script>
 <script src="<c:url value="/resources/js/jquery.easy-paging.js"/>"></script> --%>
-
+<script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
 <script>
 
-$(document).ready(function(){
-	 $("#par_table").paging({limit:21});
-	 
-}); 
-   
+
+
    function confirmDelete(name,id) {
 	   if(confirm("Are you sure you want to delete parameter " + name + " ?")) {
 		   $("#par_id").val(id);
