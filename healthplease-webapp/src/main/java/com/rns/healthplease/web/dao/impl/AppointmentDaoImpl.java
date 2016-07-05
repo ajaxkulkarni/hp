@@ -251,7 +251,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	
 	@Override
 	public List<TestCategories> getAllTestCategories(Session session) {
-		Query createQuery = session.createQuery("from TestCategories order by id DESC");
+		Query createQuery = session.createQuery("from TestCategories order by id");
 		return createQuery.list();
 	}
 	
@@ -268,7 +268,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	
 	@Override
 	public List<Labs> getAllLabs(Session session) {
-		Query createQuery = session.createQuery("from Labs order by id DESC");
+		Query createQuery = session.createQuery("from Labs order by id");
 		return createQuery.list();
 	}
 	
@@ -276,5 +276,32 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	public List<TestFactors> getAllTestFactors(Session session) {
 		Query createQuery = session.createQuery("from TestFactors");
 		return createQuery.list();
+	}
+	
+	@Override
+	public TestFactors getTestFactorByname(String name, Session session) {
+		Query createQuery = session.createQuery("from TestFactors where name=:name");
+		createQuery.setString("name", name);
+		List<TestFactors> factors = createQuery.list();
+		if(CollectionUtils.isEmpty(factors)) {
+			return null;
+		}
+		return factors.get(0);
+	}
+
+	public TestCategories getTestCategoryById(Integer id, Session session) {
+		Query createQuery = session.createQuery("from TestCategories where id=:id");
+		createQuery.setInteger("id", id);
+		List<TestCategories> categories = createQuery.list();
+		if(CollectionUtils.isEmpty(categories)) {
+			return null;
+		}
+		return categories.get(0);
+	}
+	
+	@Override
+	public void deleteAllTestFactorMaps(Session session) {
+		Query createQuery = session.createQuery("delete from TestFactorsMap");
+		createQuery.executeUpdate();
 	}
 }

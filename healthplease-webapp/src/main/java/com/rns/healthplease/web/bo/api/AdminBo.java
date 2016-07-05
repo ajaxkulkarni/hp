@@ -10,6 +10,7 @@ import com.rns.healthplease.web.bo.domain.LabTest;
 import com.rns.healthplease.web.bo.domain.TestParameter;
 import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.dao.domain.TestCategories;
+import com.rns.healthplease.web.dao.domain.TestLabs;
 
 public interface AdminBo {
 	
@@ -40,5 +41,11 @@ public interface AdminBo {
 	String deleteLocation(LabLocation location);
 
 	List<TestParameter> getAllTestParemeters();
+
+	String uploadParameters(List<TestParameter> parameters);
+
+	String uploadTestLabs(List<TestLabs> testLabs);
+
+	String uploadTestParameterMaps(String[] mappings);
 
 }

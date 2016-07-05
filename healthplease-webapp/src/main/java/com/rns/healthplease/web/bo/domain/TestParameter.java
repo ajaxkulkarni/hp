@@ -13,7 +13,9 @@ public class TestParameter {
 	private String remark;
 	private String normalValueMale;
 	private String normalValueFemale;
+	private String normalValueChild;
 	private List<String> methods;
+	private String mapped;
 	
 	public Integer getId() {
 		return id;
@@ -74,6 +76,18 @@ public class TestParameter {
 	}
 	public void setMethods(List<String> methods) {
 		this.methods = methods;
+	}
+	public String getNormalValueChild() {
+		return normalValueChild;
+	}
+	public void setNormalValueChild(String normalValueChild) {
+		this.normalValueChild = normalValueChild;
+	}
+	public String getMapped() {
+		return mapped;
+	}
+	public void setMapped(String mapped) {
+		this.mapped = mapped;
 	}
 	
 }

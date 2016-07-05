@@ -48,6 +48,10 @@
 
 <div class="" id="div_add">
     <a id="addNewLab" href="javascript:void(0);" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Lab</a>
+	<form action="<%=Constants.ADMIN_UPLOAD_TEST_LABS_POST_URL %>" method="post" enctype="multipart/form-data">
+		<input type="file" id="file" class="form-control" name="file" placeholder="Search"/>
+		<button type="submit" class="btn btn-large btn-info"><i class="glyphicon glyphicon-plus"></i> &nbsp; Upload</button>
+	</form>
 </div>
 
 <div class="clearfix"></div><br />
@@ -101,7 +105,10 @@
                         <td id="labEmailT${lab.id}">${lab.email}</td>
                         <td id="labPhoneT${lab.id}">${lab.contact}</td>
                         <td id="labAddrT${lab.id}">${lab.address}</td>
-                        <td id="labName${lab.id}" style="display:none"><input type="text" name="name" value="${lab.name}"/></td>
+                        <td id="labName${lab.id}" style="display:none">
+                        	<input type="hidden" name="id" value="${lab.id}"/>
+                        	<input type="text" name="name" value="${lab.name}"/>
+                        </td>
                         <td id="labEmail${lab.id}" style="display:none"><input type="text" name="email" value="${lab.email}"/></td>
                         <td id="labPhone${lab.id}" style="display:none"><input type="text" name="contact" value="${lab.contact}"/></td>
                         <td id="labAddr${lab.id}" style="display:none"><input type="text" name="address" value="${lab.address}"/></td>

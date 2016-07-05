@@ -1,24 +1,57 @@
 package com.rns.healthplease.web.util;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rns.healthplease.web.bo.domain.Appointment;
+import com.rns.healthplease.web.bo.domain.TestParameter;
+import com.rns.healthplease.web.dao.domain.Labs;
+import com.rns.healthplease.web.dao.domain.TestLabs;
+import com.rns.healthplease.web.dao.domain.Tests;
 
 //Appointment Id	Appointment Date	Appointment Time	Test Name	Test Charge	Payment Type	Lab Name	Name	Contact No.	Address	Gender	Email ID	Print Required	Status
 
 public class ExcelUtil {
 
+	private static final String TEST_ID_COL = "Test ID";
+	private static final int PARAMETER_NAME = 1;
+	private static final int UNIT = 2;
+	private static final int MALE_VALUE_LOWER = 3;
+	private static final int MALE_VALUE_HIGHER = 4;
+	private static final int FEMALE_VALUE_LOWER = 5;
+	private static final int FEMALE_VALUE_HIGHER = 6;
+	private static final int CHILD_VALUE_LOWER = 7;
+	private static final int CHILD_VALUE_HIGHER = 8;
+	private static final int RESULT_TYPE = 9;
+	// private static final int LOW = 5;
+	// private static final int HIGH = 6;
+	private static final int METHOD = 10;
 	private static final String EXCEL_FONT_ARIAL = "Arial";
 	private static final String EXCEL_SHEET_APPOINTMENTS = "Appointments";
+	private static final int TEST_ID = 1;
+	private static final int LAB_ID = 2;
+	private static final int TEST_CHARGES = 3;
 
 	public static void prepareAppointmentsExcel(HSSFWorkbook workbook, List<Appointment> appointments) {
 
@@ -81,7 +114,7 @@ public class ExcelUtil {
 		header.getCell(13).setCellStyle(style);
 
 		int rowCount = 1;
-		
+
 		if (CollectionUtils.isEmpty(appointments)) {
 			return;
 		}
@@ -118,4 +151,154 @@ public class ExcelUtil {
 
 	}
 
+	public static List<TestParameter> extractTestParameters(MultipartFile file) {
+
+		FileInputStream inputStream = null;
+		XSSFWorkbook workbook = null;
+		List<TestParameter> parameters = new ArrayList<TestParameter>();
+		try {
+			inputStream = new FileInputStream(CommonUtils.multipartToFile(file));
+			workbook = (XSSFWorkbook) WorkbookFactory.create(inputStream);
+			Sheet firstSheet = workbook.getSheetAt(0);
+			Iterator<Row> iterator = firstSheet.iterator();
+			boolean startFound = false;
+			int startCell = 0;
+			while (iterator.hasNext()) {
+				Row nextRow = iterator.next();
+				Iterator<Cell> cellIterator = nextRow.cellIterator();
+				int cellNo = 0;
+				if (startFound) {
+					TestParameter parameter = new TestParameter();
+					parameter.setName(getCellValue(startCell, nextRow, PARAMETER_NAME));
+					if(StringUtils.isEmpty(parameter.getName())) {
+						continue;
+					}
+					parameter.setUnit(getCellValue(startCell, nextRow, UNIT));
+					parameter.setNormalValueMale(StringUtils.join(getCellValue(startCell, nextRow, MALE_VALUE_LOWER),"-",getCellValue(startCell, nextRow, MALE_VALUE_HIGHER)));
+					parameter.setNormalValueFemale(StringUtils.join(getCellValue(startCell, nextRow, FEMALE_VALUE_LOWER),"-",getCellValue(startCell, nextRow, FEMALE_VALUE_HIGHER)));
+					parameter.setNormalValueChild(StringUtils.join(getCellValue(startCell, nextRow, CHILD_VALUE_LOWER),"-",getCellValue(startCell, nextRow, CHILD_VALUE_HIGHER)));
+					parameter.setNormalValue(parameter.getNormalValueMale() != null ? parameter.getNormalValueMale() : parameter.getNormalValueFemale());
+					parameter.setType(getCellValue(startCell, nextRow, RESULT_TYPE));
+					parameter.setMethods(CommonUtils.getStrings(getCellValue(startCell, nextRow, METHOD)));
+					parameters.add(parameter);
+				} else {
+					while (cellIterator.hasNext()) {
+						Cell cell = cellIterator.next();
+						if ("Parameter Name".equals(StringUtils.trimToEmpty(cell.getStringCellValue()))) {
+							startFound = true;
+							startCell = cellNo;
+							break;
+						}
+						cellNo++;
+					}
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InvalidFormatException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				/*if (workbook != null) {
+					workbook.close();
+				}*/
+				if (inputStream != null) {
+					inputStream.close();
+				}
+			} catch (Exception e) {
+
+			}
+		}
+		return parameters;
+	}
+
+	private static String getCellValue(int startCell, Row nextRow, int offset) {
+		if(nextRow == null) {
+			return null;
+		}
+		Cell cell = nextRow.getCell(startCell + offset);
+		if(cell == null) {
+			return null;
+		}
+		return StringUtils.trimToEmpty(cell.getStringCellValue());
+	}
+	
+	private static Integer getNumCellValue(int startCell, Row nextRow, int offset) {
+		if(nextRow == null) {
+			return null;
+		}
+		Cell cell = nextRow.getCell(startCell + offset);
+		if(cell == null) {
+			return null;
+		}
+		return (int) cell.getNumericCellValue();
+	}
+	
+	public static List<TestLabs> extractTestLabMappings(MultipartFile file) {
+
+		FileInputStream inputStream = null;
+		XSSFWorkbook workbook = null;
+		List<TestLabs> testLabs = new ArrayList<TestLabs>();
+		try {
+			inputStream = new FileInputStream(CommonUtils.multipartToFile(file));
+			workbook = (XSSFWorkbook) WorkbookFactory.create(inputStream);
+			Sheet firstSheet = workbook.getSheetAt(0);
+			Iterator<Row> iterator = firstSheet.iterator();
+			boolean startFound = false;
+			int startCell = 0;
+			while (iterator.hasNext()) {
+				Row nextRow = iterator.next();
+				Iterator<Cell> cellIterator = nextRow.cellIterator();
+				int cellNo = 0;
+				if (startFound) {
+					TestLabs testLab = new TestLabs();
+					Tests test = new Tests();
+					Integer testId = getNumCellValue(startCell, nextRow, TEST_ID);
+					if(testId == null) {
+						continue;
+					}
+					test.setId(Integer.valueOf(testId));
+					testLab.setTest(test);
+					Labs lab = new Labs();
+					lab.setId(Integer.valueOf(getNumCellValue(startCell, nextRow, LAB_ID)));
+					testLab.setLab(lab);
+					testLab.setLabPrice(getNumCellValue(startCell, nextRow, TEST_CHARGES).shortValue());
+					testLabs.add(testLab);
+				} else {
+					while (cellIterator.hasNext()) {
+						Cell cell = cellIterator.next();
+						if (TEST_ID_COL.equals(StringUtils.trimToEmpty(cell.getStringCellValue()))) {
+							startFound = true;
+							startCell = cellNo;
+							break;
+						}
+						cellNo++;
+					}
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InvalidFormatException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				/*if (workbook != null) {
+					workbook.close();
+				}*/
+				if (inputStream != null) {
+					inputStream.close();
+				}
+			} catch (Exception e) {
+
+			}
+		}
+		return testLabs;
+	}
+	
 }

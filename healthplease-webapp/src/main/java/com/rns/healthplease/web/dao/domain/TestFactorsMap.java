@@ -42,7 +42,7 @@ public class TestFactorsMap implements java.io.Serializable {
 	}
 
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "test_id")
 	public Tests getTest() {
@@ -53,7 +53,7 @@ public class TestFactorsMap implements java.io.Serializable {
 		this.test = test;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "factors_id")
 	@OrderBy(value = "id ASC")

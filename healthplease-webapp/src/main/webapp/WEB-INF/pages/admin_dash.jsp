@@ -133,7 +133,7 @@
                         <a id="back" href="#" class="btn btn-info btn-xs">
                             Back
                         </a>
-                        <a id="get_excel" href="<%=Constants.ADMIN_DOWNLOAD_EXCEL_GET_URL%>"  class="btn btn-info btn-xs">
+                        <a id="get_excel" href="<%=Constants.ADMIN_DOWNLOAD_EXCEL_GET_URL%>?header=${appointmentsTitle}"  class="btn btn-info btn-xs">
                             <span class="glyphicon glyphicon-download-alt"></span> 
                             Download Excel
                         </a>
@@ -149,7 +149,7 @@
                           <td colspan="2">Reports</td>
                                                        <td colspan="3">
                               <!--<a id="get_pdf" value="0" href="javascript:void(0)" class="btn btn-info btn-xs js-gen_report"><span class="glyphicon glyphicon-download-alt"></span> Download PDF</a>-->
-                              <a id="get_excel" href="<%=Constants.ADMIN_DOWNLOAD_EXCEL_GET_URL%>" class="btn btn-info btn-xs js-gen_report"><span class="glyphicon glyphicon-download-alt"></span> Download Excel</a>
+                              <a id="get_excel" href="<%=Constants.ADMIN_DOWNLOAD_EXCEL_GET_URL%>?header=${appointmentsTitle}" class="btn btn-info btn-xs js-gen_report"><span class="glyphicon glyphicon-download-alt"></span> Download Excel</a>
                            <td>
                                                   </tr>
                       <tr>

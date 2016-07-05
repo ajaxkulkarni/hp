@@ -126,6 +126,9 @@ public class SMSUtil implements Constants {
 			}
 			StringBuilder builder = new StringBuilder();
 			for (User user : form.getAdmins()) {
+				if(StringUtils.isEmpty(user.getPhone())) {
+					continue;
+				}
 				builder.append(user.getPhone()).append(",");
 			}
 			return builder.toString();

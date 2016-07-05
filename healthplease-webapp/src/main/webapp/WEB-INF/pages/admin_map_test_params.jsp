@@ -13,11 +13,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Book online Pathology & Diagnostic Tests in Pune | HealthPlease.in</title>
-    
+    <link href="<c:url value="/resources/css/fixedheadertable.css"/>" rel="stylesheet" media="screen" />
+	<link href="<c:url value="/resources/css/custom.css"/>" rel="stylesheet" media="screen" />
 </head>
 
 <body>
 <%@include file="user_header.jsp" %>
+
 
         <div class="classGoldenDivider"></div>        <div class="classTopHeading">
         <div class="container">
@@ -55,42 +57,49 @@
 
 <div id="msg" class="container"></div>
 
+<form action="<%=Constants.ADMIN_UPLOAD_TEST_PARAMETER_MAP_POST_URL %>" method="post">
 <div class="" id="div_add">
-<a href="<%=Constants.ADMIN_EDIT_TEST_GET_URL%>" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Test</a>
+<button type="submit" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Save</button>
 </div>
 
 <div class="clearfix"></div><br/>
 <!--Main div where content get loaded-->
 <div class="" id="loadUser" name="loadUser">
-<table id="tests_table" class="table table-bordered table-responsive paginate">
-                    <tbody>
-                    <tr class="page_header">
-                    <th>#</th>
-                    <th>Test Name</th>
-                    <th colspan="2" align="center">Actions</th>
-                    </tr>                
-                <c:forEach items="${tests}" var="test" varStatus="i">
-                <tr>
-                	<td>${i.index + 1}</td>
-                	<td>${test.name}</td>
-                	<td align="center">
-                		<a href="<%=Constants.ADMIN_EDIT_TEST_GET_URL%>?id=${test.id}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
-                	</td>
-                	<td align="center">
-                		<a href="" class="js-deleteuser" onclick="confirmDelete('${test.name}','${test.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
-                	</td>
-                </tr>
-                </c:forEach>
-                </tbody></table>
-                
+<div class="outerbox">
+            <div class="innerbox">
+<table class="bluetable" id="myDemoTable" cellpadding="0" cellspacing="0">
+        		    <thead>
+        		        <tr>
+                            <TH>test/para</TH>
+                            <c:forEach items="${parameters}" var="par">
+                            	<TH>${par.name}</TH>
+                            </c:forEach>
+        		        </tr>
+        		    </thead>
+        		  
+        		    <tbody>
+        		    	<c:forEach items="${tests}" var="test">
+						<tr><td>${test.name}</td>
+							<c:forEach items="${parameters}" var="par">
+								<c:set var="mapped" value=""/>
+								<c:forEach items="${test.parameters}" var="testPar">
+									<c:if test="${testPar.name == par.name}">
+										<c:set var="mapped" value="checked"></c:set>
+									</c:if>
+								</c:forEach>
+								<td><input type="checkbox" value="${test.id},${par.id}" ${mapped} name="mappings"></td>
+                        	</c:forEach>
+						</tr>
+						</c:forEach>
+        		    </tbody>
+        		</table>               
+      </div>
+      </div>          
 </div>    
+</form>
+<form id="cat_form" action="<%=Constants.ADMIN_DELETE_CATEGORY_POST_URL %>" method="post">
 
-<ul class="pagination" id="pagination_list">
-</ul>
-
-<form id="test_form" action="<%=Constants.ADMIN_DELETE_TEST_POST_URL %>" method="post">
-
-<input type="hidden" id="test_id" name="id"/>
+<input type="hidden" id="cat_id" name="id"/>
 
 </form>
 
@@ -111,20 +120,26 @@
 <%--<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="/resources/js/jquery.paging.min.js"/>"></script>
 <script src="<c:url value="/resources/js/jquery.easy-paging.js"/>"></script> --%>
-<script src="<c:url value="/resources/js/myPagination.js"/>"></script>
+<script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
+<script src="<c:url value="/resources/js/jquery-1.7.2.min.js"/>"></script>
+<script src="<c:url value="/resources/js/jquery.fixedheadertable.js"/>"></script>
 <script>
 
 $(document).ready(function(){
-	 //$("#tests_table").paging({limit:20});
-	 paginateTable(10,0);
+	 $('#myDemoTable').fixedHeaderTable({
+         altClass : 'odd',
+         footer : true,
+         fixedColumns : 1
+     });
 }); 
-   
-   function confirmDelete(name,id) {
-	   if(confirm("Are you sure you want to delete test " + name + " ?")) {
-		   $("#test_id").val(id);
-		   $("#test_form").submit();
+
+function confirmDelete(name,id) {
+	   if(confirm("Are you sure you want to delete category " + name + " ?")) {
+		   $("#cat_id").val(id);
+		   $("#cat_form").submit();
 	   }
-   }
+}
+
    
 </script>
 </body>

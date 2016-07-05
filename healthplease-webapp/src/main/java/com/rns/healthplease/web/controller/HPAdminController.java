@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -22,10 +23,13 @@ import com.rns.healthplease.web.bo.domain.Appointment;
 import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
+import com.rns.healthplease.web.bo.domain.TestParameter;
 import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.dao.domain.TestCategories;
+import com.rns.healthplease.web.dao.domain.TestLabs;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
+import com.rns.healthplease.web.util.ExcelUtil;
 
 @Controller
 public class HPAdminController implements Constants {
@@ -216,7 +220,7 @@ public class HPAdminController implements Constants {
 	public RedirectView editTest(ModelMap model, LabTest test, String[] childTestIds) {
 		populateChildTests(test,childTestIds);
 		manager.setResult(adminBo.editTest(test));
-		return new RedirectView(ADMIN_EDIT_TEST_GET_URL + "?id=" + test.getId());
+		return new RedirectView(ADMIN_TESTS_GET_URL);
 	}
 
 	private void populateChildTests(LabTest test, String[] childTestIds) {
@@ -332,5 +336,36 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_PARAMETERS, adminBo.getAllTestParemeters());
 		return ADMIN_PARAMETERS_PAGE;
 	}
+	
+	@RequestMapping(value = "/" + ADMIN_UPLOAD_PARAMETERS_POST_URL, method = RequestMethod.POST)
+	public RedirectView uploadParameters(MultipartFile file, ModelMap model) {
+		if (!file.isEmpty()) {
+			List<TestParameter> parameters = ExcelUtil.extractTestParameters(file);
+			manager.setResult(adminBo.uploadParameters(parameters));
+		}
+		return new RedirectView(ADMIN_PARAMETERS_GET_URL);
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_UPLOAD_TEST_LABS_POST_URL, method = RequestMethod.POST)
+	public RedirectView uploadTestLabs(MultipartFile file, ModelMap model) {
+		if (!file.isEmpty()) {
+			List<TestLabs> testLabs = ExcelUtil.extractTestLabMappings(file);
+			manager.setResult(adminBo.uploadTestLabs(testLabs));
+		}
+		return new RedirectView(ADMIN_LABS_GET_URL);
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_TEST_PARAMETERS_MAP_GET_URL, method = RequestMethod.GET)
+	public String initTestParameterMapping(ModelMap model) {
+		model.addAttribute(MODEL_PARAMETERS, adminBo.getAllTestParemeters());
+		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests());
+		return ADMIN_MAP_TEST_PARAMS_PAGE;
+	}
 
+	@RequestMapping(value = "/" + ADMIN_UPLOAD_TEST_PARAMETER_MAP_POST_URL, method = RequestMethod.POST)
+	public RedirectView uploadTestParamsMap(String[] mappings, ModelMap model) {
+		manager.setResult(adminBo.uploadTestParameterMaps(mappings));
+		return new RedirectView(ADMIN_TEST_PARAMETERS_MAP_GET_URL);
+	}
+	
 }

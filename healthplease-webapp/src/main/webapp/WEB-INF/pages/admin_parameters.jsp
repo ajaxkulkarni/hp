@@ -58,6 +58,10 @@
 <div class="" id="div_add">
 <a href="" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Parameter</a>
 <input type="text" id="search" class="form-control" placeholder="Search">
+<form action="<%=Constants.ADMIN_UPLOAD_PARAMETERS_POST_URL %>" method="post" enctype="multipart/form-data">
+<input type="file" id="file" class="form-control" name="file" placeholder="Search"/>
+<button type="submit" class="btn btn-large btn-info"><i class="glyphicon glyphicon-plus"></i> &nbsp; Upload</button>
+</form>
 </div>
 
 <div class="clearfix"></div><br/>

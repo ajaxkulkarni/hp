@@ -130,6 +130,11 @@ public class BusinessConverters {
 			return null;
 		}
 		Labs labs = new Labs();
+		getLabs(lab, labs);
+		return labs;
+	}
+
+	public static void getLabs(Lab lab, Labs labs) {
 		labs.setId(lab.getId());
 		if(StringUtils.isNotEmpty(lab.getName())) {
 			labs.setLabName(lab.getName());
@@ -146,7 +151,6 @@ public class BusinessConverters {
 		if(lab.getAppointmentsPerSlot()!= null) {
 			labs.setBookAppPerSlot(Byte.valueOf(lab.getAppointmentsPerSlot().toString()));
 		}
-		return labs;
 	}
 
 	public static Locations getLocation(LabLocation location) {
@@ -413,6 +417,29 @@ public class BusinessConverters {
 		result.setFactor(testFactor);
 		result.setRemarks(parameter.getRemark());
 		return result;
+	}
+	
+	public static void getTestFactors(TestParameter parameter, TestFactors factors) {
+		if(StringUtils.isNotEmpty(parameter.getName())) {
+			factors.setName(parameter.getName());
+		}
+		if(StringUtils.isNotEmpty(parameter.getNormalValue())) {
+			factors.setNormalVal(parameter.getNormalValue());
+		}
+		if(CollectionUtils.isNotEmpty(parameter.getMethods())) {
+			factors.setMethod(CommonUtils.getAppendedString(parameter.getMethods()));
+		}
+		if(StringUtils.isNotEmpty(parameter.getNormalValueMale())) {
+			StringBuilder genderValues = new StringBuilder();
+			genderValues.append(parameter.getNormalValueMale()).append(",").append(parameter.getNormalValueFemale()).append(",").append(parameter.getNormalValueChild());
+			factors.setGenderValues(genderValues.toString());
+		}
+		if(StringUtils.isNotEmpty(parameter.getName())) {
+			factors.setUnit(parameter.getUnit());
+		}
+		if(StringUtils.isNotEmpty(parameter.getType())) {
+			factors.setFactorType(parameter.getType());
+		}
 	}
 
 }

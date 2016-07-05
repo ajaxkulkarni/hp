@@ -86,4 +86,10 @@ public interface AppointmentDao {
 
 	List<TestFactors> getAllTestFactors(Session session);
 
+	TestFactors getTestFactorByname(String name, Session session);
+	
+	TestCategories getTestCategoryById(Integer id, Session session);
+
+	void deleteAllTestFactorMaps(Session session);
+
 }

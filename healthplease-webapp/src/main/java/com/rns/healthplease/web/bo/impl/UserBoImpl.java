@@ -41,7 +41,6 @@ import com.rns.healthplease.web.dao.domain.LabActiveDaysStatus;
 import com.rns.healthplease.web.dao.domain.LabBlockedSlots;
 import com.rns.healthplease.web.dao.domain.LabLocations;
 import com.rns.healthplease.web.dao.domain.Labs;
-import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
 import com.rns.healthplease.web.dao.domain.RequestCollections;
@@ -156,7 +155,7 @@ public class UserBoImpl implements UserBo, Constants {
 		session.close();
 		user.setLoginId(users1.getId());
 		String validUserResult = populateUserDetails(user);
-		if(!RESPONSE_OK.equals(validUserResult)) {
+		if (!RESPONSE_OK.equals(validUserResult)) {
 			return validUserResult;
 		}
 		if (groups.getId() < 3) {
@@ -175,14 +174,14 @@ public class UserBoImpl implements UserBo, Constants {
 		Labs labs = appointmentDao.getLabById(labId, session);
 		Lab lab = DataConverters.getLab(labs);
 		user.setLab(lab);
-		if (CollectionUtils.isEmpty(labs.getAppointments())) {
-			session.close();
-			return;
-		}
 		user.setAppointments(new ArrayList<Appointment>());
 		user.setPendingAppointments(new ArrayList<Appointment>());
 		user.setCancelledAppointments(new ArrayList<Appointment>());
 		user.setTodaysAppointments(new ArrayList<Appointment>());
+		if (CollectionUtils.isEmpty(labs.getAppointments())) {
+			session.close();
+			return;
+		}
 		for (Appointments appointments : labs.getAppointments()) {
 			Appointment appointment = DataConverters.getAppointment(session, appointmentDao, appointments);
 			user.getAppointments().add(appointment);
@@ -190,7 +189,6 @@ public class UserBoImpl implements UserBo, Constants {
 		}
 		session.close();
 	}
-
 
 	public String populateUserDetails(User user) {
 		if (user == null || StringUtils.isEmpty(user.getEmail())) {
@@ -201,7 +199,7 @@ public class UserBoImpl implements UserBo, Constants {
 		Session session = this.sessionFactory.openSession();
 		UserDao userDao = new UserDaoImpl();
 		Users users = userDao.getUsersByUsername(user.getEmail(), session);
-		if(users == null) {
+		if (users == null) {
 			session.close();
 			return ERROR_INVALID_USER_CREDENTIALS;
 		}
@@ -218,7 +216,7 @@ public class UserBoImpl implements UserBo, Constants {
 			if (appointment.getStatus() != null && appointment.getStatus().getId() == 1) {
 				user.getPendingAppointments().add(appointment);
 			}
-			CommonUtils.calculatePrice(appointment.getLab(),appointment,appointmentDao,session);
+			CommonUtils.calculatePrice(appointment.getLab(), appointment, appointmentDao, session);
 		}
 		session.close();
 		return RESPONSE_OK;
@@ -236,18 +234,23 @@ public class UserBoImpl implements UserBo, Constants {
 		for (Tests test : tests) {
 			LabTest labTest = DataConverters.getTest(test);
 			if (labTest != null) {
+				labTests.add(labTest);
 				List<TestPackages> packages = appointmentDao.getTestPackage(labTest.getId(), session);
 				if (CollectionUtils.isNotEmpty(packages)) {
 					labTest.setTestPackage(true);
-					// addChildTests(labTest, packages);
 				}
-				labTests.add(labTest);
+				labTest.setParameters(DataConverters.getTestParameters(test.getTestFactors(), null, session));
+				if (CollectionUtils.isNotEmpty(packages)) {
+					labTest.setTestPackage(true);
+					// addChildTests(labTest, packages);
+					DataConverters.addChildTests(labTest, packages);
+					labTests.add(labTest);
+				}
 			}
 		}
 		session.close();
 		return labTests;
 	}
-
 
 	public List<LabLocation> getAllLocations() {
 		Session session = this.sessionFactory.openSession();
@@ -350,7 +353,7 @@ public class UserBoImpl implements UserBo, Constants {
 		}
 		List<Slot> availableSlots = new ArrayList<Slot>();
 		for (Slots slots : allSlots) {
-			if (checkIfSlotAvailable(labs, slots, appointment.getDate(),session, appointment)) {
+			if (checkIfSlotAvailable(labs, slots, appointment.getDate(), session, appointment)) {
 				Slot availSlot = DataConverters.getSlot(slots);
 				availableSlots.add(availSlot);
 			}
@@ -371,16 +374,16 @@ public class UserBoImpl implements UserBo, Constants {
 				return false;
 			}
 		}
-		if(!appointment.isHomeCollection()) {
+		if (!appointment.isHomeCollection()) {
 			return true;
 		}
 		AppointmentDao appointmentDao = new AppointmentDaoImpl();
 		List<Appointments> appointments = appointmentDao.getAppointmentsForLabSlot(slots.getId(), labs.getId(), date, session);
-		if(CollectionUtils.isEmpty(appointments)) {
+		if (CollectionUtils.isEmpty(appointments)) {
 			return true;
 		}
-		for(Appointments app : appointments) {
-			if(null != appointmentDao.getAddressByAppointmentId(app.getId(), session)) {
+		for (Appointments app : appointments) {
+			if (null != appointmentDao.getAddressByAppointmentId(app.getId(), session)) {
 				return false;
 			}
 		}
@@ -478,7 +481,6 @@ public class UserBoImpl implements UserBo, Constants {
 		session.close();
 	}
 
-
 	public String updateUser(User user) {
 		if (user == null || StringUtils.isEmpty(user.getEmail())) {
 			return ERROR_INVALID_USER;
@@ -550,7 +552,7 @@ public class UserBoImpl implements UserBo, Constants {
 		Appointment currentAppointment = DataConverters.getAppointment(session, appointmentDao, appointments);
 		currentAppointment.setStatus(appointment.getStatus());
 		CancelReasons reasons = appointmentDao.getCancelReason(appointment.getStatus().getCancelId(), session);
-		if(reasons != null && StringUtils.isNotEmpty(reasons.getFullText())) {
+		if (reasons != null && StringUtils.isNotEmpty(reasons.getFullText())) {
 			currentAppointment.getStatus().setCancellationReason(reasons.getFullText());
 			currentAppointment.getStatus().setName("Cancelled");
 		}
@@ -648,15 +650,15 @@ public class UserBoImpl implements UserBo, Constants {
 		session.close();
 		return labTest;
 	}
-	
+
 	public String forgotPassword(User user) {
-		if(user == null || StringUtils.isEmpty(user.getEmail())) {
+		if (user == null || StringUtils.isEmpty(user.getEmail())) {
 			return ERROR_INVALID_USER;
 		}
 		UserDao userDao = new UserDaoImpl();
 		Session session = this.sessionFactory.openSession();
 		Users1 users1 = userDao.getUsers1ByEmail(user.getEmail(), session);
-		if(users1 == null) {
+		if (users1 == null) {
 			session.close();
 			return ERROR_FORGOT_PWD_NO_USER;
 		}
@@ -671,16 +673,16 @@ public class UserBoImpl implements UserBo, Constants {
 		session.close();
 		return RESPONSE_OK;
 	}
-	
+
 	public String changePassword(User user) {
-		if(user == null || StringUtils.isEmpty(user.getEmail())) {
+		if (user == null || StringUtils.isEmpty(user.getEmail())) {
 			return ERROR_INVALID_USER;
 		}
 		UserDao userDao = new UserDaoImpl();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		Users1 users1 = userDao.getUsers1ByEmail(user.getEmail(), session);
-		if(users1 == null) {
+		if (users1 == null) {
 			session.close();
 			return ERROR_FORGOT_PWD_NO_USER;
 		}

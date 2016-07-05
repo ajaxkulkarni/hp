@@ -62,11 +62,12 @@
 <div class="clearfix"></div><br/>
 <!--Main div where content get loaded-->
 <div class="" id="loadUser" name="loadUser">
-<table id="categories_table" class="table table-bordered table-responsive">
-                    <tbody><tr>
-                    <th>#</th>
-                    <th>Category Name</th>
-                    <th colspan="2" align="center">Actions</th>
+<table id="categories_table" class="table table-bordered table-responsive paginate">
+                    <tbody>
+                    <tr class="page_header">
+                    	<th>#</th>
+                    	<th>Category Name</th>
+                    	<th colspan="2" align="center">Actions</th>
                     </tr>                
                 <c:forEach items="${categories}" var="cat" varStatus="i">
                 <tr>
@@ -83,27 +84,10 @@
                 </tbody></table>
                 
 </div>    
-<!--Paging div will get content soon-->
-<!-- <div class="" id="pagination">
-    <table class='table table-bordered table-responsive'>
-    <tr>
-        <td colspan="7" align="center">
-            <div class="pagination-wrap">
-                <ul class="pagination">
-                <ol id="paging">
-                <li>
-                	<a href='#' style='color:red;' class='js-pageDisplay'>#c</a>
-                </li>
-                <li>
-                	<a href='#' class='js-pageDisplay'>#n</a>
-                </li>
-                </ol>
-               </ul>
-             </div>
-        </td>
-    </tr>
-    </table>    
-</div>    -->
+
+
+<ul class="pagination" id="pagination_list">
+</ul>
 
 <form id="cat_form" action="<%=Constants.ADMIN_DELETE_CATEGORY_POST_URL %>" method="post">
 
@@ -128,42 +112,20 @@
 <%--<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="/resources/js/jquery.paging.min.js"/>"></script>
 <script src="<c:url value="/resources/js/jquery.easy-paging.js"/>"></script> --%>
-
+<script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
 <script>
 
 $(document).ready(function(){
-	 $("#categories_table").paging({limit:10});
-	 /* $("#categories_table").paging(1337,{ // make 1337 elements navigatable
-		    format: '[< ncnnn! >]', // define how the navigation should look like and in which order onFormat() get's called
-		    perpage: 10, // show 10 elements per page
-		    onFormat: function (type) {
-		        switch (type) {
-		        case 'block': // n and c
-		            return '<a href="#">' + this.value + '</a>';
-		        case 'next': // >
-		            return '<a href="#">&gt;</a>';
-		        case 'prev': // <
-		            return '<a href="#">&lt;</a>';
-		        case 'first': // [
-		            return '<a href="#">first</a>';
-		        case 'last': // ]
-		            return '<a href="#">last</a>';
-		        }
-		    }
-		}); */
-	 /* $("#categories_table").easyPaging(1000, {
-		    onSelect: function(page) {
-		        console.log("You are on page " + page + " and you will select elements "+(this.slice[0]+1) + "-" + this.slice[1]+"!!!");
-		    }
-		}); */
+	paginateTable(5,0);
 }); 
-   
-   function confirmDelete(name,id) {
+
+function confirmDelete(name,id) {
 	   if(confirm("Are you sure you want to delete category " + name + " ?")) {
 		   $("#cat_id").val(id);
 		   $("#cat_form").submit();
 	   }
-   }
+}
+
    
 </script>
 </body>

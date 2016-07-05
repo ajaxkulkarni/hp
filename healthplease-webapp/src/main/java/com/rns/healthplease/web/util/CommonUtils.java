@@ -55,15 +55,15 @@ public class CommonUtils implements Constants {
 	}
 
 	public static String convertDate(Date date) {
-		if(date == null) {
+		if (date == null) {
 			return "";
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 		return sdf.format(date);
 	}
-	
+
 	public static String convertDate(Date date, String format) {
-		if(date == null) {
+		if (date == null) {
 			return "";
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -241,27 +241,25 @@ public class CommonUtils implements Constants {
 	}
 
 	public static List<Slot> getSlots(String[] blockedSlots) {
-		if(blockedSlots == null || blockedSlots.length == 0) {
+		if (blockedSlots == null || blockedSlots.length == 0) {
 			return null;
 		}
 		List<Slot> slots = new ArrayList<Slot>();
-		for(String slotId: blockedSlots) {
+		for (String slotId : blockedSlots) {
 			Slot slot = new Slot();
 			slot.setId(Integer.valueOf(slotId));
 			slots.add(slot);
 		}
 		return slots;
 	}
-	
-	public static File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException 
-	{
-	        File convFile = new File("report");
-	        multipart.transferTo(convFile);
-	        return convFile;
+
+	public static File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException {
+		File convFile = new File("report");
+		multipart.transferTo(convFile);
+		return convFile;
 	}
-	
-	public static CommonsMultipartFile fileToMultipart(File file) 
-	{
+
+	public static CommonsMultipartFile fileToMultipart(File file) {
 		DiskFileItem fileItem = new DiskFileItem("file", "text/plain", false, file.getName(), (int) file.length(), file.getParentFile());
 		try {
 			fileItem.getOutputStream();
@@ -271,7 +269,7 @@ public class CommonUtils implements Constants {
 		CommonsMultipartFile multipart = new CommonsMultipartFile(fileItem);
 		return multipart;
 	}
-	
+
 	public static String readFile(String contentPath) throws FileNotFoundException {
 		ClassLoader classLoader = new CommonUtils().getClass().getClassLoader();
 		URL resource = classLoader.getResource(contentPath);
@@ -286,23 +284,42 @@ public class CommonUtils implements Constants {
 		scanner.close();
 		return result.toString();
 	}
-	
+
 	public static void populateLabUsers(Appointment appointment, Session session) {
 		Lab lab = appointment.getLab();
 		getLabUsers(session, lab);
+		lab.getUsers().addAll(prepareEmailUsers(lab.getEmail(), "mail"));
+		lab.getUsers().addAll(prepareEmailUsers(lab.getContact(), "phone"));
+	}
+
+	private static List<User> prepareEmailUsers(String contacts, String type) {
+		List<String> contactList = CommonUtils.getStrings(contacts);
+		List<User> contactUsers = new ArrayList<User>();
+		if (CollectionUtils.isNotEmpty(contactList)) {
+			for (String contact : contactList) {
+				User user = new User();
+				if ("mail".equals(type)) {
+					user.setEmail(contact);
+				} else {
+					user.setPhone(contact);
+				}
+				contactUsers.add(user);
+			}
+		}
+		return contactUsers;
 	}
 
 	public static void getLabUsers(Session session, Lab lab) {
 		UserDao userDao = new UserDaoImpl();
 		List<Users> labUsers = userDao.getUsersForLab(lab.getId(), session);
-		if(CollectionUtils.isEmpty(labUsers)) {
+		if (CollectionUtils.isEmpty(labUsers)) {
 			return;
 		}
 		List<Users> admins = userDao.getAdmins(session);
-		if(CollectionUtils.isNotEmpty(admins)) {
+		if (CollectionUtils.isNotEmpty(admins)) {
 			labUsers.addAll(admins);
 		}
-		for(Users users: labUsers) {
+		for (Users users : labUsers) {
 			User user = new User();
 			DataConverters.getUser(users, user);
 			lab.getUsers().add(user);
@@ -310,23 +327,23 @@ public class CommonUtils implements Constants {
 	}
 
 	public static String getAffirmation(Character printRequired) {
-		if(null != printRequired && YES == printRequired.charValue()) {
+		if (null != printRequired && YES == printRequired.charValue()) {
 			return "Yes";
 		}
 		return "No";
 	}
 
 	public static String getTests(List<LabTest> tests) {
-		if(CollectionUtils.isEmpty(tests)) {
+		if (CollectionUtils.isEmpty(tests)) {
 			return "";
 		}
 		StringBuilder builder = new StringBuilder();
-		for(LabTest labTest: tests) {
+		for (LabTest labTest : tests) {
 			builder.append(labTest.getName()).append(",");
 		}
 		return StringUtils.removeEnd(builder.toString(), ",");
 	}
-	
+
 	public static void setAppointments(User user, Appointment appointment) {
 		if (appointment.getStatus() == null) {
 			return;
@@ -342,15 +359,15 @@ public class CommonUtils implements Constants {
 	}
 
 	public static boolean getBoolean(String value) {
-		if(StringUtils.isEmpty(value)) {
+		if (StringUtils.isEmpty(value)) {
 			return false;
 		}
-		if(YES == value.charAt(0)) {
+		if (YES == value.charAt(0)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public static void calculatePrice(Lab lab, Appointment appointment, AppointmentDao appointmentDao, Session session) {
 		List<LabTest> tests = new ArrayList<LabTest>();
 		Integer totalPrice = 0;
@@ -363,7 +380,7 @@ public class CommonUtils implements Constants {
 			if (testLabs == null) {
 				continue;
 			}
-			if(CollectionUtils.isEmpty(test.getParameters())) {
+			if (CollectionUtils.isEmpty(test.getParameters())) {
 				test = DataConverters.getTest(testById);
 			}
 			test.setPrice(Integer.valueOf(testLabs.getLabPrice()));
@@ -379,8 +396,8 @@ public class CommonUtils implements Constants {
 		lab.setPrice(totalPrice);
 		appointment.setTests(tests);
 	}
-	
-	public static List<Appointment> getAppointmentsByType(HPSessionManager manager,String header) {
+
+	public static List<Appointment> getAppointmentsByType(HPSessionManager manager, String header) {
 		if (PENDING_HEADER.equals(StringUtils.trimToEmpty(header))) {
 			return manager.getUser().getPendingAppointments();
 		} else if (CANCELLED_HEADER.equals(StringUtils.trimToEmpty(header))) {
@@ -390,31 +407,42 @@ public class CommonUtils implements Constants {
 		}
 		return manager.getUser().getTodaysAppointments();
 	}
-	
+
 	public static String getStringValue(String value) {
 		return value == null ? "" : value;
 	}
 
 	public static String getGenderValue(String genderValues, int i) {
-		if(StringUtils.isEmpty(genderValues)) {
+		if (StringUtils.isEmpty(genderValues)) {
 			return null;
 		}
 		String[] genderValueArray = StringUtils.split(genderValues);
-		if(genderValueArray.length < 2) {
+		if (genderValueArray.length < 2) {
 			return null;
 		}
 		return genderValueArray[i];
 	}
-	
+
 	public static List<String> getStrings(String stringValues) {
-		if(StringUtils.isEmpty(stringValues)) {
+		if (StringUtils.isEmpty(stringValues)) {
 			return null;
 		}
-		String[] stringArray = StringUtils.split(stringValues);
-		if(stringArray.length == 0) {
+		String[] stringArray = StringUtils.split(stringValues, ",");
+		if (stringArray.length == 0) {
 			return null;
 		}
-		return Arrays.asList(stringValues);
+		return Arrays.asList(stringArray);
 	}
-	
+
+	public static String getAppendedString(List<String> strings) {
+		if (CollectionUtils.isEmpty(strings)) {
+			return null;
+		}
+		StringBuilder builder = new StringBuilder();
+		for (String string : strings) {
+			builder.append(string).append(",");
+		}
+		return StringUtils.removeEnd(builder.toString(), ",");
+	}
+
 }

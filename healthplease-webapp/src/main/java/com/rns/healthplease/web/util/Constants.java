@@ -173,6 +173,11 @@ public interface Constants {
 	String ADMIN_PARAMETERS_PAGE = "admin_parameters";
 	String MODEL_PARAMETERS = "parameters";
 	String ADMIN_PARAMETERS_GET_URL = "adminParameters.htm";
+	String ADMIN_UPLOAD_PARAMETERS_POST_URL = "adminUploadParameters";
+	String ADMIN_UPLOAD_TEST_LABS_POST_URL = "adminUploadTestLabs";
+	String ADMIN_TEST_PARAMETERS_MAP_GET_URL = "adminTestParametersMapping.htm";
+	String ADMIN_MAP_TEST_PARAMS_PAGE = "admin_map_test_params";
+	String ADMIN_UPLOAD_TEST_PARAMETER_MAP_POST_URL = "adminUploadTestParameterMappings";
 	
 	
 	String MAIL_TYPE_ACTIVATION = "activationMail";

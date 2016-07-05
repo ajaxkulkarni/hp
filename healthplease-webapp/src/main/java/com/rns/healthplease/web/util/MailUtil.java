@@ -199,6 +199,9 @@ public class MailUtil implements Constants, Runnable {
 		}
 		StringBuilder builder = new StringBuilder();
 		for (User user : users) {
+			if(StringUtils.isEmpty(user.getEmail())) {
+				continue;
+			}
 			builder.append(user.getEmail()).append(",");
 		}
 		StringUtils.removeEnd(builder.toString(), ",");
