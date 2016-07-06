@@ -63,7 +63,8 @@
 <!--Main div where content get loaded-->
 <h1>${lab.name}</h1>
 <div class="" id="loadUser" name="loadUser">
-<table id="locs_table" class="table table-bordered table-responsive paginate">
+<input type="text" id="search" class="form-control" placeholder="Search">
+<table id="tests_table" class="table table-bordered table-responsive paginate">
                     <tbody>
                     <tr class = "page_header">
                     <th>#</th>
@@ -131,6 +132,34 @@ $(document).ready(function(){
 		   $("#loc_form").submit();
 	   }
    }
+   
+   $('#search').keyup(function()
+		    {
+		    	searchTable($(this).val());
+		    });
+		    
+		    function searchTable(inputVal)
+		    {
+		    	var table = $('#tests_table');
+		    	table.find('tr').each(function(index, row)
+		    	{
+		    		var allCells = $(row).find('td');
+		    		if(allCells.length > 0)
+		    		{
+		    			var found = false;
+		    			allCells.each(function(index, td)
+		    			{
+		    				var regExp = new RegExp(inputVal, 'i');
+		    				if(regExp.test($(td).text()))
+		    				{
+		    					found = true;
+		    					return false;
+		    				}
+		    			});
+		    			if(found == true)$(row).show();else $(row).hide();
+		    		}
+		    	});
+		    }
    
 </script>
 </body>

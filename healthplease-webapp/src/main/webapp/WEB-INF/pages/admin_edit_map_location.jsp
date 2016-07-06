@@ -52,7 +52,7 @@
             <input type='hidden' name='labId' id="lab_id" class='form-control' value="${lab.id}">
             <td>
             	<c:if test="${labLocation.id != null }">
-            		<input type='text' name='name' id='loc_name' class='form-control' value="${labLocation.name}" required >
+            		<input type='text' name='name' id='loc_name' class='form-control' value="${labLocation.name}" readonly="readonly" required >
             		<input type='hidden' name='id' id="id" class='form-control' value="${labLocation.id}">
             	</c:if>
             	<c:if test="${labLocation.id == null }">

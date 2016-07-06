@@ -48,8 +48,11 @@
 
 <div class="" id="div_add">
     <a id="addNewLab" href="javascript:void(0);" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Lab</a>
+	<br/>
+	Upload Test Labs :
 	<form action="<%=Constants.ADMIN_UPLOAD_TEST_LABS_POST_URL %>" method="post" enctype="multipart/form-data">
-		<input type="file" id="file" class="form-control" name="file" placeholder="Search"/>
+		<input type="file" id="file" name="file" placeholder="Search"/>
+		<br/>
 		<button type="submit" class="btn btn-large btn-info"><i class="glyphicon glyphicon-plus"></i> &nbsp; Upload</button>
 	</form>
 </div>

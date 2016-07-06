@@ -165,6 +165,7 @@ public class HPAdminController implements Constants {
 	public String initCategories(ModelMap model) {
 		model.addAttribute(MODEL_CATEGORIES, adminBo.getAllTestCategories());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return ADMIN_CATEGORIES_PAGE;
 	}
@@ -178,6 +179,7 @@ public class HPAdminController implements Constants {
 		}
 		model.addAttribute(MODEL_CATEGORY, categories);
 		model.addAttribute(MODEL_RESULT, manager.getResult());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return ADMIN_EDIT_CATEGORY_PAGE;
 	}
@@ -198,6 +200,7 @@ public class HPAdminController implements Constants {
 	public String initTests(ModelMap model) {
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return ADMIN_TESTS_PAGE;
 	}
@@ -213,6 +216,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_CATEGORIES, adminBo.getAllTestCategories());
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return ADMIN_EDIT_TEST_PAGE;
 	}
@@ -252,6 +256,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_LABS, adminBo.getAllLabs());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USERS, adminBo.getAllUsers());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return ADMIN_LABS_PAGE;
 	}
@@ -291,6 +296,7 @@ public class HPAdminController implements Constants {
 	public String initLocations(ModelMap model) {
 		model.addAttribute(MODEL_LOCATIONS, userBo.getAllLocations());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return ADMIN_LOCATIONS_PAGE;
 	}
@@ -304,6 +310,7 @@ public class HPAdminController implements Constants {
 		}
 		model.addAttribute(MODEL_LOCATION, location);
 		model.addAttribute(MODEL_RESULT, manager.getResult());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return ADMIN_EDIT_LOCATION_PAGE;
 	}
@@ -329,6 +336,7 @@ public class HPAdminController implements Constants {
 	@RequestMapping(value = "/" + ADMIN_LAB_DASHBOARD_GET_URL, method = RequestMethod.GET)
 	public String initLabDashboards(ModelMap model) {
 		model.addAttribute(MODEL_LABS, adminBo.getAllLabs());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		return ADMIN_LAB_DASHBOARD_PAGE;
 	}
 	
@@ -360,6 +368,7 @@ public class HPAdminController implements Constants {
 	public String initTestParameterMapping(ModelMap model) {
 		model.addAttribute(MODEL_PARAMETERS, adminBo.getAllTestParemeters());
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		return ADMIN_MAP_TEST_PARAMS_PAGE;
 	}
 
@@ -374,6 +383,7 @@ public class HPAdminController implements Constants {
 		Lab lab = new Lab();
 		lab.setId(labId);
 		model.addAttribute(MODEL_LAB, adminBo.getLab(lab));
+		model.addAttribute(MODEL_USER, manager.getUser());
 		return ADMIN_MAP_LAB_LOCATIONS_PAGE;
 	}
 	
@@ -391,6 +401,7 @@ public class HPAdminController implements Constants {
 		}
 		model.addAttribute(MODEL_LAB_LOCATION, labLocation);
 		model.addAttribute(MODEL_LAB, lab);
+		model.addAttribute(MODEL_USER, manager.getUser());
 		return ADMIN_EDIT_LAB_LOCATION_MAP_PAGE;
 	}
 	
@@ -417,6 +428,7 @@ public class HPAdminController implements Constants {
 		Lab lab = new Lab();
 		lab.setId(labId);
 		model.addAttribute(MODEL_LAB, adminBo.getLab(lab));
+		model.addAttribute(MODEL_USER, manager.getUser());
 		return ADMIN_LAB_TESTS_PAGE;
 	}
 	
@@ -434,6 +446,7 @@ public class HPAdminController implements Constants {
 		}
 		model.addAttribute(MODEL_TEST, labLocation);
 		model.addAttribute(MODEL_LAB, lab);
+		model.addAttribute(MODEL_USER, manager.getUser());
 		return ADMIN_EDIT_LAB_TEST_PAGE;
 	}
 	
