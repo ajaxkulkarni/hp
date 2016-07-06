@@ -74,15 +74,27 @@ border-radius:5px;
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
 						        <a data-toggle="collapse" href="#collapse1">Tests</a>
-						      </h4>
+						      </h3>
 						    </div>
 						    <div id="collapse1" class="panel-collapse collapse">
 						      <ul class="list-group">
-						        <li class="list-group-item">One</li>
-						        <li class="list-group-item">Two</li>
-						        <li class="list-group-item">Three</li>
+						     
+						       	  <li class="list-group-item"><h3>Pathology Tests</h3></li>
+								  <li class="list-group-item">Complete Blood Count</li>
+								  <li class="list-group-item">Blood Sugar Random</li>
+								
+								  <li class="list-group-item"><h3>Tests for Liver</h3> </li>
+								  <li class="list-group-item">SGOT</li>
+								  <li class="list-group-item">SGPT</li>
+						
+								  <li class="list-group-item"><h3>Test for Heart</h3></li>
+								  <li class="list-group-item">Total Cholesterol </li>
+							
+								  <li class="list-group-item">Tests for Kidney</li>
+								  <li class="list-group-item">Creatinine</li>
+								  <li class="list-group-item">Urine Routine</li>
 						      </ul>
-						      <div class="panel-footer">Footer</div>
+						   
 						    </div>
 						  </div>
 						</div>
@@ -107,15 +119,35 @@ border-radius:5px;
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
 						        <a data-toggle="collapse" href="#collapse2">Tests</a>
-						      </h4>
+						      </h3>
 						    </div>
 						    <div id="collapse2" class="panel-collapse collapse">
 						      <ul class="list-group">
-						        <li class="list-group-item">One</li>
-						        <li class="list-group-item">Two</li>
-						        <li class="list-group-item">Three</li>
+						        
+						  <li class="list-group-item"><h3>Pathology Tests</h3></li>
+				<li class="list-group-item">Complete Blood Count</li>
+				<li class="list-group-item">Blood Sugar Random</li>
+								
+				<li class="list-group-item"><h3>Tests for Liver</h3> </li>
+				<li class="list-group-item">SGOT</li>
+				<li class="list-group-item">SGPT</li>
+								
+					<li class="list-group-item"><h3>Test for Heart</h3></li>
+					<li class="list-group-item">Total Cholesterol</li> 
+								
+					<li class="list-group-item"><h3>Tests for Kidney</h3></li>
+					<li class="list-group-item">Creatinine</li>
+					<li class="list-group-item">Urine Routine</li>
+								
+					<li class="list-group-item"><h3>Diagnostics Test</h3></li>
+					<li class="list-group-item">E.C.G(12 Lead)</li>
+								
+					<li class="list-group-item"><h3>Consultations</h3></li>
+					<li class="list-group-item">Physician Consultation</li>
+					<li class="list-group-item">Dental Checkup</li>
+					<li class="list-group-item">Eye Check up</li>
 						      </ul>
-						      <div class="panel-footer">Footer</div>
+						    
 						    </div>
 						  </div>
 						</div>
@@ -140,15 +172,31 @@ border-radius:5px;
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
 						        <a data-toggle="collapse" href="#collapse3">Tests</a>
-						      </h4>
+						      </h3>
 						    </div>
 						    <div id="collapse3" class="panel-collapse collapse">
 						      <ul class="list-group">
-						        <li class="list-group-item">One</li>
-						        <li class="list-group-item">Two</li>
-						        <li class="list-group-item">Three</li>
+								<li class="list-group-item"><h3>Pathology Tests</h3></li>
+								<li class="list-group-item">Complete Blood Count</li>
+								<li class="list-group-item">Blood Sugar Random</li>
+								<li class="list-group-item">HbA1c</li>
+								
+								<li class="list-group-item"><h3>Tests for Liver </h3></li>
+								<li class="list-group-item">SGOT</li>
+								<li class="list-group-item">SGPT</li>
+								
+								<li class="list-group-item"><h3>Test for Heart</h3></li>
+								<li class="list-group-item">Lipid Profile</li>
+								
+								<li class="list-group-item"><h3>Tests for Kidney</h3></li>
+								<li class="list-group-item">Creatinine</li>
+								<li class="list-group-item">Urea</li>
+								<li class="list-group-item">Urine Routine</li>
+								
+								<li class="list-group-item"><h3>Consultations</h3></li>
+								<li class="list-group-item">Physician Consultation / Pathologist Consultation</li>
 						      </ul>
-						      <div class="panel-footer">Footer</div>
+						    
 						    </div>
 						  </div>
 						</div>
@@ -173,15 +221,36 @@ border-radius:5px;
 							    <div class="panel-heading">
 							      <h4 class="panel-title">
 							        <a data-toggle="collapse" href="#collapse4">Tests</a>
-							      </h4>
+							      </h3>
 							    </div>
 							    <div id="collapse4" class="panel-collapse collapse">
 							      <ul class="list-group">
-							        <li class="list-group-item">One</li>
-							        <li class="list-group-item">Two</li>
-							        <li class="list-group-item">Three</li>
-							      </ul>
-							      <div class="panel-footer">Footer</div>
+								<li class="list-group-item"><h3>Pathology Tests</h3></li>
+								<li class="list-group-item">Complete Blood Count</li>
+								<li class="list-group-item">Blood Sugar Random</li>
+								<li class="list-group-item">HbA1c</li>
+								
+								<li class="list-group-item"><h3>Tests for Liver</h3></li> 
+								<li class="list-group-item">SGOT</li>
+								<li class="list-group-item">SGPT</li>
+								
+								<li class="list-group-item"><h3>Test for Heart</h3></li>
+								<li class="list-group-item">Lipid Profile</li>
+								
+								<li class="list-group-item"><h3>Tests for Kidney</h3></li>
+								<li class="list-group-item">Creatinine</li>
+								<li class="list-group-item">Urea</li>
+								<li class="list-group-item">Urine Routine</li>
+								
+								<li class="list-group-item"><h3>Diagnostics Test</h3></li>
+								<li class="list-group-item">E.C.G(12 Lead)</li>
+								<li class="list-group-item">X-Ray Chest</li>
+								
+								<li class="list-group-item"><h3>Consultations</h3></li>
+								<li class="list-group-item">Physician Consultation / Pathologist Consultation</li>
+								<li class="list-group-item">Dental Checkup</li>
+								<li class="list-group-item">Eye Check up</li>					      </ul>
+							     
 							    </div>
 							  </div>
 							</div>
@@ -207,15 +276,38 @@ border-radius:5px;
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
 						        <a data-toggle="collapse" href="#collapse5">Tests</a>
-						      </h4>
+						      </h3>
 						    </div>
 						    <div id="collapse5" class="panel-collapse collapse">
 						      <ul class="list-group">
-						        <li class="list-group-item">One</li>
-						        <li class="list-group-item">Two</li>
-						        <li class="list-group-item">Three</li>
-						      </ul>
-						      <div class="panel-footer">Footer</div>
+							<li class="list-group-item"><h3>Pathology Tests</h3></li>
+							<li class="list-group-item">Complete Blood Count</li>
+							<li class="list-group-item">Blood Sugar Fasting+Post Prandial</li>
+							<li class="list-group-item">HbA1c</li>
+							
+							<li class="list-group-item"><h3>Liver Profile</h3></li>
+							<li class="list-group-item">SGOT</li>
+							<li class="list-group-item">SGPT</li>
+							<li class="list-group-item">Proteins</li>
+							
+							<li class="list-group-item"><h3>Test for Heart</h3></li>
+							<li class="list-group-item">Lipid Profile</li>
+							
+							<li class="list-group-item"><h3>Tests for Kidney Disease</h3></li>
+							<li class="list-group-item">Creatinine</li>
+							<li class="list-group-item">Urea</li>
+							<li class="list-group-item">Urine Routine</li>
+							
+							<li class="list-group-item"><h3>Test for Thyroid</h3></li>
+							<li class="list-group-item">T3+T4+TSH</li>
+							
+							<li class="list-group-item"><h3>Vitamin Profile Test</h3></li>
+							<li class="list-group-item">Vitamin d3 + Vitamin B12</li>
+							
+							<li class="list-group-item"><h3>Consultations</h3></li>
+							<li class="list-group-item">Physician Consultation / Pathologist Consultation</li>
+													      </ul>
+						      
 						    </div>
 						  </div>
 						</div>
@@ -238,15 +330,45 @@ border-radius:5px;
 					    <div class="panel-heading">
 					      <h4 class="panel-title">
 					        <a data-toggle="collapse" href="#collapse6">Lists</a>
-					      </h4>
+					      </h3>
 					    </div>
 					    <div id="collapse6" class="panel-collapse collapse">
 					      <ul class="list-group">
-					        <li class="list-group-item">One</li>
-					        <li class="list-group-item">Two</li>
-					        <li class="list-group-item">Three</li>
-					      </ul>
-					      <div class="panel-footer">Footer</div>
+							<li class="list-group-item"><h3>Pathology Tests</h3></li>
+							<li class="list-group-item">Complete Blood Count</li>
+							<li class="list-group-item">Blood Sugar Fasting+Post Prandial</li>
+							<li class="list-group-item">HbA1c</li>
+							
+							<li class="list-group-item"><h3>Liver Profile</h3></li>
+							<li class="list-group-item">SGOT</li>
+							<li class="list-group-item">SGPT</li>
+							<li class="list-group-item">Proteins</li>
+							
+							<li class="list-group-item"><h3>Test for Heart</h3></li>
+							<li class="list-group-item">Lipid Profile</li>
+							
+							<li class="list-group-item"><h3>Tests for Kidney Disease</h3></li>
+							<li class="list-group-item">Creatinine</li>
+							<li class="list-group-item">Urea</li>
+							<li class="list-group-item">Urine Routine</li>
+							
+							<li class="list-group-item"><h3>Test for Thyroid</h3></li>
+							<li class="list-group-item">T3+T4+TSH</li>
+							
+							<li class="list-group-item"><h3>Vitamin Profile Test</h3></li>
+							<li class="list-group-item">Vitamin d3 + Vitamin B12</li>
+							
+							<li class="list-group-item"><h3>Diagnostics Test</h3></li>
+							<li class="list-group-item">2D Echo OR Stress Test</li>
+							<li class="list-group-item">ECG 12 Leads</li>
+							<li class="list-group-item">Chest X-ray</li>
+							
+							<li class="list-group-item"><h3>Consultations</h3></li>
+							<li class="list-group-item">Physician Consultation / Pathologist Consultation</li>
+							<li class="list-group-item">Dental Checkup</li>
+							<li class="list-group-item">Eye Checkup	</li>			    
+							  </ul>
+					 
 					    </div>
 					  </div>
 					</div>
@@ -275,15 +397,52 @@ border-radius:5px;
 							    <div class="panel-heading">
 							      <h4 class="panel-title">
 							        <a data-toggle="collapse" href="#collapse7">Tests</a>
-							      </h4>
+							      </h3>
 							    </div>
 							    <div id="collapse7" class="panel-collapse collapse">
 							      <ul class="list-group">
-							        <li class="list-group-item">One</li>
-							        <li class="list-group-item">Two</li>
-							        <li class="list-group-item">Three</li>
+								<li class="list-group-item"><h3>Pathology Tests</h3></li>
+								<li class="list-group-item">Complete Blood Count</li>
+								<li class="list-group-item">Blood Sugar Fasting+Post Prandial</li>
+								<li class="list-group-item">HbA1c</li>
+								
+								<li class="list-group-item"><h3>Liver Profile</h3></li>
+								<li class="list-group-item">SGOT</li>
+								<li class="list-group-item">SGPT</li>
+								<li class="list-group-item">Proteins</li>
+								
+								<li class="list-group-item"><h3>Test for Heart</h3></li>
+								<li class="list-group-item">Lipid Profile</li>
+								
+								<li class="list-group-item"><h3>Tests for Kidney Disease</h3></li>
+								<li class="list-group-item">Creatinine</li>
+								<li class="list-group-item">Urea</li>
+								<li class="list-group-item">Urine Routine</li>
+								
+								<li class="list-group-item"><h3>Test for Thyroid</h3></li>
+								<li class="list-group-item">T3+T4+TSH</li>
+								
+								<li class="list-group-item"><h3>Vitamin Profile Test</h3></li>
+								<li class="list-group-item">Vitamin D3 + Vitamin B12</li>
+								
+								<li class="list-group-item"><h3>Cancer Risk Marker</h3></li>
+								<li class="list-group-item">Prostate Specific Antigen / Pap Smear</li>
+								
+								<li class="list-group-item"><h3>Diagnostics Test</h3></li>
+								<li class="list-group-item">ECG 12 Leads</li>
+								<li class="list-group-item">Sonography of abdomen & pelvis</li>
+								<li class="list-group-item">Chest X-ray</li>
+								<li class="list-group-item">Stress Test (Treadmill test) OR 2D ECHO</li>
+								
+								<li class="list-group-item"><h3>Consultations</h3></li>
+								<li class="list-group-item">Physician Consultation / Pathologist Consultation</li>
+								<li class="list-group-item">Dental Checkup</li>
+								<li class="list-group-item">Eye Checkup</li>
+								<li class="list-group-item">Diet Consultation</li>
+								<li class="list-group-item">Gynaecological Examination</li>
+								<li class="list-group-item">Pap Smear</li>
 							      </ul>
-							      <div class="panel-footer">Footer</div>
+							    
 							    </div>
 							  </div>
 							</div>
@@ -303,7 +462,7 @@ border-radius:5px;
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Corporate Package XYZ</h4>
+          <h4 class="modal-title">Corporate Package XYZ</h3>
         </div>
         <div class="modal-body">
         
@@ -313,6 +472,16 @@ border-radius:5px;
 			  <select class="form-control" id="sel1">
 			    <option>Corporate</option>
 			    <option>Corporate</option>
+			    
+			  </select>
+			  </div>
+			   <div class="form-group">
+			   <form role="form">
+			  <div class="form-group">
+			   <label for="sel1"style="margin-top:5%">Preferred Lab:</label>
+			  <select class="form-control" id="sel1">
+			    <option>Lab</option>
+			    <option>Lab</option>
 			    
 			  </select>
 			  </div>
