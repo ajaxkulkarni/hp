@@ -536,7 +536,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 			}
 		}
 		if (labLocations != null) {
-			charges = appointmentDao.getLocationCharges(labs.getId(), labLocations.getId(), session);
+			charges = appointmentDao.getLocationCharges(labs.getId(), labLocations.getLocations().getId(), session);
 			if (charges == null) {
 				charges = new LocationWiseLabCharges();
 				charges.setLabId(labs.getId().shortValue());
