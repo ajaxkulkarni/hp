@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -366,6 +367,92 @@ public class HPAdminController implements Constants {
 	public RedirectView uploadTestParamsMap(String[] mappings, ModelMap model) {
 		manager.setResult(adminBo.uploadTestParameterMaps(mappings));
 		return new RedirectView(ADMIN_TEST_PARAMETERS_MAP_GET_URL);
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_MAP_LAB_LOCATIONS_GET_URL, method = RequestMethod.GET)
+	public String initLabLocations(ModelMap model, Integer labId) {
+		Lab lab = new Lab();
+		lab.setId(labId);
+		model.addAttribute(MODEL_LAB, adminBo.getLab(lab));
+		return ADMIN_MAP_LAB_LOCATIONS_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_EDIT_LAB_LOCATION_GET_URL, method = RequestMethod.GET)
+	public String initEditLabLocations(ModelMap model,Integer labId, Integer id,String name, Integer charge) {
+		LabLocation labLocation = new LabLocation();
+		Lab lab = new Lab();
+		lab.setId(labId);
+		if(StringUtils.isNotEmpty(name)) {
+			labLocation.setId(id);
+			labLocation.setName(name);
+			labLocation.setCharge(charge);
+		} else {
+			model.addAttribute(MODEL_LOCATIONS, adminBo.getUnmappedLocations(lab));
+		}
+		model.addAttribute(MODEL_LAB_LOCATION, labLocation);
+		model.addAttribute(MODEL_LAB, lab);
+		return ADMIN_EDIT_LAB_LOCATION_MAP_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_EDIT_LAB_LOCATION_POST_URL, method = RequestMethod.POST)
+	public RedirectView editLabLocation(LabLocation location,Integer labId, ModelMap model) {
+		Lab lab = new Lab();
+		lab.setId(labId);
+		manager.setResult(adminBo.updateLabLocation(location,lab));
+		return new RedirectView(ADMIN_MAP_LAB_LOCATIONS_GET_URL + "?labId=" + labId);
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_DELETE_LAB_LOCATION_POST_URL, method = RequestMethod.POST)
+	public RedirectView deleteLabLocation(Integer locationId,Integer labId, ModelMap model) {
+		LabLocation labLocation = new LabLocation();
+		labLocation.setId(locationId);
+		Lab lab = new Lab();
+		lab.setId(labId);
+		manager.setResult(adminBo.deleteLabLocation(labLocation,lab));
+		return new RedirectView(ADMIN_MAP_LAB_LOCATIONS_GET_URL + "?labId=" + labId);
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_LAB_TESTS_GET_URL, method = RequestMethod.GET)
+	public String initLabTests(ModelMap model, Integer labId) {
+		Lab lab = new Lab();
+		lab.setId(labId);
+		model.addAttribute(MODEL_LAB, adminBo.getLab(lab));
+		return ADMIN_LAB_TESTS_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_EDIT_LAB_TEST_GET_URL, method = RequestMethod.GET)
+	public String initEditLabTests(ModelMap model,Integer labId, Integer id,String name, Integer charge) {
+		LabTest labLocation = new LabTest();
+		Lab lab = new Lab();
+		lab.setId(labId);
+		if(StringUtils.isNotEmpty(name)) {
+			labLocation.setId(id);
+			labLocation.setName(name);
+			labLocation.setPrice(charge);
+		} else {
+			model.addAttribute(MODEL_TESTS, adminBo.getUnmappedTests(lab));
+		}
+		model.addAttribute(MODEL_TEST, labLocation);
+		model.addAttribute(MODEL_LAB, lab);
+		return ADMIN_EDIT_LAB_TEST_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_EDIT_LAB_TEST_POST_URL, method = RequestMethod.POST)
+	public RedirectView editLabTest(LabTest test,Integer labId, ModelMap model) {
+		Lab lab = new Lab();
+		lab.setId(labId);
+		manager.setResult(adminBo.updateLabTest(test,lab));
+		return new RedirectView(ADMIN_LAB_TESTS_GET_URL + "?labId=" + labId);
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_DELETE_LAB_TEST_POST_URL, method = RequestMethod.POST)
+	public RedirectView deleteLabTest(Integer testId,Integer labId, ModelMap model) {
+		LabTest test = new LabTest();
+		test.setId(testId);
+		Lab lab = new Lab();
+		lab.setId(labId);
+		manager.setResult(adminBo.deleteLabTest(test,lab));
+		return new RedirectView(ADMIN_MAP_LAB_LOCATIONS_GET_URL + "?labId=" + labId);
 	}
 	
 }

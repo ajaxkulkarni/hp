@@ -22,7 +22,9 @@ import com.rns.healthplease.web.dao.api.AppointmentDao;
 import com.rns.healthplease.web.dao.api.UserDao;
 import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.Groups;
+import com.rns.healthplease.web.dao.domain.LabLocations;
 import com.rns.healthplease.web.dao.domain.Labs;
+import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.TestCategories;
 import com.rns.healthplease.web.dao.domain.TestFactors;
@@ -119,7 +121,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		TestCategories categories = null;
-		if(category.getId() != null) {
+		if (category.getId() != null) {
 			categories = new AppointmentDaoImpl().getTestCategoryById(category.getId(), session);
 		}
 		if (categories == null) {
@@ -247,10 +249,10 @@ public class AdminBoImpl implements AdminBo, Constants {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		Labs labs = null;
-		if(lab.getId() != null) {
+		if (lab.getId() != null) {
 			labs = new AppointmentDaoImpl().getLabById(lab.getId(), session);
 		}
-		if(labs == null) {
+		if (labs == null) {
 			labs = new Labs();
 		}
 		BusinessConverters.getLabs(lab, labs);
@@ -398,20 +400,20 @@ public class AdminBoImpl implements AdminBo, Constants {
 		session.close();
 		return RESPONSE_OK;
 	}
-	
+
 	@Override
 	public String uploadTestLabs(List<TestLabs> testLabs) {
-		if(CollectionUtils.isEmpty(testLabs)) {
+		if (CollectionUtils.isEmpty(testLabs)) {
 			return ERROR_INVALID_TEST_DETAILS;
 		}
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		for(TestLabs testLab: testLabs) {
-			if(testLab.getTest().getId() == null || testLab.getLab().getId() == null) {
+		for (TestLabs testLab : testLabs) {
+			if (testLab.getTest().getId() == null || testLab.getLab().getId() == null) {
 				continue;
 			}
 			TestLabs existingTestLabs = new AppointmentDaoImpl().getTestLabsForTestLab(testLab.getTest().getId(), testLab.getLab().getId(), session);
-			if(existingTestLabs == null) {
+			if (existingTestLabs == null) {
 				testLab.setLabAbbr("");
 				testLab.setLabDeliveryDays(Short.valueOf("1"));
 				session.persist(testLab);
@@ -423,16 +425,16 @@ public class AdminBoImpl implements AdminBo, Constants {
 		session.close();
 		return RESPONSE_OK;
 	}
-	
+
 	@Override
 	public String uploadTestParameterMaps(String[] mappings) {
-		if(mappings == null || mappings.length == 0) {
+		if (mappings == null || mappings.length == 0) {
 			return ERROR_INVALID_TEST_DETAILS;
 		}
 		List<TestFactorsMap> maps = new ArrayList<TestFactorsMap>();
-		for(String mapping: mappings) {
+		for (String mapping : mappings) {
 			List<String> values = CommonUtils.getStrings(mapping);
-			if(CollectionUtils.isEmpty(values) || values.size() < 2) {
+			if (CollectionUtils.isEmpty(values) || values.size() < 2) {
 				continue;
 			}
 			TestFactorsMap map = new TestFactorsMap();
@@ -448,10 +450,223 @@ public class AdminBoImpl implements AdminBo, Constants {
 		Transaction tx = session.beginTransaction();
 		AppointmentDao appointmentDao = new AppointmentDaoImpl();
 		appointmentDao.deleteAllTestFactorMaps(session);
-		if(CollectionUtils.isNotEmpty(maps)) {
-			for(TestFactorsMap map: maps) {
+		if (CollectionUtils.isNotEmpty(maps)) {
+			for (TestFactorsMap map : maps) {
 				session.persist(map);
 			}
+		}
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
+	}
+
+	@Override
+	public Lab getLab(Lab lab) {
+		if (lab == null || lab.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		Labs labs = appointmentDao.getLabById(lab.getId(), session);
+		Lab currentLab = DataConverters.getLab(labs);
+		if (CollectionUtils.isNotEmpty(currentLab.getLocation())) {
+			for (LabLocation loc : currentLab.getLocation()) {
+				LocationWiseLabCharges locationWiseLabCharges = appointmentDao.getLocationCharges(lab.getId(), loc.getId(), session);
+				if (locationWiseLabCharges != null) {
+					loc.setCharge(Integer.valueOf(locationWiseLabCharges.getPickUpCharge()));
+				}
+			}
+		}
+		currentLab.setTests(DataConverters.getLabTests(session, appointmentDao, labs));
+		session.close();
+		return currentLab;
+	}
+
+	@Override
+	public List<LabLocation> getUnmappedLocations(Lab lab) {
+		if (lab == null || lab.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		List<LabLocation> locations = new ArrayList<LabLocation>();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		List<Locations> allLocations = appointmentDao.getAllLabLocations(session);
+		Labs labs = appointmentDao.getLabById(lab.getId(), session);
+		if (labs == null) {
+			session.close();
+			return null;
+		}
+		for (Locations loc : allLocations) {
+			boolean found = false;
+			if (CollectionUtils.isEmpty(labs.getLabses())) {
+				locations.add(DataConverters.getLocation(loc));
+				continue;
+			}
+			for (LabLocations labLoc : labs.getLabses()) {
+				if (labLoc.getLocations() != null && loc.getId().intValue() == labLoc.getLocations().getId().intValue()) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				locations.add(DataConverters.getLocation(loc));
+			}
+		}
+		session.close();
+		return locations;
+	}
+
+	@Override
+	public String updateLabLocation(LabLocation location, Lab lab) {
+		if (location == null || lab == null || lab.getId() == null || location.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		Labs labs = appointmentDao.getLabById(lab.getId(), session);
+		LabLocations labLocations = null;
+		LocationWiseLabCharges charges = null;
+		if (CollectionUtils.isNotEmpty(labs.getLabses())) {
+			for (LabLocations locations : labs.getLabses()) {
+				if (location.getId() == locations.getLocations().getId()) {
+					labLocations = locations;
+					break;
+				}
+			}
+		}
+		if (labLocations != null) {
+			charges = appointmentDao.getLocationCharges(labs.getId(), labLocations.getId(), session);
+			if (charges == null) {
+				charges = new LocationWiseLabCharges();
+				charges.setLabId(labs.getId().shortValue());
+				charges.setLocationId(location.getId().shortValue());
+			}
+			charges.setPickUpCharge(location.getCharge() != null ? location.getCharge().shortValue() : 0);
+			if (charges.getId() == null) {
+				session.persist(charges);
+			}
+		} else {
+			labLocations = new LabLocations();
+			labLocations.setLocations(appointmentDao.getLocationsById(location.getId(), session));
+			labLocations.setLabs(labs);
+			if (location.getCharge() != null) {
+				charges = new LocationWiseLabCharges();
+				charges.setLabId(labs.getId().shortValue());
+				charges.setLocationId(location.getId().shortValue());
+				charges.setPickUpCharge(location.getCharge().shortValue());
+				session.persist(charges);
+			}
+			session.persist(labLocations);
+		}
+
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
+	}
+
+	@Override
+	public String deleteLabLocation(LabLocation location, Lab lab) {
+		if (location == null || lab == null || lab.getId() == null || location.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		Labs labs = appointmentDao.getLabById(lab.getId(), session);
+		if (labs == null || CollectionUtils.isEmpty(labs.getLabses())) {
+			session.close();
+			return null;
+		}
+		LabLocations labLocations = null;
+		for (LabLocations locations : labs.getLabses()) {
+			if (location.getId() == locations.getLocations().getId()) {
+				labLocations = locations;
+				break;
+			}
+		}
+		if (labLocations != null) {
+			session.delete(labLocations);
+		}
+		LocationWiseLabCharges charges = appointmentDao.getLocationCharges(lab.getId(), location.getId(), session);
+		if (charges != null) {
+			session.delete(charges);
+		}
+
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
+	}
+
+	@Override
+	public List<LabTest> getUnmappedTests(Lab lab) {
+		if (lab == null || lab.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		List<LabTest> tests = new ArrayList<LabTest>();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		List<Tests> allTests = appointmentDao.getAllTests(session);
+		Labs labs = appointmentDao.getLabById(lab.getId(), session);
+		if (labs == null) {
+			session.close();
+			return null;
+		}
+		for (Tests test : allTests) {
+			boolean found = false;
+			if (CollectionUtils.isNotEmpty(labs.getTestLabs())) {
+				for (TestLabs testLabs : labs.getTestLabs()) {
+					if (testLabs.getTest() != null && testLabs.getTest().getId().intValue() == test.getId().intValue()) {
+						found = true;
+						break;
+					}
+
+				}
+			}
+			if (!found) {
+				tests.add(DataConverters.getTest(test));
+			}
+		}
+		session.close();
+		return tests;
+	}
+
+	@Override
+	public String updateLabTest(LabTest test, Lab lab) {
+		if (lab == null || lab.getId() == null || test == null || test.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		TestLabs testLabs = appointmentDao.getTestLabsForTestLab(test.getId(), lab.getId(), session);
+		if (testLabs == null) {
+			testLabs = new TestLabs();
+			testLabs.setLab(BusinessConverters.getLab(lab));
+			testLabs.setLabPrice(test.getPrice() != null ? test.getPrice().shortValue() : 0);
+			testLabs.setTest(BusinessConverters.getTest(test));
+			testLabs.setLabAbbr("");
+			testLabs.setLabDeliveryDays(Short.valueOf("1"));
+			session.persist(testLabs);
+		} else {
+			testLabs.setLabPrice(test.getPrice() != null ? test.getPrice().shortValue() : 0);
+		}
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
+	}
+
+	@Override
+	public String deleteLabTest(LabTest test, Lab lab) {
+		if (lab == null || lab.getId() == null || test == null || test.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		TestLabs testLabs = appointmentDao.getTestLabsForTestLab(test.getId(), lab.getId(), session);
+		if (testLabs != null) {
+			session.delete(testLabs);
 		}
 		tx.commit();
 		session.close();

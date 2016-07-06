@@ -382,7 +382,7 @@
 $(document).ready(function () {
 	
 	$(document).ready(function(){
-		paginateTable(10,0);
+		paginateTable($("#limit").val(), 0);
 	}); 
 
 	
@@ -406,8 +406,9 @@ function onUpload(appointmentId) {
 }
 
 function resetTable() {
-	 $("#appointments_table").paging({limit:$("#limit").val()});
-	 location.reload(); 
+	 //$("#appointments_table").paging({limit:$("#limit").val()});
+	 paginateTable($("#limit").val(), 0);
+	 //location.reload(); 
 }
 
 $('#search').keyup(function()

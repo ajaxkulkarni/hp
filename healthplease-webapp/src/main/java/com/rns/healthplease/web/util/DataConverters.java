@@ -25,11 +25,13 @@ import com.rns.healthplease.web.dao.domain.AppointmentTests;
 import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.LabLocations;
 import com.rns.healthplease.web.dao.domain.Labs;
+import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
 import com.rns.healthplease.web.dao.domain.Slots;
 import com.rns.healthplease.web.dao.domain.TestFactors;
 import com.rns.healthplease.web.dao.domain.TestFactorsMap;
+import com.rns.healthplease.web.dao.domain.TestLabs;
 import com.rns.healthplease.web.dao.domain.TestPackages;
 import com.rns.healthplease.web.dao.domain.Tests;
 import com.rns.healthplease.web.dao.domain.Users;
@@ -94,7 +96,9 @@ public class DataConverters {
 		List<LabLocation> labLocations = new ArrayList<LabLocation>();
 		for (LabLocations labLoc : set) {
 			LabLocation labLocation = getLocation(labLoc.getLocations());
-			labLocations.add(labLocation);
+			if (labLocation != null) {
+				labLocations.add(labLocation);
+			}
 		}
 		lab.setLocation(labLocations);
 	}
@@ -212,31 +216,32 @@ public class DataConverters {
 					labTest.setTestPackage(true);
 					addChildTests(labTest, packages);
 				}
-				labTest.setParameters(getTestParameters(appointmentTests.getTests().getTestFactors(), appointments,session));
+				labTest.setParameters(getTestParameters(appointmentTests.getTests().getTestFactors(), appointments, session));
 				labTest.setReportSent(appointmentTests.getReportSent());
 			}
 		}
 		return labTests;
 	}
-	
+
 	public static List<TestParameter> getTestParameters(Set<TestFactorsMap> testFactors, Appointments appointments, Session session) {
-		if(CollectionUtils.isEmpty(testFactors)) {
+		if (CollectionUtils.isEmpty(testFactors)) {
 			return null;
 		}
 		List<TestParameter> parameters = new ArrayList<TestParameter>();
-		for(TestFactorsMap factors:testFactors) {
+		for (TestFactorsMap factors : testFactors) {
 			TestFactors factor = factors.getTestFactors();
-			if(factor == null) {
+			if (factor == null) {
 				continue;
 			}
 			TestParameter parameter = getTestParameter(factor);
-			if(appointments != null) {
-				AppointmentTestResults results = new AppointmentDaoImpl().getAppointmentTestResult(appointments.getId(), factors.getTest().getId(), factors.getTestFactors().getId(), session);
-				if(results != null) {
+			if (appointments != null) {
+				AppointmentTestResults results = new AppointmentDaoImpl().getAppointmentTestResult(appointments.getId(), factors.getTest().getId(), factors.getTestFactors()
+						.getId(), session);
+				if (results != null) {
 					parameter.setActualValue(results.getActualValue());
 					parameter.setRemark(results.getRemarks());
 				}
-			} 
+			}
 			parameters.add(parameter);
 		}
 		return parameters;
@@ -249,8 +254,8 @@ public class DataConverters {
 		parameter.setUnit(factor.getUnit());
 		parameter.setNormalValue(factor.getNormalVal());
 		parameter.setType(factor.getFactorType());
-		parameter.setNormalValueMale(CommonUtils.getGenderValue(factor.getGenderValues(),0));
-		parameter.setNormalValueFemale(CommonUtils.getGenderValue(factor.getGenderValues(),1));
+		parameter.setNormalValueMale(CommonUtils.getGenderValue(factor.getGenderValues(), 0));
+		parameter.setNormalValueFemale(CommonUtils.getGenderValue(factor.getGenderValues(), 1));
 		parameter.setMethods(CommonUtils.getStrings(factor.getMethod()));
 		return parameter;
 	}
@@ -260,6 +265,23 @@ public class DataConverters {
 		for (TestPackages testPackages : packages) {
 			labTest.getChildTests().add(DataConverters.getTest(testPackages.getChildTest()));
 		}
+	}
+
+	public static List<LabTest> getLabTests(Session session, AppointmentDao appointmentDao, Labs labs) {
+		List<LabTest> labTests = new ArrayList<LabTest>();
+		for (TestLabs testLabs : labs.getTestLabs()) {
+			LabTest test = DataConverters.getTest(testLabs.getTest());
+			if (test == null) {
+				continue;
+			}
+			test.setPrice(Integer.valueOf(testLabs.getLabPrice()));
+			List<TestPackages> packages = appointmentDao.getTestPackage(test.getId(), session);
+			if (CollectionUtils.isNotEmpty(packages)) {
+				test.setTestPackage(true);
+			}
+			labTests.add(test);
+		}
+		return labTests;
 	}
 
 }

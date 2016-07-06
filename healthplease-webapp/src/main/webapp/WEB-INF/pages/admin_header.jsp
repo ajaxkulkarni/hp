@@ -13,7 +13,7 @@
 		<div class="row">
 			<div class="col-md-12 column margintop20">
 				<ul class="nav nav-pills nav-stacked classCustomAMenu">
-					<li class="active"><a href="dash.php"><span
+					<li class="active"><a href="<%=Constants.ADMIN_HOME_GET_URL%>"><span
 							class="glyphicon glyphicon-chevron-right"></span> Controller</a></li>
 					<li><a href="<%=Constants.ADMIN_CATEGORIES_GET_URL%>"><span
 							class="glyphicon glyphicon-chevron-right"></span> Test Category</a></li>

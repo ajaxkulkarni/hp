@@ -48,4 +48,18 @@ public interface AdminBo {
 
 	String uploadTestParameterMaps(String[] mappings);
 
+	Lab getLab(Lab lab);
+
+	List<LabLocation> getUnmappedLocations(Lab lab);
+
+	String updateLabLocation(LabLocation location, Lab lab);
+
+	String deleteLabLocation(LabLocation labLocation, Lab lab);
+
+	List<LabTest> getUnmappedTests(Lab lab);
+	
+	String updateLabTest(LabTest test, Lab lab);
+
+	String deleteLabTest(LabTest test, Lab lab);
+
 }

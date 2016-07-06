@@ -116,7 +116,8 @@
                         </form>
                         <td id="labEditT${lab.id}" class="ng-scope">
                             <button class="btn btn-large btn-info" onclick="editButtons(${lab.id})">Edit</button>
-                            <button class="btn btn-large btn-warning">Service Locations</button>
+                            <a href="<%=Constants.ADMIN_MAP_LAB_LOCATIONS_GET_URL%>?labId=${lab.id}" class="btn btn-large btn-warning">Service Locations</a>
+                            <a href="<%=Constants.ADMIN_LAB_TESTS_GET_URL%>?labId=${lab.id}" class="btn btn-large btn-warning">Tests</a>
                             <button class="btn btn-large btn-warning" onclick="addUser(${lab.id})">Add User</button>
                         </td>
                         </tr>

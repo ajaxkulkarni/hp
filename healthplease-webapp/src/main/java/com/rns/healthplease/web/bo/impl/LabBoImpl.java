@@ -402,22 +402,11 @@ public class LabBoImpl implements LabBo, Constants {
 			session.close();
 			return null;
 		}
-		List<LabTest> labTests = new ArrayList<LabTest>();
-		for (TestLabs testLabs : labs.getTestLabs()) {
-			LabTest test = DataConverters.getTest(testLabs.getTest());
-			if (test == null) {
-				continue;
-			}
-			test.setPrice(Integer.valueOf(testLabs.getLabPrice()));
-			List<TestPackages> packages = appointmentDao.getTestPackage(test.getId(), session);
-			if (CollectionUtils.isNotEmpty(packages)) {
-				test.setTestPackage(true);
-			}
-			labTests.add(test);
-		}
+		List<LabTest> labTests = DataConverters.getLabTests(session, appointmentDao, labs);
 		session.close();
 		return labTests;
 	}
+
 
 	public List<Slot> getAllLabSlotsForDay(Lab lab, Date date) {
 		if (lab == null || lab.getId() == null) {

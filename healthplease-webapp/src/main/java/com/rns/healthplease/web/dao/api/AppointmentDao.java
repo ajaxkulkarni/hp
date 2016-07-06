@@ -52,7 +52,7 @@ public interface AppointmentDao {
 
 	Slots getSlotById(Integer id, Session session);
 
-	TestLabs getTestLabsForTestLab(Integer id, Integer id2, Session session);
+	TestLabs getTestLabsForTestLab(Integer testId, Integer labId, Session session);
 
 	Appointments getAppointmentById(Integer id, Session session);
 

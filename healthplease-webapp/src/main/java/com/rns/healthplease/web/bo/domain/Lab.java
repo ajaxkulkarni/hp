@@ -18,7 +18,7 @@ public class Lab {
 	private List<LabLocation> location;
 	private List<Slot> currentSlots;
 	private List<User> users;
-	List<LabTest> tests;
+	private List<LabTest> tests;
 	
 	public void setTests(List<LabTest> tests) {
 		this.tests = tests;

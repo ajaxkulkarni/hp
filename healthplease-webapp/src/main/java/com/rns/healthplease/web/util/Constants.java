@@ -178,6 +178,19 @@ public interface Constants {
 	String ADMIN_TEST_PARAMETERS_MAP_GET_URL = "adminTestParametersMapping.htm";
 	String ADMIN_MAP_TEST_PARAMS_PAGE = "admin_map_test_params";
 	String ADMIN_UPLOAD_TEST_PARAMETER_MAP_POST_URL = "adminUploadTestParameterMappings";
+	String ADMIN_MAP_LAB_LOCATIONS_GET_URL = "adminLabLocations.htm";
+	String ADMIN_MAP_LAB_LOCATIONS_PAGE = "admin_map_location";
+	String ADMIN_EDIT_LAB_LOCATION_MAP_PAGE = "admin_edit_map_location";
+	String MODEL_LAB_LOCATION = "labLocation";
+	String ADMIN_EDIT_LAB_LOCATION_GET_URL = "adminEditLabLocation.htm";
+	String ADMIN_EDIT_LAB_LOCATION_POST_URL = "adminEditLabLocation";
+	String ADMIN_DELETE_LAB_LOCATION_POST_URL = "adminDeleteLabLocation";
+	String ADMIN_DELETE_LAB_TEST_POST_URL = "adminDeleteLabTest";
+	String ADMIN_EDIT_LAB_TEST_POST_URL = "adminEditLabTest";
+	String ADMIN_EDIT_LAB_TEST_PAGE = "admin_edit_map_test";
+	String ADMIN_LAB_TESTS_PAGE = "admin_map_test";
+	String ADMIN_LAB_TESTS_GET_URL = "adminLabTests.htm";
+	String ADMIN_EDIT_LAB_TEST_GET_URL = "adminEditLabTest.htm";
 	
 	
 	String MAIL_TYPE_ACTIVATION = "activationMail";

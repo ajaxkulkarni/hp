@@ -388,10 +388,12 @@ public class CommonUtils implements Constants {
 			tests.add(test);
 		}
 		lab.setTestPrice(totalPrice);
-		LocationWiseLabCharges charges = appointmentDao.getLocationCharges(lab.getId(), appointment.getLocation().getId(), session);
-		if (charges != null) {
-			lab.setPickUpCharge(Integer.valueOf(charges.getPickUpCharge()));
-			totalPrice = totalPrice + lab.getPickUpCharge();
+		if(appointment.getLocation() != null) {
+			LocationWiseLabCharges charges = appointmentDao.getLocationCharges(lab.getId(), appointment.getLocation().getId(), session);
+			if (charges != null) {
+				lab.setPickUpCharge(Integer.valueOf(charges.getPickUpCharge()));
+				totalPrice = totalPrice + lab.getPickUpCharge();
+			}
 		}
 		lab.setPrice(totalPrice);
 		appointment.setTests(tests);

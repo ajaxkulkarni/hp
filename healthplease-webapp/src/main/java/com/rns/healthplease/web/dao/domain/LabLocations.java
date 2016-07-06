@@ -62,7 +62,7 @@ public class LabLocations implements java.io.Serializable {
 		this.locationId = locationId;
 	}*/
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "location_id")
 	public Locations getLocations() {
@@ -73,7 +73,7 @@ public class LabLocations implements java.io.Serializable {
 		this.locations = locations;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "lab_id")
 	public Labs getLabs() {
