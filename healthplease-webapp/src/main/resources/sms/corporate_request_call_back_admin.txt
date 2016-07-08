@@ -1,0 +1,7 @@
+Hello Admin,
+There is a Corporate Package Request request from: - 
+
+Name: - {name}
+Contact No: - {phone}
+Email Address: - {email}
+Package :- {testName}
