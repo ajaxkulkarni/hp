@@ -56,8 +56,16 @@ border-radius:5px;
 		</div>
 		</div>
 	</div>
-
-</div></div>
+</div>
+<div id="msg" class="container">
+    	<c:if test="${result != null && result != 'OK' }">
+			<div class="alert alert-danger">${result}</div>
+		</c:if>
+		<c:if test="${result != null && result == 'OK' }">
+			<div class="alert alert-success">Your request has been submitted successfully and you will receive a call from healthplease team shortly.</div>
+		</c:if>
+    </div>
+</div>
 
 <div class="container" style="margin-bottom:2%;background-color:#fff">
 	<div class="row">
@@ -101,7 +109,7 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardfooter">
-			    	 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">select</button>
+			    	 <button type="button" class="btn btn-primary" onclick="loadModal('Basic Package')">select</button>
 			    </div>
 						
 			</div>
@@ -153,7 +161,7 @@ border-radius:5px;
 						</div>
 			    </div>
 				 <div class="cardfooter">
-			     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">select</button>
+			     <button type="button" class="btn btn-primary" onclick="loadModal('Basic Package + Diagnostic test')">select</button>
 			    </div>		
 			</div>
 		</div>
@@ -202,7 +210,7 @@ border-radius:5px;
 						</div>
 			    </div>
 				  <div class="cardfooter">
-			  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">select</button>
+			  <button type="button" class="btn btn-primary" onclick="loadModal('Package1')">select</button>
 			    </div>		
 			</div>
 		
@@ -256,7 +264,7 @@ border-radius:5px;
 							</div>
 			    </div>
 				  <div class="cardfooter">
-			  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">select</button>
+			  <button type="button" class="btn btn-primary" onclick="loadModal('Package1 + Diagnostic tests')">select</button>
 			    </div>		
 			</div>
 		</div>
@@ -313,7 +321,7 @@ border-radius:5px;
 						</div>
 			    </div>
 				  <div class="cardfooter">
-			     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">select</button>
+			     <button type="button" class="btn btn-primary" onclick="loadModal('Package2')">select</button>
 			    </div>		
 			</div>
 		</div>
@@ -374,7 +382,7 @@ border-radius:5px;
 					</div>
 			    </div>
 				  <div class="cardfooter">
-			   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">select</button>
+			   <button type="button" class="btn btn-primary" onclick="loadModal('Package2 + Diagnostic tests')">select</button>
 			    </div>		
 			</div>
 		</div>
@@ -448,7 +456,7 @@ border-radius:5px;
 							</div>
 			       </div>
 				  <div class="cardfooter">
-			    	 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">select</button>
+			    	 <button type="button" class="btn btn-primary" onclick="loadModal('Package3 + DIagnostic tests')">select</button>
 			    </div>		
 			</div>
 		</div>
@@ -462,11 +470,11 @@ border-radius:5px;
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Corporate Package XYZ</h3>
+          <h4 class="modal-title" id="modal_title"></h3>
         </div>
         <div class="modal-body">
         
-        	<form role="form">
+        	<form role="form" action="<%=Constants.CORPORATE_REQUEST_POST_URL %>" method="post">
 			  <div class="form-group">
 			   <label for="sel1"style="margin-top:5%">Select Corporate:</label>
 			  <select class="form-control" id="sel1">
@@ -476,27 +484,27 @@ border-radius:5px;
 			  </select>
 			  </div>
 			   <div class="form-group">
-			   <form role="form">
 			  <div class="form-group">
 			   <label for="sel1"style="margin-top:5%">Preferred Lab:</label>
-			  <select class="form-control" id="sel1">
-			    <option>Lab</option>
-			    <option>Lab</option>
-			    
+			  <select class="form-control" id="sel1" name="labName">
+			  	<c:forEach items="${labs}" var="lab">
+			  		 <option>${lab.name}</option>
+			  	</c:forEach>
 			  </select>
 			  </div>
 			   <div class="form-group">
 			    <label for="name">Name:</label>
-			    <input type="text" class="form-control" id="name">
+			    <input type="text" class="form-control" id="name" name="name">
 			  </div>
 			  <div class="form-group">
 			    <label for="email">Company Email:</label>
-			    <input type="email" class="form-control" id="email">
+			    <input type="email" class="form-control" id="email" name="email">
 			  </div>
 			  <div class="form-group">
 			    <label for="pwd">Mobile No.:</label>
-			    <input type="number" class="form-control" id="mobile">
+			    <input type="number" class="form-control" id="mobile" name="phone">
 			  </div>
+			  <input type="hidden" name="testName" id="package_name">
 			  <button type="submit" class="btn btn-default"style="margin-top:5%">Submit</button>
 			</form>
           
@@ -504,6 +512,19 @@ border-radius:5px;
         
       </div></div></div>
 <%@include file="user_footer.jsp" %>
+
+<script type="text/javascript">
+
+function loadModal(packageName) {
+	
+	$("#package_name").val(packageName);
+	$("#modal_title").text(packageName);
+	$("#myModal").modal('show');
+	
+}
+
+</script>
+
 </body>
 
 </html>

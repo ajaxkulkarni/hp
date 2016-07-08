@@ -13,7 +13,8 @@ public class RequestForm {
 	private List<User> admins;
 	private String userMail;
 	private String adminMail;
-	
+	private String testName;
+	private String labName;
 	
 	public String getName() {
 		return name;
@@ -65,5 +66,17 @@ public class RequestForm {
 	}
 	public void setAdminMail(String adminMail) {
 		this.adminMail = adminMail;
+	}
+	public String getTestName() {
+		return testName;
+	}
+	public void setTestName(String testName) {
+		this.testName = testName;
+	}
+	public String getLabName() {
+		return labName;
+	}
+	public void setLabName(String labName) {
+		this.labName = labName;
 	}
 }

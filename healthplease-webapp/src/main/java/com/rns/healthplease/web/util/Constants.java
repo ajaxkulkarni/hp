@@ -2,20 +2,19 @@ package com.rns.healthplease.web.util;
 
 public interface Constants {
 
-	//String ROOT_URL = "http://localhost:8080/healthplease-webapp";
+	// String ROOT_URL = "http://localhost:8080/healthplease-webapp";
 	String ROOT_URL = "http://52.38.220.19:8080/hp/";
-	
+
 	String PRODUCT_INFO = "HealthPlease";
 	String MERCHANT_KEY = "AdtyF8"; // DEV
 	String MERCHANT_SALT = "8bPpsm3Q"; // DEV
-	String ASSETS_ROOT = "/resources"; //DEV
+	String ASSETS_ROOT = "/resources"; // DEV
 	String PAY_U_URL = "https://test.payu.in/_payment";
-	String PAY_TM_URL =  "https://pguat.paytm.com/oltp-web/processTransaction";
+	String PAY_TM_URL = "https://pguat.paytm.com/oltp-web/processTransaction";
 	String RESULT_URL = ROOT_URL + "/paymentResult";
 	String ROOT_DOCS_PATH = "F:/Resoneuronance/Health Chekup Labs Project/Uploads/";
-	//String ROOT_DOCS_PATH = "/home/ec2-user/docs/";
-	
-	
+	// String ROOT_DOCS_PATH = "/home/ec2-user/docs/";
+
 	char YES = 'Y';
 	String DATE_FORMAT = "yyyy-MM-dd";
 	String DATE_FORMAT_2 = "dd-MM-yyyy";
@@ -25,7 +24,7 @@ public interface Constants {
 	char INACTIVE_DAY = 'N';
 	char ACTIVE_DAY = 'Y';
 	String PAYTM_TXN_SUCCESS = "TXN_SUCCESS";
-	
+
 	String MODEL_APPOINTMENT = "appointment";
 	String MODEL_LOCATIONS = "locations";
 	String MODEL_TESTS = "tests";
@@ -47,15 +46,14 @@ public interface Constants {
 	String MODEL_CATEGORIES = "categories";
 	String MODEL_USERS = "users";
 	String MODEL_LOCATION = "location";
-	
-	
-	String EXCEL_VIEW = "excelView"; 
+
+	String EXCEL_VIEW = "excelView";
 	String PDF_VIEW = "pdfView";
 	String TOTAL_HEADER = "Total Appointments";
 	String CANCELLED_HEADER = "Cancelled Appointments";
 	String PENDING_HEADER = "Pending Appointments";
 	String TODAY_HEADER = "Today's Appointments";
-	
+
 	String ERROR_INVALID_USER_CREDENTIALS = "Invalid user credentials!";
 	String ERROR_INVALID_USER = "Invalid User Details!";
 	String ERROR_REGISTRATION = "User already Exists!";
@@ -191,8 +189,10 @@ public interface Constants {
 	String ADMIN_LAB_TESTS_PAGE = "admin_map_test";
 	String ADMIN_LAB_TESTS_GET_URL = "adminLabTests.htm";
 	String ADMIN_EDIT_LAB_TEST_GET_URL = "adminEditLabTest.htm";
-	
-	
+	String CORPORATE_REQUEST_POST_URL = "corporateRequest";
+	String CORPORATE_PACKAGES_GET_URL = "corporate.htm";
+	String CORPORATE_PACKAGES_PAGE = "corp_pack";
+
 	String MAIL_TYPE_ACTIVATION = "activationMail";
 	String MAIL_TYPE_REPORT_UPLOAD = "reportUpload";
 	String MAIL_TYPE_BOOK_APP_USER = "bookAppointmentUser";
@@ -205,5 +205,8 @@ public interface Constants {
 	String MAIL_TYPE_REQUEST_CALLBACK = "requestCallBack";
 	String MAIL_TYPE_REQUEST_CALLBACK_LAB = "requestCallBackLab";
 	String MAIL_TYPE_FORGOT_PASSWORD = "forgotPassword";
-	
+	String MAIL_TYPE_CORPORATE_REQUEST = "coprporateRequest";
+
+	String[] ADMIN_MAIL_TYPES = { MAIL_TYPE_REQUEST_CHECKUP_LAB, MAIL_TYPE_REQUEST_CALLBACK_LAB, MAIL_TYPE_CORPORATE_REQUEST };
+
 }

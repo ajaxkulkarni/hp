@@ -692,5 +692,14 @@ public class UserBoImpl implements UserBo, Constants {
 		session.close();
 		return RESPONSE_OK;
 	}
+	
+	@Override
+	public String requestCorporatePackage(RequestForm form) {
+		Session session = this.sessionFactory.openSession();
+		addAdmins(form, new UserDaoImpl(), session);
+		session.close();
+		threadPoolTaskExecutor.execute(new MailUtil(form, MAIL_TYPE_CORPORATE_REQUEST));
+		return RESPONSE_OK;
+	}
 
 }

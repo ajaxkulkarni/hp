@@ -58,4 +58,6 @@ public interface UserBo {
 	
 	String changePassword(User user);
 
+	String requestCorporatePackage(RequestForm form);
+
 }

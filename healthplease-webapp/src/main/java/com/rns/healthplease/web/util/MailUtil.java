@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -93,9 +94,11 @@ public class MailUtil implements Constants, Runnable {
 			result = StringUtils.replace(result, "{phone}", form.getPhone());
 			result = StringUtils.replace(result, "{age}", form.getAge());
 			result = StringUtils.replace(result, "{query}", form.getQuery());
+			result = StringUtils.replace(result, "{testName}", form.getTestName());
+			result = StringUtils.replace(result, "{labName}", form.getLabName());
 			message.setContent(result, "text/html");
 
-			if (MAIL_TYPE_REQUEST_CHECKUP_LAB.equals(type) || MAIL_TYPE_REQUEST_CALLBACK_LAB.equals(type)) {
+			if (Arrays.asList(ADMIN_MAIL_TYPES).contains(StringUtils.trimToEmpty(type))) {
 				message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(getEmails(form.getAdmins())));
 			} else {
 				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(form.getEmail()));
@@ -264,6 +267,7 @@ public class MailUtil implements Constants, Runnable {
 			put(MAIL_TYPE_REQUEST_CALLBACK, "user_call_back.html");
 			put(MAIL_TYPE_REQUEST_CALLBACK_LAB, "admin_call_back.html");
 			put(MAIL_TYPE_FORGOT_PASSWORD, "user_temporary_password.html");
+			put(MAIL_TYPE_CORPORATE_REQUEST, "admin_corp_call_back.html");
 		}
 	});
 
@@ -281,6 +285,7 @@ public class MailUtil implements Constants, Runnable {
 			put(MAIL_TYPE_REQUEST_CALLBACK, "Thank you for requesting callback!");
 			put(MAIL_TYPE_REQUEST_CALLBACK_LAB, "New request call back");
 			put(MAIL_TYPE_FORGOT_PASSWORD, "Your temporary password is generated!");
+			put(MAIL_TYPE_CORPORATE_REQUEST, "New Corporate package request!");
 		}
 	});
 
