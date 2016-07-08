@@ -38,10 +38,10 @@
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/healthplease?zeroDateTimeBehavior=convertToNull" />
+        <property name="url" value="jdbc:mysql://localhost:3306/hp2?zeroDateTimeBehavior=convertToNull" />
         <property name="username" value="root" />
-        <property name="password" value="'asd'" />
-        <!-- <property name="url" value="jdbc:mysql://localhost:3306/healthplease?zeroDateTimeBehavior=convertToNull" />
+        <property name="password" value="" />
+        <!-- <property name="url" value="jdbc:mysql://localhost:3306/hp2?zeroDateTimeBehavior=convertToNull" />
         <property name="username" value="root" />
         <property name="password" value="" /> -->
         <property name="testOnReturn" value="true" />

@@ -77,7 +77,7 @@ text-align: center;
                     </select>
                     <input type="hidden" value="${lab.name}"/>
 					</form>
-					Search for Test :<input id="search" type="text"/>
+				<!-- 	Search for Test :<input id="search" type="text"/> -->
               </h4>
                 
             </div>
@@ -86,7 +86,7 @@ text-align: center;
 		 
         <div class="col-lg-12">
           <div class="row">      
-           <h2 class="classSubHeading col-sm-12 col-md-12 col-lg-12">Packages</h2>
+           <h2 class="classSubHeading col-sm-12 col-md-12 col-lg-12">Packages</h2>  
            <div class="classWithResults">
           	<div class="row" id="packages_section">          
             <c:forEach items="${lab.tests}" var="test" >
