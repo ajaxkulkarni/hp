@@ -52,75 +52,41 @@ text-align: center;
  <body>
         <%@include file="user_header.jsp" %>
         
-          <div class="classTopHeading">
         <div class="container">
-            <div class="row">
-            <div class="col-lg-2 col-md-2 col-xs-12" style="border:none">
-                <!-- <h1 class="">Pricing<span class="pull-right classHLFont">All the tests marked with an asterisk are sent outside Dhanwantari Lab for testing.</span></h1> -->
-                <h1 class="">Pricing</h1>
-               </div>
-     	    <div class="col-lg-10 col-md-10 col-xs-12" style="border:none">
-  
-<!--   top select     -->         
-                <div class="row">
-            <div class="col-md-5" style="padding-left:5%">	
-        	<h3>Choose Lab to get test charges</h3>
-        	</div>
-        	 <div class="col-md-7" style="border:none;padding-top:2%">	
-        	    <form id="labsForm" action="<%=Constants.GET_PRICING_POST_URL %>" method="post">
-                    <select name="id" onChange="getPricing()" style="width:150px;height:28px;">
-                    <c:if test="${lab != null }">
-                    	<option value="${lab.id}" >${lab.name}</option>
-                    </c:if>
-                      <option value="pricing.html" >select</option>
-                      <c:forEach items="${labs}" var="lab">
-						<option value="${lab.id}">${lab.name}</option>
-                      </c:forEach>
+	        <div class="row">
+	        	<div class="col-lg-3 col-md-3 col-xs-12">
+	        	<h1 class="">Pricing</h1>
+	        	</div>
+	        <div class="col-lg-9 col-md-9 col-xs-12" style="margin-top:2%">
+	        	<h4>Choose Lab to get test charges 
+                  <span>
+                    <select onChange="window.location.href=this.value">
+                      <option value="pricing.php">select</option>
+                      <option value=pricing.php?lab_id=4 >Agarwal's Pathology</opiton><option value=pricing.php?lab_id=5 >Ankur Pathology Lab</opiton><option value=pricing.php?lab_id=7 >Care First</opiton><option value=pricing.php?lab_id=1 >Dhanwantari Path Lab</opiton><option value=pricing.php?lab_id=8 >DTH Labs</opiton><option value=pricing.php?lab_id=3 >N M Medical</opiton><option value=pricing.php?lab_id=6 >PrimeX Health</opiton>                      
                     </select>
-                    <input type="hidden" value="${lab.name}"/>
-					</form>
-					</div>
-			</div>
-  
-               </div>
 
-            </div>
-        </div>
-        
-        </div>
-        </div>
-        
-        
-        
-        
- <!--        bottom select -->
-        <div class="row">
-        	<div class="col-md-3" style="border:none;"></div>
-        	<div class="col-md-6" style="padding-top:5%;padding-bottom:10%;border:none;">	
-        	
-            <div class="row">
-            <div class="col-md-6" style="padding-top:10%;padding-bottom:10%;padding-left:3%;">	
-        	<h3>Choose Lab to get test charges</h3>
-        	</div>
-        	 <div class="col-md-6" style="padding-top:13%;padding-bottom:10%;padding-left:-1%;">	
-        	    <form id="labsForm" action="<%=Constants.GET_PRICING_POST_URL %>" method="post">
-                    <select name="id" onChange="getPricing()" style="width:150px;height:28px;">
-                    <c:if test="${lab != null }">
-                    	<option value="${lab.id}" >${lab.name}</option>
-                    </c:if>
-                      <option value="pricing.html" >select</option>
-                      <c:forEach items="${labs}" var="lab">
-						<option value="${lab.id}">${lab.name}</option>
-                      </c:forEach>
+              </span> </h4>
+
+	        </div>      
+        </div> 
+        <hr/>
+        	<div class="row" style="margin-top:15%;margin-bottom:15%;">
+        		<div class="col-md-3 col-lg-3 col-xs-12"style=""></div>
+        		<div class="col-md-9 col-lg-9 col-xs-12" style="">
+        			<h4>Choose Lab to get test charges 
+                  <span>
+                    <select onChange="window.location.href=this.value">
+                      <option value="pricing.php">select</option>
+                      <option value=pricing.php?lab_id=4 >Agarwal's Pathology</opiton><option value=pricing.php?lab_id=5 >Ankur Pathology Lab</opiton><option value=pricing.php?lab_id=7 >Care First</opiton><option value=pricing.php?lab_id=1 >Dhanwantari Path Lab</opiton><option value=pricing.php?lab_id=8 >DTH Labs</opiton><option value=pricing.php?lab_id=3 >N M Medical</opiton><option value=pricing.php?lab_id=6 >PrimeX Health</opiton>                      
                     </select>
-                    <input type="hidden" value="${lab.name}"/>
-					</form>
-					</div>
-			</div>
-			</div>
-        	<div class="col-md-3"></div>
-		</div>        
+
+              </span> </h4>
+        		
+        		</div>
+        		
+        	</div>
         
+        </div>
         
    		<%@include file="user_footer.jsp" %>
 
