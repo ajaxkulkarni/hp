@@ -58,16 +58,16 @@ text-align: center;
             <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <!-- <h1 class="">Pricing<span class="pull-right classHLFont">All the tests marked with an asterisk are sent outside Dhanwantari Lab for testing.</span></h1> -->
-                <h1 class="">Pricing</h1>
+                <h1 class="" >Pricing</h1>
             </div>
         </div>
         <c:if test="${lab != null && fn:length(lab.tests) > 0}">    
         <div class="">
            <div class="row">
-            <div class="col-md-5" style="padding-left:5%">	
-        	<h3>Choose Lab to get test charges</h3>
+            <div class="col-md-4" style="padding-left:10%;padding-top:;border:">	
+        	<h4>Choose Lab to get test charges</h4>
         	</div>
-        	 <div class="col-md-7" style="border:none;padding-top:2%">	
+        	 <div class="col-md-4" style="border:none;padding-top:8px;padding-right:10%">	
         	    <form id="labsForm" action="<%=Constants.GET_PRICING_POST_URL %>" method="post">
                     <select id="labs" name="id" onChange="getPricing()" style="width:100%;height:28px;">
                       <option value="${lab.id}" selected>${lab.name}</option>
@@ -78,12 +78,15 @@ text-align: center;
                     <input type="hidden" id="lab_name" value="${lab.name}" name="name"/>
 					</form>
 			</div>
+			 <div class="col-md-" style="">
+			    <input id="search" type="text" placeholder="Search for test" class="form-control" style="width:30%;"/>
+			 </div>
 			</div>
         </div>
 		 
-        <div class="col-lg-12">
+        <div class="col-lg-12" >
           <div class="row">      
-          Search for Test :<input id="search" type="text" class="form-control" style="width:30%;"/>
+       
            <h2 class="classSubHeading col-sm-12 col-md-12 col-lg-12">Packages</h2>  
            <div class="classWithResults">
           	<div class="row" id="packages_section">          
