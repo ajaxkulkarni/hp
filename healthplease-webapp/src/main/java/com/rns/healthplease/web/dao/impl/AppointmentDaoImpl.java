@@ -304,4 +304,16 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		Query createQuery = session.createQuery("delete from TestFactorsMap");
 		createQuery.executeUpdate();
 	}
+	
+	@Override
+	public TestFactors getTestFactorById(Integer id, Session session) {
+		Query createQuery = session.createQuery("from TestFactors where id=:id");
+		createQuery.setInteger("id", id);
+		List<TestFactors> factors = createQuery.list();
+		if(CollectionUtils.isEmpty(factors)) {
+			return null;
+		}
+		return factors.get(0);
+	}
+	
 }

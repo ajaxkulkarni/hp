@@ -477,10 +477,8 @@ border-radius:5px;
         	<form role="form" action="<%=Constants.CORPORATE_REQUEST_POST_URL %>" method="post">
 			  <div class="form-group">
 			   <label for="sel1"style="margin-top:5%">Select Corporate:</label>
-			  <select class="form-control" id="sel1">
-			    <option>Corporate</option>
-			    <option>Corporate</option>
-			    
+			  <select class="form-control" id="sel1" name="companyName">
+			    <option>Elcerx Services Ltd</option>
 			  </select>
 			  </div>
 			   <div class="form-group">

@@ -672,5 +672,22 @@ public class AdminBoImpl implements AdminBo, Constants {
 		session.close();
 		return RESPONSE_OK;
 	}
+	
+	@Override
+	public TestParameter getTestParameter(TestParameter parameter) {
+		if(parameter == null || parameter.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		TestFactors testFactors = appointmentDao.getTestFactorById(parameter.getId(), session);
+		session.close();
+		TestParameter testParameter = DataConverters.getTestParameter(testFactors);
+		if(StringUtils.isNotEmpty(testParameter.getNormalValueMale())) {
+			testParameter.setNormalValue(StringUtils.join(testParameter.getNormalValueMale(), ",", 
+					CommonUtils.getStringValue(testParameter.getNormalValueFemale()),"," , CommonUtils.getStringValue(testParameter.getNormalValueChild())));
+		}
+		return testParameter;
+	}
 
 }

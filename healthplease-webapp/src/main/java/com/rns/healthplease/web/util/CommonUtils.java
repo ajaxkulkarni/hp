@@ -288,11 +288,11 @@ public class CommonUtils implements Constants {
 	public static void populateLabUsers(Appointment appointment, Session session) {
 		Lab lab = appointment.getLab();
 		getLabUsers(session, lab);
-		lab.getUsers().addAll(prepareEmailUsers(lab.getEmail(), "mail"));
-		lab.getUsers().addAll(prepareEmailUsers(lab.getContact(), "phone"));
+		lab.getUsers().addAll(prepareContactUsers(lab.getEmail(), "mail"));
+		lab.getUsers().addAll(prepareContactUsers(lab.getContact(), "phone"));
 	}
 
-	private static List<User> prepareEmailUsers(String contacts, String type) {
+	public static List<User> prepareContactUsers(String contacts, String type) {
 		List<String> contactList = CommonUtils.getStrings(contacts);
 		List<User> contactUsers = new ArrayList<User>();
 		if (CollectionUtils.isNotEmpty(contactList)) {

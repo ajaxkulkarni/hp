@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -696,9 +697,13 @@ public class UserBoImpl implements UserBo, Constants {
 	@Override
 	public String requestCorporatePackage(RequestForm form) {
 		Session session = this.sessionFactory.openSession();
-		addAdmins(form, new UserDaoImpl(), session);
+		form.setAdmins(CommonUtils.prepareContactUsers(ADMIN_MAILS, "mail"));
+		form.getAdmins().addAll(CommonUtils.prepareContactUsers(ADMIN_PHONES, "phone"));
 		session.close();
 		threadPoolTaskExecutor.execute(new MailUtil(form, MAIL_TYPE_CORPORATE_REQUEST));
+		threadPoolTaskExecutor.execute(new MailUtil(form, MAIL_TYPE_CORPORATE_REQUEST_ADMIN));
+		SMSUtil.sendSMS(form, MAIL_TYPE_CORPORATE_REQUEST);
+		SMSUtil.sendSMS(form, MAIL_TYPE_CORPORATE_REQUEST_ADMIN);
 		return RESPONSE_OK;
 	}
 

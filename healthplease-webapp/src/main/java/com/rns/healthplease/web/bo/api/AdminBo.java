@@ -61,5 +61,7 @@ public interface AdminBo {
 	String updateLabTest(LabTest test, Lab lab);
 
 	String deleteLabTest(LabTest test, Lab lab);
+	
+	TestParameter getTestParameter(TestParameter parameter);
 
 }

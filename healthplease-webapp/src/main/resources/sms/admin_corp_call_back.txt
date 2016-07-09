@@ -1,0 +1,13 @@
+Hello Admin,
+
+There is a request a check request from below user: -
+
+Name: - {name}
+
+Contact No: - {phone}
+
+Email Id: - {email}
+
+Corporate: - {company}
+
+Package booked: - {testName}

@@ -92,4 +92,6 @@ public interface AppointmentDao {
 
 	void deleteAllTestFactorMaps(Session session);
 
+	TestFactors getTestFactorById(Integer id, Session session);
+
 }

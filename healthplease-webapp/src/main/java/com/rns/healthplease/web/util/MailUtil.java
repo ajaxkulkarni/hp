@@ -96,7 +96,12 @@ public class MailUtil implements Constants, Runnable {
 			result = StringUtils.replace(result, "{query}", form.getQuery());
 			result = StringUtils.replace(result, "{testName}", form.getTestName());
 			result = StringUtils.replace(result, "{labName}", form.getLabName());
+			result = StringUtils.replace(result, "{company}", form.getCompanyName());
 			message.setContent(result, "text/html");
+			
+			if(MAIL_TYPE_CORPORATE_REQUEST_ADMIN.equals(type)) {
+				message.setSubject(StringUtils.replace(message.getSubject(), "{labName}", form.getLabName()));
+			}
 
 			if (Arrays.asList(ADMIN_MAIL_TYPES).contains(StringUtils.trimToEmpty(type))) {
 				message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(getEmails(form.getAdmins())));
@@ -267,7 +272,8 @@ public class MailUtil implements Constants, Runnable {
 			put(MAIL_TYPE_REQUEST_CALLBACK, "user_call_back.html");
 			put(MAIL_TYPE_REQUEST_CALLBACK_LAB, "admin_call_back.html");
 			put(MAIL_TYPE_FORGOT_PASSWORD, "user_temporary_password.html");
-			put(MAIL_TYPE_CORPORATE_REQUEST, "admin_corp_call_back.html");
+			put(MAIL_TYPE_CORPORATE_REQUEST, "corporate_request.html");
+			put(MAIL_TYPE_CORPORATE_REQUEST_ADMIN, "admin_corp_call_back.html");
 		}
 	});
 
@@ -285,7 +291,8 @@ public class MailUtil implements Constants, Runnable {
 			put(MAIL_TYPE_REQUEST_CALLBACK, "Thank you for requesting callback!");
 			put(MAIL_TYPE_REQUEST_CALLBACK_LAB, "New request call back");
 			put(MAIL_TYPE_FORGOT_PASSWORD, "Your temporary password is generated!");
-			put(MAIL_TYPE_CORPORATE_REQUEST, "New Corporate package request!");
+			put(MAIL_TYPE_CORPORATE_REQUEST_ADMIN, "A new Corporate package has requested for {labName}");
+			put(MAIL_TYPE_CORPORATE_REQUEST, "Thank you for booking the Corporate Package with Health Please");
 		}
 	});
 

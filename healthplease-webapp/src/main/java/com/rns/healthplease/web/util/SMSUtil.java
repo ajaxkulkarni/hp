@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -113,6 +114,9 @@ public class SMSUtil implements Constants {
 			result = StringUtils.replace(result, "{phone}", form.getPhone());
 			result = StringUtils.replace(result, "{age}", form.getAge());
 			result = StringUtils.replace(result, "{query}", form.getQuery());
+			result = StringUtils.replace(result, "{testName}", form.getTestName());
+			result = StringUtils.replace(result, "{labName}", form.getLabName());
+			result = StringUtils.replace(result, "{company}", form.getCompanyName());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -120,7 +124,7 @@ public class SMSUtil implements Constants {
 	}
 
 	private static String getMobiles(RequestForm form, String type) {
-		if (MAIL_TYPE_REQUEST_CALLBACK_LAB.equals(type) || MAIL_TYPE_REQUEST_CHECKUP_LAB.equals(type)) {
+		if (Arrays.asList(ADMIN_MAIL_TYPES).contains(type)) {
 			if (CollectionUtils.isEmpty(form.getAdmins())) {
 				return "";
 			}
@@ -166,6 +170,8 @@ public class SMSUtil implements Constants {
 			put(MAIL_TYPE_REQUEST_CHECKUP_LAB, "request_checkup_admin.txt");
 			put(MAIL_TYPE_REQUEST_CALLBACK, "request_call_back_user.txt");
 			put(MAIL_TYPE_REQUEST_CALLBACK_LAB, "request_call_back_admin.txt");
+			put(MAIL_TYPE_CORPORATE_REQUEST_ADMIN, "admin_corp_call_back.txt");
+			put(MAIL_TYPE_CORPORATE_REQUEST, "corporate_request.txt");
 		}
 	});
 

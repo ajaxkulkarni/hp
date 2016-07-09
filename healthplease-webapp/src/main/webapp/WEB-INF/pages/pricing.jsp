@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
 <html lang="en">
@@ -60,32 +61,29 @@ text-align: center;
                 <h1 class="">Pricing</h1>
             </div>
         </div>
+        <c:if test="${lab != null && fn:length(lab.tests) > 0}">    
         <div class="">
-          <div class="row">
-            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
-                <h4>Choose Lab to get test charges 
-                  <span></span>
-                  	<form id="labsForm" action="<%=Constants.GET_PRICING_POST_URL %>" method="post">
-                    <select name="id" onChange="getPricing()">
-                    <c:if test="${lab != null }">
-                    	<option value="${lab.id}">${lab.name}</option>
-                    </c:if>
-                      <option value="pricing.html">select</option>
+           <div class="row">
+            <div class="col-md-5" style="padding-left:5%">	
+        	<h3>Choose Lab to get test charges</h3>
+        	</div>
+        	 <div class="col-md-7" style="border:none;padding-top:2%">	
+        	    <form id="labsForm" action="<%=Constants.GET_PRICING_POST_URL %>" method="post">
+                    <select id="labs" name="id" onChange="getPricing()" style="width:100%;height:28px;">
+                      <option value="${lab.id}" selected>${lab.name}</option>
                       <c:forEach items="${labs}" var="lab">
 						<option value="${lab.id}">${lab.name}</option>
                       </c:forEach>
                     </select>
-                    <input type="hidden" value="${lab.name}"/>
+                    <input type="hidden" id="lab_name" value="${lab.name}" name="name"/>
 					</form>
-				<!-- 	Search for Test :<input id="search" type="text"/> -->
-              </h4>
-                
-            </div>
-          </div>
+			</div>
+			</div>
         </div>
 		 
         <div class="col-lg-12">
           <div class="row">      
+          Search for Test :<input id="search" type="text" class="form-control" style="width:30%;"/>
            <h2 class="classSubHeading col-sm-12 col-md-12 col-lg-12">Packages</h2>  
            <div class="classWithResults">
           	<div class="row" id="packages_section">          
@@ -121,15 +119,37 @@ text-align: center;
    			</div>
           </div>     
           </div>
+          </c:if>
+          <c:if test="${lab == null || fn:length(lab.tests) == 0}">
+          <div class="row">
+            <div class="col-md-6" style="padding-top:10%;padding-bottom:10%;padding-left:3%;">	
+        	<h3>Choose Lab to get test charges</h3>
+        	</div>
+        	 <div class="col-md-6" style="padding-top:13%;padding-bottom:10%;padding-left:-1%;">	
+        	    <form id="labsForm" action="<%=Constants.GET_PRICING_POST_URL %>" method="post">
+                    <select id="labs" name="id" onChange="getPricing()" style="width:150px;height:28px;">
+                    <option value="${lab.id}" selected>${lab.name}</option>
+                      <option value="" selected="selected">select a lab</option>
+                      <c:forEach items="${labs}" var="lab">
+						<option value="${lab.id}">${lab.name}</option>
+                      </c:forEach>
+                    </select>
+                    <input type="hidden" name="lab_name"  value="${lab.name}" name="name"/>
+					</form>
+					</div>
+			</div>
+			</c:if>
+			</div>
         </div>
            
-        </div>
-        <br/><br/>
+        <!-- </div> -->
+        
+        <!-- <br/><br/>
      <br/><br/>
 	  <br/><br/>
 	   <br/><br/>
 	    <br/><br/>
-		 <br/></br>
+		 <br/></br> -->
 		 
 	<div id="myModal" class="modal fade">
         <div class="modal-dialog">
@@ -166,11 +186,12 @@ text-align: center;
             </div>
         </div>
     </div>
+    
 	</div>
-
     <script type="text/javascript">
     
     function getPricing() {
+    	$("#lab_name").val($("#labs option:selected").text());
     	$("#labsForm").submit();
     }
     

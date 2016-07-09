@@ -38,6 +38,7 @@ import com.rns.healthplease.web.bo.domain.PaymentType;
 import com.rns.healthplease.web.bo.domain.RequestForm;
 import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.bo.domain.User;
+import com.rns.healthplease.web.bo.impl.AdminBoImpl;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
 import com.rns.healthplease.web.util.PaymentUtils;
@@ -81,15 +82,25 @@ public class HPCustomerControllerWeb implements Constants {
 	public void setUserBo(UserBo userBo) {
 		this.userBo = userBo;
 	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String initHome(ModelMap model) {
+		initializeParameters(model);
+		return "index";
+	}
 
-	@RequestMapping(value = "/home.htm", method = RequestMethod.GET)
-	public String initHomePage(ModelMap model) {
+	private void initializeParameters(ModelMap model) {
 		manager.setCurrentAppointment(null);
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests());
 		model.addAttribute(MODEL_LOCATIONS, userBo.getAllLocations());
 		model.addAttribute(MODEL_USER, manager.getUser());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		manager.setResult(null);
+	}
+
+	@RequestMapping(value = "/home.htm", method = RequestMethod.GET)
+	public String initHomePage(ModelMap model) {
+		initializeParameters(model);
 		return "index";
 	}
 

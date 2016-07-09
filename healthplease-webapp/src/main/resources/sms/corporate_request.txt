@@ -1,0 +1,5 @@
+Hello {name},
+
+Thank you for booking the {testName}.
+
+Our Health Please Convenience team will get in touch with you shortly and confirm the booking.

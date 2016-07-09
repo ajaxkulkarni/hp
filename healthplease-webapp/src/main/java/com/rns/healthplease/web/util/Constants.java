@@ -190,7 +190,7 @@ public interface Constants {
 	String ADMIN_LAB_TESTS_GET_URL = "adminLabTests.htm";
 	String ADMIN_EDIT_LAB_TEST_GET_URL = "adminEditLabTest.htm";
 	String CORPORATE_REQUEST_POST_URL = "corporateRequest";
-	String CORPORATE_PACKAGES_GET_URL = "corporate.htm";
+	String CORPORATE_PACKAGES_GET_URL = "Corporate";
 	String CORPORATE_PACKAGES_PAGE = "corp_pack";
 
 	String MAIL_TYPE_ACTIVATION = "activationMail";
@@ -206,7 +206,10 @@ public interface Constants {
 	String MAIL_TYPE_REQUEST_CALLBACK_LAB = "requestCallBackLab";
 	String MAIL_TYPE_FORGOT_PASSWORD = "forgotPassword";
 	String MAIL_TYPE_CORPORATE_REQUEST = "coprporateRequest";
+	String MAIL_TYPE_CORPORATE_REQUEST_ADMIN = "corporateRequestAdmin";
 
-	String[] ADMIN_MAIL_TYPES = { MAIL_TYPE_REQUEST_CHECKUP_LAB, MAIL_TYPE_REQUEST_CALLBACK_LAB, MAIL_TYPE_CORPORATE_REQUEST };
+	String[] ADMIN_MAIL_TYPES = { MAIL_TYPE_REQUEST_CHECKUP_LAB, MAIL_TYPE_REQUEST_CALLBACK_LAB, MAIL_TYPE_CORPORATE_REQUEST_ADMIN };
+	String ADMIN_MAILS = "yash.bharwani@healthplese.in,care@healthplease.in,ajinkyashiva@gmail.com";
+	String ADMIN_PHONES = "9890733740,9423040642";
 
 }
