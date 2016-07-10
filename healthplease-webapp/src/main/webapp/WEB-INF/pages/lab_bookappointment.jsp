@@ -49,7 +49,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
+            <div class="row"style="">
                 <c:if test="${result != null }">
                 <c:if test="${result == 'OK' }">
                 	<div class="alert alert-success">
@@ -65,7 +65,7 @@
                
             </div>   
             <!-- /.row -->
-            <div class="row">                
+            <div class="row" style="border:">                
                 <!-- /.col-lg-6 -->
                 <div class="col-sm-12 col-xl-12 col-md-6 col-lg-6 col-xl-6">
                     <div class="panel panel-default">
@@ -79,7 +79,7 @@
                			</ul>
                         <!-- /.panel-heading -->
                         <div class="panel-body" id="slots">
-                            <style type="text/css">
+  <style type="text/css">
   .classControlWrapper{
     margin-bottom:15px; 
   }
@@ -105,8 +105,8 @@
   }
 </style>
 <form id="labAppform" action="<%=Constants.BOOK_APPOINTMENT_LAB_POST_URL%>" method="post" onsubmit="return onSubmit()">
-        <div class="row">
-            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper">
+        <div class="row" style="border:">
+            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper" style="border:">
              <input type="hidden" name="lab.id" id="idLabs" value="${user.lab.id}"> 
              <input type="hidden" id="homeCollection" value="Y"> 
              <select id="idTest" name="testIds" class="form-control selectpicker js-tests" multiple="multiple" required="required"> 
@@ -244,7 +244,7 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPincode">Patient's Pincode</label>  
               <div class="">
-                <input id="idappointmentPincode" type ="number" name="address.zipCode" placeholder="Pincode" class="form-control input-md"  type="text" required="required"/>      
+                <input id="idappointmentPincode" type="number" pattern="[0-9]{6}" name="address.zipCode" placeholder="Pincode" class="form-control input-md"  type="text" required="required" />      
               </div>
               <div class="" id="idAppPPincodeErr"></div>
             </div>
@@ -266,7 +266,7 @@
                 </div>
                 <!-- /.col-lg-6 -->
 
-                <div class="col-sm-12 col-xl-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="col-sm-12 col-xl-12 col-md-6 col-lg-6 col-xl-6" style="border:">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Calendar
@@ -278,6 +278,23 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
+                    <div class="row">
+                    	 <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper" style="border:">
+			              <label class=" control-label" for="">Discount</label>  
+			              <div class="">
+			                <input id="dicount" type="number" pattern="[0-9]{3}" name="discount" placeholder="Discount" class="form-control input-md" required="required" />      
+			              </div>
+			              <div class="" id="idAppPPincodeErr"></div>
+            			</div>
+            			
+            			<div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper" style="border:">
+			              <label class=" control-label" for="">Total</label>  
+			              <div class="">
+			                <input id="total" type="number" pattern="[0-9]{7}" name="Total" placeholder="Discount" class="form-control input-md" required="required" />      
+			              </div>
+			              <div class="" id="idAppPPincodeErr"></div>
+            			</div>
+                      </div>
                 </div>
 
 
