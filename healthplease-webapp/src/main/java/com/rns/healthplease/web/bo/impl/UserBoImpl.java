@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -87,6 +86,7 @@ public class UserBoImpl implements UserBo, Constants {
 			return ERROR_INVALID_USER;
 		}
 		user.setGroup(new UserGroup(1));
+		user.setMiddleName("");
 		Session session = this.sessionFactory.openSession();
 		UserDao userDao = new UserDaoImpl();
 		Users1 existingLogin = userDao.getUsers1ByEmail(user.getEmail(), session);
@@ -96,7 +96,13 @@ public class UserBoImpl implements UserBo, Constants {
 		}
 		Transaction tx = session.beginTransaction();
 		Users1 users1 = BusinessConverters.getUsers1(user, new Byte("0"));
-		session.persist(users1);
+		Users users = BusinessConverters.getUsers(user);
+		if (users == null) {
+			session.close();
+			return ERROR_INVALID_USER;
+		}
+		users.setLoginDetails(users1);
+		userDao.addNewuser(users, session);
 		user.setActivationCode(users1.getVerificationCode());
 		Appointment appointment = new Appointment();
 		appointment.setUser(user);
@@ -111,26 +117,19 @@ public class UserBoImpl implements UserBo, Constants {
 		if (user == null || StringUtils.isEmpty(user.getEmail())) {
 			return ERROR_INVALID_USER;
 		}
-		user.setGroup(new UserGroup(1));
-		user.setMiddleName("");
 		Session session = this.sessionFactory.openSession();
 		UserDao userDao = new UserDaoImpl();
 		Users1 existingLogin = userDao.getUsers1ByEmail(user.getEmail(), session);
 		if (existingLogin == null) {
 			session.close();
-			return ERROR_REGISTRATION;
+			return ERROR_INVALID_USER;
 		}
 		if (!StringUtils.equals(user.getActivationCode(), existingLogin.getVerificationCode())) {
-			session.close();
-			return ERROR_REGISTRATION;
-		}
-		Users users = BusinessConverters.getUsers(user);
-		if (users == null) {
 			session.close();
 			return ERROR_INVALID_USER;
 		}
 		Transaction tx = session.beginTransaction();
-		userDao.addNewuser(users, session);
+		existingLogin.setActive(new Byte("1"));
 		Appointment appointment = new Appointment();
 		appointment.setUser(user);
 		threadPoolTaskExecutor.execute(new MailUtil(appointment, MAIL_TYPE_REGISTRATION));
@@ -148,9 +147,13 @@ public class UserBoImpl implements UserBo, Constants {
 		Session session = this.sessionFactory.openSession();
 		UserDao userDao = new UserDaoImpl();
 		Users1 users1 = userDao.getUsers1ByEmail(user.getEmail(), session);
-		if (users1 == null || !StringUtils.equals(users1.getPassword(), user.getPassword())) {
+		if (users1 == null || !StringUtils.equals(users1.getPassword(), getEncytptedPassword(user, users1))) {
 			session.close();
 			return ERROR_INVALID_USER_CREDENTIALS;
+		}
+		if(users1.getActive().intValue() == 0) {
+			session.close();
+			return ERROR_NOT_ACTIVE;
 		}
 		Groups groups = users1.getGroup();
 		session.close();
@@ -164,6 +167,10 @@ public class UserBoImpl implements UserBo, Constants {
 			populateLabDetails(user, users1.getLabId());
 		}
 		return RESPONSE_OK;
+	}
+
+	private String getEncytptedPassword(User user, Users1 users1) {
+		return CommonUtils.getEncryptedPassword(StringUtils.join(user.getPassword(),users1.getSalt()));
 	}
 
 	public void populateLabDetails(User user, int labId) {
@@ -245,7 +252,6 @@ public class UserBoImpl implements UserBo, Constants {
 					labTest.setTestPackage(true);
 					// addChildTests(labTest, packages);
 					DataConverters.addChildTests(labTest, packages);
-					labTests.add(labTest);
 				}
 			}
 		}
@@ -665,8 +671,9 @@ public class UserBoImpl implements UserBo, Constants {
 		}
 		Transaction tx = session.beginTransaction();
 		users1.setPasswordRecover(true);
-		users1.setPassword(CommonUtils.generatePasswordForuser(users1));
-		user.setPassword(users1.getPassword());
+		String generatedPassword = CommonUtils.generatePasswordForuser(users1);
+		user.setPassword(generatedPassword);
+		users1.setPassword(getEncytptedPassword(user, users1));
 		Appointment appointment = new Appointment();
 		appointment.setUser(user);
 		threadPoolTaskExecutor.execute(new MailUtil(appointment, MAIL_TYPE_FORGOT_PASSWORD));
@@ -688,7 +695,7 @@ public class UserBoImpl implements UserBo, Constants {
 			return ERROR_FORGOT_PWD_NO_USER;
 		}
 		users1.setPasswordRecover(false);
-		users1.setPassword(user.getPassword());
+		users1.setPassword(getEncytptedPassword(user, users1));
 		tx.commit();
 		session.close();
 		return RESPONSE_OK;

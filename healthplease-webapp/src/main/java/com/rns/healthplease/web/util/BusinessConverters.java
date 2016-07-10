@@ -51,7 +51,7 @@ public class BusinessConverters {
 		Users1 users1 = new Users1();
 		users1.setName(user.getFirstName());
 		users1.setUsername(user.getEmail());
-		users1.setPassword(user.getPassword());
+		users1.setPassword(CommonUtils.getEncryptedPassword(user.getPassword()));
 		users1.setJoined(new Date());
 		users1.setGroup(getGroup(user.getGroup()));
 		if (user.getLab() != null) {

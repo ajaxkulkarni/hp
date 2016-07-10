@@ -251,7 +251,14 @@
                                                 <td width="0px">${appointment.lab.name}</td>
                                                 <td width="50px">${appointment.user.firstName}</td>
                                                 <td width="0px">${appointment.user.phone}</td>
-                                                <td>${appointment.user.address.street}</td>
+                                                <td>
+                                                <c:if test="${appointment.address == null }">
+                                                	NA
+                                                </c:if> 
+                                                <c:if test="${appointment.address != null }">
+                                                	${appointment.address}
+                                                </c:if>
+                                                </td>
                                                 <td width="0px">${appointment.user.email}</td>
                                                 <td width="0px">${appointment.user.gender}</td>
                                                 <td width="0px">${appointment.doctorName}</td>

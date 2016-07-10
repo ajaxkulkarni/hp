@@ -2,15 +2,32 @@ package com.rns.healthplease.web.util;
 
 public interface Constants {
 
-	// String ROOT_URL = "http://localhost:8080/healthplease-webapp";
-	String ROOT_URL = "http://52.38.220.19:8080/hp/";
-
-	String PRODUCT_INFO = "HealthPlease";
+	String ROOT_URL = "http://localhost:8080/healthplease-webapp";
+	//String ROOT_URL = "http://52.38.220.19:8080/hp/";
 	String MERCHANT_KEY = "AdtyF8"; // DEV
 	String MERCHANT_SALT = "8bPpsm3Q"; // DEV
-	String ASSETS_ROOT = "/resources"; // DEV
 	String PAY_U_URL = "https://test.payu.in/_payment";
 	String PAY_TM_URL = "https://pguat.paytm.com/oltp-web/processTransaction";
+	String PAY_TM_WEBSITE = "Healthpweb";
+	String PAY_TM_INDUSTRY_TYPE = "Retail";
+	String PAY_TM_MID = "Health30574555479792";
+	String PAY_TM_MERCHANT_KEY = "7a30TvYKmyQWIN4#";
+	
+	// IMPORTANT : Production Environment Credentials below! Handle with care!
+	
+	/*String ROOT_URL = "http://www.healthplease.in";
+	String PAY_U_URL = "https://secure.payu.in/_payment";
+	String MERCHANT_KEY = "FRQ4pz";
+	String MERCHANT_SALT = "gH3FYsHU";
+	String PAY_TM_URL = "https://secure.paytm.in/oltp-web/processTransaction";
+	String PAY_TM_WEBSITE = "Healthpweb";
+	String PAY_TM_INDUSTRY_TYPE = "Retail";
+	String PAY_TM_MID = "Health30574555479792";
+	String PAY_TM_MERCHANT_KEY = "7a30TvYKmyQWIN4#";*/
+	
+
+	String PRODUCT_INFO = "HealthPlease";
+	String ASSETS_ROOT = "/resources"; // DEV
 	String RESULT_URL = ROOT_URL + "/paymentResult";
 	String ROOT_DOCS_PATH = "F:/Resoneuronance/Health Chekup Labs Project/Uploads/";
 	// String ROOT_DOCS_PATH = "/home/ec2-user/docs/";
@@ -24,6 +41,8 @@ public interface Constants {
 	char INACTIVE_DAY = 'N';
 	char ACTIVE_DAY = 'Y';
 	String PAYTM_TXN_SUCCESS = "TXN_SUCCESS";
+	String PAY_U_TX_SUCCESS = "success";
+
 
 	String MODEL_APPOINTMENT = "appointment";
 	String MODEL_LOCATIONS = "locations";
@@ -60,6 +79,8 @@ public interface Constants {
 	String ERROR_INVALID_APPOINTMENT_DETAILS = "Invalid Appointment Details!";
 	String ERROR_FORGOT_PWD_NO_USER = "No user found with given Email.";
 	String ERROR_INVALID_TEST_DETAILS = "Test does not exist!";
+	String ERROR_NOT_ACTIVE = "Your account is not activated yet!";
+	
 
 	String BOOK_APPOINTMENT_POST_URL = "bookAppointment";
 	String USER_HOME_GET_URL = "userhome.htm";

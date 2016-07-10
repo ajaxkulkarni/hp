@@ -246,6 +246,7 @@ public class LabBoImpl implements LabBo, Constants {
 		users.setMname("");
 		users.setLname("");
 		if (appoinAddresses == null) {
+			users.setAddress("");
 			return;
 		}
 		users.setAddArea(appoinAddresses.getAddArea());

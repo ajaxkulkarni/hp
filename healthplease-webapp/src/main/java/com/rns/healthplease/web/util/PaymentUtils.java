@@ -11,10 +11,11 @@ import com.rns.healthplease.web.bo.domain.User;
 
 public class PaymentUtils implements Constants {
 
+
 	public static String generateCheckSum(PayTMDetails payTMDetails) throws Exception {
 		com.paytm.merchant.CheckSumServiceHelper checkSumServiceHelper = com.paytm.merchant.CheckSumServiceHelper.getCheckSumServiceHelper();
 		TreeMap<String, String> parameters = new TreeMap<String, String>();
-		String merchantKey = "7a30TvYKmyQWIN4#"; // Key provided by Paytm
+		String merchantKey = PAY_TM_MERCHANT_KEY; // Key provided by Paytm
 		parameters.put("REQUEST_TYPE", payTMDetails.getRequestType());
 		parameters.put("MID", payTMDetails.getMid()); // Merchant ID (MID)
 		parameters.put("ORDER_ID", payTMDetails.getOrderId()); // Merchant’s
@@ -42,13 +43,13 @@ public class PaymentUtils implements Constants {
 			payTMDetails.setCustomerId(user.getId().toString());
 		}
 		payTMDetails.setEmail(user.getEmail());
-		payTMDetails.setIndustryTypeId("Retail");
-		payTMDetails.setMid("Health30574555479792");
+		payTMDetails.setIndustryTypeId(PAY_TM_INDUSTRY_TYPE);
+		payTMDetails.setMid(PAY_TM_MID);
 		payTMDetails.setMobileNo(user.getPhone());
 		payTMDetails.setOrderId(String.valueOf(System.currentTimeMillis()));
 		payTMDetails.setRequestType("DEFAULT");
 		payTMDetails.setTransactionAmount(appointment.getLab().getPrice().toString());
-		payTMDetails.setWebsite("Healthpweb");
+		payTMDetails.setWebsite(PAY_TM_WEBSITE);
 		try {
 			payTMDetails.setCheckSum(generateCheckSum(payTMDetails));
 		} catch (Exception e) {

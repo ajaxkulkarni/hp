@@ -101,7 +101,12 @@ public class AdminBoImpl implements AdminBo, Constants {
 		}
 		List<Appointment> appointmentsForDateRange = new ArrayList<Appointment>();
 		for (Appointments app : appointments) {
-			appointmentsForDateRange.add(DataConverters.getAppointment(session, appointmentDao, app));
+			Appointment appointment = DataConverters.getAppointment(session, appointmentDao, app);
+			if (appointment.getLab() == null) {
+				continue;
+			}
+			CommonUtils.calculatePrice(appointment.getLab(), appointment, appointmentDao, session);
+			appointmentsForDateRange.add(appointment);
 		}
 		session.close();
 		return appointmentsForDateRange;

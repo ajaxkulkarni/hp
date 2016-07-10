@@ -62,8 +62,7 @@ border-radius:5px;
 			<div class="alert alert-danger">${result}</div>
 		</c:if>
 		<c:if test="${result != null && result == 'OK' }">
-			<div class="alert alert-success">Your request has been submitted successfully and you will receive a call from healthplease team shortly.</div>
-		</c:if>
+			<div class="alert alert-success">Thank you for requesting a Corporate Package. Our Health Please Convenience team will get in touch with you shortly and confirm the booking.</c:if>
     </div>
 </div>
 
@@ -81,7 +80,7 @@ border-radius:5px;
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
-						        <a data-toggle="collapse" href="#collapse1">Tests</a>
+						        <a data-toggle="collapse" href="#collapse1">View Tests</a>
 						      </h3>
 						    </div>
 						    <div id="collapse1" class="panel-collapse collapse">
@@ -98,7 +97,7 @@ border-radius:5px;
 								  <li class="list-group-item"><h3>Test for Heart</h3></li>
 								  <li class="list-group-item">Total Cholesterol </li>
 							
-								  <li class="list-group-item">Tests for Kidney</li>
+								  <li class="list-group-item"><h3>Tests for Liver</h3></li>
 								  <li class="list-group-item">Creatinine</li>
 								  <li class="list-group-item">Urine Routine</li>
 						      </ul>
@@ -126,7 +125,7 @@ border-radius:5px;
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
-						        <a data-toggle="collapse" href="#collapse2">Tests</a>
+						        <a data-toggle="collapse" href="#collapse2">View Tests</a>
 						      </h3>
 						    </div>
 						    <div id="collapse2" class="panel-collapse collapse">
@@ -179,7 +178,7 @@ border-radius:5px;
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
-						        <a data-toggle="collapse" href="#collapse3">Tests</a>
+						        <a data-toggle="collapse" href="#collapse3">View Tests</a>
 						      </h3>
 						    </div>
 						    <div id="collapse3" class="panel-collapse collapse">
@@ -228,7 +227,7 @@ border-radius:5px;
 							  <div class="panel panel-default">
 							    <div class="panel-heading">
 							      <h4 class="panel-title">
-							        <a data-toggle="collapse" href="#collapse4">Tests</a>
+							        <a data-toggle="collapse" href="#collapse4">View Tests</a>
 							      </h3>
 							    </div>
 							    <div id="collapse4" class="panel-collapse collapse">
@@ -283,7 +282,7 @@ border-radius:5px;
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
-						        <a data-toggle="collapse" href="#collapse5">Tests</a>
+						        <a data-toggle="collapse" href="#collapse5">View Tests</a>
 						      </h3>
 						    </div>
 						    <div id="collapse5" class="panel-collapse collapse">
@@ -337,7 +336,7 @@ border-radius:5px;
 					  <div class="panel panel-default">
 					    <div class="panel-heading">
 					      <h4 class="panel-title">
-					        <a data-toggle="collapse" href="#collapse6">Lists</a>
+					        <a data-toggle="collapse" href="#collapse6">View Tests</a>
 					      </h3>
 					    </div>
 					    <div id="collapse6" class="panel-collapse collapse">
@@ -404,7 +403,7 @@ border-radius:5px;
 							  <div class="panel panel-default">
 							    <div class="panel-heading">
 							      <h4 class="panel-title">
-							        <a data-toggle="collapse" href="#collapse7">Tests</a>
+							        <a data-toggle="collapse" href="#collapse7">View Tests</a>
 							      </h3>
 							    </div>
 							    <div id="collapse7" class="panel-collapse collapse">
@@ -485,9 +484,14 @@ border-radius:5px;
 			  <div class="form-group">
 			   <label for="sel1"style="margin-top:5%">Preferred Lab:</label>
 			  <select class="form-control" id="sel1" name="labName">
-			  	<c:forEach items="${labs}" var="lab">
+			  	<%-- <c:forEach items="${labs}" var="lab">
 			  		 <option>${lab.name}</option>
-			  	</c:forEach>
+			  	</c:forEach> --%>
+			  	<option value="">N M Medical, Shivaji Nagar</option>
+				<option value="">N M Medical, Kalyani Nagar</option>
+				<option value="">CareFirst Diagnostics, Baner Road</option>
+				<option value="">HealthBerries, Baner Road</option>
+				<option value="">PrimeX Health, Dhanori Road</option>
 			  </select>
 			  </div>
 			   <div class="form-group">

@@ -509,6 +509,11 @@ $(document).ready(function(){
         $( '.locations' ).change(function(){
             $("#idAppointmentPArea").val( $("#idLocation option:selected").text() );
             var location = $(this).val();
+            if($("#addressFields").is(':hidden')) {
+            	$("#idpickCharge").html("");
+            	return;
+            }
+            
             $.ajax({
                     type:"POST",
                     url:'getLocationCharge?locId=' + location,
@@ -585,12 +590,18 @@ function hideAddress() {
 	$("#addressFields").hide();
 	$("#homeCollection").val('N');
 	$("#idAppointmentDate").val("");
+	$("#idLocation option:selected").removeAttr("selected");
+	$('#select2-idLocation-container').html("Select Your Location")
+	$("#idpickCharge").html("");
 }
 
 function showAddress() {
 	$("#addressFields").show();
 	$("#homeCollection").val('Y');
 	$("#idAppointmentDate").val("");
+	$("#idLocation option:selected").removeAttr("selected");
+	$('#select2-idLocation-container').html("Select Your Location")
+	$("#idpickCharge").html("");
 }
     
 </script>

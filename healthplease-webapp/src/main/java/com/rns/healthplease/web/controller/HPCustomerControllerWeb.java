@@ -46,7 +46,6 @@ import com.rns.healthplease.web.util.PaymentUtils;
 @Controller
 public class HPCustomerControllerWeb implements Constants {
 
-
 	private UserBo userBo;
 
 	private LabBo LabBo;
@@ -250,7 +249,7 @@ public class HPCustomerControllerWeb implements Constants {
 
 	@RequestMapping(value = "/" + ACTIVATION_URL_GET, method = RequestMethod.GET)
 	public RedirectView registerUser(ModelMap model, String user, String activationCode) {
-		User currentUser = manager.getCurrentAppointment().getUser();
+		User currentUser = new User();
 		currentUser.setActivationCode(activationCode);
 		currentUser.setEmail(user);
 		String result = userBo.registerUser(currentUser);
@@ -431,8 +430,8 @@ public class HPCustomerControllerWeb implements Constants {
 
 	@RequestMapping(value = "/" + PAYMENT_RESULT_POST_URL, method = RequestMethod.POST)
 	public RedirectView paymentResult(ModelMap model, HttpServletRequest request) {
-		String txResult = request.getParameter("STATUS");// TXN_SUCCESS
-		if (StringUtils.equals(StringUtils.trim(txResult), PAYTM_TXN_SUCCESS)) {
+		String txResult = request.getParameter("STATUS") != null ? request.getParameter("STATUS") : request.getParameter("status");// TXN_SUCCESS
+		if (StringUtils.equals(StringUtils.trim(txResult), PAYTM_TXN_SUCCESS) || StringUtils.equals(StringUtils.trim(txResult), PAY_U_TX_SUCCESS)) {
 			preparePayment(PaymentType.online);
 			return new RedirectView(CONFIRM_APPOINTMENT_GET_URL);
 		}

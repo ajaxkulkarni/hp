@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -388,7 +390,7 @@ public class CommonUtils implements Constants {
 			tests.add(test);
 		}
 		lab.setTestPrice(totalPrice);
-		if(appointment.getLocation() != null) {
+		if (appointment.getLocation() != null && appointment.isHomeCollection()) {
 			LocationWiseLabCharges charges = appointmentDao.getLocationCharges(lab.getId(), appointment.getLocation().getId(), session);
 			if (charges != null) {
 				lab.setPickUpCharge(Integer.valueOf(charges.getPickUpCharge()));
@@ -446,5 +448,30 @@ public class CommonUtils implements Constants {
 		}
 		return StringUtils.removeEnd(builder.toString(), ",");
 	}
+
+	public static String getEncryptedPassword(String password) {
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			md.update(password.getBytes());
+			byte byteData[] = md.digest();
+			// convert the byte to hex format method 1
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < byteData.length; i++) {
+				sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			System.out.println("Hex format : " + sb.toString());
+			return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+	
+	/*public static void main(String[] args) {
+		//System.out.println(getEncryptedPassword("123456³!õ"));
+		System.out.println(StringUtils.join("123456","").length());
+	}*/
 
 }
