@@ -116,7 +116,7 @@
 <script>
 
 $(document).ready(function(){
-	paginateTable(5,0);
+	paginateTable(20,0);
 }); 
 
 function confirmDelete(name,id) {

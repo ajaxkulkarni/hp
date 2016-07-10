@@ -56,18 +56,18 @@ text-align: center;
           <div class="classTopHeading">
         <div class="container">
             <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" style="border:">
                 <!-- <h1 class="">Pricing<span class="pull-right classHLFont">All the tests marked with an asterisk are sent outside Dhanwantari Lab for testing.</span></h1> -->
                 <h1 class="" >Pricing</h1>
             </div>
-        </div>
+       <!--  </div> -->
         <c:if test="${lab != null && fn:length(lab.tests) > 0}">    
-        <div class="">
-           <div class="row">
-            <div class="col-md-4" style="padding-left:10%;padding-top:;border:">	
+      
+        <!--    <div class="row"> -->
+            <div class="col-md-3 col-sm-3 col-xs-6" style="border:;margin-top:1.5%">	
         	<h4>Choose Lab to get test charges</h4>
         	</div>
-        	 <div class="col-md-4" style="border:none;padding-top:8px;padding-right:10%">	
+        	 <div class="col-md-3 col-sm-3 col-xs-6" style="border:none;padding-top:8px;padding-right:10%;margin-top:1.5%">	
         	    <form id="labsForm" action="<%=Constants.GET_PRICING_POST_URL %>" method="post">
                     <select id="labs" name="id" onChange="getPricing()" style="width:100%;height:28px;">
                       <option value="${lab.id}" selected>${lab.name}</option>
@@ -78,11 +78,11 @@ text-align: center;
                     <input type="hidden" id="lab_name" value="${lab.name}" name="name"/>
 					</form>
 			</div>
-			 <div class="col-md-" style="">
-			    <input id="search" type="text" placeholder="Search for test" class="form-control" style="width:30%;"/>
+			 <div class="col-md-4 col-sm-4 col-xs-12" style="border:;margin-top:2%">
+			    <input id="search" type="text" placeholder="Search for test" class="form-control" style="width:250px;"/>
 			 </div>
 			</div>
-        </div>
+     <hr/>
 		 
         <div class="col-lg-12" >
           <div class="row">      
@@ -124,13 +124,14 @@ text-align: center;
           </div>
           </c:if>
           <c:if test="${lab == null || fn:length(lab.tests) == 0}">
-          <div class="row">
-            <div class="col-md-6" style="padding-top:10%;padding-bottom:10%;padding-left:3%;">	
+          <div class="row"  style="border:">
+            <div class="col-md-4 col-lg-4 col-xs-12" style="padding-top:15%;padding-bottom:20%;border:">	
         	<h3>Choose Lab to get test charges</h3>
         	</div>
-        	 <div class="col-md-6" style="padding-top:13%;padding-bottom:10%;padding-left:-1%;">	
+       
+        	 <div class="col-md-4 col-lg-4 col-xs-12" style="padding-top:17%;padding-bottom:20%;border:"> 	
         	    <form id="labsForm" action="<%=Constants.GET_PRICING_POST_URL %>" method="post">
-                    <select id="labs" name="id" onChange="getPricing()" style="width:150px;height:28px;">
+                    <select id="labs" name="id" onChange="getPricing()" style="width:200px;height:28px;">
                     <option value="${lab.id}" selected>${lab.name}</option>
                       <option value="" selected="selected">select a lab</option>
                       <c:forEach items="${labs}" var="lab">
