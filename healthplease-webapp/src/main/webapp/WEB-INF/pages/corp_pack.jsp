@@ -75,7 +75,7 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardbody">
-			          <p>Upto 45% off, Starting Rs.700</p>
+			         <!--  <p>Upto 45% off, Starting Rs.700</p> -->
 			           <div class="panel-group">
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
@@ -120,7 +120,7 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardbody">
-			          <p>Upto 42% off, Starting Rs.1900</p>
+			          <!-- <p>Upto 42% off, Starting Rs.1900</p> -->
 			           <div class="panel-group">
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
@@ -173,7 +173,7 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardbody">
-			          <p>Upto 37% off, Starting Rs.1200</p>
+			          <!-- <p>Upto 37% off, Starting Rs.1200</p> -->
 			            <div class="panel-group">
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
@@ -222,7 +222,7 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardbody">
-			          <p>Upto 26% off, Starting Rs.2800</p>
+			          <!-- <p>Upto 26% off, Starting Rs.2800</p> -->
 			            <div class="panel-group">
 							  <div class="panel panel-default">
 							    <div class="panel-heading">
@@ -277,7 +277,7 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardbody">
-			          <p>Upto 37% off, Starting Rs. 3000</p>
+			          <!-- <p>Upto 37% off, Starting Rs. 3000</p> -->
 			          <div class="panel-group">
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
@@ -331,7 +331,7 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardbody">
-			          <p>Upto 24% off, Starting Rs.6000</p>
+			          <!-- <p>Upto 24% off, Starting Rs.6000</p> -->
 			            <div class="panel-group">
 					  <div class="panel panel-default">
 					    <div class="panel-heading">
@@ -397,8 +397,8 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardbody">
-			          <p>Male - Upto 46% off, Starting Rs.7000</br>
-                             Female - Upto 46% off, Starting Rs.7500</p>
+			          <!-- <p>Male - Upto 46% off, Starting Rs.7000</br>
+                             Female - Upto 46% off, Starting Rs.7500</p> -->
                              <div class="panel-group">
 							  <div class="panel panel-default">
 							    <div class="panel-heading">
@@ -484,14 +484,14 @@ border-radius:5px;
 			  <div class="form-group">
 			   <label for="sel1"style="margin-top:5%">Preferred Lab:</label>
 			  <select class="form-control" id="sel1" name="labName">
-			  	<%-- <c:forEach items="${labs}" var="lab">
-			  		 <option>${lab.name}</option>
-			  	</c:forEach> --%>
-			  	<option value="">N M Medical, Shivaji Nagar</option>
+			  	<c:forEach items="${labs}" var="lab">
+			  		 <option>${lab.name}, ${lab.area.name}</option>
+			  	</c:forEach>
+			  	<!-- <option value="">N M Medical, Shivaji Nagar</option>
 				<option value="">N M Medical, Kalyani Nagar</option>
 				<option value="">CareFirst Diagnostics, Baner Road</option>
 				<option value="">HealthBerries, Baner Road</option>
-				<option value="">PrimeX Health, Dhanori Road</option>
+				<option value="">PrimeX Health, Dhanori Road</option> -->
 			  </select>
 			  </div>
 			   <div class="form-group">

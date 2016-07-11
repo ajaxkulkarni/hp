@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SharedSessionContract;
@@ -54,8 +55,15 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		return statuses.get(0);
 	}
 
-	public List<Tests> getAllTests(Session session) {
-		Query query = session.createQuery("from Tests");
+	public List<Tests> getAllTests(Session session, String testType) {
+		String queryString = "from Tests";
+		if(StringUtils.isNotEmpty(testType)) {
+			queryString = "from Tests where testSingleShow=:single_test_show";
+		}
+		Query query = session.createQuery(queryString);
+		if(StringUtils.isNotEmpty(testType)) {
+			query.setString("single_test_show", testType);
+		}
 		return query.list();
 	}
 

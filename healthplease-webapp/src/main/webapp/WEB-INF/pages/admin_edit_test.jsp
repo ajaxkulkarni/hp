@@ -146,6 +146,21 @@
             <td><textarea name='longDescription' id='test_long_desc' class='form-control' >${test.longDescription}</textarea></td>
         </tr>
         <tr>
+            <td>Display Type</td>
+            <td>
+            	<select name="testDisplayType">
+            		<c:if test="${test.testDisplayType == 'Y' }">
+            			<option value="Y" selected>Normal</option>
+            		</c:if>
+            		<c:if test="${test.testDisplayType == 'C' }">
+            			<option value="C" selected>Corporate</option>
+            		</c:if>
+            		<option value="Y">Normal</option>
+            		<option value="C">Corporate</option>
+            	</select>
+            </td>
+        </tr>
+        <tr>
         <td colspan="2">
             <div id="submituser">
                <button type="submit" class="btn btn-primary" name="btn-save" id="submit">

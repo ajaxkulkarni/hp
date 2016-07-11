@@ -7,23 +7,23 @@ public interface Constants {
 	String MERCHANT_KEY = "AdtyF8"; // DEV
 	String MERCHANT_SALT = "8bPpsm3Q"; // DEV
 	String PAY_U_URL = "https://test.payu.in/_payment";
-	/*String PAY_TM_URL = "https://pguat.paytm.com/oltp-web/processTransaction";
+	String PAY_TM_URL = "https://pguat.paytm.com/oltp-web/processTransaction";
 	String PAY_TM_WEBSITE = "Healthpweb";
 	String PAY_TM_INDUSTRY_TYPE = "Retail";
 	String PAY_TM_MID = "Health30574555479792";
-	String PAY_TM_MERCHANT_KEY = "7a30TvYKmyQWIN4#";*/
+	String PAY_TM_MERCHANT_KEY = "7a30TvYKmyQWIN4#";
 	
 	// IMPORTANT : Production Environment Credentials below! Handle with care!
 	
 	/*String ROOT_URL = "http://www.healthplease.in";
 	String PAY_U_URL = "https://secure.payu.in/_payment";
 	String MERCHANT_KEY = "FRQ4pz";
-	String MERCHANT_SALT = "gH3FYsHU";*/
+	String MERCHANT_SALT = "gH3FYsHU";
 	String PAY_TM_URL = "https://secure.paytm.in/oltp-web/processTransaction";
 	String PAY_TM_WEBSITE = "HealthPleaseweb";
 	String PAY_TM_INDUSTRY_TYPE = "Retail120";
 	String PAY_TM_MID = "Health49217529407325";
-	String PAY_TM_MERCHANT_KEY = "oxsdUfWmMhpSwWGR";
+	String PAY_TM_MERCHANT_KEY = "oxsdUfWmMhpSwWGR";*/
 	
 
 	String PRODUCT_INFO = "HealthPlease";

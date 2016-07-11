@@ -230,29 +230,19 @@ public class UserBoImpl implements UserBo, Constants {
 		return RESPONSE_OK;
 	}
 
-	public List<LabTest> getAvailableTests() {
+	public List<LabTest> getAvailableTests(String testType) {
 		Session session = this.sessionFactory.openSession();
 		AppointmentDao appointmentDao = new AppointmentDaoImpl();
-		List<Tests> tests = appointmentDao.getAllTests(session);
+		List<Tests> tests = appointmentDao.getAllTests(session, testType);
 		if (CollectionUtils.isEmpty(tests)) {
 			session.close();
 			return null;
 		}
 		List<LabTest> labTests = new ArrayList<LabTest>();
 		for (Tests test : tests) {
-			LabTest labTest = DataConverters.getTest(test);
+			LabTest labTest = DataConverters.getTest(test, session);
 			if (labTest != null) {
 				labTests.add(labTest);
-				List<TestPackages> packages = appointmentDao.getTestPackage(labTest.getId(), session);
-				if (CollectionUtils.isNotEmpty(packages)) {
-					labTest.setTestPackage(true);
-				}
-				labTest.setParameters(DataConverters.getTestParameters(test.getTestFactors(), null, session));
-				if (CollectionUtils.isNotEmpty(packages)) {
-					labTest.setTestPackage(true);
-					// addChildTests(labTest, packages);
-					DataConverters.addChildTests(labTest, packages);
-				}
 			}
 		}
 		session.close();
@@ -649,11 +639,11 @@ public class UserBoImpl implements UserBo, Constants {
 			session.close();
 			return null;
 		}
-		LabTest labTest = DataConverters.getTest(tests);
-		List<TestPackages> packages = appointmentDao.getTestPackage(test.getId(), session);
+		LabTest labTest = DataConverters.getTest(tests, session);
+		/*List<TestPackages> packages = appointmentDao.getTestPackage(test.getId(), session);
 		if (CollectionUtils.isNotEmpty(packages)) {
 			DataConverters.addChildTests(labTest, packages);
-		}
+		}*/
 		session.close();
 		return labTest;
 	}
@@ -712,6 +702,28 @@ public class UserBoImpl implements UserBo, Constants {
 		SMSUtil.sendSMS(form, MAIL_TYPE_CORPORATE_REQUEST);
 		SMSUtil.sendSMS(form, MAIL_TYPE_CORPORATE_REQUEST_ADMIN);
 		return RESPONSE_OK;
+	}
+	
+	@Override
+	public List<LabTest> getCorporatePackages() {
+		Session session = this.sessionFactory.openSession();
+		List<Tests> tests = new AppointmentDaoImpl().getAllTests(session, "C");
+		if(CollectionUtils.isEmpty(tests)) {
+			session.close();
+			return null;
+		}
+		List<LabTest> labTests = new ArrayList<LabTest>();
+		for(Tests test: tests) {
+			LabTest labTest = DataConverters.getTest(test, session);
+			if(labTest != null) {
+				Short minPriceLab = new LabDaoImpl().getMinTestLabs(test.getId(), session);
+				if(minPriceLab != null) {
+					labTest.setPrice(minPriceLab.intValue());
+				}
+				labTests.add(labTest);
+			}
+		}
+		return labTests;
 	}
 
 }

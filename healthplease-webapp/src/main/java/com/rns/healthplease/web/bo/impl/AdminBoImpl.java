@@ -173,10 +173,8 @@ public class AdminBoImpl implements AdminBo, Constants {
 		tests.setTestCharge(0);
 		tests.setMinDays(Short.valueOf("0"));
 		tests.setIsPackage("N");
-		tests.setTestSingleShow("Y");
 		if (CollectionUtils.isNotEmpty(test.getChildTests())) {
 			tests.setIsPackage("Y");
-			tests.setTestSingleShow("N");
 		}
 		tests.setCreatedBy(0);
 		tests.setCreatedDate(new Date());
@@ -611,7 +609,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 		Session session = this.sessionFactory.openSession();
 		List<LabTest> tests = new ArrayList<LabTest>();
 		AppointmentDao appointmentDao = new AppointmentDaoImpl();
-		List<Tests> allTests = appointmentDao.getAllTests(session);
+		List<Tests> allTests = appointmentDao.getAllTests(session, null);
 		Labs labs = appointmentDao.getLabById(lab.getId(), session);
 		if (labs == null) {
 			session.close();

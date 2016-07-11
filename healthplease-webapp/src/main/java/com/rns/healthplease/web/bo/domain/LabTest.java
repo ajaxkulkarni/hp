@@ -20,6 +20,7 @@ public class LabTest {
 	private Integer discount;
 	private Integer srNo;
 	private Integer deliveryDays;
+	private String testDisplayType;
 	
 	public Integer getPrice() {
 		return price;
@@ -114,6 +115,12 @@ public class LabTest {
 	}
 	public void setLongDescription(String longDescription) {
 		this.longDescription = longDescription;
+	}
+	public String getTestDisplayType() {
+		return testDisplayType;
+	}
+	public void setTestDisplayType(String testDisplayType) {
+		this.testDisplayType = testDisplayType;
 	}
 	
 

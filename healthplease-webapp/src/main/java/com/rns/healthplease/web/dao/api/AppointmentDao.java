@@ -5,14 +5,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import com.rns.healthplease.web.bo.domain.LabTest;
 import com.rns.healthplease.web.dao.domain.AppFileLocations;
 import com.rns.healthplease.web.dao.domain.AppoinAddresses;
 import com.rns.healthplease.web.dao.domain.AppointmentTestResults;
 import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.CancelReasons;
 import com.rns.healthplease.web.dao.domain.LabActiveDaysStatus;
-import com.rns.healthplease.web.dao.domain.LabLocations;
 import com.rns.healthplease.web.dao.domain.Labs;
 import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.Locations;
@@ -32,7 +30,7 @@ public interface AppointmentDao {
 
 	PaymentStatus getPaymentStatusByAppointmentId(Integer id, Session session);
 
-	List<Tests> getAllTests(Session session);
+	List<Tests> getAllTests(Session session, String testType);
 
 	List<Locations> getAllLabLocations(Session session);
 

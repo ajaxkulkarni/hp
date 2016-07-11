@@ -1,6 +1,6 @@
 Hello Admin,
 
-There is a request a check request from below user: -
+There is a request to avail corporate package by the below employee: -
 
 Name: - {name}
 

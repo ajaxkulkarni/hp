@@ -20,7 +20,7 @@ public interface UserBo {
 	
 	String loginUser(User user);
 	
-	List<LabTest> getAvailableTests();
+	List<LabTest> getAvailableTests(String testType);
 	
 	List<LabLocation> getAllLocations();
 	
@@ -59,5 +59,7 @@ public interface UserBo {
 	String changePassword(User user);
 
 	String requestCorporatePackage(RequestForm form);
+
+	List<LabTest> getCorporatePackages();
 
 }

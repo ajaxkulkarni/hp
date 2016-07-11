@@ -86,9 +86,9 @@
                                             </th>
                                             <!-- <th>Lab Location
                                             </th> -->
-                                            <!--<th ng-click="">Associate Location
-                                                    <span class="glyphicon sort-icon" ></span>
-                                            </th>-->
+                                            <th>Associate Location
+                                            	<span class="glyphicon sort-icon" ></span>
+                                            </th>
                                             <th>Lab Email
                                             </th>
                                             <th>Lab Contact
@@ -105,6 +105,7 @@
                          <form action="<%=Constants.ADMIN_EDIT_LAB_POST_URL%>" method="post">
                         <td>${i.index + 1}</td>
                         <td id="labNameT${lab.id}">${lab.name}</td>
+                        <td id="labAreaT${lab.id}">${lab.area.name}</td>
                         <td id="labEmailT${lab.id}">${lab.email}</td>
                         <td id="labPhoneT${lab.id}">${lab.contact}</td>
                         <td id="labAddrT${lab.id}">${lab.address}</td>
@@ -112,6 +113,15 @@
                         	<input type="hidden" name="id" value="${lab.id}"/>
                         	<input type="text" name="name" value="${lab.name}"/>
                         </td>
+                        <td id="labArea${lab.id}" style="display:none">
+                        	<select name="area.id">
+                        		<option value="${lab.area.id}" selected>${lab.area.name}</option>
+                        		<c:forEach items="${locations}" var="loc">
+                        			<option value="${loc.id}">${loc.name}</option>
+                        		</c:forEach>
+                        	</select>
+                        </td>
+                        
                         <td id="labEmail${lab.id}" style="display:none"><input type="text" name="email" value="${lab.email}"/></td>
                         <td id="labPhone${lab.id}" style="display:none"><input type="text" name="contact" value="${lab.contact}"/></td>
                         <td id="labAddr${lab.id}" style="display:none"><input type="text" name="address" value="${lab.address}"/></td>
@@ -394,12 +404,14 @@ function editButtons(labId) {
 	var prev = $("#previousLabId").val();
 	if(prev != null && prev != '') {
 		$("#labNameT" + prev).show();
+		$("#labAreaT" + prev).show();
 		$("#labPhoneT" + prev).show();
 		$("#labEmailT" + prev).show();
 		$("#labAddrT" + prev).show();
 		$("#labEditT" + prev).show();
 		
 		$("#labName" + prev).hide();
+		$("#labArea" + prev).hide();
 		$("#labPhone" + prev).hide();
 		$("#labEmail" + prev).hide();
 		$("#labAddr" + prev).hide();
@@ -407,12 +419,14 @@ function editButtons(labId) {
 	}
 	
 	$("#labNameT" + labId).hide();
+	$("#labAreaT" + labId).hide();
 	$("#labPhoneT" + labId).hide();
 	$("#labEmailT" + labId).hide();
 	$("#labAddrT" + labId).hide();
 	$("#labEditT" + labId).hide();
 	
 	$("#labName" + labId).show();
+	$("#labArea" + labId).show();
 	$("#labPhone" + labId).show();
 	$("#labEmail" + labId).show();
 	$("#labAddr" + labId).show();

@@ -6,11 +6,15 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 
 import com.rns.healthplease.web.dao.api.LabDao;
 import com.rns.healthplease.web.dao.domain.LabActiveDaysStatus;
 import com.rns.healthplease.web.dao.domain.LabBlockedSlots;
 import com.rns.healthplease.web.dao.domain.Labs;
+import com.rns.healthplease.web.dao.domain.TestLabs;
 
 public class LabDaoImpl implements LabDao {
 
@@ -56,6 +60,16 @@ public class LabDaoImpl implements LabDao {
 	public List<Labs> getAllLabs(Session session) {
 		Query createQuery = session.createQuery("from Labs");
 		return createQuery.list();
+	}
+	
+	public Short getMinTestLabs(Integer testId, Session session) {
+		Query createQuery = session.createQuery("select min(labPrice) from TestLabs where test.id=:testId");
+		createQuery.setInteger("testId",testId);
+		List<Short> testLabs = createQuery.list();
+		if(CollectionUtils.isEmpty(testLabs)) {
+			return null;
+		}
+		return testLabs.get(0);
 	}
 
 }

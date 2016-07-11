@@ -89,7 +89,7 @@ public class HPCustomerControllerWeb implements Constants {
 
 	private void initializeParameters(ModelMap model) {
 		manager.setCurrentAppointment(null);
-		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests());
+		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests("Y"));
 		model.addAttribute(MODEL_LOCATIONS, userBo.getAllLocations());
 		model.addAttribute(MODEL_USER, manager.getUser());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
@@ -268,7 +268,7 @@ public class HPCustomerControllerWeb implements Constants {
 	@RequestMapping(value = "/" + BOOK_APPOINTMENT_GET_URL, method = RequestMethod.GET)
 	public String initBookAppointment(ModelMap model, Appointment appointment) {
 		userBo.populateAppointment(manager.getCurrentAppointment());
-		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests());
+		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests("Y"));
 		model.addAttribute(MODEL_LOCATIONS, userBo.getAllLocations());
 		model.addAttribute(MODEL_APPOINTMENT, manager.getCurrentAppointment());
 		model.addAttribute(MODEL_USER, manager.getUser());
@@ -534,6 +534,8 @@ public class HPCustomerControllerWeb implements Constants {
 	public String initCorporate(ModelMap model) {
 		model.addAttribute(MODEL_LABS, userBo.getAllLabs());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
+		//model.addAttribute(MODEL_TESTS, userBo.getCorporatePackages());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return CORPORATE_PACKAGES_PAGE;
 	}

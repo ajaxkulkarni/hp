@@ -3,11 +3,14 @@ package com.rns.healthplease.web.bo.api;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Session;
+
 import com.rns.healthplease.web.bo.domain.Appointment;
 import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
 import com.rns.healthplease.web.bo.domain.Slot;
+import com.rns.healthplease.web.dao.domain.TestLabs;
 
 public interface LabBo {
 	

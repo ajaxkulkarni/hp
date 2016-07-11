@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import com.rns.healthplease.web.dao.domain.LabActiveDaysStatus;
 import com.rns.healthplease.web.dao.domain.LabBlockedSlots;
 import com.rns.healthplease.web.dao.domain.Labs;
+import com.rns.healthplease.web.dao.domain.TestLabs;
 
 
 public interface LabDao {
@@ -25,4 +26,6 @@ public interface LabDao {
 	void updateActiveDays(LabActiveDaysStatus status, Session session);
 
 	List<Labs> getAllLabs(Session session);
+	
+	Short getMinTestLabs(Integer testId, Session session);
 }

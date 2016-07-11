@@ -85,6 +85,7 @@ public class DataConverters {
 		lab.setAppointmentsPerSlot(Integer.valueOf(labs.getBookAppPerSlot()));
 		lab.setPrice(Integer.valueOf(labs.getPickCharge()));
 		lab.setAddress(labs.getAddress());
+		lab.setArea(getLocation(labs.getLocation()));
 		prepareLocations(lab, labs.getLabses());
 		return lab;
 	}
@@ -165,8 +166,26 @@ public class DataConverters {
 		if (test.getTestCategory() != null) {
 			labTest.setCategory(test.getTestCategory().getCategoryName());
 		}
+		labTest.setTestDisplayType(test.getTestSingleShow());
 		return labTest;
 
+	}
+	
+	public static LabTest getTest(Tests tests, Session session) {
+		LabTest labTest = getTest(tests);
+		if(labTest == null) {
+			return labTest;
+		}
+		List<TestPackages> packages = new AppointmentDaoImpl().getTestPackage(labTest.getId(), session);
+		if (CollectionUtils.isNotEmpty(packages)) {
+			labTest.setTestPackage(true);
+		}
+		labTest.setParameters(getTestParameters(tests.getTestFactors(), null, session));
+		if (CollectionUtils.isNotEmpty(packages)) {
+			labTest.setTestPackage(true);
+			addChildTests(labTest, packages);
+		}
+		return labTest;
 	}
 
 	public static AppointmentStatus getStatus(com.rns.healthplease.web.dao.domain.AppointmentStatus status) {
@@ -208,15 +227,15 @@ public class DataConverters {
 		}
 		List<LabTest> labTests = new ArrayList<LabTest>();
 		for (AppointmentTests appointmentTests : appointments.getTests()) {
-			LabTest labTest = getTest(appointmentTests.getTests());
+			LabTest labTest = getTest(appointmentTests.getTests(), session);
 			if (labTest != null) {
 				labTests.add(labTest);
-				List<TestPackages> packages = appointmentDao.getTestPackage(labTest.getId(), session);
+				/*List<TestPackages> packages = appointmentDao.getTestPackage(labTest.getId(), session);
 				if (CollectionUtils.isNotEmpty(packages)) {
 					labTest.setTestPackage(true);
 					addChildTests(labTest, packages);
 				}
-				labTest.setParameters(getTestParameters(appointmentTests.getTests().getTestFactors(), appointments, session));
+				labTest.setParameters(getTestParameters(appointmentTests.getTests().getTestFactors(), appointments, session));*/
 				labTest.setReportSent(appointmentTests.getReportSent());
 			}
 		}

@@ -13,6 +13,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -49,6 +51,7 @@ public class Labs implements java.io.Serializable {
 	private Set<Appointments> appointments = new HashSet<Appointments>(0);
 	private Set<LabBlockedSlots> blockedSlots = new HashSet<LabBlockedSlots>(0);
 	//private Set<LabActiveDaysStatus> labActiveDaysStatus = new HashSet<LabActiveDaysStatus>(0);
+	private Locations location;
 
 	public Labs() {
 	}
@@ -245,6 +248,17 @@ public class Labs implements java.io.Serializable {
 
 	public void setBlockedSlots(Set<LabBlockedSlots> blockedSlots) {
 		this.blockedSlots = blockedSlots;
+	}
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@NotFound(action = NotFoundAction.IGNORE)
+	@JoinColumn(name = "lab_location_id")
+	public Locations getLocation() {
+		return location;
+	}
+
+	public void setLocation(Locations location) {
+		this.location = location;
 	}
 
 	/*@OneToMany(mappedBy = "labs", cascade = CascadeType.ALL)

@@ -15,6 +15,7 @@ public class Lab {
 	private Integer testPrice;
 	private Integer price;
 	private Integer appointmentsPerSlot;
+	private LabLocation area;
 	private List<LabLocation> location;
 	private List<Slot> currentSlots;
 	private List<User> users;
@@ -116,6 +117,14 @@ public class Lab {
 
 	public void setTestPrice(Integer testPrice) {
 		this.testPrice = testPrice;
+	}
+
+	public LabLocation getArea() {
+		return area;
+	}
+
+	public void setArea(LabLocation area) {
+		this.area = area;
 	}
 	
 

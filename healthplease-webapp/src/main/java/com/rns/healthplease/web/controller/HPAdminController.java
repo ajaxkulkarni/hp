@@ -198,7 +198,7 @@ public class HPAdminController implements Constants {
 
 	@RequestMapping(value = "/" + ADMIN_TESTS_GET_URL, method = RequestMethod.GET)
 	public String initTests(ModelMap model) {
-		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests());
+		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests(null));
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
@@ -214,7 +214,7 @@ public class HPAdminController implements Constants {
 		}
 		model.addAttribute(MODEL_TEST, test);
 		model.addAttribute(MODEL_CATEGORIES, adminBo.getAllTestCategories());
-		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests());
+		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests(null));
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
@@ -257,6 +257,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USERS, adminBo.getAllUsers());
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_LOCATIONS, userBo.getAllLocations());
 		manager.setResult(null);
 		return ADMIN_LABS_PAGE;
 	}
@@ -367,7 +368,7 @@ public class HPAdminController implements Constants {
 	@RequestMapping(value = "/" + ADMIN_TEST_PARAMETERS_MAP_GET_URL, method = RequestMethod.GET)
 	public String initTestParameterMapping(ModelMap model) {
 		model.addAttribute(MODEL_PARAMETERS, adminBo.getAllTestParemeters());
-		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests());
+		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests(null));
 		model.addAttribute(MODEL_USER, manager.getUser());
 		return ADMIN_MAP_TEST_PARAMS_PAGE;
 	}

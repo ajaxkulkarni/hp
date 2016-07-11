@@ -151,6 +151,10 @@ public class BusinessConverters {
 		if(lab.getAppointmentsPerSlot()!= null) {
 			labs.setBookAppPerSlot(Byte.valueOf(lab.getAppointmentsPerSlot().toString()));
 		}
+		if(lab.getArea() != null) {
+			labs.setLocation(getLocation(lab.getArea()));
+		}
+		
 	}
 
 	public static Locations getLocation(LabLocation location) {
@@ -300,6 +304,9 @@ public class BusinessConverters {
 		}
 		if(StringUtils.isNoneEmpty(test.getFastingInfo())) {
 			tests.setIsFastRequired(test.getFastingInfo());
+		}
+		if(StringUtils.isNotEmpty(test.getTestDisplayType())) {
+			tests.setTestSingleShow(test.getTestDisplayType());
 		}
 	}
 
