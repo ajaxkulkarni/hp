@@ -38,7 +38,6 @@ import com.rns.healthplease.web.bo.domain.PaymentType;
 import com.rns.healthplease.web.bo.domain.RequestForm;
 import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.bo.domain.User;
-import com.rns.healthplease.web.bo.impl.AdminBoImpl;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
 import com.rns.healthplease.web.util.PaymentUtils;
@@ -104,11 +103,12 @@ public class HPCustomerControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/getLabs", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody String getLabs(String testIds, Integer locationId) {
+	public @ResponseBody String getLabs(String testIds, Integer locationId, String homeCollection) {
 		System.out.println("Getting labs..");
 		Appointment appointment = manager.getCurrentAppointment();
 		List<LabTest> tests = CommonUtils.prepareTests(testIds);
 		appointment.setTests(tests);
+		appointment.setHomeCollection(CommonUtils.getBoolean(homeCollection));
 		LabLocation location = new LabLocation();
 		location.setId(locationId);
 		appointment.setLocation(location);
@@ -129,14 +129,13 @@ public class HPCustomerControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/getSlots", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody String getSlots(Integer labId, String date, String homeCollection) {
+	public @ResponseBody String getSlots(Integer labId, String date) {
 		System.out.println("Getting slots..");
 		Lab lab = new Lab();
 		lab.setId(labId);
 		Appointment appointment = manager.getCurrentAppointment();
 		appointment.setLab(lab);
 		appointment.setDate(CommonUtils.convertDate(date));
-		appointment.setHomeCollection(CommonUtils.getBoolean(homeCollection));
 		return new Gson().toJson(userBo.getAvailableSlots(appointment));
 	}
 

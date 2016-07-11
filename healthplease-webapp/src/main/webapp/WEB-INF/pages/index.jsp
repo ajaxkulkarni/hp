@@ -103,9 +103,13 @@
     });
     
     $(function() {
+    	var minDay = '0';
+    	if($("#user_group").val() != '2') {
+    		minDay = '+1';
+    	}
         $( "#idAppointmentDate").datepicker({
         	changeMonth: true,
-        	minDate: +1,
+        	minDate: minDay,
         	maxDate:"+2M",
         	dateFormat:"yy-mm-dd",
         	beforeShowDay: function(date) {
@@ -182,7 +186,7 @@
 	       }); 
 	}
 	
-	function getLabs() {
+	function getLabs(homeCollection) {
 		$('#select2-idLabs-container').html("Please select lab");
 		if($("#idTest").val() == null || $("#idLocation").val() == null) {
 			return;
@@ -191,7 +195,7 @@
 	       	type : "POST",
 	           url : 'getLabs',
 	           dataType: 'json',
-	           data: "testIds="+ $("#idTest").val() + "&locationId=" + $("#idLocation").val(),
+	           data: "testIds="+ $("#idTest").val() + "&locationId=" + $("#idLocation").val() + "&homeCollection=" +homeCollection,
 	           success : function(labs) {
 	        	   var i = 0;
 	        	   var appendString = "<option value='select'>Please select lab</option>";
@@ -320,7 +324,7 @@ $(window).load(function() {
                                     <div class="form-group">
                                       <!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
                                         <div class="ui-widget">
-                                            <select id="idLocation" name="location" class="form-control locations" onchange="getLabs()">
+                                            <select id="idLocation" name="location" class="form-control locations" onchange="getLabs('Y')">
                                               <option value="">Select your location</option>
                                               <c:forEach items="${locations}" var="loc">
                                               	 <option value="${loc.id}">&nbsp;&nbsp;${loc.name}</option>
@@ -360,7 +364,6 @@ $(window).load(function() {
                                         </div>
                                         
                                     </div>
-
                                                                   
                                  
                                   <div class="form-group">
@@ -381,6 +384,7 @@ $(window).load(function() {
                                 </fieldset>
                             </div>
                             <div class="clearfix"></div>
+                            <input type="hidden" value="${user.group.id}" id="user_group">
                         </div>
                         <!-- Form Div End-->
                     </div>
