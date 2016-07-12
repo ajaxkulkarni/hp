@@ -284,6 +284,10 @@ public class BusinessConverters {
 	}
 
 	public static void setTestDetails(LabTest test, Tests tests) {
+		tests.setIsFastRequired("N");
+		tests.setTestAbvr("");
+		tests.setShortDesc("");
+		tests.setLongDesc("");
 		if(StringUtils.isNotEmpty(test.getName())) {
 			tests.setTestName(test.getName());
 		}
@@ -302,7 +306,7 @@ public class BusinessConverters {
 		if(test.getDeliveryDays() != null) {
 			tests.setDeliveryDays(Short.valueOf(test.getDeliveryDays().toString()));
 		}
-		if(StringUtils.isNoneEmpty(test.getFastingInfo())) {
+		if(StringUtils.isNotEmpty(test.getFastingInfo())) {
 			tests.setIsFastRequired(test.getFastingInfo());
 		}
 		if(StringUtils.isNotEmpty(test.getTestDisplayType())) {

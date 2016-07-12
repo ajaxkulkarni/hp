@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.hibernate.Session;
@@ -39,8 +40,6 @@ import com.rns.healthplease.web.dao.domain.Labs;
 import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
 import com.rns.healthplease.web.dao.domain.Slots;
-import com.rns.healthplease.web.dao.domain.TestLabs;
-import com.rns.healthplease.web.dao.domain.TestPackages;
 import com.rns.healthplease.web.dao.domain.Users;
 import com.rns.healthplease.web.dao.domain.Users1;
 import com.rns.healthplease.web.dao.impl.AppointmentDaoImpl;
@@ -475,7 +474,7 @@ public class LabBoImpl implements LabBo, Constants {
 		return appointmentsForDateRange;
 	}
 
-	public String getLocationCharges(Lab lab, LabLocation location) {
+	public String getLocationCharges(Lab lab, LabLocation location, List<LabTest> tests) {
 		if (lab == null || location == null || location.getId() == null) {
 			return null;
 		}
@@ -486,7 +485,15 @@ public class LabBoImpl implements LabBo, Constants {
 		if (locationWiseLabCharges == null) {
 			return null;
 		}
-		return String.valueOf(locationWiseLabCharges.getPickUpCharge());
+		Integer multiplier = 1;
+		if(CollectionUtils.isNotEmpty(tests)) {
+			for(LabTest test: tests) {
+				if(ArrayUtils.contains(DOUBLE_TEST_CHARGE, test.getId().intValue())) {
+					multiplier = 2;
+				}
+			}
+		}
+		return String.valueOf(multiplier*locationWiseLabCharges.getPickUpCharge());
 	}
 	
 	public String updateTestResults(Appointment appointment) {

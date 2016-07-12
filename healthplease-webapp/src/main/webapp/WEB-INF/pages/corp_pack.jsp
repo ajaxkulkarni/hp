@@ -215,7 +215,7 @@ border-radius:5px;
 						</div>
 			    </div>
 				  <div class="cardfooter">
-			  <button type="button" class="btn btn-primary" onclick="loadModal('Package1')">Select</button>
+			  <button type="button" class="btn btn-primary" onclick="loadModal('Package 1')">Select</button>
 			    </div>		
 			</div>
 		
@@ -271,7 +271,7 @@ border-radius:5px;
 							</div>
 			    </div>
 				  <div class="cardfooter">
-			  <button type="button" class="btn btn-primary" onclick="loadModal('Package1 + Diagnostic tests')">Select</button>
+			  <button type="button" class="btn btn-primary" onclick="loadModal('Package 1 + Diagnostic tests')">Select</button>
 			    </div>		
 			</div>
 		</div>
@@ -330,7 +330,7 @@ border-radius:5px;
 						</div>
 			    </div>
 				  <div class="cardfooter">
-			     <button type="button" class="btn btn-primary" onclick="loadModal('Package2')">Select</button>
+			     <button type="button" class="btn btn-primary" onclick="loadModal('Package 2')">Select</button>
 			    </div>		
 			</div>
 		</div>
@@ -393,7 +393,7 @@ border-radius:5px;
 					</div>
 			    </div>
 				  <div class="cardfooter">
-			   <button type="button" class="btn btn-primary" onclick="loadModal('Package2 + Diagnostic tests')">Select</button>
+			   <button type="button" class="btn btn-primary" onclick="loadModal('Package 2 + Diagnostic tests')">Select</button>
 			    </div>		
 			</div>
 		</div>
@@ -470,7 +470,7 @@ border-radius:5px;
 							</div>
 			       </div>
 				  <div class="cardfooter">
-			    	 <button type="button" class="btn btn-primary" onclick="loadModal('Package3 + DIagnostic tests')">Select</button>
+			    	 <button type="button" class="btn btn-primary" onclick="loadModal('Package 3 + DIagnostic tests')">Select</button>
 			    </div>		
 			</div>
 		</div>

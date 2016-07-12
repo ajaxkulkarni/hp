@@ -307,10 +307,10 @@ public class HPLabControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/" + "getLocationCharge", method = RequestMethod.POST)
-	public @ResponseBody String getLocationCharges(ModelMap model, int locId) {
+	public @ResponseBody String getLocationCharges(ModelMap model, int locId, String testIds) {
 		LabLocation location = new LabLocation();
 		location.setId(locId);
-		return labBo.getLocationCharges(manager.getUser().getLab(), location);
+		return labBo.getLocationCharges(manager.getUser().getLab(), location, CommonUtils.prepareTests(testIds));
 	}
 
 	@RequestMapping(value = "/" + LAB_DAYS_GET_URL, method = RequestMethod.GET)

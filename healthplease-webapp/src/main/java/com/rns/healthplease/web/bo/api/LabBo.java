@@ -32,10 +32,10 @@ public interface LabBo {
 	
 	List<Appointment> getAppointmentsBetween(Lab lab,Date date1, Date date2);
 
-	String getLocationCharges(Lab lab, LabLocation location);
-	
 	String updateTestResults(Appointment appointment);
 	
 	Appointment getAppointment(Appointment appointment);
+
+	String getLocationCharges(Lab lab, LabLocation location, List<LabTest> tests);
 	
 }

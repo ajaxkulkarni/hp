@@ -108,7 +108,7 @@
         <div class="row" style="border:">
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper" style="border:">
              <input type="hidden" name="lab.id" id="idLabs" value="${user.lab.id}"> 
-             <input type="hidden" id="homeCollection" value="Y"> 
+             <input type="hidden" name="homeCollection" id="homeCollection" value="true"> 
              <select id="idTest" name="testIds" class="form-control selectpicker js-tests" multiple="multiple" required="required"> 
               	<optgroup label="Test Packages" style="margin-left: 10px">
              	<c:forEach items="${tests}" var="test">
@@ -516,7 +516,7 @@ $(document).ready(function(){
             
             $.ajax({
                     type:"POST",
-                    url:'getLocationCharge?locId=' + location,
+                    url:'getLocationCharge?locId=' + location + "&testIds=" + $("#idTest").val(),
                     success: function(response){
                       $("#idpickCharge").html("Rs. "+response);
                     }
@@ -588,7 +588,7 @@ function confirmActivate(day) {
 
 function hideAddress() {
 	$("#addressFields").hide();
-	$("#homeCollection").val('N');
+	$("#homeCollection").val('false');
 	$("#idAppointmentDate").val("");
 	$("#idLocation option:selected").removeAttr("selected");
 	$('#select2-idLocation-container').html("Select Your Location")
@@ -597,7 +597,7 @@ function hideAddress() {
 
 function showAddress() {
 	$("#addressFields").show();
-	$("#homeCollection").val('Y');
+	$("#homeCollection").val('true');
 	$("#idAppointmentDate").val("");
 	$("#idLocation option:selected").removeAttr("selected");
 	$('#select2-idLocation-container').html("Select Your Location")

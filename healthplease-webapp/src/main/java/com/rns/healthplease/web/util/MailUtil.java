@@ -293,7 +293,7 @@ public class MailUtil implements Constants, Runnable {
 			put(MAIL_TYPE_REQUEST_CALLBACK, "Thank you for requesting callback!");
 			put(MAIL_TYPE_REQUEST_CALLBACK_LAB, "New request call back");
 			put(MAIL_TYPE_FORGOT_PASSWORD, "Your temporary password is generated!");
-			put(MAIL_TYPE_CORPORATE_REQUEST_ADMIN, "A new Corporate package has requested for {labName}");
+			put(MAIL_TYPE_CORPORATE_REQUEST_ADMIN, "A new Corporate package has been requested for {labName}");
 			put(MAIL_TYPE_CORPORATE_REQUEST, "Thank you for booking the Corporate Package with Health Please");
 		}
 	});

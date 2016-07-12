@@ -129,13 +129,14 @@ public class HPCustomerControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/getSlots", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody String getSlots(Integer labId, String date) {
+	public @ResponseBody String getSlots(Integer labId, String date, boolean homeCollection) {
 		System.out.println("Getting slots..");
 		Lab lab = new Lab();
 		lab.setId(labId);
 		Appointment appointment = manager.getCurrentAppointment();
 		appointment.setLab(lab);
 		appointment.setDate(CommonUtils.convertDate(date));
+		appointment.setHomeCollection(homeCollection);
 		return new Gson().toJson(userBo.getAvailableSlots(appointment));
 	}
 
