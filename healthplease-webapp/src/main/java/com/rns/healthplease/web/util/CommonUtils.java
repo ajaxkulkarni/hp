@@ -18,6 +18,7 @@ import java.util.Scanner;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.hibernate.Session;
@@ -373,6 +374,7 @@ public class CommonUtils implements Constants {
 	public static void calculatePrice(Lab lab, Appointment appointment, AppointmentDao appointmentDao, Session session) {
 		List<LabTest> tests = new ArrayList<LabTest>();
 		Integer totalPrice = 0;
+		Integer testChargeMultiplier = 1;
 		for (LabTest test : appointment.getTests()) {
 			Tests testById = appointmentDao.getTestById(test.getId(), session);
 			if (testById == null) {
@@ -387,13 +389,16 @@ public class CommonUtils implements Constants {
 			}
 			test.setPrice(Integer.valueOf(testLabs.getLabPrice()));
 			totalPrice = totalPrice + Integer.valueOf(testLabs.getLabPrice());
+			if(ArrayUtils.contains(Constants.DOUBLE_TEST_CHARGE, test.getId().intValue())) {
+				testChargeMultiplier = 2;
+			}
 			tests.add(test);
 		}
 		lab.setTestPrice(totalPrice);
 		if (appointment.getLocation() != null && appointment.isHomeCollection()) {
 			LocationWiseLabCharges charges = appointmentDao.getLocationCharges(lab.getId(), appointment.getLocation().getId(), session);
 			if (charges != null) {
-				lab.setPickUpCharge(Integer.valueOf(charges.getPickUpCharge()));
+				lab.setPickUpCharge(testChargeMultiplier*Integer.valueOf(charges.getPickUpCharge()));
 				totalPrice = totalPrice + lab.getPickUpCharge();
 			}
 		}

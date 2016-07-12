@@ -72,6 +72,7 @@ public interface Constants {
 	String CANCELLED_HEADER = "Cancelled Appointments";
 	String PENDING_HEADER = "Pending Appointments";
 	String TODAY_HEADER = "Today's Appointments";
+	int[] DOUBLE_TEST_CHARGE = {42,159};
 
 	String ERROR_INVALID_USER_CREDENTIALS = "Invalid user credentials!";
 	String ERROR_INVALID_USER = "Invalid User Details!";
