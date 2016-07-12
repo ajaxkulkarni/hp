@@ -75,7 +75,8 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardbody">
-			         <!--  <p>Upto 45% off, Starting Rs.700</p> -->
+
+			          <h4>Upto 45% off</h4>
 			           <div class="panel-group">
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
@@ -97,8 +98,10 @@ border-radius:5px;
 								  <li class="list-group-item"><h3>Test for Heart</h3></li>
 								  <li class="list-group-item">Total Cholesterol </li>
 							
-								  <li class="list-group-item"><h3>Tests for Liver</h3></li>
-								  <li class="list-group-item">Creatinine</li>
+
+								  <li class="list-group-item"><h3>Tests for Kidney</h3></li>
+
+							  <li class="list-group-item">Creatinine</li>
 								  <li class="list-group-item">Urine Routine</li>
 						      </ul>
 						   
@@ -108,7 +111,7 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardfooter">
-			    	 <button type="button" class="btn btn-primary" onclick="loadModal('Basic Package')">select</button>
+			    	 <button type="button" class="btn btn-primary" onclick="loadModal('Basic Package')">Select</button>
 			    </div>
 						
 			</div>
@@ -120,8 +123,9 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardbody">
-			          <!-- <p>Upto 42% off, Starting Rs.1900</p> -->
-			           <div class="panel-group">
+
+			          <h4>Upto 42% off</h4>
+		           <div class="panel-group">
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
@@ -160,7 +164,7 @@ border-radius:5px;
 						</div>
 			    </div>
 				 <div class="cardfooter">
-			     <button type="button" class="btn btn-primary" onclick="loadModal('Basic Package + Diagnostic test')">select</button>
+			     <button type="button" class="btn btn-primary" onclick="loadModal('Basic Package + Diagnostic test')">Select</button>
 			    </div>		
 			</div>
 		</div>
@@ -169,11 +173,13 @@ border-radius:5px;
 		<div class="col-sm-6" style="border:none;">
 		<div class="card">
 				<div class="cardheader">
-			          <h2>Package1</h2>
+			          <h2>Package 1</h2>
 			    </div>
 			    
 			    <div class="cardbody">
-			          <!-- <p>Upto 37% off, Starting Rs.1200</p> -->
+
+			          <h4>Upto 37% off</h4>
+
 			            <div class="panel-group">
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
@@ -209,7 +215,7 @@ border-radius:5px;
 						</div>
 			    </div>
 				  <div class="cardfooter">
-			  <button type="button" class="btn btn-primary" onclick="loadModal('Package1')">select</button>
+			  <button type="button" class="btn btn-primary" onclick="loadModal('Package1')">Select</button>
 			    </div>		
 			</div>
 		
@@ -218,11 +224,13 @@ border-radius:5px;
 	    <div class="col-sm-6" style="border:none">
 	    <div class="card">
 				<div class="cardheader">
-			          <h2>Package1 + Diagnostics Tests</h2>
+			          <h2>Package 1 + Diagnostics Tests</h2>
 			    </div>
 			    
 			    <div class="cardbody">
-			          <!-- <p>Upto 26% off, Starting Rs.2800</p> -->
+
+			          <h4>Upto 26% off</h4>
+
 			            <div class="panel-group">
 							  <div class="panel panel-default">
 							    <div class="panel-heading">
@@ -263,7 +271,7 @@ border-radius:5px;
 							</div>
 			    </div>
 				  <div class="cardfooter">
-			  <button type="button" class="btn btn-primary" onclick="loadModal('Package1 + Diagnostic tests')">select</button>
+			  <button type="button" class="btn btn-primary" onclick="loadModal('Package1 + Diagnostic tests')">Select</button>
 			    </div>		
 			</div>
 		</div>
@@ -273,11 +281,13 @@ border-radius:5px;
 		<div class="col-sm-6" style="border:none">
 		<div class="card">
 				<div class="cardheader">
-			          <h2>Package2</h2>
+			          <h2>Package 2</h2>
 			    </div>
 			    
 			    <div class="cardbody">
-			          <!-- <p>Upto 37% off, Starting Rs. 3000</p> -->
+
+			          <h4>Upto 37% off</h4>
+
 			          <div class="panel-group">
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
@@ -320,18 +330,20 @@ border-radius:5px;
 						</div>
 			    </div>
 				  <div class="cardfooter">
-			     <button type="button" class="btn btn-primary" onclick="loadModal('Package2')">select</button>
+			     <button type="button" class="btn btn-primary" onclick="loadModal('Package2')">Select</button>
 			    </div>		
 			</div>
 		</div>
 	    <div class="col-sm-6" style="border:none">
 	    <div class="card">
 				<div class="cardheader">
-			          <h2>Package2 + Diagnostics Tests</h2>
+			          <h2>Package 2 + Diagnostics Tests</h2>
 			    </div>
 			    
 			    <div class="cardbody">
-			          <!-- <p>Upto 24% off, Starting Rs.6000</p> -->
+
+			          <h4>Upto 24% off</h4>
+
 			            <div class="panel-group">
 					  <div class="panel panel-default">
 					    <div class="panel-heading">
@@ -381,7 +393,7 @@ border-radius:5px;
 					</div>
 			    </div>
 				  <div class="cardfooter">
-			   <button type="button" class="btn btn-primary" onclick="loadModal('Package2 + Diagnostic tests')">select</button>
+			   <button type="button" class="btn btn-primary" onclick="loadModal('Package2 + Diagnostic tests')">Select</button>
 			    </div>		
 			</div>
 		</div>
@@ -397,9 +409,12 @@ border-radius:5px;
 			    </div>
 			    
 			    <div class="cardbody">
-			          <!-- <p>Male - Upto 46% off, Starting Rs.7000</br>
-                             Female - Upto 46% off, Starting Rs.7500</p> -->
-                             <div class="panel-group">
+
+			          <h4>Male - Upto 46% off </br>
+                             Female - Upto 46% off </h4>
+
+			     
+                  <div class="panel-group">
 							  <div class="panel panel-default">
 							    <div class="panel-heading">
 							      <h4 class="panel-title">
@@ -455,7 +470,7 @@ border-radius:5px;
 							</div>
 			       </div>
 				  <div class="cardfooter">
-			    	 <button type="button" class="btn btn-primary" onclick="loadModal('Package3 + DIagnostic tests')">select</button>
+			    	 <button type="button" class="btn btn-primary" onclick="loadModal('Package3 + DIagnostic tests')">Select</button>
 			    </div>		
 			</div>
 		</div>
