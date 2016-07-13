@@ -50,8 +50,8 @@ border-radius:5px;
 <div class ="container" >
 <div class="row">
 	<div class="col-sm-12">
-		<div class ="card" style="height:100px">
-		<div class="cardheader">
+		<div class ="card1" style="height:100px">
+		<div class="cardheader1">
 		<h1>Corporate Packages</h1>
 		</div>
 		</div>
@@ -398,7 +398,8 @@ border-radius:5px;
 			</div>
 		</div>
 		
-	</div></div>
+	</div>
+	</div>
 	
 	<div class="row">
 		<div class="col-sm-3" style="border:none"></div>
@@ -476,7 +477,7 @@ border-radius:5px;
 		</div>
 			<div class="col-sm-4" style="border:none"></div>
 	</div>
-</div>
+<%@include file="user_footer.jsp" %>
    <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -528,7 +529,7 @@ border-radius:5px;
         </div>
         
       </div></div></div>
-<%@include file="user_footer.jsp" %>
+
 
 <script type="text/javascript">
 
