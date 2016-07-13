@@ -142,7 +142,7 @@
                             <a class="" href="<%=Constants.BOOK_APPOINTMENT_LAB_GET_URL%>"><i class="fa fa-calendar fa-fw"></i> Book an Appointment</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><i class="fa fa-bar-chart-o fa-fw"></i> Availability<span class="fa arrow"></span></a>
+                            <a href="javascript:void(0);"><i class="fa fa-bar-chart-o fa-fw"></i> Availability<!-- <span class="fa arrow"></span> --></a>
                             <ul class="nav nav-second-level ">
                                 <li>
                                     <a class="" href="<%=Constants.LAB_DAYS_GET_URL%>">Day</a>
@@ -164,5 +164,6 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+        
 </body>
 </html>

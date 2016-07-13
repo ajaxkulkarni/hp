@@ -35,6 +35,7 @@ import com.rns.healthplease.web.util.ExcelUtil;
 @Controller
 public class HPAdminController implements Constants {
 
+	private static final String MODEL_ACTIVE_LIST = "activeList";
 	private UserBo userBo;
 	private LabBo labBo;
 	private AdminBo adminBo;
@@ -85,6 +86,7 @@ public class HPAdminController implements Constants {
 		manager.setCurrentAppointment(null);
 		adminBo.getAllAppointments(manager.getUser());
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(0));
 		manager.setResult(null);
 	}
 
@@ -166,6 +168,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_CATEGORIES, adminBo.getAllTestCategories());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(1));
 		manager.setResult(null);
 		return ADMIN_CATEGORIES_PAGE;
 	}
@@ -180,6 +183,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_CATEGORY, categories);
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(0));
 		manager.setResult(null);
 		return ADMIN_EDIT_CATEGORY_PAGE;
 	}
@@ -201,6 +205,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests(null));
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(2));
 		manager.setResult(null);
 		return ADMIN_TESTS_PAGE;
 	}
@@ -217,6 +222,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests(null));
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(2));
 		manager.setResult(null);
 		return ADMIN_EDIT_TEST_PAGE;
 	}
@@ -257,6 +263,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USERS, adminBo.getAllUsers());
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(4));
 		model.addAttribute(MODEL_LOCATIONS, userBo.getAllLocations());
 		manager.setResult(null);
 		return ADMIN_LABS_PAGE;
@@ -298,6 +305,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_LOCATIONS, userBo.getAllLocations());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(3));
 		manager.setResult(null);
 		return ADMIN_LOCATIONS_PAGE;
 	}
@@ -312,6 +320,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_LOCATION, location);
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(3));
 		manager.setResult(null);
 		return ADMIN_EDIT_LOCATION_PAGE;
 	}
@@ -338,12 +347,15 @@ public class HPAdminController implements Constants {
 	public String initLabDashboards(ModelMap model) {
 		model.addAttribute(MODEL_LABS, adminBo.getAllLabs());
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(5));
 		return ADMIN_LAB_DASHBOARD_PAGE;
 	}
 	
 	@RequestMapping(value = "/" + ADMIN_PARAMETERS_GET_URL, method = RequestMethod.GET)
 	public String initParameters(ModelMap model) {
 		model.addAttribute(MODEL_PARAMETERS, adminBo.getAllTestParemeters());
+		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(6));
 		return ADMIN_PARAMETERS_PAGE;
 	}
 	
@@ -370,6 +382,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_PARAMETERS, adminBo.getAllTestParemeters());
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests(null));
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(6));
 		return ADMIN_MAP_TEST_PARAMS_PAGE;
 	}
 
@@ -385,6 +398,7 @@ public class HPAdminController implements Constants {
 		lab.setId(labId);
 		model.addAttribute(MODEL_LAB, adminBo.getLab(lab));
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(4));
 		return ADMIN_MAP_LAB_LOCATIONS_PAGE;
 	}
 	
@@ -403,6 +417,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_LAB_LOCATION, labLocation);
 		model.addAttribute(MODEL_LAB, lab);
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(4));
 		return ADMIN_EDIT_LAB_LOCATION_MAP_PAGE;
 	}
 	
@@ -430,6 +445,7 @@ public class HPAdminController implements Constants {
 		lab.setId(labId);
 		model.addAttribute(MODEL_LAB, adminBo.getLab(lab));
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(4));
 		return ADMIN_LAB_TESTS_PAGE;
 	}
 	
@@ -448,6 +464,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_TEST, labLocation);
 		model.addAttribute(MODEL_LAB, lab);
 		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(4));
 		return ADMIN_EDIT_LAB_TEST_PAGE;
 	}
 	
@@ -467,6 +484,18 @@ public class HPAdminController implements Constants {
 		lab.setId(labId);
 		manager.setResult(adminBo.deleteLabTest(test,lab));
 		return new RedirectView(ADMIN_MAP_LAB_LOCATIONS_GET_URL + "?labId=" + labId);
+	}
+	
+	private List<String> makeActiveList(int index) {
+		List<String> activeList = new ArrayList<String>();
+		for(int i = 0; i < 11 ; i++) {
+			if(i == index) {
+				activeList.add("active");
+			} else {
+				activeList.add("");
+			}
+		}
+		return activeList;
 	}
 	
 }

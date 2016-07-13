@@ -159,7 +159,7 @@
 
 	function setData() {
 		$("#idSlot").val($("#idAppTime").val());
-		$("#register_link").attr("href", "signUp.htm?slotId=" + $("#idAppTime").val());
+		$("#register_link").attr("href", "signup.htm?slotId=" + $("#idAppTime").val());
 	}
 	
 	function getSlots() {

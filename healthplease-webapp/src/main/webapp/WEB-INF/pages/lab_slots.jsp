@@ -110,7 +110,7 @@
 	<p>
 	The following slots are available on <span> <fmt:formatDate value="${slots[0].blockedDate}" pattern="MMM dd, yyyy"/></span>
 	</p>
-	
+	Select All <input class="fields" type="checkbox" value="" name="" id = "selectAllChk" onclick="checkAll(this)">
 	<form action="<%=Constants.BLOCK_SLOTS_POST_URL%>" method="post">
 	<table width='400' border='0' cellpadding='2' cellspacing='0' id='booking'>
 		<tr>
@@ -170,6 +170,15 @@ var unselectedList =  "";
 var isChanged = 0;
 var date = '';
 var labid = '';
+
+  function checkAll(bx) {
+	  var cbs = document.getElementsByTagName('input');
+	  for(var i=0; i < cbs.length; i++) {
+	    if(cbs[i].type == 'checkbox') {
+	      cbs[i].checked = bx.checked;
+	    }
+	  }
+	}
 
 $(document).ready(function(){
 

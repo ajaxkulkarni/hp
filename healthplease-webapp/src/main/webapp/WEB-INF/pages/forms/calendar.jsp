@@ -15,9 +15,9 @@
     <div id='outer_calendar'>
 	<table border='0' cellpadding='0' cellspacing='0' id='calendar'>
         <tr id='week'>
-        <td align='left'><a href="previousMonth.htm?view=${labView}">&laquo;</a></td>
+        <td align='left'><a href="previousmonth.htm?view=${labView}">&laquo;</a></td>
         <td colspan='5' id='center_date'>${cal.monthName}, ${cal.year}</td>    
-        <td align='right'><a href="nextMonth.htm?view=${labView})">&raquo;</a></td>
+        <td align='right'><a href="nextmonth.htm?view=${labView}">&raquo;</a></td>
     </tr>
     <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
     <c:forEach items="${cal.weeks}" var="week">

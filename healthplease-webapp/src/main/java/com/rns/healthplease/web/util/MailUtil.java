@@ -255,7 +255,7 @@ public class MailUtil implements Constants, Runnable {
 
 	private String prepareActivationMailContent(Appointment appointment) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(Constants.ROOT_URL).append(Constants.ACTIVATION_URL_GET).append("?").append(Constants.MODEL_USER).append("=").append(appointment.getUser().getEmail())
+		builder.append(Constants.ROOT_URL).append("/").append(Constants.ACTIVATION_URL_GET).append("?").append(Constants.MODEL_USER).append("=").append(appointment.getUser().getEmail())
 				.append("&").append(Constants.MODEL_ACTIVATION_CODE).append("=").append(appointment.getUser().getActivationCode());
 		return builder.toString();
 	}
