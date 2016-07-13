@@ -171,7 +171,7 @@
 	       	type : "POST",
 	           url : 'getSlots',
 	           dataType: 'json',
-	           data: "labId="+ $("#idLabs").val() + "&date="+ $("#idAppointmentDate").val(),
+	           data: "labId="+ $("#idLabs").val() + "&date="+ $("#idAppointmentDate").val() + "&homeCollection=true",
 	           success : function(slots) {
 	        	   var i = 0;
 	        	   var appendString = "<option value='select'>Please select timing</option>";

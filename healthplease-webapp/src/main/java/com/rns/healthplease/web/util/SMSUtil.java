@@ -98,6 +98,13 @@ public class SMSUtil implements Constants {
 				if (appointment.getPayment() != null && appointment.getPayment().getType() != null) {
 					result = StringUtils.replace(result, "{paymentType}", appointment.getPayment().getType().name());
 				}
+				if(MAIL_TYPE_BOOK_APP_LAB.equals(type) || MAIL_TYPE_BOOK_APP_USER.equals(type)) {
+					String appointmentType = "Lab Visit";
+					if(appointment.isHomeCollection()) {
+						appointmentType = "Home Visit";
+					}
+					result = StringUtils.replace(result, "{appointmentType}", appointmentType);
+				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -117,6 +124,8 @@ public class SMSUtil implements Constants {
 			result = StringUtils.replace(result, "{testName}", form.getTestName());
 			result = StringUtils.replace(result, "{labName}", form.getLabName());
 			result = StringUtils.replace(result, "{company}", form.getCompanyName());
+			
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -150,6 +159,9 @@ public class SMSUtil implements Constants {
 			}
 			StringBuilder builder = new StringBuilder();
 			for (User user : appointment.getLab().getUsers()) {
+				if(StringUtils.isEmpty(user.getPhone())) {
+					continue;
+				}
 				builder.append(user.getPhone()).append(",");
 			}
 			return builder.toString();

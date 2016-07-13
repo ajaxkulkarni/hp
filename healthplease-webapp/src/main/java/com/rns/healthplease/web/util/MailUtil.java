@@ -188,6 +188,13 @@ public class MailUtil implements Constants, Runnable {
 			} else {
 				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(appointment.getUser().getEmail()));
 			}
+			if(MAIL_TYPE_BOOK_APP_LAB.equals(type) || MAIL_TYPE_BOOK_APP_USER.equals(type)) {
+				String appointmentType = "Lab Visit";
+				if(appointment.isHomeCollection()) {
+					appointmentType = "Home Visit";
+				}
+				message.setSubject(StringUtils.replace(message.getSubject(), "{appointmentType}", appointmentType));
+			}
 			return result;
 
 		} catch (FileNotFoundException e) {
@@ -283,8 +290,8 @@ public class MailUtil implements Constants, Runnable {
 		{
 			put(MAIL_TYPE_ACTIVATION, "Account activation");
 			put(MAIL_TYPE_REPORT_UPLOAD, "Delivery: Your test report from {labName}");
-			put(MAIL_TYPE_BOOK_APP_USER, "Congratulations! Your appointment is booked successfully!");
-			put(MAIL_TYPE_BOOK_APP_LAB, "New Appointment booked for {labName}");
+			put(MAIL_TYPE_BOOK_APP_USER, "Congratulations! Your {appointmentType} appointment is booked successfully!");
+			put(MAIL_TYPE_BOOK_APP_LAB, "New {appointmentType} Appointment booked for {labName}");
 			put(MAIL_TYPE_REGISTRATION, "Thank you for choosing Health Please");
 			put(MAIL_TYPE_CANCEL_APP, "Your Appointment has been cancelled!");
 			put(MAIL_TYPE_CANCEL_APP_LAB, "Appointment for {labName} has been cancelled!");
