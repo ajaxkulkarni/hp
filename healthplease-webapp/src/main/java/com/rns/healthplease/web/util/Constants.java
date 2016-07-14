@@ -231,7 +231,7 @@ public interface Constants {
 	String MAIL_TYPE_CORPORATE_REQUEST_ADMIN = "corporateRequestAdmin";
 
 	String[] ADMIN_MAIL_TYPES = { MAIL_TYPE_REQUEST_CHECKUP_LAB, MAIL_TYPE_REQUEST_CALLBACK_LAB, MAIL_TYPE_CORPORATE_REQUEST_ADMIN };
-	String ADMIN_MAILS = "yash.bharwani@healthplese.in,care@healthplease.in,ajinkyashiva@gmail.com";
+	String ADMIN_MAILS = "yash.bharwani@healthplease.in,care@healthplease.in,ajinkyashiva@gmail.com";
 	String ADMIN_PHONES = "9890733740,9423040642";
 
 }
