@@ -34,10 +34,10 @@ left:10%;
 .card{
 margin:2%;
 background-color:#fff;
-box-shadow: 0px 2px 5px grey;
+box-shadow: 0px 1px 5px grey;
 padding:1%;
 text-align:centre;
-border-radius:5px;
+border-radius:2px;
 
 }
 
