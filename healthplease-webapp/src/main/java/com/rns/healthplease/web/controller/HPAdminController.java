@@ -501,8 +501,8 @@ public class HPAdminController implements Constants {
 		return activeList;
 	}
 	
-	@RequestMapping(name  = "/getAppointment", method = RequestMethod.POST)
-	public @ResponseBody String getAppointment(int appointmentId) {
+	@RequestMapping(value = "/getAppointment", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody String getAppointment(Integer appointmentId, String header, ModelMap model) {
 		Appointment appointment = new Appointment();
 		appointment.setId(appointmentId);
 		return new Gson().toJson(labBo.getAppointment(appointment));
