@@ -12,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.google.gson.Gson;
 import com.rns.healthplease.web.bo.api.AdminBo;
 import com.rns.healthplease.web.bo.api.HPSessionManager;
 import com.rns.healthplease.web.bo.api.LabBo;
@@ -156,6 +158,7 @@ public class HPAdminController implements Constants {
 	public RedirectView uploadReport(Appointment appointment, ModelMap model) {
 		String result = "";
 		if (!appointment.getReport().isEmpty()) {
+			appointment.getTests().get(0).setReport(appointment.getReport());
 			appointment.setUser(manager.getUser());
 			result = labBo.uploadReport(appointment);
 			manager.setResult(result);
@@ -496,6 +499,13 @@ public class HPAdminController implements Constants {
 			}
 		}
 		return activeList;
+	}
+	
+	@RequestMapping(name  = "/getAppointment", method = RequestMethod.POST)
+	public @ResponseBody String getAppointment(int appointmentId) {
+		Appointment appointment = new Appointment();
+		appointment.setId(appointmentId);
+		return new Gson().toJson(labBo.getAppointment(appointment));
 	}
 	
 }

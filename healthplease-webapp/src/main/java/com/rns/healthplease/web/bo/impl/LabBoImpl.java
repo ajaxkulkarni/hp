@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rns.healthplease.web.bo.api.LabBo;
 import com.rns.healthplease.web.bo.domain.Appointment;
@@ -28,6 +29,7 @@ import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.dao.api.AppointmentDao;
 import com.rns.healthplease.web.dao.api.LabDao;
 import com.rns.healthplease.web.dao.api.UserDao;
+import com.rns.healthplease.web.dao.domain.AppFileLocations;
 import com.rns.healthplease.web.dao.domain.AppoinAddresses;
 import com.rns.healthplease.web.dao.domain.AppointmentTestResults;
 import com.rns.healthplease.web.dao.domain.AppointmentTests;
@@ -266,10 +268,15 @@ public class LabBoImpl implements LabBo, Constants {
 			return ERROR_INVALID_APPOINTMENT_DETAILS;
 		}
 		byte[] bytes = null;
+		MultipartFile uploadedReport = null;
+		LabTest test = getUploadedReportTest(appointment);
+		if (test != null) {
+			uploadedReport = test.getReport();
+		}
 		try {
 			// bytes = report.getBytes();
-			if (appointment.getReport() != null) {
-				bytes = appointment.getReport().getBytes();
+			if (uploadedReport != null) {
+				bytes = uploadedReport.getBytes();
 			} else if (appointment.getReportData() != null) {
 				// bytes =
 				// FileUtils.readFileToByteArray(appointment.getPrepareReport());
@@ -299,9 +306,12 @@ public class LabBoImpl implements LabBo, Constants {
 		}
 		appointments.setCancelledDate(new Date());
 		appointments.setUpdatedDate(new Date());
-		// appointmentDao.addReport(appFileLocations, session);
+		/*
+		 * if(uploadedReport != null) {
+		 * appointmentDao.addReport(appFileLocations, session); }
+		 */
 		addAppointmentResults(session, appointment);
-		updateMailStatus(appointment, appointments);
+		updateMailStatus(appointment, appointments, documentPath);
 		updateStatus(appointments);
 		BufferedOutputStream stream = null;
 		try {
@@ -309,7 +319,7 @@ public class LabBoImpl implements LabBo, Constants {
 			stream.write(bytes);
 			stream.close();
 			Appointment appointmentDetails = DataConverters.getAppointment(session, appointmentDao, appointments);
-			appointmentDetails.setReport(appointment.getReport());
+			appointmentDetails.setReport(uploadedReport);
 			appointmentDetails.setPrepareReport(document);
 			threadPoolTaskExecutor.execute(new MailUtil(appointmentDetails, MAIL_TYPE_REPORT_UPLOAD));
 			SMSUtil.sendSMS(appointmentDetails, MAIL_TYPE_REPORT_UPLOAD);
@@ -323,36 +333,67 @@ public class LabBoImpl implements LabBo, Constants {
 		return RESPONSE_OK;
 	}
 
+	private LabTest getUploadedReportTest(Appointment appointment) {
+		if (CollectionUtils.isEmpty(appointment.getTests())) {
+			return null;
+		}
+		for (LabTest test : appointment.getTests()) {
+			if (test.getReport() != null) {
+				return test;
+			}
+		}
+		return null;
+	}
+
 	private void updateStatus(Appointments appointments) {
-		if(CollectionUtils.isEmpty(appointments.getTests())) {
+		if (CollectionUtils.isEmpty(appointments.getTests())) {
 			return;
 		}
 		int completedTestsCount = 0;
-		for(AppointmentTests test : appointments.getTests()) {
-			if(StringUtils.equals("Y", test.getReportSent())) {
+		for (AppointmentTests test : appointments.getTests()) {
+			if (StringUtils.equals("Y", test.getReportSent())) {
 				completedTestsCount++;
 			}
 		}
-		if(completedTestsCount == appointments.getTests().size()) {
+		for (AppointmentTests test : appointments.getTests()) {
+			if (test.getFileLocation() != null && test.getFileLocation().getId() != null) {
+				completedTestsCount++;
+			}
+		}
+		if (completedTestsCount >= appointments.getTests().size()) {
 			com.rns.healthplease.web.dao.domain.AppointmentStatus status = new com.rns.healthplease.web.dao.domain.AppointmentStatus();
 			status.setId(3);
 			appointments.setStatus(status);
 		}
 	}
 
-	private void updateMailStatus(Appointment appointment, Appointments appointments) {
-		if(CollectionUtils.isEmpty(appointment.getTests()) || CollectionUtils.isEmpty(appointments.getTests())) {
+	private void updateMailStatus(Appointment appointment, Appointments appointments, String documentPath) {
+		if (CollectionUtils.isEmpty(appointment.getTests()) || CollectionUtils.isEmpty(appointments.getTests())) {
 			return;
 		}
-		for(LabTest labTest: appointment.getTests()) {
-			for(AppointmentTests test: appointments.getTests()) {
-				if(labTest.getId() != null && labTest.getId().intValue() == test.getTests().getId().intValue()) {
-					test.setReportSent("Y");
+		for (LabTest labTest : appointment.getTests()) {
+			for (AppointmentTests test : appointments.getTests()) {
+				if (labTest.getId() != null && labTest.getId().intValue() == test.getTests().getId().intValue()) {
+					if (labTest.getReport() != null) {
+						prepareFileLocation(test, documentPath, appointment);
+					} else {
+						test.setReportSent("Y");
+					}
 					break;
 				}
 			}
 		}
-		
+
+	}
+
+	private void prepareFileLocation(AppointmentTests test, String documentPath, Appointment appointment) {
+		AppFileLocations locations = test.getFileLocation();
+		if (locations == null) {
+			locations = BusinessConverters.getAppFileLocation(appointment, documentPath);
+			test.setFileLocation(locations);
+		} else {
+			locations.setFilePath(documentPath);
+		}
 	}
 
 	private void addAppointmentResults(Session session, Appointment appointment) {
@@ -360,14 +401,14 @@ public class LabBoImpl implements LabBo, Constants {
 			return;
 		}
 		for (LabTest test : appointment.getTests()) {
-			List<AppointmentTestResults> results = BusinessConverters.getAppointmentResults(test.getParameters(), appointment.getId(), test.getId(),session);
+			List<AppointmentTestResults> results = BusinessConverters.getAppointmentResults(test.getParameters(), appointment.getId(), test.getId(), session);
 			if (CollectionUtils.isEmpty(results)) {
 				continue;
 			}
 			for (AppointmentTestResults result : results) {
-				if(result.getId() == null || result.getId().intValue() == 0) {
+				if (result.getId() == null || result.getId().intValue() == 0) {
 					session.persist(result);
-				} 
+				}
 			}
 		}
 	}
@@ -406,7 +447,6 @@ public class LabBoImpl implements LabBo, Constants {
 		session.close();
 		return labTests;
 	}
-
 
 	public List<Slot> getAllLabSlotsForDay(Lab lab, Date date) {
 		if (lab == null || lab.getId() == null) {
@@ -486,18 +526,18 @@ public class LabBoImpl implements LabBo, Constants {
 			return null;
 		}
 		Integer multiplier = 1;
-		if(CollectionUtils.isNotEmpty(tests)) {
-			for(LabTest test: tests) {
-				if(ArrayUtils.contains(DOUBLE_TEST_CHARGE, test.getId().intValue())) {
+		if (CollectionUtils.isNotEmpty(tests)) {
+			for (LabTest test : tests) {
+				if (ArrayUtils.contains(DOUBLE_TEST_CHARGE, test.getId().intValue())) {
 					multiplier = 2;
 				}
 			}
 		}
-		return String.valueOf(multiplier*locationWiseLabCharges.getPickUpCharge());
+		return String.valueOf(multiplier * locationWiseLabCharges.getPickUpCharge());
 	}
-	
+
 	public String updateTestResults(Appointment appointment) {
-		if(appointment == null || CollectionUtils.isEmpty(appointment.getTests())) {
+		if (appointment == null || CollectionUtils.isEmpty(appointment.getTests())) {
 			return ERROR_INVALID_APPOINTMENT_DETAILS;
 		}
 		Session session = this.sessionFactory.openSession();
@@ -507,15 +547,15 @@ public class LabBoImpl implements LabBo, Constants {
 		session.close();
 		return RESPONSE_OK;
 	}
-	
+
 	public Appointment getAppointment(Appointment appointment) {
-		if(appointment == null) {
+		if (appointment == null) {
 			return null;
 		}
 		Session session = this.sessionFactory.openSession();
 		AppointmentDao appointmentDao = new AppointmentDaoImpl();
 		Appointments appointments = appointmentDao.getAppointmentById(appointment.getId(), session);
-		if(appointments == null) {
+		if (appointments == null) {
 			session.close();
 			return null;
 		}

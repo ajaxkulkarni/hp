@@ -301,11 +301,11 @@
                                     <div id="upload_error"></div>
                                     <form id="file_upload" enctype="multipart/form-data" action="<%=Constants.ADMIN_UPLOAD_REPORT_POST_URL %>" method="post">
                                         <input type="hidden" value="" name="id" id="report_appid">
-                                        <!-- <div class="form-group">
+                                        <div class="form-group">
                                             <label for="sel1">Select Test:</label>
-                                            <select class="form-control" id="test" name="test">
+                                            <select class="form-control" id="appTests" name="test.id">
                                             </select>
-                                        </div> -->
+                                        </div>
                                         <div class="form-group">
                                             <label for="sel1">Upload report for Test:</label>
                                             <input id="file_to_upload" name="report" class="file" type="file" multiple data-min-file-count="1">
@@ -386,6 +386,26 @@
 <script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
 <script type="text/javascript">
 
+function getAppointment(id) {
+	 $.ajax({
+	       	type : "POST",
+	           url : 'getAppointment',
+	           dataType: 'json',
+	           data: "appointmentId="+ id,
+	           success : function(app) {
+	        	   var appendString = "";
+	        	   var i = 0;
+	        	   for(i = 0; i  < app.tests.length; i++) {
+	        		   if(app.tests[i].reportSent != 'Y' && app.tests[i].fileLocation == null) {
+	        			   appendString = appendString + "<option value='" + app.tests[i] + "' >" + app.tests[i].name + "</option>";
+	        		   }
+	        	   }
+	        	   $("#appTests").html(appendString);
+	           }
+	        	   
+	           });
+}
+
 $(document).ready(function () {
 	
 	$(document).ready(function(){
@@ -409,6 +429,7 @@ function onCancel(appointmentId,labId) {
 function onUpload(appointmentId) {
 	
 	$("#report_appid").val(appointmentId);
+	getAppointment(appointmentId);
 	$("#myModal").modal('show');
 }
 

@@ -3,6 +3,8 @@ package com.rns.healthplease.web.bo.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class LabTest {
 	
 	private Integer id;
@@ -21,6 +23,8 @@ public class LabTest {
 	private Integer srNo;
 	private Integer deliveryDays;
 	private String testDisplayType;
+	private String fileLocation;
+	private MultipartFile report;
 	
 	public Integer getPrice() {
 		return price;
@@ -121,6 +125,18 @@ public class LabTest {
 	}
 	public void setTestDisplayType(String testDisplayType) {
 		this.testDisplayType = testDisplayType;
+	}
+	public String getFileLocation() {
+		return fileLocation;
+	}
+	public void setFileLocation(String fileLocation) {
+		this.fileLocation = fileLocation;
+	}
+	public MultipartFile getReport() {
+		return report;
+	}
+	public void setReport(MultipartFile report) {
+		this.report = report;
 	}
 	
 

@@ -29,7 +29,7 @@ public class AppointmentTests implements java.io.Serializable {
 	private Appointments appointments;
 	//private int testId;
 	private Tests tests;
-	private int fileLocationId;
+	private AppFileLocations fileLocation;
 	private String reportSent;
 
 	public AppointmentTests() {
@@ -65,13 +65,15 @@ public class AppointmentTests implements java.io.Serializable {
 		this.testId = testId;
 	}*/
 
-	@Column(name = "file_location_id", nullable = false)
-	public int getFileLocationId() {
-		return this.fileLocationId;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(name = "file_location_id")
+	public AppFileLocations getFileLocation() {
+		return fileLocation;
 	}
 
-	public void setFileLocationId(int fileLocationId) {
-		this.fileLocationId = fileLocationId;
+	public void setFileLocation(AppFileLocations fileLocation) {
+		this.fileLocation = fileLocation;
 	}
 
 	@ManyToOne(cascade = CascadeType.MERGE)
