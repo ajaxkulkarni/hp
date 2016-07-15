@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.bouncycastle.asn1.tsp.TSTInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -155,10 +156,13 @@ public class HPAdminController implements Constants {
 	}
 
 	@RequestMapping(value = "/" + ADMIN_UPLOAD_REPORT_POST_URL, method = RequestMethod.POST)
-	public RedirectView uploadReport(Appointment appointment, ModelMap model) {
+	public RedirectView uploadReport(Appointment appointment,int testId, ModelMap model) {
 		String result = "";
 		if (!appointment.getReport().isEmpty()) {
-			appointment.getTests().get(0).setReport(appointment.getReport());
+			LabTest test = new LabTest();
+			test.setId(testId);
+			test.setReport(appointment.getReport());
+			appointment.getTests().add(test);
 			appointment.setUser(manager.getUser());
 			result = labBo.uploadReport(appointment);
 			manager.setResult(result);

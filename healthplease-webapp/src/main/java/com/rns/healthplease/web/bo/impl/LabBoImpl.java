@@ -300,8 +300,8 @@ public class LabBoImpl implements LabBo, Constants {
 		Transaction transaction = session.beginTransaction();
 		appointments.setStatus(BusinessConverters.getStatus(appointment.getStatus()));
 		appointments.setCancelledAuthority("");
-		if (appointment.getUser() != null) {
-			appointments.setCancelledBy(Short.valueOf(appointment.getUser().getId().toString()));
+		if (appointment.getUser() != null && appointment.getUser().getId() != null) {
+			appointments.setCancelledBy(appointment.getUser().getId().shortValue());
 			appointments.setUpdatedBy(appointment.getUser().getId());
 		}
 		appointments.setCancelledDate(new Date());
@@ -311,7 +311,7 @@ public class LabBoImpl implements LabBo, Constants {
 		 * appointmentDao.addReport(appFileLocations, session); }
 		 */
 		addAppointmentResults(session, appointment);
-		updateMailStatus(appointment, appointments, documentPath);
+		updateMailStatus(appointment, appointments, documentPath, session);
 		updateStatus(appointments);
 		BufferedOutputStream stream = null;
 		try {
@@ -367,7 +367,7 @@ public class LabBoImpl implements LabBo, Constants {
 		}
 	}
 
-	private void updateMailStatus(Appointment appointment, Appointments appointments, String documentPath) {
+	private void updateMailStatus(Appointment appointment, Appointments appointments, String documentPath, Session session) {
 		if (CollectionUtils.isEmpty(appointment.getTests()) || CollectionUtils.isEmpty(appointments.getTests())) {
 			return;
 		}
@@ -375,7 +375,7 @@ public class LabBoImpl implements LabBo, Constants {
 			for (AppointmentTests test : appointments.getTests()) {
 				if (labTest.getId() != null && labTest.getId().intValue() == test.getTests().getId().intValue()) {
 					if (labTest.getReport() != null) {
-						prepareFileLocation(test, documentPath, appointment);
+						prepareFileLocation(test, documentPath, appointment, session);
 					} else {
 						test.setReportSent("Y");
 					}
@@ -386,10 +386,11 @@ public class LabBoImpl implements LabBo, Constants {
 
 	}
 
-	private void prepareFileLocation(AppointmentTests test, String documentPath, Appointment appointment) {
+	private void prepareFileLocation(AppointmentTests test, String documentPath, Appointment appointment, Session session) {
 		AppFileLocations locations = test.getFileLocation();
 		if (locations == null) {
 			locations = BusinessConverters.getAppFileLocation(appointment, documentPath);
+			session.persist(locations);
 			test.setFileLocation(locations);
 		} else {
 			locations.setFilePath(documentPath);

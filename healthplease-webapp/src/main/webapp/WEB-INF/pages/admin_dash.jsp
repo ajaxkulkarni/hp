@@ -268,7 +268,7 @@
                                                 <!--<td width="0px">{{user.lab_name}}</td>-->
                                                 <td width="0px">${appointment.status.name}</td>
                                                  <td colspan="2">
-                                                    <c:if test="${appointment.status.id == 1 }">
+                                                    <c:if test="${appointment.status.id == 1 || appointment.status.id == 4 }">
                                                     <a id="process_app" class="btn btn-success btn-mini" onclick="onUpload(${appointment.id})">
 														<i class="glyphicon glyphicon-ok"></i>
 													</a>
@@ -303,14 +303,14 @@
                                         <input type="hidden" value="" name="id" id="report_appid">
                                         <div class="form-group">
                                             <label for="sel1">Select Test:</label>
-                                            <select class="form-control" id="appTests" name="test.id">
+                                            <select class="form-control" id="appTests" name="testId">
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="sel1">Upload report for Test:</label>
                                             <input id="file_to_upload" name="report" class="file" type="file" multiple data-min-file-count="1">
                                         </div>
-										<input type="hidden" id = "statusId" name="status.id" value="2"/>
+										<input type="hidden" id = "statusId" name="status.id" value="4"/>
                                         <br>
                                         <button type="submit" id="btn_file_upload" class="btn btn-primary">Upload</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
@@ -396,8 +396,9 @@ function getAppointment(id) {
 	        	   var appendString = "";
 	        	   var i = 0;
 	        	   for(i = 0; i  < app.tests.length; i++) {
+	        		   alert(app.tests[i].fileLocation);
 	        		   if(app.tests[i].reportSent != 'Y' && app.tests[i].fileLocation == null) {
-	        			   appendString = appendString + "<option value='" + app.tests[i] + "' >" + app.tests[i].name + "</option>";
+	        			   appendString = appendString + "<option value='" + app.tests[i].id + "' >" + app.tests[i].name + "</option>";
 	        		   }
 	        	   }
 	        	   $("#appTests").html(appendString);
