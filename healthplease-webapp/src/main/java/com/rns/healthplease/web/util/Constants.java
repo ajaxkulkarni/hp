@@ -66,6 +66,7 @@ public interface Constants {
 	String MODEL_USERS = "users";
 	String MODEL_LOCATION = "location";
 	String MODEL_ACTIVE_LIST = "activeList";
+	String MODEL_PARAMETER = "parameter";
 
 	String EXCEL_VIEW = "excelView";
 	String PDF_VIEW = "pdfView";
@@ -216,6 +217,10 @@ public interface Constants {
 	String CORPORATE_PACKAGES_GET_URL = "Corporate";
 	String CORPORATE_PACKAGES_PAGE = "corp_pack";
 	String GET_TEST_REPORT_GET_URL = "getTestReport";
+	String ADMIN_EDIT_PARAMETER_PAGE = "admin_edit_parameter";
+	String ADMIN_EDIT_TEST_PARAMETER_GET_URL = "adminEditTestParameter";
+	String ADMIN_DELETE_PARAMETER_POST_URL = "adminDeleteParameter";
+	String ADMIN_EDIT_PARAMETER_POST_URL = "adminEditParameter";
 	
 
 	String MAIL_TYPE_ACTIVATION = "activationMail";

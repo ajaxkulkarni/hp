@@ -33,6 +33,7 @@
     <script src="<c:url value="/resources/js/internal/lab-forms-validation.js?ver=1001"/>"></script>
     <script src="<c:url value="/resources/labcomponents/js/lab-dashboard.js?ver=1000"/>"></script>
     <%-- <script type="text/javascript" src="<c:url value="/resources/js/pagination.js"/>"></script> --%>
+    <script src="<c:url value="/resources/js/myPagination.js"/>"></script>
 
     <script>
         $(".fromCalendar").datepicker({
@@ -98,12 +99,14 @@
     
     
      $(document).ready(function(){
-    	 $("#appointments_table").paging({limit:$("#limit").val()});
+    	 //$("#appointments_table").paging({limit:$("#limit").val()});
+    	 paginateTable($("#limit").val(), 0);
  	}); 
      
      function resetTable() {
-    	 $("#appointments_table").paging({limit:$("#limit").val()});
-    	 location.reload(); 
+    	 //$("#appointments_table").paging({limit:$("#limit").val()});
+    	 //location.reload(); 
+    	 paginateTable($("#limit").val(), 0);
      }
      
      function resetReason() {

@@ -264,10 +264,10 @@
                                         <div class="col-md-6 col-xs-6">
                                             <a href="<%=Constants.DOWNLOAD_EXCEL_GET_URL %>?header=${appointmentsTitle}" class="btn btn-default pull-right" style="margin-top:10px">Download</a>
                                         </div>
-                                        <div class="table-responsive your-order-table">
+                                        <div class="table-responsive your-order-table paginate">
                                             <table class="table" id = "appointments_table">
                                                 <thead>
-                                                    <tr>
+                                                    <tr class="page_header">
                                                         <th>
                                                             App Id
                                                             <span class="fa fa-sort"></span>
@@ -380,18 +380,10 @@
                                                     </c:forEach>
                                                 </tbody>
                                             </table>
-                                            <dir-pagination-controls
-                                            max-size="7"
-                                            direction-links="true"
-                                            boundary-links="true" >
-                                            </dir-pagination-controls>
+                                            <ul class="pagination" id="pagination_list">
+											</ul>
                                         </div>
-                                    <!--</div>-->
-<!--                                </div>                
-                            </div>-->
-                        <!--</div>-->
-                    <!--</section>-->
-                    <!-- /.panel -->
+                                   
                 </div>
             </div>
             <!-- /.row -->

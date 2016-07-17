@@ -67,4 +67,8 @@ public interface AdminBo {
 
 	InputStream downloadReport(Appointment appointment);
 
+	String editParameter(TestParameter parameter);
+
+	String deleteParameter(TestParameter parameter);
+
 }

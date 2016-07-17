@@ -444,6 +444,7 @@ public class BusinessConverters {
 			StringBuilder genderValues = new StringBuilder();
 			genderValues.append(parameter.getNormalValueMale()).append(",").append(parameter.getNormalValueFemale()).append(",").append(parameter.getNormalValueChild());
 			factors.setGenderValues(genderValues.toString());
+			factors.setNormalVal(parameter.getNormalValueMale());
 		}
 		if(StringUtils.isNotEmpty(parameter.getName())) {
 			factors.setUnit(parameter.getUnit());

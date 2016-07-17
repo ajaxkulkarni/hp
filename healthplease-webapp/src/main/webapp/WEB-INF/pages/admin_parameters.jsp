@@ -56,7 +56,7 @@
 <div id="msg" class="container"></div>
 
 <div class="" id="div_add">
-<a href="" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Parameter</a>
+<a href="<%=Constants.ADMIN_EDIT_TEST_PARAMETER_GET_URL%>" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Parameter</a>
 <a href="<%=Constants.ADMIN_TEST_PARAMETERS_MAP_GET_URL%>" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Mapping</a>
 <input type="text" id="search" class="form-control" placeholder="Search">
 <br/>
@@ -91,13 +91,13 @@ Upload Test Parameters :
                 	<td>${par.normalValueMale}</td>
                 	<td>${par.normalValueFemale}</td>
                 	<td>
-                		<c:forEach items="${methods}" var="method">
+                		<c:forEach items="${par.methods}" var="method">
                 			${method},
                 		</c:forEach>
                 	</td>
                 	<td>${par.unit}</td>
                 	<td align="center">
-                		<a href="" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
+                		<a href="<%=Constants.ADMIN_EDIT_TEST_PARAMETER_GET_URL%>?parameterId=${par.id}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
                 	</td>
                 	<td align="center">
                 		<a href="" class="js-deleteuser" onclick="confirmDelete('${par.name}','${par.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
@@ -111,7 +111,7 @@ Upload Test Parameters :
 </ul>
 
 
-<form id="par_form" action="" method="post">
+<form id="par_form" action="<%=Constants.ADMIN_DELETE_PARAMETER_POST_URL%>" method="post">
 
 	<input type="hidden" id="par_id" name="id"/>
 

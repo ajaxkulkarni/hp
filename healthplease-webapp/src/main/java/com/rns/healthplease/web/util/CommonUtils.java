@@ -427,7 +427,7 @@ public class CommonUtils implements Constants {
 		if (StringUtils.isEmpty(genderValues)) {
 			return null;
 		}
-		String[] genderValueArray = StringUtils.split(genderValues);
+		String[] genderValueArray = StringUtils.split(genderValues, ",");
 		if (genderValueArray.length < 2) {
 			return null;
 		}
@@ -451,7 +451,10 @@ public class CommonUtils implements Constants {
 		}
 		StringBuilder builder = new StringBuilder();
 		for (String string : strings) {
-			builder.append(string).append(",");
+			if(StringUtils.isBlank(StringUtils.trimToEmpty(string))) {
+				continue;
+			}
+			builder.append(StringUtils.trimToEmpty(string)).append(",");
 		}
 		return StringUtils.removeEnd(builder.toString(), ",");
 	}

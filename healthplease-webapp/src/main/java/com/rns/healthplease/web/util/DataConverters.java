@@ -277,6 +277,7 @@ public class DataConverters {
 		parameter.setType(factor.getFactorType());
 		parameter.setNormalValueMale(CommonUtils.getGenderValue(factor.getGenderValues(), 0));
 		parameter.setNormalValueFemale(CommonUtils.getGenderValue(factor.getGenderValues(), 1));
+		parameter.setNormalValueChild(CommonUtils.getGenderValue(factor.getGenderValues(), 2));
 		parameter.setMethods(CommonUtils.getStrings(factor.getMethod()));
 		return parameter;
 	}

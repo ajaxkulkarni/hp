@@ -681,10 +681,10 @@ public class AdminBoImpl implements AdminBo, Constants {
 		session.close();
 		return RESPONSE_OK;
 	}
-	
+
 	@Override
 	public TestParameter getTestParameter(TestParameter parameter) {
-		if(parameter == null || parameter.getId() == null) {
+		if (parameter == null || parameter.getId() == null) {
 			return null;
 		}
 		Session session = this.sessionFactory.openSession();
@@ -692,13 +692,13 @@ public class AdminBoImpl implements AdminBo, Constants {
 		TestFactors testFactors = appointmentDao.getTestFactorById(parameter.getId(), session);
 		session.close();
 		TestParameter testParameter = DataConverters.getTestParameter(testFactors);
-		if(StringUtils.isNotEmpty(testParameter.getNormalValueMale())) {
-			testParameter.setNormalValue(StringUtils.join(testParameter.getNormalValueMale(), ",", 
-					CommonUtils.getStringValue(testParameter.getNormalValueFemale()),"," , CommonUtils.getStringValue(testParameter.getNormalValueChild())));
+		if (StringUtils.isNotEmpty(testParameter.getNormalValueMale())) {
+			testParameter.setNormalValue(StringUtils.join(testParameter.getNormalValueMale(), ",", CommonUtils.getStringValue(testParameter.getNormalValueFemale()), ",",
+					CommonUtils.getStringValue(testParameter.getNormalValueChild())));
 		}
 		return testParameter;
 	}
-	
+
 	@Override
 	public InputStream downloadReport(Appointment appointment) {
 		if (appointment == null || appointment.getId() == null) {
@@ -708,13 +708,13 @@ public class AdminBoImpl implements AdminBo, Constants {
 		AppointmentDao appointmentDao = new AppointmentDaoImpl();
 		Appointments appointments = appointmentDao.getAppointmentById(appointment.getId(), session);
 		String filePath = null;
-		for(AppointmentTests appTests: appointments.getTests()) {
-			if(appTests.getTests().getId().intValue() == appointment.getTests().get(0).getId().intValue() && appTests.getFileLocation() != null) {
+		for (AppointmentTests appTests : appointments.getTests()) {
+			if (appTests.getTests().getId().intValue() == appointment.getTests().get(0).getId().intValue() && appTests.getFileLocation() != null) {
 				filePath = appTests.getFileLocation().getFilePath();
 			}
 		}
 		session.close();
-		if(filePath == null) {
+		if (filePath == null) {
 			return null;
 		}
 		InputStream is = null;
@@ -723,8 +723,46 @@ public class AdminBoImpl implements AdminBo, Constants {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		return is;
+	}
+
+	@Override
+	public String editParameter(TestParameter parameter) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		TestFactors factors = null;
+		if (parameter.getId() != null && parameter.getId().intValue() > 0) {
+			factors = new AppointmentDaoImpl().getTestFactorById(parameter.getId(), session);
+		}
+		if(factors == null) {
+			factors = new TestFactors();
+		}
+		BusinessConverters.getTestFactors(parameter, factors);
+		if (factors.getId() == null) {
+			session.persist(factors);
+		}
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
+	}
+	
+	@Override
+	public String deleteParameter(TestParameter parameter) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		TestFactors factors = null;
+		if (parameter.getId() != null && parameter.getId().intValue() > 0) {
+			factors = new AppointmentDaoImpl().getTestFactorById(parameter.getId(), session);
+		}
+		if(factors == null) {
+			session.close();
+			return null;
+		}
+		session.delete(factors);
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
 	}
 
 }

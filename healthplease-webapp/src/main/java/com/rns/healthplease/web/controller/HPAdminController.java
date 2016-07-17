@@ -43,6 +43,7 @@ import com.rns.healthplease.web.util.ExcelUtil;
 @Controller
 public class HPAdminController implements Constants {
 
+	private static final String ADMIN_CORPORATE_GET_URL = "adminCorporate.htm";
 	private UserBo userBo;
 	private LabBo labBo;
 	private AdminBo adminBo;
@@ -370,6 +371,28 @@ public class HPAdminController implements Constants {
 		return ADMIN_PARAMETERS_PAGE;
 	}
 	
+	@RequestMapping(value = "/" + ADMIN_EDIT_TEST_PARAMETER_GET_URL, method = RequestMethod.GET)
+	public String initEditParameters(ModelMap model, Integer parameterId) {
+		TestParameter parameter = new TestParameter();
+		parameter.setId(parameterId);
+		model.addAttribute(MODEL_PARAMETER, adminBo.getTestParameter(parameter));
+		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(6));
+		return ADMIN_EDIT_PARAMETER_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_EDIT_PARAMETER_POST_URL, method = RequestMethod.POST)
+	public RedirectView editParameter(TestParameter parameter, ModelMap model) {
+		manager.setResult(adminBo.editParameter(parameter));
+		return new RedirectView(ADMIN_PARAMETERS_GET_URL);
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_DELETE_PARAMETER_POST_URL, method = RequestMethod.POST)
+	public RedirectView deleteParameter(TestParameter parameter, ModelMap model) {
+		manager.setResult(adminBo.deleteParameter(parameter));
+		return new RedirectView(ADMIN_PARAMETERS_GET_URL);
+	}
+	
 	@RequestMapping(value = "/" + ADMIN_UPLOAD_PARAMETERS_POST_URL, method = RequestMethod.POST)
 	public RedirectView uploadParameters(MultipartFile file, ModelMap model) {
 		if (!file.isEmpty()) {
@@ -536,6 +559,14 @@ public class HPAdminController implements Constants {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_CORPORATE_GET_URL, method = RequestMethod.GET)
+	public String initCorporatePage(ModelMap model) {
+		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests(null));
+		
+		manager.setResult(null);
+		return ADMIN_CATEGORIES_PAGE;
 	}
 	
 }

@@ -1,5 +1,11 @@
+<%@page import="com.rns.healthplease.web.util.Constants"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,7 +49,7 @@
 <!--Add user start from here-->
 <div class="" id="addUser" name="addUser">
 
-<form method='post' id="form_add_user" action="<%=Constants.ADMIN_EDIT_LOCATION_POST_URL%>">
+<form method='post' id="form_add_user" action="<%=Constants.ADMIN_EDIT_PARAMETER_POST_URL%>">
  
     <table class='table table-bordered'>
  
@@ -59,8 +65,18 @@
         </tr>
         
         <tr>
-            <td>Normal Value(s)</td>
-            <td><input type='text' name='normalValue' class='form-control' placeholder="male,female,child" value="${parameter.normalValue}" required ></td>
+            <td>Normal Value Male :</td>
+            <td><input type='text' name='normalValueMale' class='form-control' placeholder="male normal range" value="${parameter.normalValueMale}" required ></td>
+        </tr>
+        
+        <tr>
+            <td>Normal Value Female :</td>
+            <td><input type='text' name='normalValueFemale' class='form-control' placeholder="female range" value="${parameter.normalValueFemale}" required ></td>
+        </tr>
+        
+        <tr>
+            <td>Normal Value child :</td>
+            <td><input type='text' name='normalValueChild' class='form-control' placeholder="child range" value="${parameter.normalValueChild}" required ></td>
         </tr>
         
         <tr>
@@ -81,14 +97,22 @@
         </tr>
         
         <tr>
-            <td>Methods</td>
-            <td><textarea name='methodsList' class='form-control' required >
-            <c:forEach items="${parameter.methods}" var="method">
-            	${method},
-            </c:forEach> 
-            </textarea></td>
+            <td>Method 1 :</td>
+            <td><textarea name='methods[0]' class='form-control' required >${parameter.methods[0]}</textarea>
+            </td>
         </tr>
- 
+        <tr>
+            <td>Method 2 :</td>
+            <td><textarea name='methods[1]' class='form-control'><c:if test="${fn:length(parameter.methods) > 1}">${parameter.methods[1]}</c:if></textarea>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>Method 3 :</td>
+            <td><textarea name='methods[2]' class='form-control'><c:if test="${fn:length(parameter.methods) > 2}">${parameter.methods[2]}</c:if></textarea>
+            </td>
+        </tr>
+        
         <tr>
        
         <td colspan="2">
