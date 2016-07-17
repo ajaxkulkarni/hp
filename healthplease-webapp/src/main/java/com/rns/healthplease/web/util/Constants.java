@@ -65,6 +65,7 @@ public interface Constants {
 	String MODEL_CATEGORIES = "categories";
 	String MODEL_USERS = "users";
 	String MODEL_LOCATION = "location";
+	String MODEL_ACTIVE_LIST = "activeList";
 
 	String EXCEL_VIEW = "excelView";
 	String PDF_VIEW = "pdfView";
@@ -214,6 +215,8 @@ public interface Constants {
 	String CORPORATE_REQUEST_POST_URL = "corporateRequest";
 	String CORPORATE_PACKAGES_GET_URL = "Corporate";
 	String CORPORATE_PACKAGES_PAGE = "corp_pack";
+	String GET_TEST_REPORT_GET_URL = "getTestReport";
+	
 
 	String MAIL_TYPE_ACTIVATION = "activationMail";
 	String MAIL_TYPE_REPORT_UPLOAD = "reportUpload";

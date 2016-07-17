@@ -1,5 +1,6 @@
 package com.rns.healthplease.web.bo.api;
 
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -63,5 +64,7 @@ public interface AdminBo {
 	String deleteLabTest(LabTest test, Lab lab);
 	
 	TestParameter getTestParameter(TestParameter parameter);
+
+	InputStream downloadReport(Appointment appointment);
 
 }

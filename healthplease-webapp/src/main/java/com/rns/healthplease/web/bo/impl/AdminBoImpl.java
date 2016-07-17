@@ -1,5 +1,9 @@
 package com.rns.healthplease.web.bo.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +24,8 @@ import com.rns.healthplease.web.bo.domain.TestParameter;
 import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.dao.api.AppointmentDao;
 import com.rns.healthplease.web.dao.api.UserDao;
+import com.rns.healthplease.web.dao.domain.AppFileLocations;
+import com.rns.healthplease.web.dao.domain.AppointmentTests;
 import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.Groups;
 import com.rns.healthplease.web.dao.domain.LabLocations;
@@ -691,6 +697,34 @@ public class AdminBoImpl implements AdminBo, Constants {
 					CommonUtils.getStringValue(testParameter.getNormalValueFemale()),"," , CommonUtils.getStringValue(testParameter.getNormalValueChild())));
 		}
 		return testParameter;
+	}
+	
+	@Override
+	public InputStream downloadReport(Appointment appointment) {
+		if (appointment == null || appointment.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		Appointments appointments = appointmentDao.getAppointmentById(appointment.getId(), session);
+		String filePath = null;
+		for(AppointmentTests appTests: appointments.getTests()) {
+			if(appTests.getTests().getId().intValue() == appointment.getTests().get(0).getId().intValue() && appTests.getFileLocation() != null) {
+				filePath = appTests.getFileLocation().getFilePath();
+			}
+		}
+		session.close();
+		if(filePath == null) {
+			return null;
+		}
+		InputStream is = null;
+		try {
+			is = new FileInputStream(new File(filePath));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return is;
 	}
 
 }

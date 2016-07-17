@@ -315,6 +315,9 @@
                                         <button type="submit" id="btn_file_upload" class="btn btn-primary">Upload</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <div id="uploadedReports">
+                                        	
+                                        </div>
                                     </form>
 
                                 </div>
@@ -394,14 +397,18 @@ function getAppointment(id) {
 	           data: "appointmentId="+ id,
 	           success : function(app) {
 	        	   var appendString = "";
+	        	   var completedReports = "Uploaded Reports :";
 	        	   var i = 0;
 	        	   for(i = 0; i  < app.tests.length; i++) {
-	        		   alert(app.tests[i].fileLocation);
 	        		   if(app.tests[i].reportSent != 'Y' && app.tests[i].fileLocation == null) {
 	        			   appendString = appendString + "<option value='" + app.tests[i].id + "' >" + app.tests[i].name + "</option>";
+	        		   } else {
+	        			   completedReports = completedReports + "<a href='getTestReport?appointmentId=" + app.id  +"&testId=" + app.tests[i].id + "'>" + app.tests[i].name + "</a> , ";
 	        		   }
+	        		   
 	        	   }
 	        	   $("#appTests").html(appendString);
+	        	   $("#uploadedReports").html(completedReports);
 	           }
 	        	   
 	           });

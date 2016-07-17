@@ -46,7 +46,6 @@ import com.rns.healthplease.web.dao.domain.PaymentStatus;
 import com.rns.healthplease.web.dao.domain.RequestCollections;
 import com.rns.healthplease.web.dao.domain.Slots;
 import com.rns.healthplease.web.dao.domain.TestLabs;
-import com.rns.healthplease.web.dao.domain.TestPackages;
 import com.rns.healthplease.web.dao.domain.Tests;
 import com.rns.healthplease.web.dao.domain.Users;
 import com.rns.healthplease.web.dao.domain.Users1;
@@ -240,7 +239,7 @@ public class UserBoImpl implements UserBo, Constants {
 		}
 		List<LabTest> labTests = new ArrayList<LabTest>();
 		for (Tests test : tests) {
-			LabTest labTest = DataConverters.getTest(test, session);
+			LabTest labTest = DataConverters.getTest(test,null,session);
 			if (labTest != null) {
 				labTests.add(labTest);
 			}
@@ -639,7 +638,7 @@ public class UserBoImpl implements UserBo, Constants {
 			session.close();
 			return null;
 		}
-		LabTest labTest = DataConverters.getTest(tests, session);
+		LabTest labTest = DataConverters.getTest(tests,null, session);
 		/*List<TestPackages> packages = appointmentDao.getTestPackage(test.getId(), session);
 		if (CollectionUtils.isNotEmpty(packages)) {
 			DataConverters.addChildTests(labTest, packages);
@@ -714,7 +713,7 @@ public class UserBoImpl implements UserBo, Constants {
 		}
 		List<LabTest> labTests = new ArrayList<LabTest>();
 		for(Tests test: tests) {
-			LabTest labTest = DataConverters.getTest(test, session);
+			LabTest labTest = DataConverters.getTest(test,null,session);
 			if(labTest != null) {
 				Short minPriceLab = new LabDaoImpl().getMinTestLabs(test.getId(), session);
 				if(minPriceLab != null) {

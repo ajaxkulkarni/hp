@@ -376,6 +376,7 @@ public class CommonUtils implements Constants {
 		Integer totalPrice = 0;
 		Integer testChargeMultiplier = 1;
 		for (LabTest test : appointment.getTests()) {
+			String fileLoc = test.getFileLocation();
 			Tests testById = appointmentDao.getTestById(test.getId(), session);
 			if (testById == null) {
 				continue;
@@ -392,6 +393,7 @@ public class CommonUtils implements Constants {
 			if(ArrayUtils.contains(Constants.DOUBLE_TEST_CHARGE, test.getId().intValue())) {
 				testChargeMultiplier = 2;
 			}
+			test.setFileLocation(fileLoc);
 			tests.add(test);
 		}
 		lab.setTestPrice(totalPrice);

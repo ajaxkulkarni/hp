@@ -25,7 +25,6 @@ import com.rns.healthplease.web.dao.domain.AppointmentTests;
 import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.LabLocations;
 import com.rns.healthplease.web.dao.domain.Labs;
-import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
 import com.rns.healthplease.web.dao.domain.Slots;
@@ -171,7 +170,7 @@ public class DataConverters {
 
 	}
 	
-	public static LabTest getTest(Tests tests, Session session) {
+	public static LabTest getTest(Tests tests,Appointments appointments,Session session) {
 		LabTest labTest = getTest(tests);
 		if(labTest == null) {
 			return labTest;
@@ -180,7 +179,7 @@ public class DataConverters {
 		if (CollectionUtils.isNotEmpty(packages)) {
 			labTest.setTestPackage(true);
 		}
-		labTest.setParameters(getTestParameters(tests.getTestFactors(), null, session));
+		labTest.setParameters(getTestParameters(tests.getTestFactors(), appointments, session));
 		if (CollectionUtils.isNotEmpty(packages)) {
 			labTest.setTestPackage(true);
 			addChildTests(labTest, packages);
@@ -227,7 +226,7 @@ public class DataConverters {
 		}
 		List<LabTest> labTests = new ArrayList<LabTest>();
 		for (AppointmentTests appointmentTests : appointments.getTests()) {
-			LabTest labTest = getTest(appointmentTests.getTests(), session);
+			LabTest labTest = getTest(appointmentTests.getTests(),appointments, session);
 			if (labTest != null) {
 				labTests.add(labTest);
 				/*List<TestPackages> packages = appointmentDao.getTestPackage(labTest.getId(), session);

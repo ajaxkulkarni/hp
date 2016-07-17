@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -125,75 +126,16 @@ Custom Fonts
 									<input type="hidden" id="is_send_mail" name="printRequired" value="N">
 									<input type="hidden" id="appointment_id" name="id" value="${appointment.id}">
 									<c:forEach items="${appointment.tests}" var="test" varStatus="t">
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h4 class="panel-title">
-													<input type="checkbox" value="${test.id}" name="testIds"/>
-													<a data-toggle="collapse" data-parent="#accordion"
-														href="#${test.id}">${test.name}</a>
-													<c:if test="${test.reportSent == 'Y' }">
-													
-<!-- 														<i class="fa fa-check-square" style='float:right' aria-hidden="true"></i> -->
-															<img src="<c:url value="/resources/images/ico.png"/>" style='float:right' height="14px" width="14px"/>
-													</c:if>
-												</h4>
-											</div>
-											<input type="hidden" name="tests[${t.index}].id" value="${test.id}" />
-											<div id="${test.id}" class="panel-collapse collapse">
-												<div class="panel-body">
-													<table class="table table-bordered">
-														<thead>
-															<th>Tests</th>
-															<th>Test Values</th>
-															<th>Units</th>
-															<th>Normal Values</th>
-															<th>Remarks</th>
-														</thead>
-														<tbody>
-															<c:forEach items="${test.parameters}" var="testParameter" varStatus="p">
-																<tr>
-																	<td>${testParameter.name}</td>
-																	<td>
-																		<c:if test="${test.reportSent == 'Y' }">
-																			<c:if test="${testParameter.type == 'D' }">
-																				<textarea name="tests[${t.index}].parameters[${p.index}].actualValue" rows="5" cols="50" readonly="readonly">${testParameter.actualValue}</textarea>
-																			</c:if>
-																			<c:if test="${testParameter.type != 'D' }">
-																				<input type="text" name="tests[${t.index}].parameters[${p.index}].actualValue" value="${testParameter.actualValue}" readonly="readonly" />
-																			</c:if>
-																		</c:if>
-																		<c:if test="${test.reportSent == null  || test.reportSent == 'N'}">
-																			<c:if test="${testParameter.type == 'D' }">
-																				<textarea name="tests[${t.index}].parameters[${p.index}].actualValue" rows="5" cols="50" maxlength="250">${testParameter.actualValue}</textarea>
-																			</c:if>
-																			<c:if test="${testParameter.type != 'D' }">
-																				<input type="text" name="tests[${t.index}].parameters[${p.index}].actualValue" value="${testParameter.actualValue}" />
-																			</c:if>
-																		</c:if>
-																		<input type="hidden" name="tests[${t.index}].parameters[${p.index}].id" value="${testParameter.id}" />
-																	</td>
-																	<td>${testParameter.unit}</td>
-																	<td>${testParameter.normalValue}</td>
-																	<td>
-																		<c:if test="${test.reportSent == 'Y' }">
-																			<input type="text" name="tests[${t.index}].parameters[${p.index}].remark" value="${testParameter.remark}" readonly="readonly" />
-																		</c:if>
-																		<c:if test="${test.reportSent == null  || test.reportSent == 'N'}">
-																			<input type="text" name="tests[${t.index}].parameters[${p.index}].remark" value="${testParameter.remark}" />
-																		</c:if>
-																	</td>
-																</tr>
-															</c:forEach>
-															
-															
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-										
+										<c:if test="${fn:length(test.childTests) == 0 || fn:length(test.parameters) > 0 }">
+											<%@include file="forms/test_parameters_form.jsp" %>
+										</c:if>
+										<c:if test="${fn:length(test.childTests) > 0 && fn:length(test.parameters) == 0 }">
+											<h3>${test.name}</h3>
+											<c:forEach items="${appointment.tests}" var="test" varStatus="t">
+												<%@include file="forms/test_parameters_form.jsp" %>
+											</c:forEach>
+										</c:if>
 									</c:forEach>
-										
 								</div>
 								<button type="button" class="btn btn-primary" onclick="sendReport()">Send</button>
 								<button type="submit" class="btn btn-primary">Export</button>

@@ -1,12 +1,17 @@
 package com.rns.healthplease.web.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.bouncycastle.asn1.tsp.TSTInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -38,7 +43,6 @@ import com.rns.healthplease.web.util.ExcelUtil;
 @Controller
 public class HPAdminController implements Constants {
 
-	private static final String MODEL_ACTIVE_LIST = "activeList";
 	private UserBo userBo;
 	private LabBo labBo;
 	private AdminBo adminBo;
@@ -510,6 +514,28 @@ public class HPAdminController implements Constants {
 		Appointment appointment = new Appointment();
 		appointment.setId(appointmentId);
 		return new Gson().toJson(labBo.getAppointment(appointment));
+	}
+	
+	@RequestMapping(value = "/" + GET_TEST_REPORT_GET_URL, method = RequestMethod.GET)
+	public void getReport(int appointmentId, int testId, HttpServletResponse response, ModelMap model) {
+		InputStream is = null;
+		Appointment appointment = new Appointment();
+		LabTest test = new LabTest();
+		test.setId(testId);
+		appointment.getTests().add(test);
+		appointment.setId(appointmentId);
+		try {
+			is = adminBo.downloadReport(appointment);
+			if (is != null) {
+				IOUtils.copy(is, response.getOutputStream());
+				response.setHeader("Content-Disposition", "attachment; filename=\"report.pdf\"");
+				response.flushBuffer();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
