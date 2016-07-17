@@ -9,7 +9,7 @@
 <head>
 	
 
-    <title>Book online Pathology & Diagnostic Tests in Pune | HealthPlease.in</title>
+    <title>Book Diagnostic & Pathology Test like Thyroid, Sugar, Urine, Cholesterol, ECG and X-Ray. Pay for them Online. Sample Collected at home or in lab. EMR Storage Available.</title>
 
 	
 	<!-- Latest compiled and minified CSS -->

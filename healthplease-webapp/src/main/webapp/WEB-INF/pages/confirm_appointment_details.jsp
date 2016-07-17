@@ -10,7 +10,7 @@
 
 <head>
     <meta charset="utf-8">
-          <title>Book online Pathology & Diagnostic Tests in Pune | HealthPlease.in</title>
+          <title>Book Diagnostic & Pathology Test like Thyroid, Sugar, Urine, Cholesterol, ECG and X-Ray. Pay for them Online. Sample Collected at home or in lab. EMR Storage Available.</title>
     <meta name="keywords" content="Book Online Path Test, Book online diagnostic test, Blood Sugar test">
     <meta name="description" content="Book your online Pathology Lab test and test packages and have sample picked from home. Online Payment option and save reports for future reference.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
