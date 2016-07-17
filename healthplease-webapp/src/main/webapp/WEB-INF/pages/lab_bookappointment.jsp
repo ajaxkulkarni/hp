@@ -162,7 +162,7 @@
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper">
               <label class=" control-label" for="appointmentPName">Patient's Name</label>  
               <div class="">
-                <input id="idAppointmentPName" pattern="[A-Za-z]{3}" name="user.firstName" placeholder="Name" title="Enter a valid Name" class="form-control input-md" type="text" required="required">      
+                <input id="idAppointmentPName" pattern="[A-Za-z]+" name="user.firstName" placeholder="Name" title="Enter a valid Name" class="form-control input-md" type="text" required="required">      
               </div>
               <div class="" id="idAppPNameErr"></div>
             </div>
@@ -195,7 +195,7 @@
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper">
               <label class=" control-label" for="appointmentPAge">Patient's Age</label>  
               <div class="">
-                <input id="idAppointmentPAge" align="left" name="user.age" placeholder="Age" class="form-control input-md" type="text" required="required">      
+                <input id="idAppointmentPAge" align="left" name="user.age" placeholder="Age" class="form-control input-md" type="number" required="required">      
               </div>
               <div class="" id="idAppAgeErr"></div>
             </div>
@@ -532,7 +532,46 @@ $(document).ready(function(){
             });
 
 });// end of document ready
-    
+
+$("#idAppointmentPName").keypress(function (e) {
+    var regex = new RegExp("^[a-zA-Z]+$");
+    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+    if (regex.test(str)) {
+        return true;
+    }
+    else
+    {
+    e.preventDefault();
+    alert('Please Enter Alphabate');
+    return false;
+    }
+});
+$("#idAppointmentPDoctor").keypress(function (e) {
+    var regex = new RegExp("^[a-zA-Z]+$");
+    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+    if (regex.test(str)) {
+        return true;
+    }
+    else
+    {
+    e.preventDefault();
+    alert('Please Enter Alphabate');
+    return false;
+    }
+});
+$("#idappointmentPincode").focusout(function(){
+	var pin =  document.getElementById("idappointmentPincode").value;
+	var x = pin.length;
+	console.log(x);
+	if(pin.length != 6 )
+	{
+		alert('Pincode must be 6 digits long');
+		return false;
+	}
+	else{
+		return true;
+	}
+});
 function checkIfDateAvailable(date) {
  	var dates = $("#dbdate").val();
  	if(dates.length == 0) {

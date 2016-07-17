@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-22T20:50:42 -->
+<!-- 2016-07-18T02:16:28 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -39,7 +39,7 @@
 				<textFieldExpression><![CDATA[$P{labName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="160" y="50" width="434" height="20" uuid="44dd132c-1c05-4a19-80a8-f4c67b8b0e29"/>
+				<reportElement x="160" y="50" width="386" height="20" uuid="44dd132c-1c05-4a19-80a8-f4c67b8b0e29"/>
 				<textElement>
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
@@ -164,35 +164,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="205" splitType="Stretch">
-			<textField>
-				<reportElement x="455" y="162" width="99" height="20" uuid="accaddfe-37da-47cb-a414-cda78502e88a"/>
-				<textElement>
-					<font fontName="Courier New"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="455" y="138" width="99" height="20" uuid="1700a966-0f4a-4c2e-9e67-cfcfa67e1a4c"/>
-				<textElement>
-					<font fontName="Courier New"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{pickupCharges}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="340" y="162" width="100" height="20" uuid="48f474ac-cedc-413a-8cb6-4218902e77ec"/>
-				<textElement>
-					<font fontName="Courier New"/>
-				</textElement>
-				<text><![CDATA[Total Charges :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="340" y="139" width="100" height="20" uuid="9a0a4447-aae2-4af0-90c5-c87775d0c039"/>
-				<textElement>
-					<font fontName="Courier New"/>
-				</textElement>
-				<text><![CDATA[Pickup Charges :]]></text>
-			</staticText>
+		<band height="100" splitType="Stretch">
 			<subreport>
 				<reportElement x="6" y="10" width="540" height="70" uuid="518fdbbf-3fc0-4263-8782-55416329e81f"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{labTests})]]></dataSourceExpression>
@@ -206,17 +178,33 @@
 	<pageFooter>
 		<band height="86" splitType="Stretch">
 			<staticText>
-				<reportElement x="417" y="22" width="100" height="20" uuid="10c7c142-fb64-404b-a8e0-4e7466fdaa7b"/>
-				<text><![CDATA[Dr. ABC]]></text>
+				<reportElement x="340" y="39" width="100" height="20" uuid="f8dbb060-8458-45db-b9f2-5b73d2691245"/>
+				<textElement>
+					<font fontName="Courier New"/>
+				</textElement>
+				<text><![CDATA[Total Charges :]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="455" y="39" width="99" height="20" uuid="7e1c592b-babc-4fce-b7b4-4af6cad2c918"/>
+				<textElement>
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="417" y="42" width="100" height="20" uuid="e5a10f73-a3c8-4bc1-996f-47963e9c9fe7"/>
-				<text><![CDATA[Sample footer]]></text>
+				<reportElement x="340" y="16" width="100" height="20" uuid="fc67aff4-7022-4d53-8112-2daf10dda0c3"/>
+				<textElement>
+					<font fontName="Courier New"/>
+				</textElement>
+				<text><![CDATA[Pickup Charges :]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="417" y="62" width="100" height="20" uuid="bd7f948a-b293-4d07-8a4b-3cde008759ec"/>
-				<text><![CDATA[Sample footer]]></text>
-			</staticText>
+			<textField>
+				<reportElement x="455" y="15" width="99" height="20" uuid="3c95fe18-1da9-4be0-93ce-c77eb6eac91e"/>
+				<textElement>
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pickupCharges}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 	<summary>
