@@ -693,8 +693,13 @@ public class UserBoImpl implements UserBo, Constants {
 	@Override
 	public String requestCorporatePackage(RequestForm form) {
 		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
 		form.setAdmins(CommonUtils.prepareContactUsers(ADMIN_MAILS, "mail"));
 		form.getAdmins().addAll(CommonUtils.prepareContactUsers(ADMIN_PHONES, "phone"));
+		RequestCollections requestCollections = BusinessConverters.getRequestCollections(form);
+		requestCollections.setRequestedFor(Short.valueOf("2"));
+		session.persist(requestCollections);
+		tx.commit();
 		session.close();
 		threadPoolTaskExecutor.execute(new MailUtil(form, MAIL_TYPE_CORPORATE_REQUEST));
 		threadPoolTaskExecutor.execute(new MailUtil(form, MAIL_TYPE_CORPORATE_REQUEST_ADMIN));

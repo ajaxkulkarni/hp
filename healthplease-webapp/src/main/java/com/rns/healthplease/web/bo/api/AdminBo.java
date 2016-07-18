@@ -8,6 +8,7 @@ import com.rns.healthplease.web.bo.domain.Appointment;
 import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
+import com.rns.healthplease.web.bo.domain.RequestForm;
 import com.rns.healthplease.web.bo.domain.TestParameter;
 import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.dao.domain.TestCategories;
@@ -70,5 +71,7 @@ public interface AdminBo {
 	String editParameter(TestParameter parameter);
 
 	String deleteParameter(TestParameter parameter);
+
+	List<RequestForm> getAllCorporateRequests();
 
 }

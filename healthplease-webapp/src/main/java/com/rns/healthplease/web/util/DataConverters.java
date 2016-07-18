@@ -14,6 +14,7 @@ import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
 import com.rns.healthplease.web.bo.domain.Payment;
+import com.rns.healthplease.web.bo.domain.RequestForm;
 import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.bo.domain.TestParameter;
 import com.rns.healthplease.web.bo.domain.User;
@@ -27,6 +28,7 @@ import com.rns.healthplease.web.dao.domain.LabLocations;
 import com.rns.healthplease.web.dao.domain.Labs;
 import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
+import com.rns.healthplease.web.dao.domain.RequestCollections;
 import com.rns.healthplease.web.dao.domain.Slots;
 import com.rns.healthplease.web.dao.domain.TestFactors;
 import com.rns.healthplease.web.dao.domain.TestFactorsMap;
@@ -304,6 +306,21 @@ public class DataConverters {
 			labTests.add(test);
 		}
 		return labTests;
+	}
+
+	public static RequestForm getRequestForm(RequestCollections collection) {
+		if(collection == null) {
+			return null;
+		}
+		RequestForm form = new RequestForm();
+		form.setName(collection.getName());
+		form.setEmail(collection.getEmail());
+		form.setPhone(collection.getContactNo());
+		//form.setAge(collection.getAge());
+		form.setCompanyName(CommonUtils.getFormValue(collection.getRemark(), 2));
+		form.setTestName(CommonUtils.getFormValue(collection.getRemark(), 0));
+		form.setLabName(CommonUtils.getFormValue(collection.getRemark(), 1));
+		return form;
 	}
 
 }

@@ -18,5 +18,6 @@ public interface UserDao {
 	List<Users> getUsersForLab(int labId, Session session);
 	List<Users> getAdmins(Session session);
 	List<Users> getAllUsers(Session session);
+	List<RequestCollections> getAllRequestCollections(String string, Session session);
 	
 }

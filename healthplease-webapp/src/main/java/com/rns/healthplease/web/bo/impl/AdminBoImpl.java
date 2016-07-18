@@ -20,6 +20,7 @@ import com.rns.healthplease.web.bo.domain.Appointment;
 import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
+import com.rns.healthplease.web.bo.domain.RequestForm;
 import com.rns.healthplease.web.bo.domain.TestParameter;
 import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.dao.api.AppointmentDao;
@@ -32,6 +33,7 @@ import com.rns.healthplease.web.dao.domain.LabLocations;
 import com.rns.healthplease.web.dao.domain.Labs;
 import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.Locations;
+import com.rns.healthplease.web.dao.domain.RequestCollections;
 import com.rns.healthplease.web.dao.domain.TestCategories;
 import com.rns.healthplease.web.dao.domain.TestFactors;
 import com.rns.healthplease.web.dao.domain.TestFactorsMap;
@@ -763,6 +765,23 @@ public class AdminBoImpl implements AdminBo, Constants {
 		tx.commit();
 		session.close();
 		return RESPONSE_OK;
+	}
+	
+	@Override
+	public List<RequestForm> getAllCorporateRequests() {
+		List<RequestForm> corporateRequestForms = new ArrayList<RequestForm>();
+		Session session = this.sessionFactory.openSession();
+		List<RequestCollections> collections = new UserDaoImpl().getAllRequestCollections("2", session);
+		if(CollectionUtils.isEmpty(collections)) {
+			session.close();
+			return corporateRequestForms;
+		}
+		for(RequestCollections collection: collections) {
+			RequestForm form = DataConverters.getRequestForm(collection);
+			corporateRequestForms.add(form);
+		}
+		session.close();
+		return corporateRequestForms;
 	}
 
 }

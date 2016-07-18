@@ -43,7 +43,6 @@ import com.rns.healthplease.web.util.ExcelUtil;
 @Controller
 public class HPAdminController implements Constants {
 
-	private static final String ADMIN_CORPORATE_GET_URL = "adminCorporate.htm";
 	private UserBo userBo;
 	private LabBo labBo;
 	private AdminBo adminBo;
@@ -564,9 +563,9 @@ public class HPAdminController implements Constants {
 	@RequestMapping(value = "/" + ADMIN_CORPORATE_GET_URL, method = RequestMethod.GET)
 	public String initCorporatePage(ModelMap model) {
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests(null));
-		
+		model.addAttribute(MODEL_REQUEST_FORMS, adminBo.getAllCorporateRequests());
 		manager.setResult(null);
-		return ADMIN_CATEGORIES_PAGE;
+		return ADMIN_CORPORATE_PAGE;
 	}
 	
 }

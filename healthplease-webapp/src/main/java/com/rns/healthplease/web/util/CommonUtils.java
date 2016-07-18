@@ -478,6 +478,17 @@ public class CommonUtils implements Constants {
 		return null;
 
 	}
+
+	public static String getFormValue(String remark, int i) {
+		if (StringUtils.isEmpty(remark)) {
+			return null;
+		}
+		String[] formValues = StringUtils.split(remark, ":");
+		if (formValues.length < 2) {
+			return null;
+		}
+		return formValues[i];
+	}
 	
 	/*public static void main(String[] args) {
 		//System.out.println(getEncryptedPassword("123456³!õ"));

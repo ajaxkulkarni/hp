@@ -41,15 +41,17 @@
 					                    	<th>Mobile No.</th>
 					                    	<th colspan="2" align="center">Actions</th>
 					                    </tr>                
-					             		  
-					                    	<td>123</td>
-					                    	<td>Name</td>
-					                    	<td>Email</td>
-					                    	<td>Corporate</td>
-					                    	<td>Lab</td>
-					                    	<td>Mobile No.</td>
+					             		 <c:forEach items="${requestForms}" var="req" varStatus="i">
+					             		 <tr>
+					                    	<td>${i.index + 1}</td>
+					                    	<td>${req.name}</td>
+					                    	<td>${req.email}</td>
+					                    	<td>${req.companyName}</td>
+					                    	<td>${req.labName}</td>
+					                    	<td>${req.phone}</td>
 					                    	<td colspan="2" align="center">Actions</td>
-					                    </tr>      
+					                    </tr>   
+					                    </c:forEach>   
 					                </tbody>
 					      </table>
 					      <ul class="pagination" id="pagination_list">

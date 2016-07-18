@@ -74,5 +74,11 @@ public class UserDaoImpl implements UserDao {
 		Query createQuery = session.createQuery("from Users");
 		return createQuery.list();
 	}
+
+	public List<RequestCollections> getAllRequestCollections(String string, Session session) {
+		Query createQuery = session.createQuery("from RequestCollections where requestedFor=:req_type");
+		createQuery.setShort("req_type", Short.valueOf("2"));
+		return createQuery.list();
+	}
 	
 }

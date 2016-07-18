@@ -394,7 +394,7 @@ public class BusinessConverters {
 			collections.setQuery("");
 		}
 		collections.setCreatedTime(new Date());
-		collections.setRemark("");
+		collections.setRemark(StringUtils.join(form.getTestName(), ":", form.getLabName(), ":", form.getCompanyName()));
 		collections.setIsProcessed("N");
 		return collections;
 	}
