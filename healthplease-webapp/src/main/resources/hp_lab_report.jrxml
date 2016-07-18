@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-18T00:57:24 -->
+<!-- 2016-07-18T23:51:57 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -106,7 +106,7 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="153" splitType="Stretch">
+		<band height="145" splitType="Stretch">
 			<subreport>
 				<reportElement x="10" y="50" width="543" height="80" uuid="8cd85150-b315-4f57-bb63-5356cb7a1099"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
@@ -127,22 +127,23 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="82" splitType="Stretch">
-			<staticText>
-				<reportElement x="417" y="15" width="100" height="20" uuid="1ed03c3d-edd9-477d-9fae-33c1ad609f1b"/>
-				<text><![CDATA[Dr. ABC]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="417" y="35" width="100" height="20" uuid="29553a4a-e862-4caf-90aa-c083beb3ffd5"/>
-				<text><![CDATA[Sample footer]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="417" y="55" width="100" height="20" uuid="987fd108-6070-4c3a-91f0-e7e4f208a417"/>
-				<text><![CDATA[Sample footer]]></text>
-			</staticText>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="227" y="20" width="100" height="30" uuid="906cb985-5817-476b-ba8b-d0302ee311df"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 	<summary>
-		<band splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="430" y="10" width="100" height="30" uuid="d1b3ed67-3e48-44f1-a9d2-d22eaf70d7cc"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

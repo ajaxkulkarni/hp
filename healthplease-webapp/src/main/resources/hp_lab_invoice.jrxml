@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-18T02:37:33 -->
+<!-- 2016-07-18T23:49:26 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -176,38 +176,39 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="86" splitType="Stretch">
+		<band height="36" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="56" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<staticText>
-				<reportElement x="340" y="39" width="100" height="20" uuid="f8dbb060-8458-45db-b9f2-5b73d2691245"/>
+				<reportElement x="340" y="33" width="100" height="20" uuid="f8dbb060-8458-45db-b9f2-5b73d2691245"/>
 				<textElement>
 					<font fontName="Courier New"/>
 				</textElement>
 				<text><![CDATA[Total Charges :]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="455" y="39" width="99" height="20" uuid="7e1c592b-babc-4fce-b7b4-4af6cad2c918"/>
-				<textElement>
-					<font fontName="Courier New"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="340" y="16" width="100" height="20" uuid="fc67aff4-7022-4d53-8112-2daf10dda0c3"/>
+				<reportElement x="340" y="10" width="100" height="20" uuid="fc67aff4-7022-4d53-8112-2daf10dda0c3"/>
 				<textElement>
 					<font fontName="Courier New"/>
 				</textElement>
 				<text><![CDATA[Pickup Charges :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="455" y="15" width="99" height="20" uuid="3c95fe18-1da9-4be0-93ce-c77eb6eac91e"/>
+				<reportElement x="455" y="9" width="99" height="20" uuid="3c95fe18-1da9-4be0-93ce-c77eb6eac91e"/>
 				<textElement>
 					<font fontName="Courier New"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{pickupCharges}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="455" y="33" width="99" height="20" uuid="7e1c592b-babc-4fce-b7b4-4af6cad2c918"/>
+				<textElement>
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
 		</band>
-	</pageFooter>
-	<summary>
-		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>
