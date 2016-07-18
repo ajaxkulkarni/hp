@@ -29,7 +29,7 @@
 	 	
 			    <div id="request" class="tab-pane fade in active" >
 				<div class="container">
-						<div class="tablespace"  style="background-color:#fff;margin-top:5%;">
+						<div class="tablespace"  style="background-color:#fff;margin-top:5%;height:500px">
 						<table id="categories_table" class="table table-bordered table-responsive paginate">
 					                    <tbody>
 					                    <tr class="page_header">
@@ -54,9 +54,10 @@
 					                    </c:forEach>   
 					                </tbody>
 					      </table>
-					      <ul class="pagination" id="pagination_list">
-						</ul>
+					     
 					   </div>
+					    <ul class="pagination" id="pagination_list">
+						</ul>
 					</div>	
 					
 				</div>
