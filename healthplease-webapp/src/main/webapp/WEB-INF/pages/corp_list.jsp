@@ -69,16 +69,18 @@
 		 <div class="col-md-3 offset"  ></div>
 		 <div class="col-md-6 " style="background-color:#fff;margin-top:2%">
 		 		<h2>Corporate Appointments</h2>
+		 		
 			   <form role="form" action="<%=Constants.ADMIN_CORPORATE_BOOK_APPOINTMENT_POST_URL %>" method="post">
-			  <div class="form-group">
+			  <div class="form-group">		  
 			   <label for="sel1"style="margin-top:5%">Select Corporate:</label>
 			  <select class="form-control" id="sel1">
 			    <option>Elcerx Services Ltd</option>
 			  </select>
 			  </div>
+			  
 			   <div class="form-group">
-			  <label for="test">Test:</label>
-			  <select id="idTest" name="testIds" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLabs()">
+			  <label for="test" style="margin-top:"">Test:</label></br>
+			  <select id="idTest" name="testIds" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLabs()">
               	<c:forEach items="${tests}" var="test">
                 	<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
                	</c:forEach>
@@ -86,8 +88,8 @@
               </div>
 			  
 			  <div class="form-group">
-			   <label for="sel1"style="margin-top:">Preferred Lab:</label>
-			  <select class="form-control" id="idLabs" name="lab.id" onchange="getDates()">
+			   <label for="sel1"style="margin-top:">Preferred Lab:</label></br>
+			  <select class="form-control"  style="width:100%"id="idLabs" name="lab.id" onchange="getDates()">
 			  
 			  </select>
 			  </div>
@@ -95,7 +97,7 @@
 			  <div class="form-group">
 			  <label class=" control-label" for="appointmentDate">Appointment Date</label>  
               <div class="">
-                  <input id="idAppointmentDate" name="appDate" placeholder="yyyy-mm-dd" class="form-control input-md datepicker-app" type="text" onchange="getSlots()" >
+                  <input id="idAppointmentDate" style="width:100%"name="appDate" placeholder="yyyy-mm-dd" class="form-control input-md datepicker-app" type="text" onchange="getSlots()" >
               	<input type="hidden" name="dbdate" id="dbdate" value="">
               	</div>
                </div>
@@ -103,7 +105,7 @@
                <div class="form-group">
                		<label class=" control-label" for="appointmentTime">Appointment Time</label>
                     <div id="slots" class="ui-widget">
-                    <select id="idAppTime" name="slot.id" class="form-control js-event-log js-slots">
+                    <select id="idAppTime" style="width:100%name="slot.id" class="form-control js-event-log js-slots">
                     	<option value='select' disabled selected>Select time slot</option>
                         </select>
 	                </div>
