@@ -562,10 +562,26 @@ public class HPAdminController implements Constants {
 	
 	@RequestMapping(value = "/" + ADMIN_CORPORATE_GET_URL, method = RequestMethod.GET)
 	public String initCorporatePage(ModelMap model) {
-		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests(null));
+		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests("C"));
 		model.addAttribute(MODEL_REQUEST_FORMS, adminBo.getAllCorporateRequests());
 		manager.setResult(null);
 		return ADMIN_CORPORATE_PAGE;
+	}
+	
+	@RequestMapping(value = "/adminGetLabs", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody String getLabs(String testIds) {
+		List<LabTest> tests = CommonUtils.prepareTests(testIds);
+		return new Gson().toJson(adminBo.getLabsForTest(tests));
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_CORPORATE_BOOK_APPOINTMENT_POST_URL, method = RequestMethod.POST)
+	public RedirectView bookAppointment(ModelMap model, Appointment appointment, String testIds, String appDate) {
+		appointment.setTests(CommonUtils.prepareTests(testIds));
+		appointment.setDate(CommonUtils.convertDate(appDate));
+		//userBo.populateAppointment(appointment);
+		String result = adminBo.bookCorporateAppointment(appointment);
+		manager.setResult(result);
+		return new RedirectView(ADMIN_CORPORATE_GET_URL);
 	}
 	
 }

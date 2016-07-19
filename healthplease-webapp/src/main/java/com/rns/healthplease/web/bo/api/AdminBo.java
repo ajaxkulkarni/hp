@@ -74,4 +74,8 @@ public interface AdminBo {
 
 	List<RequestForm> getAllCorporateRequests();
 
+	List<Lab> getLabsForTest(List<LabTest> tests);
+
+	String bookCorporateAppointment(Appointment appointment);
+
 }

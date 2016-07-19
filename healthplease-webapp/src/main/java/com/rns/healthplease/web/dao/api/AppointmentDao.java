@@ -91,5 +91,7 @@ public interface AppointmentDao {
 	void deleteAllTestFactorMaps(Session session);
 
 	TestFactors getTestFactorById(Integer id, Session session);
+	
+	List<TestLabs> getLabsForTest(List<Integer> tests,Integer labId, Session session);
 
 }

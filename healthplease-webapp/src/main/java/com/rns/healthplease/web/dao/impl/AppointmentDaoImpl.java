@@ -7,8 +7,11 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SharedSessionContract;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Junction;
+import org.hibernate.criterion.Restrictions;
 
+import com.rns.healthplease.web.bo.domain.LabTest;
 import com.rns.healthplease.web.dao.api.AppointmentDao;
 import com.rns.healthplease.web.dao.domain.AppFileLocations;
 import com.rns.healthplease.web.dao.domain.AppoinAddresses;
@@ -322,6 +325,16 @@ public class AppointmentDaoImpl implements AppointmentDao {
 			return null;
 		}
 		return factors.get(0);
+	}
+	
+	@Override
+	public List<TestLabs> getLabsForTest(List<Integer> tests,Integer labId, Session session) {
+		String queryString = "from TestLabs where lab.id=:labId AND test.id in (:testIds)";
+		Query createQuery = session.createQuery(queryString);
+		createQuery.setParameterList("testIds", tests);
+		createQuery.setInteger("labId", labId);
+		return createQuery.list();
+		
 	}
 	
 }

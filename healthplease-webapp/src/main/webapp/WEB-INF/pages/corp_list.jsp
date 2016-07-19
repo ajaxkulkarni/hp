@@ -63,58 +63,82 @@
 				</div>
 	<!-- /////////////////////////////// -->			
 				
-		 <div id="appoint" class="tab-pane fade">
+	<div id="appoint" class="tab-pane fade">
 		 <div class="container" >
 		 <div class="row" >
 		 <div class="col-md-3 offset"  ></div>
 		 <div class="col-md-6 " style="background-color:#fff;margin-top:2%">
 		 		<h2>Corporate Appointments</h2>
-			   <form role="form" action="<%=Constants.CORPORATE_REQUEST_POST_URL %>" method="post">
+			   <form role="form" action="<%=Constants.ADMIN_CORPORATE_BOOK_APPOINTMENT_POST_URL %>" method="post">
 			  <div class="form-group">
 			   <label for="sel1"style="margin-top:5%">Select Corporate:</label>
-			  <select class="form-control" id="sel1" name="companyName">
+			  <select class="form-control" id="sel1">
 			    <option>Elcerx Services Ltd</option>
 			  </select>
 			  </div>
 			   <div class="form-group">
+			  <label for="test">Test:</label>
+			  <select id="idTest" name="testIds" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLabs()">
+              	<c:forEach items="${tests}" var="test">
+                	<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
+               	</c:forEach>
+              </select>
+              </div>
+			  
 			  <div class="form-group">
 			   <label for="sel1"style="margin-top:">Preferred Lab:</label>
-			  <select class="form-control" id="lab" name="labName">
+			  <select class="form-control" id="idLabs" name="lab.id" onchange="getDates()">
 			  
 			  </select>
 			  </div>
+			  
+			  <div class="form-group">
+			  <label class=" control-label" for="appointmentDate">Appointment Date</label>  
+              <div class="">
+                  <input id="idAppointmentDate" name="appDate" placeholder="yyyy-mm-dd" class="form-control input-md datepicker-app" type="text" onchange="getSlots()" >
+              	<input type="hidden" name="dbdate" id="dbdate" value="">
+              	</div>
+               </div>
+               
+               <div class="form-group">
+               		<label class=" control-label" for="appointmentTime">Appointment Time</label>
+                    <div id="slots" class="ui-widget">
+                    <select id="idAppTime" name="slot.id" class="form-control js-event-log js-slots">
+                    	<option value='select' disabled selected>Select time slot</option>
+                        </select>
+	                </div>
+                </div>
+               
 			   <div class="form-group">
-			    <label for="name">Patient Name:</label>
-			    <input type="text" class="form-control" id="name" name="name">
+			    <label for="name">Name:</label>
+			    <input type="text" class="form-control" id="name" name="user.firstName">
 			  </div>
 			  
 			  <div class="form-group">
 			    <label for="email">Company Email:</label>
-			    <input type="email" class="form-control" id="email" name="email">
+			    <input type="email" class="form-control" id="email" name="user.email">
 			  </div>
 			  <div class="form-group">
 			    <label for="pwd">Mobile No.:</label>
-			    <input type="number" class="form-control" id="mobile" name="phone">
+			    <input type="number" class="form-control" id="mobile" name="user.phone">
 			  </div>
-			     <div class="form-group">
+			   <!-- <div class="form-group">
 			    <label for="name">Employee's Name:</label>
 			    <input type="text" class="form-control" id="empname" name="name">
-			  </div>
+			  </div> -->
 			   <div class="form-group">
 			    <label for="age">Age:</label>
-			    <input type="number" class="form-control" id="age" name="age" style="width:50px">
+			    <input type="number" class="form-control" id="age" name="user.age" style="width:50px">
 			  </div>
-			
+			 
 			    <div class="form-group">
 			   <label for="sel1"style="margin-top:5%">Location:</label>
-			  <select class="form-control" id="location" name="location"> 	
-			 </select>
+			  	<input type="text" class="form-control" id="area" name="address.area">
 			  </div>
 			   <div class="form-group">
 				<input id="id_report_checkbox" name="printRequired" class="" style="width: 20px; height: 20px;" value="Y" type="checkbox"> 
 				Need printed report
 			</div>
-			  <input type="hidden" name="testName" id="package_name">
 			  <button type="submit" class="btn btn-default"style="margin-top:5%">Submit</button>
 			</form>   
 			      	
@@ -137,7 +161,109 @@
 
 $(document).ready(function(){
 	paginateTable(20,0);
+	
+	$( "#idAppointmentDate").datepicker({
+	        	changeMonth: true,
+	        	minDate: 0,
+	        	maxDate:"+2M",
+	        	dateFormat:"yy-mm-dd",
+	        	beforeShowDay: function(date) {
+	        		return [checkIfDateAvailable(jQuery.datepicker.formatDate('yy-mm-dd', date))];
+	}});
+	     
 }); 
+
+function getDates() {
+	if($("#idTest").val() == null || $("#idLabs").val() == null) {
+		return;
+	}
+	 $.ajax({
+	       	type : "POST",
+	           url : 'getDates',
+	           dataType: 'json',
+	           data: "labId="+ $("#idLabs").val(),
+	           success : function(dates) {
+	        	   if(dates == null || dates.length == 0) {
+	        		   return;
+	        	   }
+	        	   var appendString = "";
+	        	   for(i = 0;i<dates.length;i++) {
+	        		   appendString = appendString + dates[i] + "*";
+	        	   }
+	        	   $("#dbdate").val(appendString);
+	           },
+	           error: function(e){
+	           	alert("Error: " + e);
+	       	}
+	       }); 
+	 
+ }
+
+
+function checkIfDateAvailable(date) {
+ 	var dates = $("#dbdate").val();
+ 	var res = dates.split('*');
+ 	var i = 0;
+ 	for(i=0;i<res.length;i++) {
+ 		if(res[i] == null || res[i] == '') {
+ 			continue;
+ 		}
+ 		if(res[i] == date) {
+ 			return false;
+ 		}
+ 	}
+	return true;	 
+ }
+
+function getLabs() {
+	$('#idLabs').html("Please select lab");
+	if($("#idTest").val() == null) {
+		return;
+	}
+	$.ajax({
+       	type : "POST",
+           url : 'adminGetLabs',
+           dataType: 'json',
+           data: "testIds="+ $("#idTest").val(),
+           success : function(labs) {
+        	   var i = 0;
+        	   var appendString = "<option value='select'>Please select lab</option>";
+        	   for(i = 0;i<labs.length;i++) {
+        		   appendString = appendString + "<option value='" + labs[i].id +"'>&nbsp;&nbsp;" + labs[i].name +" | Fees Rs. " + labs[i].price +"</option>"
+        	   }
+        	   $("#idLabs").html(appendString);
+           },
+           error: function(e){
+           	alert("Error: " + e);
+       	}
+       });  
+}
+
+
+function getSlots() {
+	$('#idAppTime').html("Please select timing");
+	if($("#idLabs").val() == null || $("#idAppointmentDate").val() == null){
+		return;
+	}
+	$.ajax({
+       	type : "POST",
+           url : 'getSlots',
+           dataType: 'json',
+           data: "labId="+ $("#idLabs").val() + "&date="+ $("#idAppointmentDate").val() + "&homeCollection=false",
+           success : function(slots) {
+        	   var i = 0;
+        	   var appendString = "<option value='select'>Please select timing</option>";
+        	   for(i = 0;i<slots.length;i++) {
+        		   appendString = appendString + "<option value='" + slots[i].id +"'>&nbsp;&nbsp;" + slots[i].startTime + " - " + slots[i].endTime + "</option>"
+        	   }
+        	   $("#idAppTime").html(appendString);
+           },
+           error: function(e){
+           	alert("Error: " + e);
+       	}
+       }); 
+}
+
 </script>
 
 </body>

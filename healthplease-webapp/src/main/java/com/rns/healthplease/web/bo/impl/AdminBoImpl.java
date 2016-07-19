@@ -17,15 +17,18 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.rns.healthplease.web.bo.api.AdminBo;
 import com.rns.healthplease.web.bo.domain.Appointment;
+import com.rns.healthplease.web.bo.domain.AppointmentStatus;
 import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
+import com.rns.healthplease.web.bo.domain.Payment;
+import com.rns.healthplease.web.bo.domain.PaymentStatus;
+import com.rns.healthplease.web.bo.domain.PaymentType;
 import com.rns.healthplease.web.bo.domain.RequestForm;
 import com.rns.healthplease.web.bo.domain.TestParameter;
 import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.dao.api.AppointmentDao;
 import com.rns.healthplease.web.dao.api.UserDao;
-import com.rns.healthplease.web.dao.domain.AppFileLocations;
 import com.rns.healthplease.web.dao.domain.AppointmentTests;
 import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.Groups;
@@ -737,7 +740,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 		if (parameter.getId() != null && parameter.getId().intValue() > 0) {
 			factors = new AppointmentDaoImpl().getTestFactorById(parameter.getId(), session);
 		}
-		if(factors == null) {
+		if (factors == null) {
 			factors = new TestFactors();
 		}
 		BusinessConverters.getTestFactors(parameter, factors);
@@ -748,7 +751,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 		session.close();
 		return RESPONSE_OK;
 	}
-	
+
 	@Override
 	public String deleteParameter(TestParameter parameter) {
 		Session session = this.sessionFactory.openSession();
@@ -757,7 +760,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 		if (parameter.getId() != null && parameter.getId().intValue() > 0) {
 			factors = new AppointmentDaoImpl().getTestFactorById(parameter.getId(), session);
 		}
-		if(factors == null) {
+		if (factors == null) {
 			session.close();
 			return null;
 		}
@@ -766,22 +769,73 @@ public class AdminBoImpl implements AdminBo, Constants {
 		session.close();
 		return RESPONSE_OK;
 	}
-	
+
 	@Override
 	public List<RequestForm> getAllCorporateRequests() {
 		List<RequestForm> corporateRequestForms = new ArrayList<RequestForm>();
 		Session session = this.sessionFactory.openSession();
 		List<RequestCollections> collections = new UserDaoImpl().getAllRequestCollections("2", session);
-		if(CollectionUtils.isEmpty(collections)) {
+		if (CollectionUtils.isEmpty(collections)) {
 			session.close();
 			return corporateRequestForms;
 		}
-		for(RequestCollections collection: collections) {
+		for (RequestCollections collection : collections) {
 			RequestForm form = DataConverters.getRequestForm(collection);
 			corporateRequestForms.add(form);
 		}
 		session.close();
 		return corporateRequestForms;
+	}
+
+	@Override
+	public List<Lab> getLabsForTest(List<LabTest> tests) {
+		if (CollectionUtils.isEmpty(tests)) {
+			return null;
+		}
+		List<Lab> labs = new ArrayList<Lab>();
+		List<Integer> testIds = new ArrayList<Integer>();
+		for(LabTest test: tests) {
+			testIds.add(test.getId());
+		}
+		if(CollectionUtils.isEmpty(testIds)) {
+			return labs;
+		}
+		Session session = this.sessionFactory.openSession();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		List<Labs> allLabs = appointmentDao.getAllLabs(session);
+		for(Labs lab: allLabs) {
+			List<TestLabs> testLabs = appointmentDao.getLabsForTest(testIds, lab.getId(), session);
+			if(CollectionUtils.isEmpty(testLabs) || testLabs.size() < tests.size()) {
+				continue;
+			}
+			Lab currentLab = DataConverters.getLab(testLabs.get(0).getLab());
+			currentLab.setPrice(0);
+			for(TestLabs testLab: testLabs) {
+				currentLab.setPrice(currentLab.getPrice() + testLab.getLabPrice());
+			}
+			labs.add(currentLab);
+		}
+		
+		session.close();
+		return labs;
+	}
+	
+	@Override
+	public String bookCorporateAppointment(Appointment appointment) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		appointment.setStatus(new AppointmentStatus(1));
+		Appointments appointments = BusinessConverters.getAppointments(appointment);
+		Locations locations = new Locations();
+		locations.setId(0);
+		appointments.setLocations(locations);
+		appointments.getUser().setId(0);
+		appointments.setDoctorName("");
+		appointments.setGender("");
+		session.persist(appointments);
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
 	}
 
 }

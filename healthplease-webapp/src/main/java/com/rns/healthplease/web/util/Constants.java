@@ -224,6 +224,7 @@ public interface Constants {
 	String ADMIN_EDIT_PARAMETER_POST_URL = "adminEditParameter";
 	String ADMIN_CORPORATE_GET_URL = "adminCorporate.htm";
 	String ADMIN_CORPORATE_PAGE = "corp_list";
+	String ADMIN_CORPORATE_BOOK_APPOINTMENT_POST_URL = "adminBookAppointment";
 	
 	
 	String MAIL_TYPE_ACTIVATION = "activationMail";
