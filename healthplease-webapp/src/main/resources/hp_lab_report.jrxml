@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-18T23:51:57 -->
+<!-- 2016-07-21T23:20:17 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -18,6 +18,9 @@
 	<parameter name="patientAge" class="java.lang.String"/>
 	<parameter name="patientGender" class="java.lang.String"/>
 	<parameter name="doctorName" class="java.lang.String"/>
+	<parameter name="printRequired" class="java.lang.String"/>
+	<parameter name="pathName" class="java.lang.String"/>
+	<parameter name="designation" class="java.lang.String"/>
 	<field name="parameters" class="java.util.List"/>
 	<field name="name" class="java.lang.String"/>
 	<background>
@@ -83,22 +86,30 @@
 				<textFieldExpression><![CDATA[$P{appointmentDate}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="169" y="23" width="380" height="40" forecolor="#030000" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592"/>
+				<reportElement x="169" y="23" width="380" height="40" forecolor="#030000" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592">
+					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
+				</reportElement>
 				<textElement>
 					<font fontName="SansSerif" size="24" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{labName}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="16" y="13" width="113" height="90" uuid="8b35d50b-29bb-49db-9afe-b7d5897a74c5"/>
+				<reportElement x="16" y="13" width="113" height="90" uuid="8b35d50b-29bb-49db-9afe-b7d5897a74c5">
+					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
+				</reportElement>
 				<imageExpression><![CDATA["http://db.puneconnect.com/site_media/company_logos/Health_Please_Logo_png.png"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="169" y="73" width="370" height="20" uuid="acdc6b51-0271-4978-b45d-b3af01681203"/>
+				<reportElement x="169" y="73" width="370" height="20" uuid="acdc6b51-0271-4978-b45d-b3af01681203">
+					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
+				</reportElement>
 				<textFieldExpression><![CDATA[$P{labAddress}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="1" y="10" width="552" height="100" forecolor="#000000" uuid="0b84bcb9-0336-4194-9735-47be5034f8d9"/>
+				<reportElement mode="Transparent" x="1" y="10" width="552" height="100" forecolor="#000000" uuid="0b84bcb9-0336-4194-9735-47be5034f8d9">
+					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
+				</reportElement>
 			</rectangle>
 		</band>
 	</pageHeader>
@@ -106,16 +117,17 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="145" splitType="Stretch">
+		<band height="125" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<subreport>
-				<reportElement x="10" y="50" width="543" height="80" uuid="8cd85150-b315-4f57-bb63-5356cb7a1099"/>
+				<reportElement x="0" y="40" width="555" height="80" uuid="8cd85150-b315-4f57-bb63-5356cb7a1099"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<subreportParameter name="testValues"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{parameters})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "hp_report_params.jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement x="250" y="20" width="100" height="20" uuid="c8746232-1373-4397-bde2-4bdc2c18bb89"/>
+				<reportElement x="230" y="0" width="277" height="30" uuid="c8746232-1373-4397-bde2-4bdc2c18bb89"/>
 				<textElement>
 					<font size="12" isBold="true" isItalic="false" isUnderline="true"/>
 				</textElement>
@@ -127,23 +139,25 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="50" splitType="Stretch">
-			<textField>
-				<reportElement x="227" y="20" width="100" height="30" uuid="906cb985-5817-476b-ba8b-d0302ee311df"/>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
+		<band height="37" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="54" splitType="Stretch">
+		<band height="150" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<staticText>
-				<reportElement x="430" y="10" width="100" height="30" uuid="d1b3ed67-3e48-44f1-a9d2-d22eaf70d7cc"/>
-				<textElement>
-					<font size="20"/>
-				</textElement>
-				<text><![CDATA[Signature]]></text>
-			</staticText>
+			<image>
+				<reportElement x="415" y="10" width="70" height="70" uuid="5814f574-7252-4fbd-ae11-d812a4e1d14b"/>
+				<imageExpression><![CDATA["http://db.puneconnect.com/site_media/company_logos/Health_Please_Logo_png.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="400" y="90" width="100" height="20" uuid="dc25118e-111e-48bc-baef-b9cfafd7053f"/>
+				<textFieldExpression><![CDATA[$P{pathName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="120" width="100" height="30" uuid="d14c6d0c-62b0-47ca-bef7-d96844669b32"/>
+				<textFieldExpression><![CDATA[$P{designation}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
