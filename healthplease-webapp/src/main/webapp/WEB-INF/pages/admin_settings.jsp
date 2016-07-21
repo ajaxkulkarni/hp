@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Welcome <span class="nameHolder">Admin</span></h1>
+                <h1 class="page-header">Welcome <span class="nameHolder"></span></h1>
             </div>
         </div>
             <!-- /.col-lg-12 -->
@@ -30,7 +30,8 @@
     </div>
    <div class="container" id="addUser" name="addUser" >
   <div class="row"> 
-     <%@include file="admin_header.jsp" %>
+    <%--  <%@include file="admin_header.jsp" %> --%>
+    <div class="col-lg-1 col-md-3 offset"></div>
      <div class="col-lg-9 col-md-9"style="border">
      <ul class="nav nav-tabs">
 			    <li class="active"><a data-toggle="tab" href="#setting1">Report Settings</a></li>
@@ -75,22 +76,16 @@
 			    </div>
 			    </div>
 			   <button type="button" style="float:right" class="btn btn-primary">Submit</button> 
-				
-				
-				
-				
-				
-				
-			
-			
-				</div>
+		
+	    		</div>
 				</div>
      			</div>	
 			   	</div>
 			   	
 			   	
 			   	 <div id="setting2" class="tab-pane fade in active" >
-				<div class="container">
+				<div class="container" style="height:600px">
+				
      			</div>	
 			   	</div>
      </div>

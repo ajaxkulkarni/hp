@@ -11,15 +11,28 @@
 <html lang="en">
 
 <head>
-          <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-          <title>Corporate Requests | HealthPlease.in</title>
-<link href="<c:url value="/resources/css/tab.css" />" rel="stylesheet" ></link>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Book Diagnostic & Pathology Test like Thyroid, Sugar, Urine, Cholesterol, ECG and X-Ray. Pay for them Online. Sample Collected at home or in lab. EMR Storage Available.</title>
+    
 </head>
 
 <body>
 <%@include file="user_header.jsp" %>
+<div class="classTopHeading">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Welcome <span class="nameHolder">Admin</span></h1>
+            </div>
+        </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </div>
+   <div class="container" id="addUser" name="addUser" >
+  <div class="row"> 
+    <%@include file="admin_header.jsp" %> 
 
+<div class="col-md-9 col-xl-9">
 <ul class="nav nav-tabs">
 			    <li class="active"><a data-toggle="tab" href="#request">Corporate Requests</a></li>
 			    <li><a data-toggle="tab" href="#appoint">Corporate Appointments</a></li>
@@ -29,6 +42,8 @@
 	 	
 			    <div id="request" class="tab-pane fade in active" >
 				<div class="container">
+				<div class="row">
+				<div class="col-md-10 col-xl-10">
 						<div class="tablespace"  style="background-color:#fff;margin-top:5%;height:500px">
 						<table id="categories_table" class="table table-bordered table-responsive paginate">
 					                    <tbody>
@@ -58,7 +73,7 @@
 					   </div>
 					    <ul class="pagination" id="pagination_list">
 						</ul>
-					</div>	
+					</div>	</div></div>
 					
 				</div>
 	<!-- /////////////////////////////// -->			
@@ -66,7 +81,7 @@
 	<div id="appoint" class="tab-pane fade">
 		 <div class="container" >
 		 <div class="row" >
-		 <div class="col-md-3 offset"  ></div>
+		 <div class="col-md-1 offset"  ></div>
 		 <div class="col-md-6 " style="background-color:#fff;margin-top:2%">
 		 		<h2>Corporate Appointments</h2>
 		 		
@@ -134,14 +149,14 @@
 			  </div>
 			 
 			    <div class="form-group">
-			   <label for="sel1"style="margin-top:5%">Location:</label>
+			   <label for="sel1"style="margin-top:1%">Location:</label>
 			  	<input type="text" class="form-control" id="area" name="address.area">
 			  </div>
 			   <div class="form-group">
 				<input id="id_report_checkbox" name="printRequired" class="" style="width: 20px; height: 20px;" value="Y" type="checkbox"> 
 				Need printed report
 			</div>
-			  <button type="submit" class="btn btn-default"style="margin-top:5%">Submit</button>
+			  <button type="submit" class="btn btn-default"style="margin-top:2%;margin-bottom:5%">Submit</button>
 			</form>   
 			      	
 			</div>      			 		
@@ -154,7 +169,9 @@
 	<!-- //////////////////// -->			
 				
 	</div>
-
+</div>
+</div>
+</div>
 <%@include file="user_footer.jsp" %>
 <script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
 
