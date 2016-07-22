@@ -12,27 +12,14 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-function cancel(id) {
+function cancel(id,labId) {
 	
 	if(!confirm("Do you really want to cancel this appointment?")) {
 		return;
 	}
-	$("#cancelAppointmentId").value(id);
+	$("#cancelAppointmentId").val(id);
+	$("#labId").val(labId)
 	$("#cancel_form").submit();
-	/* $.ajax({
-	   	type : "POST",
-	       url : 'cancelAppointment',
-	       data: "appointmentId=" + id,
-	       success : function(msg) {
-	    	   if(msg == 'OK') {
-	    		   alert("Appointment cancelled successfully!");
-	    		   location.reload();
-	    	   }
-	       },
-	       error: function(e){
-	       	alert("Error: " + e);
-	   	}
-	   });  */
 }
 
 </script>
@@ -62,19 +49,19 @@ function cancel(id) {
 						<td>${appointment.lab.name}</td>
 						<td>
 						<c:forEach items="${appointment.tests}" var="test">
-						${test.name} || ${test.price}
+						${test.name} || ${test.price} 
+						<c:if test="${test.reportSent == 'Y' || test.fileLocation != null}">
+							<a style="" target="_blank" href="getReport?appointmentId=${appointment.id}&testId=${test.id}">download</a>
+						</c:if>
 						<br>
 						</c:forEach>
-						<c:if test="${appointment.status.id == 3}">
-							<a style="" target="_blank" href="getReport?appointmentId=${appointment.id}">download</a>
-						</c:if>
 						</td>
 						<td>${appointment.date}</td>
 						<td>${appointment.status.name}</td>
 						<td align="center">
 							<c:if test="${appointment.status.id == 1}">
 								<a id="407" class="js-editappointment" onclick="">edit</a>
-								<a class="js-cancelappointment" onclick="cancel(${appointment.id})">cancel</a>
+								<a class="js-cancelappointment" onclick="cancel(${appointment.id},${appointment.lab.id})">cancel</a>
 							</c:if>
 						</td>
 					</tr>
@@ -82,9 +69,10 @@ function cancel(id) {
 			</tbody>
 		</table>
 		<form action="<%=Constants.CANCEL_APPOINTMENT_POST_URL %>" method="post" id="cancel_form">
-			<input type="hidden" id="cancelAppointmentId" name="${appointment.id}">
-			<input type="hidden" name="status.cancelId"> 
+			<input type="hidden" id="cancelAppointmentId" value="" name="id">
+			<input type="hidden" name="status.cancelId" value="1"> 
 			<input type="hidden" id="statusId" name="status.id" value="2" />
+			<input type="hidden" id="labId" name="lab.id" value="" />
 		</form>
 	</div>
 </body>

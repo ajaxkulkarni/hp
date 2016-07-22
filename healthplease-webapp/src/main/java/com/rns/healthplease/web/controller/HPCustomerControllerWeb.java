@@ -353,7 +353,10 @@ public class HPCustomerControllerWeb implements Constants {
 	@RequestMapping(value = "/" + CANCEL_APPOINTMENT_POST_URL, method = RequestMethod.POST)
 	public RedirectView cancelAppointment(ModelMap model, Appointment appointment) {
 		appointment.setUser(manager.getUser());
-		appointment.setLab(manager.getUser().getLab());
+		Lab lab = manager.getUser().getLab();
+		if (lab != null) {
+			appointment.setLab(lab);
+		}
 		manager.setResult(userBo.cancelAppointment(appointment));
 		return new RedirectView(USER_HOME_GET_URL);
 	}
@@ -372,10 +375,13 @@ public class HPCustomerControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/" + GET_REPORT_URL_GET, method = RequestMethod.GET)
-	public void getReport(int appointmentId, HttpServletResponse response, ModelMap model) {
+	public void getReport(int appointmentId,int testId, HttpServletResponse response, ModelMap model) {
 		InputStream is = null;
 		Appointment appointment = new Appointment();
 		appointment.setId(appointmentId);
+		LabTest test = new LabTest();
+		test.setId(testId);
+		appointment.getTests().add(test);
 		try {
 			is = userBo.downloadReport(appointment);
 			if (is != null) {

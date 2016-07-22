@@ -1,14 +1,19 @@
 package com.rns.healthplease.web.bo.impl;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperReport;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -34,6 +39,7 @@ import com.rns.healthplease.web.dao.api.LabDao;
 import com.rns.healthplease.web.dao.api.UserDao;
 import com.rns.healthplease.web.dao.domain.AppFileLocations;
 import com.rns.healthplease.web.dao.domain.AppoinAddresses;
+import com.rns.healthplease.web.dao.domain.AppointmentTests;
 import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.CancelReasons;
 import com.rns.healthplease.web.dao.domain.Groups;
@@ -56,6 +62,7 @@ import com.rns.healthplease.web.util.BusinessConverters;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
 import com.rns.healthplease.web.util.DataConverters;
+import com.rns.healthplease.web.util.JasperUtil;
 import com.rns.healthplease.web.util.MailUtil;
 import com.rns.healthplease.web.util.SMSUtil;
 
@@ -541,7 +548,7 @@ public class UserBoImpl implements UserBo, Constants {
 			appointments.setUpdatedBy(appointment.getUser().getId());
 		}
 		appointments.setCancelledReasonId(Short.valueOf(appointment.getStatus().getCancelId().toString()));
-		appointments.setCancelledLabRemark(appointment.getStatus().getCancellationReason());
+		appointments.setCancelledLabRemark(CommonUtils.getStringValue(appointment.getStatus().getCancellationReason()));
 		appointments.setCancelledDate(new Date());
 		appointments.setUpdatedDate(new Date());
 		CommonUtils.populateLabUsers(appointment, session);
@@ -560,16 +567,36 @@ public class UserBoImpl implements UserBo, Constants {
 	}
 
 	public InputStream downloadReport(Appointment appointment) {
-		if (appointment == null || appointment.getId() == null) {
+		if (appointment == null || appointment.getId() == null || CollectionUtils.isEmpty(appointment.getTests())) {
 			return null;
 		}
 		Session session = this.sessionFactory.openSession();
 		AppointmentDao appointmentDao = new AppointmentDaoImpl();
-		AppFileLocations locations = appointmentDao.getAppFileLocationByAppointmentId(appointment.getId(), session);
+		Appointments appointments = appointmentDao.getAppointmentById(appointment.getId(), session);
+		if(appointments == null || CollectionUtils.isEmpty(appointments.getTests())) {
+			session.close();
+			return null;
+		}
+		//AppFileLocations locations = appointmentDao.getAppFileLocationByAppointmentId(appointment.getId(), session);
+		AppFileLocations locations = null;
 		InputStream is = null;
+		for(AppointmentTests appTest : appointments.getTests()) {
+			if(appTest.getTests() != null && appTest.getTests().getId().intValue() == appointment.getTests().get(0).getId().intValue() && appTest.getFileLocation()!=null) {
+				locations = appTest.getFileLocation();
+			}
+		}
 		try {
-			is = new FileInputStream(new File(locations.getFilePath()));
+			if (locations == null) {
+				Appointment currentAppointment = DataConverters.getAppointment(session, appointmentDao, appointments);
+				JasperUtil.getReport(currentAppointment);
+				is = new ByteArrayInputStream(currentAppointment.getReportData());
+			} else
+				is = new FileInputStream(new File(locations.getFilePath()));
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (JRException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		session.close();
