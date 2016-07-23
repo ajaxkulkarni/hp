@@ -60,7 +60,7 @@ function cancel(id,labId) {
 						<td>${appointment.status.name}</td>
 						<td align="center">
 							<c:if test="${appointment.status.id == 1}">
-								<a id="407" class="js-editappointment" onclick="">edit</a>
+								<a id="407" class="js-editappointment" href="<%=Constants.EDIT_APPOINTMENT_GET_URL %>?appointmentId=${appointment.id}" onclick="">edit</a>
 								<a class="js-cancelappointment" onclick="cancel(${appointment.id},${appointment.lab.id})">cancel</a>
 							</c:if>
 						</td>
