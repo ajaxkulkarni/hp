@@ -93,6 +93,7 @@ public class JasperUtil {
 		parameters.put("appointmentDate", CommonUtils.convertDate(appointment.getDate(), Constants.DATE_FORMAT_2));
 		parameters.put("labAddress", appointment.getLab().getAddress());
 		parameters.put("doctorName", appointment.getDoctorName());
+		parameters.put("printRequired", "Y");
 
 		JRBeanCollectionDataSource testSource = new JRBeanCollectionDataSource(appointment.getTests());
 		String reportName = LAB_REPORT_TEMPLATE;
