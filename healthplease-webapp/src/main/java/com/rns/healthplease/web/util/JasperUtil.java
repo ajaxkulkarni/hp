@@ -96,7 +96,8 @@ public class JasperUtil {
 
 		JRBeanCollectionDataSource testSource = new JRBeanCollectionDataSource(appointment.getTests());
 		String reportName = LAB_REPORT_TEMPLATE;
-		if(CollectionUtils.isNotEmpty(appointment.getTests()) && CollectionUtils.isNotEmpty(appointment.getTests().get(0).getParameters()) && StringUtils.equalsIgnoreCase("D", appointment.getTests().get(0).getParameters().get(0).getType())) {
+		if (CollectionUtils.isNotEmpty(appointment.getTests()) && CollectionUtils.isNotEmpty(appointment.getTests().get(0).getParameters())
+				&& StringUtils.equalsIgnoreCase("D", appointment.getTests().get(0).getParameters().get(0).getType())) {
 			reportName = LAB_REPORT_TEMPLATE_DESC;
 		}
 		appointment.setReportData(generateReport(parameters, testSource, reportName));
@@ -118,12 +119,16 @@ public class JasperUtil {
 		if (appointment.getPayment() != null) {
 			parameters.put("invoiceId", appointment.getPayment().getPaymentId());
 		}
-		parameters.put("pickupCharges", appointment.getLab().getPickUpCharge());
+		parameters.put("pickupCharges", 0);
+		if (appointment.getLab().getPickUpCharge()!= null) {
+			parameters.put("pickupCharges", appointment.getLab().getPickUpCharge());
+		} 
 		parameters.put("total", appointment.getLab().getPrice());
 		parameters.put("phone", appointment.getUser().getPhone());
 		parameters.put("address", appointment.getUser().getAddress().getArea());
 		addSerialNumbers(appointment.getTests());
-		//JRBeanCollectionDataSource testSource = new JRBeanCollectionDataSource(new ArrayList());
+		// JRBeanCollectionDataSource testSource = new
+		// JRBeanCollectionDataSource(new ArrayList());
 		parameters.put("labTests", appointment.getTests());
 
 		appointment.setInvoiceData(generateReport(parameters, null, LAB_INVOICE_TEMPLATE));

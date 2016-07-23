@@ -246,24 +246,26 @@ public class HPLabControllerWeb implements Constants {
 	@RequestMapping(value = "/" + GET_LAB_SLOTS_GET_URL, method = RequestMethod.GET)
 	public RedirectView getSlotsForDay(ModelMap model, int day) {
 		Lab lab = manager.getUser().getLab();
-		lab.setCurrentSlots(labBo.getAllLabSlotsForDay(lab, prepareDate(day).getTime()));
+		Date date = prepareDate(day).getTime();
+		lab.setCurrentSlots(labBo.getAllLabSlotsForDay(lab, date));
 		return new RedirectView(SLOTS_GET_URL);
 	}
 
 	@RequestMapping(value = "/" + BLOCK_SLOTS_POST_URL, method = RequestMethod.POST)
-	public RedirectView blockSlots(ModelMap model, String[] availableSlots) {
+	public RedirectView blockSlots(ModelMap model, String[] availableSlots, String date) {
 
-		List<Slot> slots = CommonUtils.getSlots(availableSlots);
-		prepareCurrentSlots(slots);
+		List<Slot> slots = CommonUtils.getSlots(availableSlots, date);
+		//prepareCurrentSlots(slots);
 		Lab lab = manager.getUser().getLab();
-		labBo.blockSlots(lab.getCurrentSlots(), lab);
+		Date convertedDate = CommonUtils.convertDate(date);
+		labBo.blockSlots(slots, lab, convertedDate);
 		manager.setResult("The selected slots have been modified successfully!");
-		return new RedirectView(SLOTS_GET_URL);
+		return new RedirectView(GET_LAB_SLOTS_GET_URL + "?day=" + CommonUtils.getDay(convertedDate));
 	}
 
 	private void prepareCurrentSlots(List<Slot> slots) {
 		List<Slot> currentSlots = manager.getUser().getLab().getCurrentSlots();
-		if (CollectionUtils.isEmpty(currentSlots) || CollectionUtils.isEmpty(slots)) {
+		if (CollectionUtils.isEmpty(currentSlots)) {
 			return;
 		}
 		for (Slot slot : currentSlots) {

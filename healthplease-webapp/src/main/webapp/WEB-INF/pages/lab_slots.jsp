@@ -140,6 +140,7 @@
 			</tr>
 		</c:forEach>
 		</table>
+		<input type="hidden" name="date" value='<fmt:formatDate value="${slots[0].blockedDate}" pattern="<%=Constants.DATE_FORMAT %>" />'>
 		<div class="col-lg-6" style="margin-top: 20px;margin-left: -15px;">
 			<button id="save" class="btn btn-primary" type="submit">Save</button>
 		</div>

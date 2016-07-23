@@ -3,7 +3,7 @@ package com.rns.healthplease.web.util;
 public interface Constants {
 
 	String ROOT_URL = "http://localhost:8080/healthplease-webapp";
-	//String ROOT_URL = "http://52.38.220.19:8080/hp/";
+	// String ROOT_URL = "http://52.38.220.19:8080/hp/";
 	String MERCHANT_KEY = "AdtyF8"; // DEV
 	String MERCHANT_SALT = "8bPpsm3Q"; // DEV
 	String PAY_U_URL = "https://test.payu.in/_payment";
@@ -12,19 +12,18 @@ public interface Constants {
 	String PAY_TM_INDUSTRY_TYPE = "Retail";
 	String PAY_TM_MID = "Health30574555479792";
 	String PAY_TM_MERCHANT_KEY = "7a30TvYKmyQWIN4#";
-	
+
 	// IMPORTANT : Production Environment Credentials below! Handle with care!
-	
-	/*String ROOT_URL = "http://www.healthplease.in";
-	String PAY_U_URL = "https://secure.payu.in/_payment";
-	String MERCHANT_KEY = "FRQ4pz";
-	String MERCHANT_SALT = "gH3FYsHU";
-	String PAY_TM_URL = "https://secure.paytm.in/oltp-web/processTransaction";
-	String PAY_TM_WEBSITE = "HealthPleaseweb";
-	String PAY_TM_INDUSTRY_TYPE = "Retail120";
-	String PAY_TM_MID = "Health49217529407325";
-	String PAY_TM_MERCHANT_KEY = "oxsdUfWmMhpSwWGR";*/
-	
+
+	/*
+	 * String ROOT_URL = "http://www.healthplease.in"; String PAY_U_URL =
+	 * "https://secure.payu.in/_payment"; String MERCHANT_KEY = "FRQ4pz"; String
+	 * MERCHANT_SALT = "gH3FYsHU"; String PAY_TM_URL =
+	 * "https://secure.paytm.in/oltp-web/processTransaction"; String
+	 * PAY_TM_WEBSITE = "HealthPleaseweb"; String PAY_TM_INDUSTRY_TYPE =
+	 * "Retail120"; String PAY_TM_MID = "Health49217529407325"; String
+	 * PAY_TM_MERCHANT_KEY = "oxsdUfWmMhpSwWGR";
+	 */
 
 	String PRODUCT_INFO = "HealthPlease";
 	String ASSETS_ROOT = "/resources"; // DEV
@@ -42,7 +41,6 @@ public interface Constants {
 	char ACTIVE_DAY = 'Y';
 	String PAYTM_TXN_SUCCESS = "TXN_SUCCESS";
 	String PAY_U_TX_SUCCESS = "success";
-
 
 	String MODEL_APPOINTMENT = "appointment";
 	String MODEL_LOCATIONS = "locations";
@@ -75,7 +73,7 @@ public interface Constants {
 	String CANCELLED_HEADER = "Cancelled Appointments";
 	String PENDING_HEADER = "Pending Appointments";
 	String TODAY_HEADER = "Today's Appointments";
-	int[] DOUBLE_TEST_CHARGE = {42,159};
+	int[] DOUBLE_TEST_CHARGE = { 42, 159 };
 
 	String ERROR_INVALID_USER_CREDENTIALS = "Invalid user credentials!";
 	String ERROR_INVALID_USER = "Invalid User Details!";
@@ -84,7 +82,6 @@ public interface Constants {
 	String ERROR_FORGOT_PWD_NO_USER = "No user found with given Email.";
 	String ERROR_INVALID_TEST_DETAILS = "Test does not exist!";
 	String ERROR_NOT_ACTIVE = "Your account is not activated yet!";
-	
 
 	String BOOK_APPOINTMENT_POST_URL = "bookAppointment";
 	String USER_HOME_GET_URL = "userhome.htm";
@@ -225,8 +222,7 @@ public interface Constants {
 	String ADMIN_CORPORATE_GET_URL = "adminCorporate.htm";
 	String ADMIN_CORPORATE_PAGE = "corp_list";
 	String ADMIN_CORPORATE_BOOK_APPOINTMENT_POST_URL = "adminBookAppointment";
-	
-	
+
 	String MAIL_TYPE_ACTIVATION = "activationMail";
 	String MAIL_TYPE_REPORT_UPLOAD = "reportUpload";
 	String MAIL_TYPE_BOOK_APP_USER = "bookAppointmentUser";
@@ -243,6 +239,7 @@ public interface Constants {
 	String MAIL_TYPE_CORPORATE_REQUEST_ADMIN = "corporateRequestAdmin";
 
 	String[] ADMIN_MAIL_TYPES = { MAIL_TYPE_REQUEST_CHECKUP_LAB, MAIL_TYPE_REQUEST_CALLBACK_LAB, MAIL_TYPE_CORPORATE_REQUEST_ADMIN };
+	String[] LAB_NAME_MAIL_TYPES = { MAIL_TYPE_BOOK_APP_LAB, MAIL_TYPE_CANCEL_APP_LAB };
 	String ADMIN_MAILS = "yash.bharwani@healthplease.in,care@healthplease.in,ajinkyashiva@gmail.com";
 	String ADMIN_PHONES = "9890733740,9423040642";
 

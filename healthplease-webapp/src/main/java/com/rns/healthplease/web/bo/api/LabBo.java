@@ -16,7 +16,7 @@ public interface LabBo {
 	
 	void blockDates(List<Date> dates, Lab lab);
 	
-	void blockSlots(List<Slot> slots, Lab lab);
+	void blockSlots(List<Slot> slots, Lab lab, Date date);
 	
 	void activateSlots(List<Slot> slots, Lab lab);
 	

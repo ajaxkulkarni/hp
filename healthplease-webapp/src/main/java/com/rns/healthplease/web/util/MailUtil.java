@@ -27,6 +27,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.rns.healthplease.web.bo.domain.Appointment;
@@ -182,7 +183,7 @@ public class MailUtil implements Constants, Runnable {
 				message.setContent(result, "text/html");
 			}
 
-			if (MAIL_TYPE_BOOK_APP_LAB.equals(type) || MAIL_TYPE_CANCEL_APP_LAB.equals(type)) {
+			if (ArrayUtils.contains(LAB_NAME_MAIL_TYPES, type)) {
 				message.setSubject(StringUtils.replace(message.getSubject(), "{labName}", appointment.getLab().getName()));
 				message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(getEmails(appointment.getLab().getUsers())));
 			} else {

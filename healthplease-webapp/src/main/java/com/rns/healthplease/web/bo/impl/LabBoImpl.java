@@ -116,8 +116,8 @@ public class LabBoImpl implements LabBo, Constants {
 		}
 	}
 
-	public void blockSlots(List<Slot> slots, Lab lab) {
-		if (CollectionUtils.isEmpty(slots) || lab == null) {
+	public void blockSlots(List<Slot> slots, Lab lab, Date date) {
+		if (lab == null || date == null) {
 			return;
 		}
 		Session session = this.sessionFactory.openSession();
@@ -128,19 +128,42 @@ public class LabBoImpl implements LabBo, Constants {
 			session.close();
 			return;
 		}
-		for (Slot slot : slots) {
-			LabBlockedSlots labSlot = BusinessConverters.getBlockedSlot(slot, labs);
-			if (labSlot == null) {
-				continue;
+		Transaction tx = session.beginTransaction();
+		//Activate the slots if blocked
+		if (CollectionUtils.isNotEmpty(labs.getBlockedSlots())) {
+			for (LabBlockedSlots slot : labs.getBlockedSlots()) {
+				if (DateUtils.isSameDay(date, slot.getDate()) & CollectionUtils.isNotEmpty(slots)) {
+					for (Slot activateSlot : slots) {
+						if (slot.getSlots().getId().intValue() == activateSlot.getId().intValue()) {
+							activateSlot(session, labDao, slot);
+							break;
+						}
+					}
+				}
+
 			}
-			Transaction tx = session.beginTransaction();
-			if (slot.isBlocked()) {
-				blockSlot(session, labDao, labSlot);
-			} else {
-				activateSlot(session, labDao, labSlot);
-			}
-			tx.commit();
 		}
+		//Block the slots if not blocked
+		List<Slots> allSlots = appointmentDao.getAllSlots(session, labs.getId());
+		for (Slots generalSlot : allSlots) {
+			boolean activeFound = false;
+			if (CollectionUtils.isNotEmpty(slots)) {
+				for (Slot activateSlot : slots) {
+					if (generalSlot.getId().intValue() == activateSlot.getId().intValue()) {
+						activeFound = true;
+						break;
+					}
+				}
+			}
+			if(!activeFound) {
+				LabBlockedSlots blockedSlots = new LabBlockedSlots();
+				blockedSlots.setLab(labs);
+				blockedSlots.setDate(date);
+				blockedSlots.setSlots(generalSlot);
+				blockSlot(session, labDao, blockedSlots);
+			}
+		}
+		tx.commit();
 		session.close();
 	}
 
@@ -482,7 +505,7 @@ public class LabBoImpl implements LabBo, Constants {
 		}
 		if (CollectionUtils.isNotEmpty(labs.getBlockedSlots())) {
 			for (LabBlockedSlots labBlockedSlots : labs.getBlockedSlots()) {
-				if (availSlot.getId() == labBlockedSlots.getSlots().getId() && DateUtils.isSameDay(labBlockedSlots.getDate(), date)) {
+				if (availSlot.getId().intValue() == labBlockedSlots.getSlots().getId().intValue() && DateUtils.isSameDay(labBlockedSlots.getDate(), date)) {
 					availSlot.setBlocked(true);
 					break;
 				}

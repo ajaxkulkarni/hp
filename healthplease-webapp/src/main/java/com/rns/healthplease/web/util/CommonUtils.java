@@ -243,14 +243,15 @@ public class CommonUtils implements Constants {
 		return false;
 	}
 
-	public static List<Slot> getSlots(String[] blockedSlots) {
-		if (blockedSlots == null || blockedSlots.length == 0) {
+	public static List<Slot> getSlots(String[] blockedSlots, String date) {
+		if (blockedSlots == null || blockedSlots.length == 0 || StringUtils.isEmpty(date)) {
 			return null;
 		}
 		List<Slot> slots = new ArrayList<Slot>();
 		for (String slotId : blockedSlots) {
 			Slot slot = new Slot();
 			slot.setId(Integer.valueOf(slotId));
+			slot.setBlockedDate(convertDate(date));
 			slots.add(slot);
 		}
 		return slots;
@@ -488,6 +489,12 @@ public class CommonUtils implements Constants {
 			return null;
 		}
 		return formValues[i];
+	}
+	
+	public static int getDay(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal.get(Calendar.DATE);
 	}
 	
 	/*public static void main(String[] args) {
