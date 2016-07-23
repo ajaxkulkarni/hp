@@ -9,6 +9,9 @@
 <head>
 
 <title>About Us | HealthPlease.in</title>
+<link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
+<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
+<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
 <style>
 input.error, textarea.error {
 	border-color: #843534 !important;
@@ -93,7 +96,7 @@ input.error, textarea.error {
 							proud to be a forerunner in the city of Pune, providing the
 							facility of collection of various samples for a large number of
 							Pathology Tests. As a part of this service, a skilled technician
-							from the Pathology Lab visits the patient'€™s home at a
+							from the Pathology Lab visits the patient's home at a
 							pre-decided time in order to collect the samples. The same are
 							then handed over at the Pathology Lab for testing. On reception
 							of the reports, the same are uploaded on the patients
