@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-21T23:25:57 -->
+<!-- 2016-07-23T21:37:11 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_report_params" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7df0b4c9-a9f5-4694-990d-0bf775f2b11c">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="remark" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -71,24 +72,24 @@
 	<detail>
 		<band height="39" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="1" y="10" width="189" height="20" uuid="eedd334b-6765-42d6-8e19-7340e2958854"/>
+				<reportElement x="1" y="10" width="178" height="20" uuid="eedd334b-6765-42d6-8e19-7340e2958854"/>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="281" y="10" width="100" height="20" uuid="7491ca9a-63a3-4ba0-b0f2-71feb90c192d"/>
 				<textFieldExpression><![CDATA[$F{normalValue}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="382" y="10" width="70" height="20" uuid="aaee7149-38a8-41cb-93ce-3a7dc8ff5e73"/>
 				<textFieldExpression><![CDATA[$F{unit}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="193" y="10" width="100" height="20" uuid="d951c733-395f-4a4d-939d-26e7a93785a6"/>
+				<reportElement x="185" y="10" width="100" height="20" uuid="d951c733-395f-4a4d-939d-26e7a93785a6"/>
 				<textFieldExpression><![CDATA[$F{actualValue}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="454" y="10" width="96" height="20" uuid="c3e89754-4dde-49ba-a1d2-b009501d65ee"/>
-				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{remark}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

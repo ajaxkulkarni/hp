@@ -83,11 +83,25 @@
 			   	</div>
 			   	
 			   	
-			   	 <div id="setting2" class="tab-pane fade in active" >
-				<div class="container" style="height:600px">
+			   	 <div id="setting2" class="tab-pane fade in" >
+					<div class="container" style="height:500px">
+				<div class="row">
+				
+				<div class="col-md-9" style="margin:5%">
+					<div class="panel panel-default" >
+			    <div class="panel-heading">Lab Logo</div>
+			    <div class="panel-body">
+			    <span>Choose file</span></br>
+			     <div class="fileinput fileinput-new" data-provides="fileinput">
+   					 <span class="btn btn-default btn-file"><input type="file" /></span>
+    			</div>
+			
+			    </div>
+			    </div>
+			   <button type="button" style="float:right" class="btn btn-primary">Submit</button>
 				
      			</div>	
-			   	</div>
+			   	</div></div></div>
      </div>
     </div>
     </div> </div>
