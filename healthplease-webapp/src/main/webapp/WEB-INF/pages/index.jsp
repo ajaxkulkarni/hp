@@ -54,6 +54,10 @@
       */
       $('#idTest').change(function(){
         reset();
+        
+        $("#home").click(function(){
+            $("#home_flip").slideToggle("slow");
+    
       });
 
 
@@ -153,7 +157,20 @@
        
 </script>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  
+	$("#home").click(function(){
+		$("#lab_flip").slideUp("slow");
+        $("#home_flip").slideToggle("slow");
+    });
+	$("#lab").click(function(){
+		$("#lab_flip").slideToggle("slow");
+        $("#home_flip").slideUp("slow");
+    });
+});
+</script>
 <!--  Package Slider script start-->
 <script type="text/javascript">
 
@@ -276,16 +293,17 @@ $(window).load(function() {
 <!-- Package slider script end-->
 
 
-  <div class="classSliderHolder" style="border:">
-        
-        
-        <ul class="nav nav-tabs nav-justified">
-		  <li class="active"><a data-toggle="tab" href="#home">Home Collection</a></li>
-		  <li><a data-toggle="tab" href="#">In Lab Appointment</a></li>
-		</ul>
-        
-     <div class="tab-content">   
-    	<div id="home" class="tab-pane fade in active">
+<!--   <div class="classSliderHolder" style="background-color:;border:solid"> -->
+   <div class="container" style="height:200px;background-image:url(resources/images/2.png);margin-top:2%">
+ 
+   <div class="row" style="margin:7%">   
+        <div class="col-md-6 col-xl-6 col-sm-6 col-xs-12" style="border:"><button type="button" id="home" class="btn btn-primary" style="margin-left:20%">Book Home Appointment</button></div>
+        <div class="col-md-6 col-xl-6 col-sm-6 col-xs-12" style="border:"><button type="button" id="lab" class="btn btn-primary" style="margin-left:20%">Book In Lab Appointment</button></div>
+    </div>
+    
+    </div>
+    
+    	<div id="home_flip"  style="display: none;">
             <div class="container" >
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
@@ -402,7 +420,7 @@ $(window).load(function() {
               </div>  <!-- tab1 -->
               
               
-          	<div id="lab" class="tab-pane fade">
+          	<div id="lab_flip" style="display:none" >
             <div class="container" >
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
@@ -518,7 +536,7 @@ $(window).load(function() {
               </div>
               </div>  <!-- tab2 -->
                
-            </div>	<!-- tab content -->
+         
 </div>	<!-- slider -->
 
 
