@@ -54,10 +54,6 @@
       */
       $('#idTest').change(function(){
         reset();
-        
-        $("#home").click(function(){
-            $("#home_flip").slideToggle("slow");
-    
       });
 
 
@@ -157,20 +153,7 @@
        
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  
-	$("#home").click(function(){
-		$("#lab_flip").slideUp("slow");
-        $("#home_flip").slideToggle("slow");
-    });
-	$("#lab").click(function(){
-		$("#lab_flip").slideToggle("slow");
-        $("#home_flip").slideUp("slow");
-    });
-});
-</script>
+
 <!--  Package Slider script start-->
 <script type="text/javascript">
 
@@ -293,18 +276,8 @@ $(window).load(function() {
 <!-- Package slider script end-->
 
 
-<!--   <div class="classSliderHolder" style="background-color:;border:solid"> -->
-   <div class="container" style="height:200px;background-image:url(resources/images/2.png);margin-top:2%">
- 
-   <div class="row" style="margin:7%">   
-        <div class="col-md-6 col-xl-6 col-sm-6 col-xs-12" style="border:"><button type="button" id="home" class="btn btn-primary" style="margin-left:20%">Book Home Appointment</button></div>
-        <div class="col-md-6 col-xl-6 col-sm-6 col-xs-12" style="border:"><button type="button" id="lab" class="btn btn-primary" style="margin-left:20%">Book In Lab Appointment</button></div>
-    </div>
-    
-    </div>
-    
-    	<div id="home_flip"  style="display: none;">
-            <div class="container" >
+        <div class="classSliderHolder">
+            <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
                       <div class="classHAbtTextWrapper">                         
@@ -324,7 +297,7 @@ $(window).load(function() {
                                 <fieldset>
 
                                   <!-- Form Name -->
-                                  <legend><i class="fa fa-home"></i> Request Collection</legend>
+                                  <legend><i class="fa fa-calendar"></i> Request Collection</legend>
                                   <!-- Select Basic -->
                                     <div class="form-group">
                                       <!-- <label class=" control-label" for="selectbasic">Test</label> -->
@@ -417,127 +390,8 @@ $(window).load(function() {
                     </div>
                 </div>    
               </div>
-              </div>  <!-- tab1 -->
-              
-              
-          	<div id="lab_flip" style="display:none" >
-            <div class="container" >
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
-                      <div class="classHAbtTextWrapper">                         
-                        <div class="classOSCFont classFrontText">
-                          <!-- Your Convenience, Our Priority...<br/> -->
-                          <div class="text-left"><img src="<c:url value="/resources/images/steps/3-steps.png"/>" width="95%" class="classStepImg" /></div>
-                            <div class="classBColor">Book In Lab Appointment Now&nbsp;&nbsp;&nbsp;<span class="hvr-buzz-out"><i class="fa fa-hand-o-right "></i></span></div>
-                        </div>
-                       
-                      </div>                     
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 classNoPadding">
-                        <!-- Form Div Start-->
-                        <div class="auth">
-                            <div id="big-form" class="well auth-box">
-                            
-                                <fieldset>
+            </div>
 
-                                  <!-- Form Name -->
-                                  <legend><i class="fa fa-calendar"></i> In Lab Appointment</legend>
-                                  <!-- Select Basic -->
-                                    <div class="form-group">
-                                      <!-- <label class=" control-label" for="selectbasic">Test</label> -->
-                                      <div class="ui-widget">
-                                        <select id="idTest" name="test" class="form-control selectpicker js-tests" multiple="multiple">
-                                          <optgroup label="Test Packages" style="margin-left: 10px">
-                                          <c:forEach items="${tests}" var="test">
-                                          		<c:if test="${test.testPackage}">
-                                          		<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
-                                          		</c:if>
-                                           </c:forEach>
-                                           <optgroup label="Regular Test" style="margin-left: 10px">
-                                           <c:forEach items="${tests}" var="test">
-                                           <c:if test="${!test.testPackage}">
-                                           <option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
-                                           </c:if>
-                                           </c:forEach>
-                                           </optgroup>
-                                         </select>
-                                      </div>
-                                      <div class="" id="idTestErr"></div>
-                                    </div>
-
-                                    <div class="form-group">
-                                      <!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
-                                        <div class="ui-widget">
-                                            <select id="idLocation" style="width:100% "name="location" class="form-control locations" onchange="getLabs('Y')">
-                                              <option value="">Select your location</option>
-                                              <c:forEach items="${locations}" var="loc">
-                                              	 <option value="${loc.id}" >&nbsp;&nbsp;${loc.name}</option>
-                                              </c:forEach>
-                                            </select>
-                                        </div>
-                                      <div class="" id="idLocationErr"></div>
-                                    </div>
-
-                                    <div class="form-group">
-                                      <!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
-                                      <div class="ui-widget">
-                                        <select id="idLabs" name="labs" class="form-control labs" onchange="getDates()" >
-                                          <option value='select'>Please select lab</option>
-                                        </select>
-                                      </div>
-                                      <div class="" id="idLocationErr"></div>
-                                    </div>
-									<form method='post' id="on_form_appointment" action="login" autocomplete="off">
-                                  <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label class=" control-label" for="appointmentDate">Appointment Date</label>  
-                                            <div class="">
-                                              <input id="idAppointmentDate" name="appointmentDate" placeholder="yyyy-mm-dd" class="form-control input-md slots datepicker-app" type="text" onchange="getSlots()">
-                                              <input type="hidden" name="dbdate" id="dbdate" value="">
-                                            </div>
-                                            <div class="" id="idAppDateErr"></div>
-                                        </div> 
-                                        <div class="form-group col-md-6" style="">
-                                          <label class=" control-label" for="appointmentTime">Appointment Time</label>
-                                          <div id="slots" class="ui-widget">
-                                            <select id="idAppTime" style="width:100%" name="slot.id" class="form-control js-event-log js-slots" onchange="setData()">
-                                              <option value='select' disabled selected>Select time slot</option>
-                                            </select>
-                                            <!--<input id="idAppTime" name="appointmentTime" placeholder="" class="form-control input-md" type="text" value="Between 7:00 am to 12:00pm" readonly/>-->
-                                          </div>
-                                        </div>
-                                        
-                                    </div>
-                                                                  
-                                 
-                                  <div class="form-group">
-                                    <div class="">
-                                    	<c:if test="${user.firstName == null }">
-                                       		<a href="#idLoginModal" data-toggle="modal" data-keyboard="false" data-target="#idLoginModal">
-                                       		<input type="submit" id="idBookAppointment" name="bookAppointment" value="Book Appointment" class="classAptBtn btn btn-success"/>
-                                       		</a>
-                                       </c:if>
-                                       <c:if test="${user.firstName != null }">
-                                       		<a href="">
-                                       		<input type="submit" id="idBookAppointment" name="bookAppointment" value="Book Appointment" class="classAptBtn btn btn-success"/>
-                                       		</a>
-                                       </c:if>
-                                    </div>
-                                  </div>
-								</form>
-                                </fieldset>
-                            </div>
-                            <div class="clearfix"></div>
-                            <input type="hidden" value="${user.group.id}" id="user_group">
-                        </div>
-                        <!-- Form Div End-->
-                    </div>
-                </div>    
-              </div>
-              </div>  <!-- tab2 -->
-               
-         
-</div>	<!-- slider -->
 
 
             
