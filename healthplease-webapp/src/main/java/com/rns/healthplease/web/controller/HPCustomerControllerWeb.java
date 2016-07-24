@@ -45,6 +45,7 @@ import com.rns.healthplease.web.util.PaymentUtils;
 @Controller
 public class HPCustomerControllerWeb implements Constants {
 
+
 	private UserBo userBo;
 
 	private LabBo LabBo;
@@ -552,6 +553,20 @@ public class HPCustomerControllerWeb implements Constants {
 	public RedirectView corporateRequest(ModelMap model, RequestForm form) {
 		manager.setResult(userBo.requestCorporatePackage(form));
 		return new RedirectView(CORPORATE_PACKAGES_GET_URL);
+	}
+	
+	@RequestMapping(value = "/" + EDIT_APPOINTMENT_GET_URL, method = RequestMethod.GET)
+	public String initEditAppointment(ModelMap model, int appointmentId) {
+		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests("Y"));
+		model.addAttribute(MODEL_LOCATIONS, userBo.getAllLocations());
+		Appointment currentAppointment = new Appointment();
+		currentAppointment.setId(appointmentId);
+		currentAppointment = LabBo.getAppointment(currentAppointment);
+		model.addAttribute(MODEL_APPOINTMENT, currentAppointment);
+		model.addAttribute(MODEL_RESULT, manager.getResult());
+		model.addAttribute(MODEL_USER, manager.getUser());
+		manager.setResult(null);
+		return EDIT_APPOINTMENT_PAGE;
 	}
 
 }

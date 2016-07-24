@@ -281,7 +281,7 @@ $(window).load(function() {
         
         <ul class="nav nav-tabs nav-justified">
 		  <li class="active"><a data-toggle="tab" href="#home">Home Collection</a></li>
-		  <li><a data-toggle="tab" href="#lab">In Lab Appointment</a></li>
+		  <li><a data-toggle="tab" href="#">In Lab Appointment</a></li>
 		</ul>
         
      <div class="tab-content">   
