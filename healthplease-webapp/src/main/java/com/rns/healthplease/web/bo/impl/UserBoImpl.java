@@ -623,6 +623,7 @@ public class UserBoImpl implements UserBo, Constants {
 		session.close();
 		return labs;
 	}
+	
 
 	public String requestCollection(RequestForm form) {
 		if (form == null) {
@@ -736,6 +737,37 @@ public class UserBoImpl implements UserBo, Constants {
 	}
 	
 	@Override
+	public List<Lab> getAllCorporateLabs() {
+		LabDao labDao = new LabDaoImpl();
+		Session session = this.sessionFactory.openSession();
+		List<Labs> labsList = labDao.getAllLabs(session);
+		if (CollectionUtils.isEmpty(labsList)) {
+			session.close();
+			return null;
+		}
+		List<Lab> labs = new ArrayList<Lab>();
+		for (Labs lab : labsList) {
+			Lab currLab = new Lab();
+			currLab = DataConverters.getLab(lab);
+			if (currLab == null) {
+				continue;
+			}
+			boolean corporateTestFound = false;
+			for(TestLabs testLab: lab.getTestLabs()) {
+				if(testLab.getTest() != null && "C".equals(testLab.getTest().getTestSingleShow())) {
+					corporateTestFound = true;
+					break;
+				}
+			}
+			if(corporateTestFound) {
+				labs.add(currLab);
+			}
+		}
+		session.close();
+		return labs;
+	}
+	
+	@Override
 	public List<LabTest> getCorporatePackages() {
 		Session session = this.sessionFactory.openSession();
 		List<Tests> tests = new AppointmentDaoImpl().getAllTests(session, "C");
@@ -754,7 +786,39 @@ public class UserBoImpl implements UserBo, Constants {
 				labTests.add(labTest);
 			}
 		}
+		session.close();
 		return labTests;
+	}
+	
+	@Override
+	public String editAppointment(Appointment appointment) {
+		if(appointment == null || CollectionUtils.isEmpty(appointment.getTests())) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		Appointments appointments = appointmentDao.getAppointmentById(appointment.getId(), session);
+		if(appointments == null) {
+			session.close();
+			return null;
+		}
+		if(CollectionUtils.isNotEmpty(appointments.getTests())) {
+			for(AppointmentTests appTest: appointments.getTests()) {
+				session.delete(appTest);
+			}
+		}
+		BusinessConverters.getAppointments(appointment, appointments);
+		AppoinAddresses appoinAddresses = appointmentDao.getAddressByAppointmentId(appointment.getId(), session);
+		PaymentStatus payment = appointmentDao.getPaymentStatusByAppointmentId(appointment.getId(), session);
+		CommonUtils.calculatePrice(appointment.getLab(), appointment, appointmentDao, session);
+		if(appointment.getLab().getPrice() != null) {
+			payment.setPaymentAmount(appointment.getLab().getPrice());
+		}
+		BusinessConverters.getAppointmentAddresses(appointment.getAddress(), appoinAddresses);
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
 	}
 
 }

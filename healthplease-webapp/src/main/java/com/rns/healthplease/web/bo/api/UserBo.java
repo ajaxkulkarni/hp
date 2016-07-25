@@ -61,5 +61,9 @@ public interface UserBo {
 	String requestCorporatePackage(RequestForm form);
 
 	List<LabTest> getCorporatePackages();
+	
+	String editAppointment(Appointment appointment);
+
+	List<Lab> getAllCorporateLabs();
 
 }

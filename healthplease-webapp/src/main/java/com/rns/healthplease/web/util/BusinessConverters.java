@@ -136,25 +136,25 @@ public class BusinessConverters {
 
 	public static void getLabs(Lab lab, Labs labs) {
 		labs.setId(lab.getId());
-		if(StringUtils.isNotEmpty(lab.getName())) {
+		if (StringUtils.isNotEmpty(lab.getName())) {
 			labs.setLabName(lab.getName());
 		}
-		if(StringUtils.isNotEmpty(lab.getAddress())) {
+		if (StringUtils.isNotEmpty(lab.getAddress())) {
 			labs.setAddress(lab.getAddress());
 		}
-		if(StringUtils.isNotEmpty(lab.getContact())) {
+		if (StringUtils.isNotEmpty(lab.getContact())) {
 			labs.setMobileNo(lab.getContact());
 		}
-		if(StringUtils.isNotEmpty(lab.getEmail())) {
+		if (StringUtils.isNotEmpty(lab.getEmail())) {
 			labs.setLabEmail(lab.getEmail());
 		}
-		if(lab.getAppointmentsPerSlot()!= null) {
+		if (lab.getAppointmentsPerSlot() != null) {
 			labs.setBookAppPerSlot(Byte.valueOf(lab.getAppointmentsPerSlot().toString()));
 		}
-		if(lab.getArea() != null) {
+		if (lab.getArea() != null) {
 			labs.setLocation(getLocation(lab.getArea()));
 		}
-		
+
 	}
 
 	public static Locations getLocation(LabLocation location) {
@@ -163,7 +163,7 @@ public class BusinessConverters {
 		}
 		Locations locations = new Locations();
 		locations.setId(location.getId());
-		if(StringUtils.isNotEmpty(location.getName())) {
+		if (StringUtils.isNotEmpty(location.getName())) {
 			locations.setLocationName(location.getName());
 		}
 		return locations;
@@ -192,11 +192,23 @@ public class BusinessConverters {
 			return null;
 		}
 		AppoinAddresses appoinAddresses = new AppoinAddresses();
-		appoinAddresses.setAddArea(address.getArea());
-		appoinAddresses.setAddLandmark(address.getLandmark());
-		appoinAddresses.setAddStreet(address.getStreet());
-		appoinAddresses.setAddZipcode(address.getZipCode());
+		getAppointmentAddresses(address, appoinAddresses);
 		return appoinAddresses;
+	}
+
+	public static void getAppointmentAddresses(Address address, AppoinAddresses appoinAddresses) {
+		if (StringUtils.isNotEmpty(address.getArea())) {
+			appoinAddresses.setAddArea(address.getArea());
+		}
+		if (StringUtils.isNotEmpty(address.getLandmark())) {
+			appoinAddresses.setAddLandmark(address.getLandmark());
+		}
+		if (StringUtils.isNotEmpty(address.getStreet())) {
+			appoinAddresses.setAddStreet(address.getStreet());
+		}
+		if (StringUtils.isNotEmpty(address.getZipCode())) {
+			appoinAddresses.setAddZipcode(address.getZipCode());
+		}
 	}
 
 	public static PaymentStatus getPaymentStatus(Payment payment) {
@@ -224,20 +236,36 @@ public class BusinessConverters {
 		if (appointment.getId() != null) {
 			appointments.setId(appointment.getId());
 		}
+		getAppointments(appointment, appointments);
+
+		return appointments;
+	}
+
+	public static void getAppointments(Appointment appointment, Appointments appointments) {
 		appointments.setLab(BusinessConverters.getLab(appointment.getLab()));
 		appointments.setDate(appointment.getDate());
 		appointments.setDoctorName(appointment.getDoctorName());
 		appointments.setEmail(appointment.getUser().getEmail());
-		appointments.setLocations(BusinessConverters.getLocation(appointment.getLocation()));
+		Locations location = BusinessConverters.getLocation(appointment.getLocation());
+		if (location != null) {
+			appointments.setLocations(location);
+		}
 		appointments.setMobileNo(appointment.getUser().getPhone());
 		appointments.setName(appointment.getUser().getFirstName());
 		appointments.setAge(appointment.getUser().getAge());
 		appointments.setGender(appointment.getUser().getGender());
 		appointments.setSlots(BusinessConverters.getSlots(appointment.getSlot()));
-		appointments.setStatus(BusinessConverters.getStatus(appointment.getStatus()));
-		appointments.setUser(BusinessConverters.getUsers(appointment.getUser()));
+		AppointmentStatus status = BusinessConverters.getStatus(appointment.getStatus());
+		if (status != null) {
+			appointments.setStatus(status);
+		}
+		if (appointment.getUser().getId() != null) {
+			appointments.setUser(BusinessConverters.getUsers(appointment.getUser()));
+		}
 		Set<AppointmentTests> appointmentTests = prepareTests(appointment, appointments);
-		appointments.setTests(appointmentTests);
+		if (CollectionUtils.isNotEmpty(appointmentTests)) {
+			appointments.setTests(appointmentTests);
+		}
 		appointments.setBookedBy("HP");
 		if (appointment.getPrintRequired() != null) {
 			appointments.setIsRequirePrint(appointment.getPrintRequired());
@@ -251,8 +279,6 @@ public class BusinessConverters {
 		appointments.setSummary("");
 		appointments.setUpdatedDate(new Date());
 		appointments.setUpdatedBy(1);
-
-		return appointments;
 	}
 
 	private static Set<AppointmentTests> prepareTests(Appointment appointment, Appointments appointments) {
@@ -265,6 +291,7 @@ public class BusinessConverters {
 		}
 		return appointmentTests;
 	}
+
 
 	private static AppointmentTests getAppointmentTest(LabTest test, Appointments appointments) {
 		if (test == null || appointments == null) {
@@ -288,28 +315,28 @@ public class BusinessConverters {
 		tests.setTestAbvr("");
 		tests.setShortDesc("");
 		tests.setLongDesc("");
-		if(StringUtils.isNotEmpty(test.getName())) {
+		if (StringUtils.isNotEmpty(test.getName())) {
 			tests.setTestName(test.getName());
 		}
-		if(StringUtils.isNotEmpty(test.getAbbrevation())) {
+		if (StringUtils.isNotEmpty(test.getAbbrevation())) {
 			tests.setTestAbvr(test.getAbbrevation());
 		}
-		if(StringUtils.isNotEmpty(test.getDescription())) {
+		if (StringUtils.isNotEmpty(test.getDescription())) {
 			tests.setShortDesc(test.getDescription());
 		}
-		if(StringUtils.isNotEmpty(test.getLongDescription())) {
+		if (StringUtils.isNotEmpty(test.getLongDescription())) {
 			tests.setLongDesc(test.getLongDescription());
 		}
-		if(StringUtils.isNotEmpty(test.getFastingInfo())) {
+		if (StringUtils.isNotEmpty(test.getFastingInfo())) {
 			tests.setIsFastRequired(test.getFastingInfo());
 		}
-		if(test.getDeliveryDays() != null) {
+		if (test.getDeliveryDays() != null) {
 			tests.setDeliveryDays(Short.valueOf(test.getDeliveryDays().toString()));
 		}
-		if(StringUtils.isNotEmpty(test.getFastingInfo())) {
+		if (StringUtils.isNotEmpty(test.getFastingInfo())) {
 			tests.setIsFastRequired(test.getFastingInfo());
 		}
-		if(StringUtils.isNotEmpty(test.getTestDisplayType())) {
+		if (StringUtils.isNotEmpty(test.getTestDisplayType())) {
 			tests.setTestSingleShow(test.getTestDisplayType());
 		}
 	}
@@ -368,7 +395,7 @@ public class BusinessConverters {
 	}
 
 	private static String prepareReportName(Appointment appointment) {
-		if(appointment.getUser() == null) {
+		if (appointment.getUser() == null) {
 			return "" + appointment.getId();
 		}
 		return CommonUtils.convertDate(appointment.getDate()) + "_" + appointment.getId();
@@ -407,7 +434,7 @@ public class BusinessConverters {
 		for (TestParameter parameter : testParameteres) {
 			AppointmentTestResults result = getAppointmentTestResult(appointmentId, testId, parameter);
 			AppointmentTestResults existingResult = new AppointmentDaoImpl().getAppointmentTestResult(appointmentId, testId, parameter.getId(), session);
-			if(existingResult != null) {
+			if (existingResult != null) {
 				existingResult.setActualValue(result.getActualValue());
 				existingResult.setRemarks(result.getRemarks());
 				results.add(existingResult);
@@ -429,27 +456,27 @@ public class BusinessConverters {
 		result.setRemarks(parameter.getRemark());
 		return result;
 	}
-	
+
 	public static void getTestFactors(TestParameter parameter, TestFactors factors) {
-		if(StringUtils.isNotEmpty(parameter.getName())) {
+		if (StringUtils.isNotEmpty(parameter.getName())) {
 			factors.setName(parameter.getName());
 		}
-		if(StringUtils.isNotEmpty(parameter.getNormalValue())) {
+		if (StringUtils.isNotEmpty(parameter.getNormalValue())) {
 			factors.setNormalVal(parameter.getNormalValue());
 		}
-		if(CollectionUtils.isNotEmpty(parameter.getMethods())) {
+		if (CollectionUtils.isNotEmpty(parameter.getMethods())) {
 			factors.setMethod(CommonUtils.getAppendedString(parameter.getMethods()));
 		}
-		if(StringUtils.isNotEmpty(parameter.getNormalValueMale())) {
+		if (StringUtils.isNotEmpty(parameter.getNormalValueMale())) {
 			StringBuilder genderValues = new StringBuilder();
 			genderValues.append(parameter.getNormalValueMale()).append(",").append(parameter.getNormalValueFemale()).append(",").append(parameter.getNormalValueChild());
 			factors.setGenderValues(genderValues.toString());
 			factors.setNormalVal(parameter.getNormalValueMale());
 		}
-		if(StringUtils.isNotEmpty(parameter.getName())) {
+		if (StringUtils.isNotEmpty(parameter.getName())) {
 			factors.setUnit(parameter.getUnit());
 		}
-		if(StringUtils.isNotEmpty(parameter.getType())) {
+		if (StringUtils.isNotEmpty(parameter.getType())) {
 			factors.setFactorType(parameter.getType());
 		}
 	}

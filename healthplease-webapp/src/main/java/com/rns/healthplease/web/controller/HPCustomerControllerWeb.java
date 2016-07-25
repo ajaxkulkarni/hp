@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,6 +42,7 @@ import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
+import com.rns.healthplease.web.util.LoggingUtil;
 import com.rns.healthplease.web.util.PaymentUtils;
 
 @Controller
@@ -47,7 +50,7 @@ public class HPCustomerControllerWeb implements Constants {
 
 
 	private UserBo userBo;
-
+	
 	private LabBo LabBo;
 
 	public LabBo getLabBo() {
@@ -540,7 +543,7 @@ public class HPCustomerControllerWeb implements Constants {
 	
 	@RequestMapping(value = "/" + CORPORATE_PACKAGES_GET_URL, method = RequestMethod.GET)
 	public String initCorporate(ModelMap model) {
-		model.addAttribute(MODEL_LABS, userBo.getAllLabs());
+		model.addAttribute(MODEL_LABS, userBo.getAllCorporateLabs());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		//model.addAttribute(MODEL_TESTS, userBo.getCorporatePackages());
 		model.addAttribute(MODEL_USER, manager.getUser());
@@ -567,6 +570,22 @@ public class HPCustomerControllerWeb implements Constants {
 		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return EDIT_APPOINTMENT_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + EDIT_APPOINTMENT_POST_URL, method = RequestMethod.POST)
+	public RedirectView editAppointment(ModelMap model, Appointment appointment, String testIds, String appointmentDate) {
+		appointment.setTests(CommonUtils.prepareTests(testIds));
+		appointment.setDate(CommonUtils.convertDate(appointmentDate));
+		manager.setResult(userBo.editAppointment(appointment));
+		return new RedirectView(USER_HOME_GET_URL);
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public @ResponseBody String onGenericException(Exception exception) {
+		exception.printStackTrace();
+		LoggingUtil.logMessage(exception.getMessage());
+		LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(exception));
+		return exception.getMessage();
 	}
 
 }

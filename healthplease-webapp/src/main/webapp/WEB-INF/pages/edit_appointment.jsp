@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,19 +27,18 @@ function getSlots() {
 	if($("#idLabs").val() == null || $("#idAppointmentDate").val() == null){
 		return;
 	}
-	
 	$.ajax({
        	type : "POST",
            url : 'getSlots',
            dataType: 'json',
-           data: "labId="+ $("#idLabs").val() + "&date="+ $("#idAppointmentDate").val(),
+           data: "labId="+ $("#idLabs").val() + "&date="+ $("#idAppointmentDate").val() + "&homeCollection=" + $("#homeCollection").val(),
            success : function(slots) {
         	   var i = 0;
         	   var appendString = "<option value='select'>Please select timing</option>";
+        	   var selected = "";
         	   for(i = 0;i<slots.length;i++) {
-        		   appendString = appendString + "<option value='" + slots[i].id +"'>&nbsp;&nbsp;" + slots[i].startTime + " to " + slots[i].endTime + "</option>"
+        		   $('<option>').val(slots[i].id).text("  " + slots[i].startTime +" To " + slots[i].endTime).appendTo('#idSlots');
         	   }
-        	   $("#idSlots").html(appendString);
            },
            error: function(e){
            	alert("Error: " + e);
@@ -49,18 +50,24 @@ function getLabs() {
 	if($("#idTest").val() == null || $("#idLocation").val() == null) {
 		return;
 	}
+	var homeCollection = "N";
+	if($("#homeCollection").val() == "true") {
+		homeCollection = "Y";
+	}
+	
 	$.ajax({
        	type : "POST",
            url : 'getLabs',
            dataType: 'json',
-           data: "testIds="+ $("#idTest").val() + "&locationId=" + $("#idLocation").val(),
+           data: "testIds="+ $("#idTest").val() + "&locationId=" + $("#idLocation").val() + "&homeCollection=" +homeCollection,
            success : function(labs) {
         	   var i = 0;
         	   var appendString = "<option value='select'>Please select lab</option>";
         	   for(i = 0;i<labs.length;i++) {
-        		   appendString = appendString + "<option value='" + labs[i].id +"'>&nbsp;&nbsp;" + labs[i].name +" | Fees Rs. " + labs[i].price +"</option>"
-        	   }
-        	   $("#idLabs").html(appendString);
+        		   if($("#labId").val() != labs[i].id) {
+        		   		$('<option>').val(labs[i].id).text("  " + labs[i].name +" | Fees Rs. " + labs[i].price).appendTo('#idLabs');
+        		   }
+        		}
            },
            error: function(e){
            	alert("Error: " + e);
@@ -125,26 +132,28 @@ function getDates() {
 
              $(document).ready(function(){
             	 $('#wizard').smartWizard({transitionEffect:'slide'});
+            	 $("#idDivBookOther").addClass("hidden");   
+            	 $("#id_form_name").val('addappointment');
             	 //$('.classwizard').smartWizard({transitionEffect:'slide'});
                  //$("#pLoction").select2({ width: 'resolve' });       
                  //$("#idLabs").select2({ width: 'resolve' });   
                  //$("#pAppTime").select2({ width: 'resolve' });   
-            	 /* getLabs();
+            	 getLabs();
             	 getDates();
-            	 getSlots(); */
-             // $("#idBookAppYour").click( function() {
-             
-            	 /* function bookAppointment(){
-                 var appointmentForm = $("#formBookAppYour");
-                 var appointment_date = $('#hiddenappdate').val();
-                 
-                  var form = $("#formBookAppYour");
-                  if ( false == form.valid() ) exit;
-				  form.submit();
-                 
-            } */
+            	 getSlots();
              
              });
+             
+             function bookAppointment(){
+            	 var appointmentForm = $("#formBookAppYour");
+                 var appointment_date = $('#hiddenappdate').val();
+                 /*
+                  * Validation of form goes here
+                  */
+                  var form = $("#formBookAppYour");
+                  if ( false == form.valid() ) exit;
+ 				  form.submit();
+             }
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -181,7 +190,7 @@ function getDates() {
 			<!-- <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
 <tr><td>  -->
 			<form method='post' id="formBookAppYour" class="classOSCAForm"
-				action="<%=Constants.BOOK_APPOINTMENT_POST_URL%>">
+				action="<%=Constants.EDIT_APPOINTMENT_POST_URL%>">
 
 				<!-- <input type="hidden" name="form_name" id="id_form_name"  value="addappointment" /> -->
 				<div id="wizard" class="swMain classwizard">
@@ -203,33 +212,32 @@ function getDates() {
 
 					</ul>
 
-
+					
 					<div id="step-1">
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+								<input type="hidden" name="homeCollection" id="homeCollection" value="${appointment.homeCollection}">
+								<input type="hidden" name="id" id="appid" value="${appointment.id}">
 								<table class='table table-bordered'>
 									<tr>
 										<td>Test</td>
 										<td>
-										<select id="idTest" name="test" class="form-control selectpicker js-tests" multiple="multiple">
-                                          <c:forEach items="${tests}" var="test">
+										<select id="idTest" name="testIds" class="form-control selectpicker js-tests" multiple="multiple" onchange="resetSelf()" required>
                                           	<c:forEach items="${appointment.tests}" var="appTest">
-                                          		<c:if test="${test.id == appTest.id}">
-                                          			<option value="${test.id}" selected>&nbsp;&nbsp;${test.name}</option>
-                                          		</c:if>
+                                          		<option value="${appTest.id}" selected>&nbsp;&nbsp;${appTest.name}</option>
+                                          		<c:set var="testId" value="${appTest.id}"></c:set>
                                           	</c:forEach>
-                                          </c:forEach>
                                           <optgroup label="Test Packages" style="margin-left: 10px">
                                           <c:forEach items="${tests}" var="test">
-                                          		<c:if test="${test.testPackage}">
-                                          		<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
+                                          		<c:if test="${test.testPackage && testId!=test.id}">
+                                          			<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
                                           		</c:if>
                                            </c:forEach>
                                            <optgroup label="Regular Test" style="margin-left: 10px">
                                            <c:forEach items="${tests}" var="test">
-                                           <c:if test="${!test.testPackage}">
-                                           <option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
-                                           </c:if>
+                                           	<c:if test="${!test.testPackage && testId!=test.id}">
+                                           		<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
+                                           	</c:if>
                                            </c:forEach>
                                            </optgroup>
                                          </select>
@@ -240,7 +248,7 @@ function getDates() {
 									<tr>
 										<td>Location</td>
 										<td>
-											<select id="idLocation" name="location" class="form-control locations" onchange="getLabs('Y')">
+											<select id="idLocation" name="location.id" class="form-control locations" onchange="getLabs('Y')" required>
                                               <option value="">Select your location</option>
                                               <c:forEach items="${locations}" var="loc">
                                               	<c:if test="${appointment.location.id == loc.id}">
@@ -254,25 +262,28 @@ function getDates() {
 									<tr>
 										<td>Lab</td>
 										<td>
-										<select id="idLabs" name="labs" class="form-control labs" onchange="getDates()" >
+										<input type="hidden" id="labId" value="${appointment.lab.id}"/>
+										<select id="idLabs" name="lab.id" class="form-control labs" onchange="getDates()"  required>
                                           <option value='select' disabled>Please select lab</option>
-                                          <option value="${appointment.lab.id}" selected>${appointment.lab.id}</option>
+                                          <option value="${appointment.lab.id}" selected>  ${appointment.lab.name} | Fees Rs. ${appointment.lab.price}</option>
                                         </select>
 										</td>
 									</tr>
 									<tr id="idErrLocation"></tr>
 									<tr>
-										<td>Appointment Date</td>
+										<td>Appointment Date :</td>
 										<td>
-											<input id="idAppointmentDate" value='<fmt:formatDate pattern="yyyy-MM-dd" value="${appointment.date}" />' name="appointmentDate" placeholder="yyyy-mm-dd" class="form-control input-md slots datepicker-app" type="text" onchange="getSlots()">
+											<input id="idAppointmentDate" value="${appointment.date}" name="appointmentDate" placeholder="yyyy-mm-dd" class="form-control input-md slots datepicker-app" type="text" onchange="getSlots()" required>
                                         	<input type="hidden" name="dbdate" id="dbdate" value="">
 										</td>
 									</tr>
 									<tr>
 										<td>Appointment Slot</td>
 										<td>
-										<select id="idAppTime" name="slot.id" class="form-control js-event-log js-slots" onchange="setData()">
+										<input type="hidden" id="slotId" value="${appointment.slot.id}"/>
+										<select id="idSlots" name="slot.id" class="form-control js-event-log js-slots" required>
                                               <option value='select' disabled selected>Select time slot</option>
+                                              <option value='${appointment.slot.id}' selected>${appointment.slot.startTime} To ${appointment.slot.endTime}</option>
                                         </select>
 										<%-- ${appointment.slot.startTime} -
 											${appointment.slot.endTime} --%></td>
@@ -564,7 +575,7 @@ function getDates() {
 	</div>
 </div>
 </div>
-
+<%@include file="forms/book_appointment_other_form.jsp" %>
 <%@include file="user_footer.jsp" %>
 
 </body>

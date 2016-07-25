@@ -75,7 +75,7 @@ function getLabsOther() {
 }
 
 function getDatesOther() {
-	if($("#idTest").val() == null || $("#pLocation").val() == null || $("#pidLabs").val() == null) {
+	if($("#pidTest").val() == null || $("#pLocation").val() == null || $("#pidLabs").val() == null) {
 		return;
 	}
 	 $.ajax({

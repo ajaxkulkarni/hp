@@ -25,15 +25,17 @@
 							class="glyphicon glyphicon-chevron-right"></span> Lab</a></li>
 					<li class="${activeList[5]}"><a href="<%=Constants.ADMIN_LAB_DASHBOARD_GET_URL%>"><span
 							class="glyphicon glyphicon-chevron-right"></span> Lab Dashboard</a></li>
-					<li class="${activeList[6]}"><a href="<%=Constants.ADMIN_PARAMETERS_GET_URL%>"><span
+					<li class="${activeList[6]}"><a href="<%=Constants.ADMIN_CORPORATE_GET_URL%>"><span
+							class="glyphicon glyphicon-chevron-right"></span> Corporate</a></li>		
+					<li class="${activeList[7]}"><a href="<%=Constants.ADMIN_PARAMETERS_GET_URL%>"><span
 							class="glyphicon glyphicon-chevron-right"></span> Test Parameters</a></li>
-					<li class="${activeList[7]}"><a href=""><span
-							class="glyphicon glyphicon-chevron-right"></span> Slots</a></li>
 					<li class="${activeList[8]}"><a href=""><span
-							class="glyphicon glyphicon-chevron-right"></span> Fix Appointment</a></li>
+							class="glyphicon glyphicon-chevron-right"></span> Slots</a></li>
 					<li class="${activeList[9]}"><a href=""><span
-							class="glyphicon glyphicon-chevron-right"></span> Users</a></li>
+							class="glyphicon glyphicon-chevron-right"></span> Fix Appointment</a></li>
 					<li class="${activeList[10]}"><a href=""><span
+							class="glyphicon glyphicon-chevron-right"></span> Users</a></li>
+					<li class="${activeList[11]}"><a href=""><span
 							class="glyphicon glyphicon-chevron-right"></span> Reports</a></li>
 					<li><a href=""><span
 							class="glyphicon glyphicon-chevron-right"></span>Settings</a></li>

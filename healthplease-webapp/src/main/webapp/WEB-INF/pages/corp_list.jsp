@@ -120,7 +120,7 @@
                <div class="form-group">
                		<label class=" control-label" for="appointmentTime">Appointment Time</label>
                     <div id="slots" class="ui-widget">
-                    <select id="idAppTime" style="width:100%name="slot.id" class="form-control js-event-log js-slots">
+                    <select id="idAppTime" style="width:100%" name="slot.id" class="form-control js-event-log js-slots">
                     	<option value='select' disabled selected>Select time slot</option>
                         </select>
 	                </div>

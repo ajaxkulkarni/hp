@@ -829,7 +829,10 @@ public class AdminBoImpl implements AdminBo, Constants {
 		Locations locations = new Locations();
 		locations.setId(0);
 		appointments.setLocations(locations);
-		appointments.getUser().setId(0);
+		if(appointments.getUser() == null) {
+			appointments.setUser(new Users());
+			appointments.getUser().setId(0);
+		}
 		appointments.setDoctorName("");
 		appointments.setGender("");
 		session.persist(appointments);
