@@ -123,7 +123,7 @@ s0.parentNode.insertBefore(s1,s0);
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a class="navbar-brand" href="http://www.healthplease.in/"><img src="<c:url value="/resources/images/LOGO-2.png"/>" class="classLogoImg"/></a>
+                                <a class="navbar-brand" href="http://www.healthplease.in/"><img src="<c:url value="/resources/images/ie_logo.png"/>" class="classLogoImg"/></a>
                             </div>
                                                         <!-- /.navbar-header -->
                             <div class="collapse navbar-collapse" id="example-navbar-collapse">
