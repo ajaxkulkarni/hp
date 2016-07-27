@@ -72,9 +72,9 @@
                         <!-- <div class="panel-heading">
                             <i class="fa fa-calendar"></i> Request Collection
                         </div> -->
-                        <ul class="tab">
-                       		<li><a href="#" class="tablinks" onclick="showAddress()"><i class="fa fa-calendar"></i> Request Collection</a></li>
-                         	<li><a href="#" class="tablinks" onclick="hideAddress()">Lab Appointment</a></li>
+                        <ul class="nav nav-tabs">
+                       		<li><a data-toggle="tab" href="#" class="tablinks" onclick="showAddress()"><i class="fa fa-home" style="margin"></i> Request Collection</a></li>
+                         	<li><a data-toggle="tab" href="#" class="tablinks" onclick="hideAddress()"><i class="fa fa-calendar"></i> Lab Appointment</a></li>
  
                			</ul>
                         <!-- /.panel-heading -->
@@ -181,7 +181,7 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPContact">Patient's Contact</label>  
               <div class="">
-                <input id="idAppointmentPContact" name="user.phone" placeholder="Mobile No" class="form-control input-md" type="text" required="required">      
+                <input id="idAppointmentPContact" name="user.phone" placeholder="Mobile No" class="form-control input-md" type="number" required="required">      
               </div>
               <div class="" id="idAppPContactErr"></div>
             </div>
@@ -551,6 +551,18 @@ $("#idAppointmentPName").keypress(function (e) {
     return false;
     }
 });
+$("#idAppointmentPAge").focusout(function(){
+	
+	var age= document.getElementById("idAppointmentPAge").value;
+	if(age < 0)
+	{
+		document.getElementById("idAppAgeErr").innerHTML="Age should be positive";
+		return false;
+	}
+	else
+		document.getElementById("idAppAgeErr").innerHTML="";
+	return true;
+});
 $("#idAppointmentPDoctor").keypress(function (e) {
     var regex = new RegExp("^[a-zA-Z]+$");
     var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
@@ -570,12 +582,26 @@ $("#idappointmentPincode").focusout(function(){
 	console.log(x);
 	if(pin.length != 6 )
 	{
-		alert('Pincode must be 6 digits long');
+		document.getElementById("idAppPPincodeErr").innerHTML="length of pin code must be 6";
+		document.getElementById("idAppPPincodeErr").focus();
 		return false;
 	}
 	else{
+		document.getElementById("idAppPPincodeErr").innerHTML="";
 		return true;
 	}
+});
+$("#idAppointmentPContact").focusout(function(){
+	var no = document.getElementById("idAppointmentPContact").value;
+	if(no[0] ==="0" )
+	{
+		document.getElementById("idAppPContactErr").innerHTML= "enter valid Phone no.";
+		getElementById("idAppointmentPContact").focus();
+		return false;	
+	}
+	 	else 
+		document.getElementById("idAppPContactErr").innerHTML= "";
+		return true;
 });
 function checkIfDateAvailable(date) {
  	var dates = $("#dbdate").val();

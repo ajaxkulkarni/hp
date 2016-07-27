@@ -94,7 +94,7 @@ public class JasperUtil {
 		parameters.put("labAddress", appointment.getLab().getAddress());
 		parameters.put("doctorName", appointment.getDoctorName());
 		parameters.put("printRequired", "y");
-
+		parameters.put("isbold", "");
 		JRBeanCollectionDataSource testSource = new JRBeanCollectionDataSource(appointment.getTests());
 		String reportName = LAB_REPORT_TEMPLATE;
 		if (CollectionUtils.isNotEmpty(appointment.getTests()) && CollectionUtils.isNotEmpty(appointment.getTests().get(0).getParameters())

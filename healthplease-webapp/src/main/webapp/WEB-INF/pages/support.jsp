@@ -94,9 +94,19 @@
 
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                    <h3 class="page-header classHeaderText">What Is Health Please</h3>
-                    <a class="embedly-card" href="http://labmedicineblog.com/">A blog for medical laboratory professionals</a>
-<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+                    <h3 class="page-header classHeaderText">Contact Us</h3>
+                    <div class="classSFormHolder" style="background-color:#eee;padding:3%;height:390px">
+                   <%-- <img src="<c:url value="/resources/images/steps/"/>"/> --%>
+                   <div class="" style="margin:5%;height:150px;width:90%;background-color:#aaa">
+          
+                   </div>
+                    <span><h4><i class="fa fa-phone" aria-hidden="true" style="margin:2%"></i>Phone <a href="tel:7620012092" style="color:#46b8da;">+91 7620012092</a></h4></span>
+                 	<span><h4><i class="fa fa-envelope" aria-hidden="true" style="margin:2%"></i>Email  <a style="color:#46b8da;" href="Mailto:help@healthplease.in">help@healthplease.in</a></h4></span>
+                 	<span><h4><i class="fa fa-envelope" aria-hidden="true" style="margin:2%"></i>Customer Care<a style="color:#46b8da;" href="Mailto:care@healthplease.in"> care@healthplease.in</a></h4></span>
+                 	<a id="callback" name="callback" href="javascript:void(0);" style="color:#46b8da;margin-left:10%"><strong>Request a call back</strong></a></br>
+                 	<a style="color:#46b8da;margin-left:10%;margin-top:2%" href="/hp/faq.htm"><strong>Frequently Asked Questions</a>
+                    </div>
+                   
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
