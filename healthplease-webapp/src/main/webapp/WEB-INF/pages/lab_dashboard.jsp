@@ -352,7 +352,12 @@
                                                                 </div>
                                                             </div>                                            
                                                         </td>
-                                                        <td><h4>Rs. ${appointment.payment.amount}</h4></td>
+                                                        <td><h4>Rs. ${appointment.payment.amount}
+                                                        		<c:if test="${appointment.payment.discount != null }">
+                                                        			(${appointment.payment.discount}/- OFF)
+                                                        		</c:if>	
+                                                        	</h4>
+                                                        </td>
                                                         <td>
                                                         <c:if test="${appointment.address == null }">
                                                         	NA

@@ -57,6 +57,13 @@
 
 <div class="" id="div_add">
 <a href="<%=Constants.ADMIN_EDIT_TEST_GET_URL%>" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Test</a>
+<select id="limit" id="limit" class="form-control"  onchange="resetTable()">
+                                        <option>5</option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                        <option>50</option>
+                                        <option>100</option>
+                                    </select>
 </div>
 
 <div class="clearfix"></div><br/>
@@ -116,8 +123,12 @@
 
 $(document).ready(function(){
 	 //$("#tests_table").paging({limit:20});
-	 paginateTable(10,0);
+	 paginateTable($("#limit").val(),0);
 }); 
+   
+function resetTable() {
+	 paginateTable($("#limit").val(),0);
+}   
    
    function confirmDelete(name,id) {
 	   if(confirm("Are you sure you want to delete test " + name + " ?")) {

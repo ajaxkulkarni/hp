@@ -65,7 +65,8 @@
                
             </div>   
             <!-- /.row -->
-            <div class="row" style="border:">                
+            <div class="row" style="border:">    
+            	<form id="labAppform" action="<%=Constants.BOOK_APPOINTMENT_LAB_POST_URL%>" method="post" onsubmit="return onSubmit()">
                 <!-- /.col-lg-6 -->
                 <div class="col-sm-12 col-xl-12 col-md-6 col-lg-6 col-xl-6">
                     <div class="panel panel-default">
@@ -107,7 +108,6 @@
 <c:forEach items="${tests}" var="test">
 	<input type="hidden" id="test${test.id}" value="${test.price}"/>
 </c:forEach>
-<form id="labAppform" action="<%=Constants.BOOK_APPOINTMENT_LAB_POST_URL%>" method="post" onsubmit="return onSubmit()">
         <div class="row" style="border:">
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper" style="border:">
              <input type="hidden" name="lab.id" id="idLabs" value="${user.lab.id}"> 
@@ -122,7 +122,7 @@
                <optgroup label="Regular Test" style="margin-left: 10px">
                <c:forEach items="${tests}" var="test">
                <c:if test="${!test.testPackage}">
-                <option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
+                <option value="${test.id}">&nbsp;&nbsp;${test.name} | Rs. ${test.price}</option>
                </c:if>
                </c:forEach>
                </optgroup>
@@ -262,7 +262,7 @@
               <button id="idAppointmentBook" name="appointmentPBook" class="form-control input-md classSubmit" type="submit">SUBMIT</button>      
           </div>  
         </div>
-</form>    
+ 
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -293,15 +293,16 @@
             			<div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper" style="border:">
 			              <label class=" control-label" for="">Total</label>  
 			              <div class="">
-			                <input id="total" type="number" pattern="[0-9]{7}" name="Total" placeholder="Payable cost" class="form-control input-md" required="required" readonly="readonly" />      
+			                <input id="total" type="number" pattern="[0-9]{7}" placeholder="Payable cost" class="form-control input-md" required="required" readonly="readonly" />      
 			              </div>
 			              <div class="" id="idAppPPincodeErr"></div>
             			</div>
                       </div>
                 </div>
-
-
+			</form>
+			
             </div>
+            
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
@@ -676,9 +677,14 @@ function showAddress() {
 	calculateCost();
 }
 
+$( "#discount" ).keyup(function() {
+	calculateCost();
+});
+
 function calculateCost() {
 	
 	var pickUpCharge = Number($("#idpickCharge").html());
+	var discount = Number($("#discount").val());
 	var testString = $("#idTest").val() + '';
 	var array = testString.split(",");
 	var i = 0;
@@ -686,7 +692,7 @@ function calculateCost() {
 	for(i=0;i<array.length;i++) {
 		cost = cost + Number($("#test" + array[i]).val());
 	}	
-	cost = cost + pickUpCharge;
+	cost = cost + pickUpCharge - discount;
 	$("#total").val(cost);
 }
     

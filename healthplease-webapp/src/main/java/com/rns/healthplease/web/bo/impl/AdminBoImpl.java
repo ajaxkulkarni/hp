@@ -51,6 +51,8 @@ import com.rns.healthplease.web.util.BusinessConverters;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
 import com.rns.healthplease.web.util.DataConverters;
+import com.rns.healthplease.web.util.MailUtil;
+import com.rns.healthplease.web.util.SMSUtil;
 
 public class AdminBoImpl implements AdminBo, Constants {
 
@@ -836,6 +838,13 @@ public class AdminBoImpl implements AdminBo, Constants {
 		appointments.setDoctorName("");
 		appointments.setGender("");
 		session.persist(appointments);
+		appointment.setId(appointments.getId());
+		//appointment = DataConverters.getAppointment(session, new AppointmentDaoImpl(), appointments);
+		CommonUtils.populateLabUsers(appointment, session);
+		threadPoolTaskExecutor.execute(new MailUtil(appointment, MAIL_TYPE_BOOK_APP_USER));
+		threadPoolTaskExecutor.execute(new MailUtil(appointment, MAIL_TYPE_BOOK_APP_LAB));
+		SMSUtil.sendSMS(appointment, MAIL_TYPE_BOOK_APP_USER);
+		SMSUtil.sendSMS(appointment, MAIL_TYPE_BOOK_APP_LAB);
 		tx.commit();
 		session.close();
 		return RESPONSE_OK;

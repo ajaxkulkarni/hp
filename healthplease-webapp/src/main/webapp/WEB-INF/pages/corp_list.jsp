@@ -52,6 +52,7 @@
 					                    	<th>Name</th>
 					                    	<th>Email</th>
 					                    	<th>Corporate</th>
+					                    	<th>Package Requested</th>
 					                    	<th>Lab</th>
 					                    	<th>Mobile No.</th>
 					                    	<th colspan="2" align="center">Actions</th>
@@ -62,6 +63,7 @@
 					                    	<td>${req.name}</td>
 					                    	<td>${req.email}</td>
 					                    	<td>${req.companyName}</td>
+					                    	<td>${req.testName}</td>
 					                    	<td>${req.labName}</td>
 					                    	<td>${req.phone}</td>
 					                    	<td colspan="2" align="center">Actions</td>

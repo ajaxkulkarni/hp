@@ -48,6 +48,9 @@ import com.rns.healthplease.web.dao.impl.UserDaoImpl;
 public class CommonUtils implements Constants {
 
 	public static Date convertDate(String date) {
+		if(StringUtils.isEmpty(date)) {
+			return null;
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 		try {
 			return sdf.parse(date);
@@ -319,10 +322,11 @@ public class CommonUtils implements Constants {
 		if (CollectionUtils.isEmpty(labUsers)) {
 			return;
 		}
-		List<Users> admins = userDao.getAdmins(session);
+		//Admin should not receive emails as per discussion on 27th July
+		/*List<Users> admins = userDao.getAdmins(session);
 		if (CollectionUtils.isNotEmpty(admins)) {
 			labUsers.addAll(admins);
-		}
+		}*/
 		for (Users users : labUsers) {
 			User user = new User();
 			DataConverters.getUser(users, user);
@@ -407,6 +411,9 @@ public class CommonUtils implements Constants {
 				lab.setPickUpCharge(testChargeMultiplier*Integer.valueOf(charges.getPickUpCharge()));
 				totalPrice = totalPrice + lab.getPickUpCharge();
 			}
+		}
+		if(appointment.getPayment() != null && appointment.getPayment().getDiscount() != null) {
+			totalPrice = totalPrice - appointment.getPayment().getDiscount();
 		}
 		lab.setPrice(totalPrice);
 		appointment.setTests(tests);

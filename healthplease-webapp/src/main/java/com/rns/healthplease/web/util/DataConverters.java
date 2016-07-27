@@ -149,6 +149,7 @@ public class DataConverters {
 		payment.setAmount(paymentStatus.getPaymentAmount());
 		payment.setType(CommonUtils.getPaymentType(paymentStatus.getPaymentType()));
 		payment.setStatus(CommonUtils.getPaymentStatus(paymentStatus.getStatus()));
+		payment.setDiscount(paymentStatus.getDiscount());
 		return payment;
 	}
 

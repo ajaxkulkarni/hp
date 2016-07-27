@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +41,7 @@ import com.rns.healthplease.web.dao.domain.TestLabs;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
 import com.rns.healthplease.web.util.ExcelUtil;
+import com.rns.healthplease.web.util.LoggingUtil;
 
 @Controller
 public class HPAdminController implements Constants {
@@ -588,10 +591,21 @@ public class HPAdminController implements Constants {
 	public RedirectView bookAppointment(ModelMap model, Appointment appointment, String testIds, String appDate) {
 		appointment.setTests(CommonUtils.prepareTests(testIds));
 		appointment.setDate(CommonUtils.convertDate(appDate));
-		//userBo.populateAppointment(appointment);
+		LabLocation location = new LabLocation();
+		//location.setId(0);
+		appointment.setLocation(location);
+		userBo.populateAppointment(appointment);
 		String result = adminBo.bookCorporateAppointment(appointment);
 		manager.setResult(result);
 		return new RedirectView(ADMIN_CORPORATE_GET_URL);
 	}
+	
+	/*@ExceptionHandler(Exception.class)
+	public @ResponseBody String onGenericException(Exception exception) {
+		exception.printStackTrace();
+		LoggingUtil.logMessage(exception.getMessage());
+		LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(exception));
+		return exception.getMessage();
+	}*/
 	
 }

@@ -321,7 +321,11 @@ public class LabBoImpl implements LabBo, Constants {
 		// AppFileLocations appFileLocations =
 		// BusinessConverters.getAppFileLocation(appointment, documentPath);
 		Transaction transaction = session.beginTransaction();
-		appointments.setStatus(BusinessConverters.getStatus(appointment.getStatus()));
+		if(appointments.getStatus() != null && appointment.getStatus() != null) {
+			appointments.setStatus(appointmentDao.getAppointmentStatusById(appointment.getStatus().getId(), session));
+		} else {
+			appointments.setStatus(BusinessConverters.getStatus(appointment.getStatus()));
+		}
 		appointments.setCancelledAuthority("");
 		if (appointment.getUser() != null && appointment.getUser().getId() != null) {
 			appointments.setCancelledBy(appointment.getUser().getId().shortValue());
@@ -335,7 +339,7 @@ public class LabBoImpl implements LabBo, Constants {
 		 */
 		addAppointmentResults(session, appointment);
 		updateMailStatus(appointment, appointments, documentPath, session);
-		updateStatus(appointments);
+		updateStatus(appointments, session);
 		BufferedOutputStream stream = null;
 		try {
 			stream = new BufferedOutputStream(new FileOutputStream(document));
@@ -344,6 +348,7 @@ public class LabBoImpl implements LabBo, Constants {
 			Appointment appointmentDetails = DataConverters.getAppointment(session, appointmentDao, appointments);
 			appointmentDetails.setReport(uploadedReport);
 			appointmentDetails.setPrepareReport(document);
+			filterTests(appointmentDetails, appointment);
 			threadPoolTaskExecutor.execute(new MailUtil(appointmentDetails, MAIL_TYPE_REPORT_UPLOAD));
 			SMSUtil.sendSMS(appointmentDetails, MAIL_TYPE_REPORT_UPLOAD);
 			transaction.commit();
@@ -354,6 +359,26 @@ public class LabBoImpl implements LabBo, Constants {
 		}
 		session.close();
 		return RESPONSE_OK;
+	}
+
+	private void filterTests(Appointment appointmentDetails, Appointment appointment) {
+		if(CollectionUtils.isEmpty(appointmentDetails.getTests()) || CollectionUtils.isEmpty(appointment.getTests())) {
+			return;
+		}
+		List<LabTest> filteredTests = new ArrayList<LabTest>();
+		for(LabTest currentTest: appointmentDetails.getTests()) {
+			boolean found = false;
+			for(LabTest uploadedTest: appointment.getTests()) {
+				if(currentTest.getId().intValue() == uploadedTest.getId().intValue()) {
+					found = true;
+					break;
+				}
+			}
+			if(found) {
+				filteredTests.add(currentTest);
+			}
+		}
+		appointmentDetails.setTests(filteredTests);
 	}
 
 	private LabTest getUploadedReportTest(Appointment appointment) {
@@ -368,7 +393,7 @@ public class LabBoImpl implements LabBo, Constants {
 		return null;
 	}
 
-	private void updateStatus(Appointments appointments) {
+	private void updateStatus(Appointments appointments, Session session) {
 		if (CollectionUtils.isEmpty(appointments.getTests())) {
 			return;
 		}
@@ -384,9 +409,13 @@ public class LabBoImpl implements LabBo, Constants {
 			}
 		}
 		if (completedTestsCount >= appointments.getTests().size()) {
-			com.rns.healthplease.web.dao.domain.AppointmentStatus status = new com.rns.healthplease.web.dao.domain.AppointmentStatus();
-			status.setId(3);
-			appointments.setStatus(status);
+			if(appointments.getStatus() != null ) {
+				appointments.setStatus(new AppointmentDaoImpl().getAppointmentStatusById(3, session));
+			} else {
+				com.rns.healthplease.web.dao.domain.AppointmentStatus status = new com.rns.healthplease.web.dao.domain.AppointmentStatus();
+				status.setId(3);
+				appointments.setStatus(status);
+			}
 		}
 	}
 

@@ -1,5 +1,7 @@
 package com.rns.healthplease.web.bo.domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Address {
 	
 	private Integer id;
@@ -56,12 +58,12 @@ public class Address {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(this.getStreet() == null ? "" : this.getStreet()).append(",");
-		builder.append(this.getLandmark() == null ? "" : this.getLandmark()).append(",");
-		builder.append(this.getArea() == null ? "" : this.getArea()).append(",");
-		builder.append(this.getCity() == null ? "" : this.getCity()).append(",");
-		builder.append(this.getZipCode() == null ? "" : this.getZipCode()).append(",");
-		return builder.toString();
+		builder.append(this.getStreet() == null ? "" : StringUtils.appendIfMissing(this.getStreet(), ","));
+		builder.append(this.getLandmark() == null ? "" : StringUtils.appendIfMissing(this.getLandmark(), ","));
+		builder.append(this.getArea() == null ? "" : StringUtils.appendIfMissing(this.getArea(), ","));
+		builder.append(this.getCity() == null ? "" : StringUtils.appendIfMissing(this.getCity(), ","));
+		builder.append(this.getZipCode() == null ? "" : StringUtils.appendIfMissing(this.getZipCode(), ","));
+		return StringUtils.removeEnd(builder.toString(), ",");
 	}
 	
 }

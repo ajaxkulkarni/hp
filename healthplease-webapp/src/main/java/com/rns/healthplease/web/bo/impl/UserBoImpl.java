@@ -480,7 +480,9 @@ public class UserBoImpl implements UserBo, Constants {
 		appointment.setLab(DataConverters.getLab(appointmentDao.getLabById(appointment.getLab().getId(), session)));
 		CommonUtils.calculatePrice(appointment.getLab(), appointment, appointmentDao, session);
 		appointment.setSlot(DataConverters.getSlot(appointmentDao.getSlotById(appointment.getSlot().getId(), session)));
-		appointment.setLocation(DataConverters.getLocation(appointmentDao.getLocationsById(appointment.getLocation().getId(), session)));
+		if(appointment.getLocation().getId() != null) {
+			appointment.setLocation(DataConverters.getLocation(appointmentDao.getLocationsById(appointment.getLocation().getId(), session)));
+		}
 		session.close();
 	}
 

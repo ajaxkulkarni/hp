@@ -580,12 +580,5 @@ public class HPCustomerControllerWeb implements Constants {
 		return new RedirectView(USER_HOME_GET_URL);
 	}
 	
-	@ExceptionHandler(Exception.class)
-	public @ResponseBody String onGenericException(Exception exception) {
-		exception.printStackTrace();
-		LoggingUtil.logMessage(exception.getMessage());
-		LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(exception));
-		return exception.getMessage();
-	}
 
 }
