@@ -454,20 +454,23 @@
                 <div id="upload_error"></div>
                 <form id="file_upload" enctype="multipart/form-data" action="<%=Constants.UPLOAD_REPORT_POST_URL%>" method="post">
                     <input type="hidden" name="id" id="report_appid">
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="sel1">Select Test:</label>
-                        <select class="form-control" id="test" name="test">
+                        <select class="form-control" id="appTests" name="tests[0].id">
                         </select>
-                    </div> -->
+                    </div>
                     <div class="form-group">
                         <label for="sel1">Upload report for Test:</label>
                         <input id="file_to_upload" name="report" class="file" type="file" multiple data-min-file-count="1">
                     </div>
-
+					<input type="hidden" id = "statusId" name="status.id" value="4"/>
                     <br>
                     <button type="submit" id="btn_file_upload" class="btn btn-primary">Upload</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div id="uploadedReports">
+                                        	
+                    </div>
                 </form>
 
             </div>

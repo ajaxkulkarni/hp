@@ -373,6 +373,9 @@ public class CommonUtils implements Constants {
 	}
 
 	public static void calculatePrice(Lab lab, Appointment appointment, AppointmentDao appointmentDao, Session session) {
+		if(lab == null || lab.getId() == null) {
+			return;
+		}
 		List<LabTest> tests = new ArrayList<LabTest>();
 		Integer totalPrice = 0;
 		Integer testChargeMultiplier = 1;

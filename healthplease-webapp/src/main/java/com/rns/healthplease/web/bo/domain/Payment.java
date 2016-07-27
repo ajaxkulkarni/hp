@@ -9,6 +9,7 @@ public class Payment {
 	private PaymentStatus status;
 	private Date date;
 	private Integer amount;
+	private Integer discount;
 	
 	public Integer getPaymentId() {
 		return paymentId;
@@ -39,6 +40,12 @@ public class Payment {
 	}
 	public void setAmount(Integer amount) {
 		this.amount = amount;
+	}
+	public Integer getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
 	}
 	
 }

@@ -140,6 +140,8 @@ public class HPLabControllerWeb implements Constants {
 	public RedirectView uploadReport(Appointment appointment, ModelMap model) {
 		String result = "";
 		if (!appointment.getReport().isEmpty()) {
+			appointment.getTests().get(0).setReport(appointment.getReport());
+			//appointment.getTests().add(test);
 			appointment.setUser(manager.getUser());
 			result = labBo.uploadReport(appointment);
 			manager.setResult(result);
@@ -172,12 +174,15 @@ public class HPLabControllerWeb implements Constants {
 		appointment.setTests(CommonUtils.prepareTests(testIds));
 		appointment.setDate(CommonUtils.convertDate(appDate));
 		userBo.populateAppointment(appointment);
-		Payment payment = new Payment();
-		payment.setAmount(appointment.getLab().getPrice());
-		payment.setDate(new Date());
-		payment.setStatus(PaymentStatus.SUCCESS);
-		payment.setType(PaymentType.cod);
-		appointment.setPayment(payment);
+		if(appointment.getPayment() == null) {
+			appointment.setPayment(new Payment());
+			appointment.getPayment().setAmount(appointment.getLab().getPrice());
+		} else {
+			appointment.getPayment().setAmount(appointment.getLab().getPrice());
+		}
+		appointment.getPayment().setDate(new Date());
+		appointment.getPayment().setStatus(PaymentStatus.SUCCESS);
+		appointment.getPayment().setType(PaymentType.cod);
 		String result = labBo.bookForHomeCollection(appointment);
 		manager.setResult(result);
 		return new RedirectView(BOOK_APPOINTMENT_LAB_GET_URL);

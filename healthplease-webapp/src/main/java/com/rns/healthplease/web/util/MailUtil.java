@@ -185,7 +185,7 @@ public class MailUtil implements Constants, Runnable {
 
 			if (ArrayUtils.contains(LAB_NAME_MAIL_TYPES, type)) {
 				message.setSubject(StringUtils.replace(message.getSubject(), "{labName}", appointment.getLab().getName()));
-				message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(getEmails(appointment.getLab().getUsers())));
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(getEmails(appointment.getLab().getUsers())));
 			} else {
 				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(appointment.getUser().getEmail()));
 			}

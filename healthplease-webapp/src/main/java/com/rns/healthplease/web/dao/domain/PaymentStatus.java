@@ -35,6 +35,7 @@ public class PaymentStatus implements java.io.Serializable {
 	private String remark;
 	private Date createdDate;
 	private Appointments appointment;
+	private Integer discount;
 
 	public PaymentStatus() {
 	}
@@ -131,6 +132,15 @@ public class PaymentStatus implements java.io.Serializable {
 
 	public void setAppointment(Appointments appointment) {
 		this.appointment = appointment;
+	}
+
+	@Column(name = "discount")
+	public Integer getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
 	}
 
 }

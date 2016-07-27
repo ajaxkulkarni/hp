@@ -228,6 +228,7 @@ public class BusinessConverters {
 		status.setPaymentBy("self");
 		status.setPaymentId("");
 		status.setRemark("");
+		status.setDiscount(payment.getDiscount());
 		return status;
 	}
 

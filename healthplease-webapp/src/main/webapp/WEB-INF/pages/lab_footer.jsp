@@ -62,8 +62,34 @@
         function onUpload(appointmentId) {
         	
         	$("#report_appid").val(appointmentId);
+        	getAppointment(appointmentId);
         	$("#uploadFileModal").modal('show');
         }
+        
+        function getAppointment(id) {
+       	 $.ajax({
+       	       	type : "POST",
+       	           url : 'getAppointment',
+       	           dataType: 'json',
+       	           data: "appointmentId="+ id,
+       	           success : function(app) {
+       	        	   var appendString = "";
+       	        	   var completedReports = "Uploaded Reports :";
+       	        	   var i = 0;
+       	        	   for(i = 0; i  < app.tests.length; i++) {
+       	        		   if(app.tests[i].reportSent != 'Y' && app.tests[i].fileLocation == null) {
+       	        			   appendString = appendString + "<option value='" + app.tests[i].id + "' >" + app.tests[i].name + "</option>";
+       	        		   } else {
+       	        			   completedReports = completedReports + "<a href='getTestReport?appointmentId=" + app.id  +"&testId=" + app.tests[i].id + "'>" + app.tests[i].name + "</a> , ";
+       	        		   }
+       	        		   
+       	        	   }
+       	        	   $("#appTests").html(appendString);
+       	        	   $("#uploadedReports").html(completedReports);
+       	           }
+       	        	   
+       	           });
+       }
 
     </script>    
     

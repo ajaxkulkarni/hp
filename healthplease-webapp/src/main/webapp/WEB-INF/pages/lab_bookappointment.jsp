@@ -104,12 +104,15 @@
     float: left;
   }
 </style>
+<c:forEach items="${tests}" var="test">
+	<input type="hidden" id="test${test.id}" value="${test.price}"/>
+</c:forEach>
 <form id="labAppform" action="<%=Constants.BOOK_APPOINTMENT_LAB_POST_URL%>" method="post" onsubmit="return onSubmit()">
         <div class="row" style="border:">
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper" style="border:">
              <input type="hidden" name="lab.id" id="idLabs" value="${user.lab.id}"> 
              <input type="hidden" name="homeCollection" id="homeCollection" value="true"> 
-             <select id="idTest" name="testIds" class="form-control selectpicker js-tests" multiple="multiple" required="required"> 
+             <select id="idTest" name="testIds" class="form-control selectpicker js-tests" multiple="multiple" required="required" onchange="calculateCost()"> 
               	<optgroup label="Test Packages" style="margin-left: 10px">
              	<c:forEach items="${tests}" var="test">
                 	<c:if test="${test.testPackage}">
@@ -135,7 +138,7 @@
                 </c:forEach>
              </select>
              <div class="">
-                	<h6>Pick Up Charge :<span id="idpickCharge"></span></h6>
+                	<h6>Pick Up Charge : Rs. <span id="idpickCharge"></span></h6>
              	</div>
           </div>
 
@@ -282,7 +285,7 @@
                     	 <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper" style="border:">
 			              <label class=" control-label" for="">Discount</label>  
 			              <div class="">
-			                <input id="dicount" type="number" pattern="[0-9]{3}" name="discount" placeholder="Discount" class="form-control input-md" required="required" />      
+			                <input id="discount" type="number" pattern="[0-9]{3}" name="payment.discount" placeholder="Discount" class="form-control input-md" required="required" />      
 			              </div>
 			              <div class="" id="idAppPPincodeErr"></div>
             			</div>
@@ -290,7 +293,7 @@
             			<div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper" style="border:">
 			              <label class=" control-label" for="">Total</label>  
 			              <div class="">
-			                <input id="total" type="number" pattern="[0-9]{7}" name="Total" placeholder="Discount" class="form-control input-md" required="required" />      
+			                <input id="total" type="number" pattern="[0-9]{7}" name="Total" placeholder="Payable cost" class="form-control input-md" required="required" readonly="readonly" />      
 			              </div>
 			              <div class="" id="idAppPPincodeErr"></div>
             			</div>
@@ -511,6 +514,7 @@ $(document).ready(function(){
             var location = $(this).val();
             if($("#addressFields").is(':hidden')) {
             	$("#idpickCharge").html("");
+            	calculateCost();
             	return;
             }
             
@@ -518,7 +522,8 @@ $(document).ready(function(){
                     type:"POST",
                     url:'getLocationCharge?locId=' + location + "&testIds=" + $("#idTest").val(),
                     success: function(response){
-                      $("#idpickCharge").html("Rs. "+response);
+                      $("#idpickCharge").html(response);
+                      calculateCost();
                     }
                 });
         }); 
@@ -542,7 +547,7 @@ $("#idAppointmentPName").keypress(function (e) {
     else
     {
     e.preventDefault();
-    alert('Please Enter Alphabate');
+    //alert('Please Enter Alphabate');
     return false;
     }
 });
@@ -555,7 +560,7 @@ $("#idAppointmentPDoctor").keypress(function (e) {
     else
     {
     e.preventDefault();
-    alert('Please Enter Alphabate');
+    //alert('Please Enter Alphabate');
     return false;
     }
 });
@@ -632,6 +637,7 @@ function hideAddress() {
 	$("#idLocation option:selected").removeAttr("selected");
 	$('#select2-idLocation-container').html("Select Your Location")
 	$("#idpickCharge").html("");
+	calculateCost();
 }
 
 function showAddress() {
@@ -641,6 +647,21 @@ function showAddress() {
 	$("#idLocation option:selected").removeAttr("selected");
 	$('#select2-idLocation-container').html("Select Your Location")
 	$("#idpickCharge").html("");
+	calculateCost();
+}
+
+function calculateCost() {
+	
+	var pickUpCharge = Number($("#idpickCharge").html());
+	var testString = $("#idTest").val() + '';
+	var array = testString.split(",");
+	var i = 0;
+	var cost = 0;
+	for(i=0;i<array.length;i++) {
+		cost = cost + Number($("#test" + array[i]).val());
+	}	
+	cost = cost + pickUpCharge;
+	$("#total").val(cost);
 }
     
 </script>
