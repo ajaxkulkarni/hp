@@ -7,12 +7,15 @@
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="remark" class="java.lang.String"/>
-	<parameter name="isbold" class="java.lang.String"/>
+	
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
 	<field name="actualValue" class="java.lang.String">
 		<fieldDescription><![CDATA[actualValue]]></fieldDescription>
+	</field>
+    <field name="isBold" class="java.lang.String">
+		<fieldDescription><![CDATA[isBold]]></fieldDescription>
 	</field>
 	<field name="name" class="java.lang.String">
 		<fieldDescription><![CDATA[name]]></fieldDescription>
@@ -87,7 +90,7 @@
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="183" y="10" width="100" height="20" uuid="d951c733-395f-4a4d-939d-26e7a93785a6">
-					<printWhenExpression><![CDATA[$P{isbold}.equals("")]]></printWhenExpression>
+					<printWhenExpression><![CDATA[$F{isBold}.equals("")]]></printWhenExpression>
 				</reportElement>
 				<textElement>
 					<font fontName="SansSerif"/>
@@ -100,7 +103,7 @@
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="180" y="10" width="100" height="20" uuid="29af9692-88c0-4c62-9722-68b326639ace">
-					<printWhenExpression><![CDATA[$P{isbold}.equals("y")]]></printWhenExpression>
+					<printWhenExpression><![CDATA[$F{isBold}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<textElement>
 					<font fontName="SansSerif" isBold="true"/>

@@ -16,6 +16,7 @@ public class TestParameter {
 	private String normalValueChild;
 	private List<String> methods;
 	private String mapped;
+	private String isBold;
 	
 	public Integer getId() {
 		return id;
@@ -88,6 +89,12 @@ public class TestParameter {
 	}
 	public void setMapped(String mapped) {
 		this.mapped = mapped;
+	}
+	public String getIsBold() {
+		return isBold;
+	}
+	public void setIsBold(String isBold) {
+		this.isBold = isBold;
 	}
 	
 }
