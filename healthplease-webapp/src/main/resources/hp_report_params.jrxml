@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-27T13:12:59 -->
+<!-- 2016-07-29T00:17:06 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_report_params" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7df0b4c9-a9f5-4694-990d-0bf775f2b11c">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="remark" class="java.lang.String"/>
-	
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
 	<field name="actualValue" class="java.lang.String">
 		<fieldDescription><![CDATA[actualValue]]></fieldDescription>
 	</field>
-    <field name="isBold" class="java.lang.String">
+	<field name="remark" class="java.lang.String">
+		<fieldDescription><![CDATA[remark]]></fieldDescription>
+	</field>
+	<field name="isBold" class="java.lang.String">
 		<fieldDescription><![CDATA[isBold]]></fieldDescription>
 	</field>
 	<field name="name" class="java.lang.String">
@@ -99,7 +100,7 @@
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="454" y="10" width="96" height="20" uuid="c3e89754-4dde-49ba-a1d2-b009501d65ee"/>
-				<textFieldExpression><![CDATA[$P{remark}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{remark}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="180" y="10" width="100" height="20" uuid="29af9692-88c0-4c62-9722-68b326639ace">
