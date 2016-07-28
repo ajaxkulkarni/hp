@@ -8,7 +8,8 @@
 	
 
     <title>Support | HealthPlease.in</title>
-
+  <meta name="keywords" content="HealthPlease Contact, HealthPlease Support">
+    <meta name="description" content="Find ways to contact HealthPlease.in. Email us at info[at]HealthPlease.in,  Like us on Facebook, Follow us on Twitter, Connect with us at LinkedIn. ">
 <body>
         <%@include file="user_header.jsp" %>
         
@@ -95,58 +96,48 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                     <h3 class="page-header classHeaderText">Contact Us</h3>
-                    <div class="classSFormHolder" style="background-color:#eee;padding:3%;height:390px">
-                   <%-- <img src="<c:url value="/resources/images/steps/"/>"/> --%>
-                   <div class="" style="margin:5%;height:150px;width:90%;background-color:#aaa">
-          
-                   </div>
-                    <span><h4><i class="fa fa-phone" aria-hidden="true" style="margin:2%"></i>Phone <a href="tel:7620012092" style="color:#46b8da;">+91 7620012092</a></h4></span>
-                 	<span><h4><i class="fa fa-envelope" aria-hidden="true" style="margin:2%"></i>Email  <a style="color:#46b8da;" href="Mailto:help@healthplease.in">help@healthplease.in</a></h4></span>
-                 	<span><h4><i class="fa fa-envelope" aria-hidden="true" style="margin:2%"></i>Customer Care<a style="color:#46b8da;" href="Mailto:care@healthplease.in"> care@healthplease.in</a></h4></span>
-                 	<a id="callback" name="callback" href="javascript:void(0);" style="color:#46b8da;margin-left:10%"><strong>Request a call back</strong></a></br>
-                 	<a style="color:#46b8da;margin-left:10%;margin-top:2%" href="/hp/faq.htm"><strong>Frequently Asked Questions</a>
+                    <div class="classSFormHolder" style="background-color:#eee;padding:3%;height:390px"> 
+                    <div class="wrapper" style="padding:5%;">
+                    	<div class="row" style="border:;margin-top:2%;background-color:#fff;padding-left:6%">
+                    	<span><h5><i class="fa fa-phone" aria-hidden="true" style="margin:"></i> Phone: <a href="tel:7620012092" style="color:#46b8da;">+91 7620012092</a></h5></span>
+                    	</div>
+                    	<div class="row" style="border:;margin-top:2%;background-color:#fff;padding-left:6%">
+                    	<span><h5><i class="fa fa-envelope" aria-hidden="true" style="margin:"></i> Customer Care: <a style="color:#46b8da;" href="Mailto:care@healthplease.in"> care@healthplease.in</a></h5></span>
+                    	</div>
+                    	<div class="row" style="border:;margin-top:2%;padding-top:1%;;padding-left:6%;background-color:#fff">
+                    	<a class="" id="callback" name="callback" href="javascript:void(0);" style="color:#46b8da;"><strong>Request a call back</strong></a></br>
+                    	</div>
+                    	<div class="row" style="border:;margin-top:2%;padding-top:1%;padding-left:6%;background-color:#fff">
+                    	<a class="" style="color:#46b8da;margin-left:;margin-top:" href="/hp/faq.htm"><strong>Frequently Asked Questions</a>
+                    	</div>
+                    	<div class="row" style="border:;margin-top:2%;padding-top:1%;background-color:#fff">
+                    	
+                    		<div class="col-md-4" style="border:;padding-left:6%">
+                    		<h5>Follow Us: </h5>
+                    		</div>
+                    		<div class="col-md-2" style="border:;padding-right:5%">
+                    		<a href="https://twitter.com/HealthPleaseOff" id="gh" target="_blank" title="Twitter">
+									<span class="fa-stack fa-lg">
+									  <i class="fa fa-twitter fa-stack-1x classMColor"></i>
+									</span>
+								</a>&nbsp;&nbsp;
+                    		</div>
+                    		<div class="col-md-2">
+					              
+								  <a href="https://www.facebook.com/pages/Health-Please/1614865218755696" id="gh" target="_blank" title="Facebook">
+									<span class="fa-stack fa-lg">
+									  <i class="fa fa-facebook fa-stack-1x  classMColor"></i>
+									</span>
+									</a>
+							</div>
+							</div>
+					</div>
+								
+                    		</div>
+                       </div>
                     </div>
-                   
-                </div>
-                <!-- /.col-lg-12 -->
             </div>
-        </div>
-            <!-- /.row -->
-        <!-- </div>
-        
-        </div>
-        <!-- /#page-wrapper -->
-<!-- <script>
-                    $('.numeric').keyup( function () {
-                        if (this.value != this.value.replace(/[^0-9\.]/g, '')) {
-                           this.value = this.value.replace(/[^0-9\.]/g, '');
-                        }
-                    });
-                        $('#idSupportSubmit').on("click", function(){
-                            if( false == $('#request_from_index').valid()) return;
 
-                            $("#idSupportSubmit").html("<img src='images/loader.gif'  width='15px'/>&nbspSending...");
-                                $.ajax({
-                                                type: "POST",
-                                                url : "adminController.html?action=requestcheckup&is_query=1",
-                                                data: $('#request_from_index').serializeArray(),//only input
-                                                success: function(response){
-                                                var obj = $.parseJSON( response );
-                                                        if ( 1 == obj.status ){
-                                                                alert( obj.msg );
-                                                                $("#idSupportSubmit").html("Send");
-                                                                $('#request_from_index').trigger("reset");
-                                                                //$('#upload_error').show();
-                                                                //$('#upload_error').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a>' + obj.msg + '</div>');
-                                                        } else {
-                                                        alert( obj.msg );
-                                                                //$('#upload_error').html('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert">&times;</a>' + obj.msg + '</div>');
-                                                        }
-
-                                                }
-                            });
-                        });
-</script> -->
 	<%@include file="user_footer.jsp" %>
 </body>
 </html>
