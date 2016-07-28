@@ -9,6 +9,8 @@
 <head>
 
 <title>About Us | HealthPlease.in</title>
+  <meta name="keywords" content="HealthPlease services, Pathology test, Home sample collection">
+  <meta name="description" content="Read about our features and services. Book appointments online or through phone for free. Your one-stop appointment booking system in Pune.">
 <link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
 <link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
 <link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">

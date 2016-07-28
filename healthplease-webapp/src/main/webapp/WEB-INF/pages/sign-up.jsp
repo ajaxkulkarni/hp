@@ -9,7 +9,8 @@
 <head>
 	
     <title>Sign Up to Store Medical Records and easy Lab bookings | HealthPlease.in</title>
-
+	 <meta name="keywords" content="HealthPlease Sign Up, EMR">
+    <meta name="description" content="Sign Up to Book Medical Laboratory Appointments and Store your reports as Electronic Medical Records (EMR) for futrue reference in Pune ">
 	<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 	
 	</head>
