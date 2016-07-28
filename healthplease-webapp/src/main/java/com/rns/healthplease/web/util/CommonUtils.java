@@ -507,6 +507,26 @@ public class CommonUtils implements Constants {
 		return cal.get(Calendar.DATE);
 	}
 	
+	public static void filterTests(Appointment appointmentDetails, Appointment appointment) {
+		if(CollectionUtils.isEmpty(appointmentDetails.getTests()) || CollectionUtils.isEmpty(appointment.getTests())) {
+			return;
+		}
+		List<LabTest> filteredTests = new ArrayList<LabTest>();
+		for(LabTest currentTest: appointmentDetails.getTests()) {
+			boolean found = false;
+			for(LabTest uploadedTest: appointment.getTests()) {
+				if(currentTest.getId().intValue() == uploadedTest.getId().intValue()) {
+					found = true;
+					break;
+				}
+			}
+			if(found) {
+				filteredTests.add(currentTest);
+			}
+		}
+		appointmentDetails.setTests(filteredTests);
+	}
+	
 	/*public static void main(String[] args) {
 		//System.out.println(getEncryptedPassword("123456³!õ"));
 		System.out.println(StringUtils.join("123456","").length());

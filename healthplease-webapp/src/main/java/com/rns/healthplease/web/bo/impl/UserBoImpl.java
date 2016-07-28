@@ -590,6 +590,7 @@ public class UserBoImpl implements UserBo, Constants {
 		try {
 			if (locations == null) {
 				Appointment currentAppointment = DataConverters.getAppointment(session, appointmentDao, appointments);
+				CommonUtils.filterTests(currentAppointment, appointment);
 				JasperUtil.getReport(currentAppointment);
 				is = new ByteArrayInputStream(currentAppointment.getReportData());
 			} else

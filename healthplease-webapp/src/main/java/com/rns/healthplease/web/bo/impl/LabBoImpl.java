@@ -348,7 +348,7 @@ public class LabBoImpl implements LabBo, Constants {
 			Appointment appointmentDetails = DataConverters.getAppointment(session, appointmentDao, appointments);
 			appointmentDetails.setReport(uploadedReport);
 			appointmentDetails.setPrepareReport(document);
-			filterTests(appointmentDetails, appointment);
+			CommonUtils.filterTests(appointmentDetails, appointment);
 			threadPoolTaskExecutor.execute(new MailUtil(appointmentDetails, MAIL_TYPE_REPORT_UPLOAD));
 			SMSUtil.sendSMS(appointmentDetails, MAIL_TYPE_REPORT_UPLOAD);
 			transaction.commit();
@@ -361,25 +361,6 @@ public class LabBoImpl implements LabBo, Constants {
 		return RESPONSE_OK;
 	}
 
-	private void filterTests(Appointment appointmentDetails, Appointment appointment) {
-		if(CollectionUtils.isEmpty(appointmentDetails.getTests()) || CollectionUtils.isEmpty(appointment.getTests())) {
-			return;
-		}
-		List<LabTest> filteredTests = new ArrayList<LabTest>();
-		for(LabTest currentTest: appointmentDetails.getTests()) {
-			boolean found = false;
-			for(LabTest uploadedTest: appointment.getTests()) {
-				if(currentTest.getId().intValue() == uploadedTest.getId().intValue()) {
-					found = true;
-					break;
-				}
-			}
-			if(found) {
-				filteredTests.add(currentTest);
-			}
-		}
-		appointmentDetails.setTests(filteredTests);
-	}
 
 	private LabTest getUploadedReportTest(Appointment appointment) {
 		if (CollectionUtils.isEmpty(appointment.getTests())) {
