@@ -89,7 +89,7 @@ public interface Constants {
 	String USER_HOME_GET_URL = "userhome.htm";
 	String BOOK_APPOINTMENT_PAGE = "confirm_appointment";
 	String BOOK_APPOINTMENT_GET_URL = "bookappointment.htm";
-	String HOME_GET_URL = "home.htm";
+	String HOME_GET_URL = ROOT_URL;
 	String PRE_REGISTER_POST_URL = "register";
 	String REGISTER_USER_GET_URL = "signup.htm";
 	String CONFIRM_APPOINTMENT_DETAILS_GET_URL = "confirmappointment.htm";
@@ -249,5 +249,6 @@ public interface Constants {
 	String[] LAB_NAME_MAIL_TYPES = { MAIL_TYPE_BOOK_APP_LAB, MAIL_TYPE_CANCEL_APP_LAB };
 	String ADMIN_MAILS = "yash.bharwani@healthplease.in,care@healthplease.in,ajinkyashiva@gmail.com";
 	String ADMIN_PHONES = "9890733740,9423040642";
+	String[] OPEN_URLS = {SUPPORT_GET_URL, PRICING_GET_URL, GET_PRICING_POST_URL, "getTestDetails", PRIVACY_GET_URL, TERMS_GET_URL, ABOUT_US_GET_URL, FAQ_PAGE, ACTIVATION_URL_GET, PARTNER_LABS_GET_URL, REGISTER_USER_GET_URL, REGISTER_USER_POST_URL, "loginAjax", CORPORATE_PACKAGES_GET_URL, CORPORATE_REQUEST_POST_URL, LOGOUT_GET_URL};
 
 }

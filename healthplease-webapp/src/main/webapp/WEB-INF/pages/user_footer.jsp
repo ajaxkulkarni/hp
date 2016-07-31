@@ -160,6 +160,7 @@
 	    	<div class="col-sm-12 col-lg-6 col-md-6 text-right">
 	    		Proudly Powered by <a href="http://www.healthplease.in" target="_blank">HealthPlease.in</a>
 	    	</div>
+	    	<input type="hidden" id="root_url" value="<%=Constants.ROOT_URL%>">
 	    </div>
 	</div>
 </div>
@@ -258,12 +259,11 @@ function onLogin() {
 		success: function(response){
 				$("#post_login").hide();
 				$("#pre_login").show();
-                if ( response != 'Invalid user credentials!' ){
+                if (response == $("#root_url").val() ||  response.search(".htm") > 0 ){
 					window.location.href = response;
                 } else {
-                    $('#idMsgLogin').html("<div class='alert alert-danger'>Invalid Login credentials!</div>");
+                    $('#idMsgLogin').html("<div class='alert alert-danger'>" + response + "</div>");
                 }
-
 		}
 	});
 	
