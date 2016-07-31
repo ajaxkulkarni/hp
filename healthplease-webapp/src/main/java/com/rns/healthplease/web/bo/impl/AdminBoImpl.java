@@ -835,10 +835,18 @@ public class AdminBoImpl implements AdminBo, Constants {
 			appointments.setUser(new Users());
 			appointments.getUser().setId(0);
 		}
+		Payment payment = new Payment();
+		payment.setAmount(appointment.getLab().getPrice());
+		payment.setDate(new Date());
+		payment.setStatus(PaymentStatus.SUCCESS);
+		payment.setType(PaymentType.cod);
+		com.rns.healthplease.web.dao.domain.PaymentStatus paymentStatus = BusinessConverters.getPaymentStatus(payment);
 		appointments.setDoctorName("");
 		appointments.setGender("");
 		session.persist(appointments);
 		appointment.setId(appointments.getId());
+		paymentStatus.setAppointment(appointments);
+		session.persist(paymentStatus);
 		//appointment = DataConverters.getAppointment(session, new AppointmentDaoImpl(), appointments);
 		CommonUtils.populateLabUsers(appointment, session);
 		threadPoolTaskExecutor.execute(new MailUtil(appointment, MAIL_TYPE_BOOK_APP_USER));

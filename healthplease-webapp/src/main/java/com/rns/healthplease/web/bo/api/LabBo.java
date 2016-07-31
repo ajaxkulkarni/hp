@@ -1,5 +1,6 @@
 package com.rns.healthplease.web.bo.api;
 
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import com.rns.healthplease.web.bo.domain.Appointment;
 import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
+import com.rns.healthplease.web.bo.domain.ReportConfigurations;
 import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.dao.domain.TestLabs;
 
@@ -37,5 +39,11 @@ public interface LabBo {
 	Appointment getAppointment(Appointment appointment);
 
 	String getLocationCharges(Lab lab, LabLocation location, List<LabTest> tests);
+	
+	ReportConfigurations getReportConfigurations(Lab lab);
+	
+	String updateReportConfigurations(Lab lab);
+
+	InputStream downloadSignatureFile(Lab lab);
 	
 }

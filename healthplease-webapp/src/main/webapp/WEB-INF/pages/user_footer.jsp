@@ -248,9 +248,13 @@ function onLogin() {
 	if($("#idSlot").val() != '') {
 		slotId = $("#idSlot").val();
 	}
+	var gotoPage = "";
+	if(window.location.href.search("Corporate") > 0) {
+		gotoPage = window.location.href;
+	}
 	$.ajax({
 		type: "POST",
-		url : "loginAjax?username=" +$("#username").val() + "&password=" + $("#password").val() + "&slotId=" + slotId,
+		url : "loginAjax?username=" +$("#username").val() + "&password=" + $("#password").val() + "&slotId=" + slotId + "&gotoPage=" + gotoPage,
 		success: function(response){
 				$("#post_login").hide();
 				$("#pre_login").show();

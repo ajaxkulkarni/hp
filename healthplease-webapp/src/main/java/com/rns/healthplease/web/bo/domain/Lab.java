@@ -20,6 +20,7 @@ public class Lab {
 	private List<Slot> currentSlots;
 	private List<User> users;
 	private List<LabTest> tests;
+	private ReportConfigurations reportConfig;
 	
 	public void setTests(List<LabTest> tests) {
 		this.tests = tests;
@@ -125,6 +126,14 @@ public class Lab {
 
 	public void setArea(LabLocation area) {
 		this.area = area;
+	}
+
+	public ReportConfigurations getReportConfig() {
+		return reportConfig;
+	}
+
+	public void setReportConfig(ReportConfigurations reportConfig) {
+		this.reportConfig = reportConfig;
 	}
 	
 

@@ -170,7 +170,7 @@ public class HPCustomerControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/loginAjax", method = RequestMethod.POST)
-	public @ResponseBody String loginAjax(ModelMap model, String username, String password, int slotId) {
+	public @ResponseBody String loginAjax(ModelMap model, String username, String password, int slotId, String gotoPage) {
 		User user = new User();
 		user.setEmail(username);
 		user.setPassword(password);
@@ -191,6 +191,9 @@ public class HPCustomerControllerWeb implements Constants {
 			slot.setId(slotId);
 			manager.getCurrentAppointment().setSlot(slot);
 			return BOOK_APPOINTMENT_GET_URL;
+		}
+		if(StringUtils.isNotEmpty(gotoPage)) {
+			return gotoPage;
 		}
 		return HOME_GET_URL;
 	}

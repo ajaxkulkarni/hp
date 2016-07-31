@@ -2,14 +2,17 @@ package com.rns.healthplease.web.bo.impl;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -25,6 +28,7 @@ import com.rns.healthplease.web.bo.domain.AppointmentStatus;
 import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
+import com.rns.healthplease.web.bo.domain.ReportConfigurations;
 import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.dao.api.AppointmentDao;
 import com.rns.healthplease.web.dao.api.LabDao;
@@ -41,6 +45,7 @@ import com.rns.healthplease.web.dao.domain.LabLocations;
 import com.rns.healthplease.web.dao.domain.Labs;
 import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
+import com.rns.healthplease.web.dao.domain.ReportConfig;
 import com.rns.healthplease.web.dao.domain.Slots;
 import com.rns.healthplease.web.dao.domain.Users;
 import com.rns.healthplease.web.dao.domain.Users1;
@@ -51,6 +56,7 @@ import com.rns.healthplease.web.util.BusinessConverters;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
 import com.rns.healthplease.web.util.DataConverters;
+import com.rns.healthplease.web.util.LoggingUtil;
 import com.rns.healthplease.web.util.MailUtil;
 import com.rns.healthplease.web.util.SMSUtil;
 
@@ -354,8 +360,10 @@ public class LabBoImpl implements LabBo, Constants {
 			transaction.commit();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(e));
 		} catch (IOException e) {
 			e.printStackTrace();
+			LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(e));
 		}
 		session.close();
 		return RESPONSE_OK;
@@ -597,6 +605,78 @@ public class LabBoImpl implements LabBo, Constants {
 		CommonUtils.calculatePrice(currentAppointment.getLab(), currentAppointment, appointmentDao, session);
 		session.close();
 		return currentAppointment;
+	}
+	
+	@Override
+	public ReportConfigurations getReportConfigurations(Lab lab) {
+		if(lab == null || lab.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		ReportConfig config = new LabDaoImpl().getReportConfig(lab.getId(), session);
+		ReportConfigurations configurations = DataConverters.getReportConfigurations(config);
+		session.close();
+		return configurations;
+	}
+	
+	@Override
+	public String updateReportConfigurations(Lab lab) {
+		if(lab == null || lab.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		ReportConfig config = new LabDaoImpl().getReportConfig(lab.getId(), session);
+		if(config == null) {
+			config = new ReportConfig();
+		}
+		BusinessConverters.getReportConfig(lab.getReportConfig(), lab, config);
+		MultipartFile signatureFile = lab.getReportConfig().getSignatureFile();
+		if(signatureFile != null && !signatureFile.isEmpty()) {
+			try {
+				String directory = ROOT_DOCS_PATH + "lab-data/" + lab.getId() + "/signature/";
+				String path = directory + signatureFile.getOriginalFilename();
+				File dir = new File(directory);
+				dir.mkdirs();
+				File document = new File(path);
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(document));
+				stream.write(signatureFile.getBytes());
+				stream.close();
+				config.setSignatureFileLocation(path);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+				LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(e));
+			}
+			
+		}
+		if(config.getId() == null) {
+			session.persist(config);
+		}
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
+	}
+	
+	@Override
+	public InputStream downloadSignatureFile(Lab lab) {
+		if(lab == null || lab.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		ReportConfig config = new LabDaoImpl().getReportConfig(lab.getId(), session);
+		session.close();
+		if(config == null || StringUtils.isEmpty(config.getSignatureFileLocation())) {
+			return null;
+		}
+		try {
+			InputStream is = new FileInputStream(new File(config.getSignatureFileLocation()));
+			return is;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(e));
+		}
+		return null;
 	}
 
 }

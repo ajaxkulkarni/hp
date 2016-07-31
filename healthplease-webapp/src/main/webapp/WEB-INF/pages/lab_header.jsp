@@ -119,7 +119,7 @@
                             <a href="<%=Constants.LAB_HOME_URL_GET%>"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="<%=Constants.LAB_SETTINGS_GET_URL%>"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>

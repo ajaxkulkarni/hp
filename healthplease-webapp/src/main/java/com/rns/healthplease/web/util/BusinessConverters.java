@@ -17,6 +17,7 @@ import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
 import com.rns.healthplease.web.bo.domain.Payment;
+import com.rns.healthplease.web.bo.domain.ReportConfigurations;
 import com.rns.healthplease.web.bo.domain.RequestForm;
 import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.bo.domain.TestParameter;
@@ -34,6 +35,7 @@ import com.rns.healthplease.web.dao.domain.LabBlockedSlots;
 import com.rns.healthplease.web.dao.domain.Labs;
 import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
+import com.rns.healthplease.web.dao.domain.ReportConfig;
 import com.rns.healthplease.web.dao.domain.RequestCollections;
 import com.rns.healthplease.web.dao.domain.Slots;
 import com.rns.healthplease.web.dao.domain.TestFactors;
@@ -142,16 +144,12 @@ public class BusinessConverters {
 		if (StringUtils.isNotEmpty(lab.getAddress())) {
 			labs.setAddress(lab.getAddress());
 		}
-		if (StringUtils.isNotEmpty(lab.getContact())) {
-			labs.setMobileNo(lab.getContact());
-		}
-		if (StringUtils.isNotEmpty(lab.getEmail())) {
-			labs.setLabEmail(lab.getEmail());
-		}
+		labs.setMobileNo(CommonUtils.getStringValue(lab.getContact()));
+		labs.setLabEmail(CommonUtils.getStringValue(lab.getEmail()));
 		if (lab.getAppointmentsPerSlot() != null) {
 			labs.setBookAppPerSlot(Byte.valueOf(lab.getAppointmentsPerSlot().toString()));
 		}
-		if (lab.getArea() != null) {
+		if (lab.getArea() != null && lab.getArea().getId() != null) {
 			labs.setLocation(getLocation(lab.getArea()));
 		}
 
@@ -482,4 +480,36 @@ public class BusinessConverters {
 		}
 	}
 
+	public static ReportConfig getReportConfig(ReportConfigurations reportConfigurations, Lab lab) {
+		if(reportConfigurations == null || lab == null) {
+			return null;
+		}
+		ReportConfig reportConfig = new ReportConfig();
+		getReportConfig(reportConfigurations, lab, reportConfig);
+		return reportConfig;
+	}
+
+	public static void getReportConfig(ReportConfigurations reportConfigurations, Lab lab, ReportConfig reportConfig) {
+		reportConfig.setHeaderRequired("n");
+		reportConfig.setFooterRequired("n");
+		if(StringUtils.isNotEmpty(reportConfigurations.getIsHeader())) {
+			reportConfig.setHeaderRequired(reportConfigurations.getIsHeader());
+		}
+		if(StringUtils.isNotEmpty(reportConfigurations.getIsFooter())) {
+			reportConfig.setFooterRequired(reportConfigurations.getIsFooter());
+		}
+		if(StringUtils.isNotEmpty(reportConfigurations.getName())) {
+			reportConfig.setSignatureName(reportConfigurations.getName());
+		}
+		if(StringUtils.isNotEmpty(reportConfigurations.getDesignation())) {
+			reportConfig.setSignatureDesignation(reportConfigurations.getDesignation());
+		}
+		if(StringUtils.isNotEmpty(reportConfigurations.getSignaturePath())) {
+			reportConfig.setSignatureFileLocation(reportConfigurations.getSignaturePath());
+		}
+		if(lab.getId() != null) {
+			reportConfig.setLabId(lab.getId());
+		}
+	}
+	
 }

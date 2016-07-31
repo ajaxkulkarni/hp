@@ -14,6 +14,7 @@ import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
 import com.rns.healthplease.web.bo.domain.Payment;
+import com.rns.healthplease.web.bo.domain.ReportConfigurations;
 import com.rns.healthplease.web.bo.domain.RequestForm;
 import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.bo.domain.TestParameter;
@@ -28,6 +29,7 @@ import com.rns.healthplease.web.dao.domain.LabLocations;
 import com.rns.healthplease.web.dao.domain.Labs;
 import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
+import com.rns.healthplease.web.dao.domain.ReportConfig;
 import com.rns.healthplease.web.dao.domain.RequestCollections;
 import com.rns.healthplease.web.dao.domain.Slots;
 import com.rns.healthplease.web.dao.domain.TestFactors;
@@ -325,6 +327,19 @@ public class DataConverters {
 		form.setTestName(CommonUtils.getFormValue(collection.getRemark(), 0));
 		form.setLabName(CommonUtils.getFormValue(collection.getRemark(), 1));
 		return form;
+	}
+	
+	public static ReportConfigurations getReportConfigurations(ReportConfig reportConfig) {
+		if(reportConfig == null) {
+			return null;
+		}
+		ReportConfigurations reportConfigurations = new ReportConfigurations();
+		reportConfigurations.setIsHeader(reportConfig.getHeaderRequired());
+		reportConfigurations.setIsFooter(reportConfig.getFooterRequired());
+		reportConfigurations.setName(reportConfig.getSignatureName());
+		reportConfigurations.setDesignation(reportConfig.getSignatureDesignation());
+		reportConfigurations.setSignaturePath(reportConfig.getSignatureFileLocation());
+		return reportConfigurations;
 	}
 
 }

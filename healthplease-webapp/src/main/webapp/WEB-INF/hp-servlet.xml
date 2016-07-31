@@ -82,6 +82,7 @@
 				<value>com.rns.healthplease.web.dao.domain.TestFactors</value>
 				<value>com.rns.healthplease.web.dao.domain.CancelReasons</value>
 				<value>com.rns.healthplease.web.dao.domain.AppointmentTestResults</value>
+				<value>com.rns.healthplease.web.dao.domain.ReportConfig</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

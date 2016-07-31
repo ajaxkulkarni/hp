@@ -250,7 +250,11 @@ function getLabs() {
         	   var i = 0;
         	   var appendString = "<option value='select'>Please select lab</option>";
         	   for(i = 0;i<labs.length;i++) {
-        		   appendString = appendString + "<option value='" + labs[i].id +"'>&nbsp;&nbsp;" + labs[i].name +" | Fees Rs. " + labs[i].price +"</option>"
+        		   var area = "";
+        		   if(labs[i].area != null) {
+        			   area = " , " + labs[i].area.name;
+        		   }
+        		   appendString = appendString + "<option value='" + labs[i].id +"'>&nbsp;&nbsp;" + labs[i].name + area  + " | Fees Rs. " + labs[i].price +"</option>"
         	   }
         	   $("#idLabs").html(appendString);
            },

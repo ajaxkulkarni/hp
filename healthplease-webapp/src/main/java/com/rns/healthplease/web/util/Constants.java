@@ -227,8 +227,8 @@ public interface Constants {
 	String EDIT_APPOINTMENT_PAGE = "edit_appointment";
 	String EDIT_APPOINTMENT_GET_URL = "editAppointment.htm";
 	String EDIT_APPOINTMENT_POST_URL = "editAppointment";
-
-	
+	String UPDATE_LAB_REPORT_SETTINGS_POST_URL = "updateLabReportSettings";
+	String GET_LAB_SIGNATURE_GET_URL = "getLabSignature.htm";
 
 	String MAIL_TYPE_ACTIVATION = "activationMail";
 	String MAIL_TYPE_REPORT_UPLOAD = "reportUpload";

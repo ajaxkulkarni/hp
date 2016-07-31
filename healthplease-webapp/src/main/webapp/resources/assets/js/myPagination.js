@@ -10,6 +10,8 @@
    	var setCount = 0;
    	var counter = 0;
    	var pageNumbers = "";
+   	var min = set - 4;
+   	var max = set + 4;
    	pageNumbers = pageNumbers + "<li><a href='#' onclick='prev()'><<</a></li>";
    	table.find('tr').each(function(index, row)
    	{
@@ -17,7 +19,9 @@
    			return;
    		}
    		if(index%count == 0 && index!=0) {
-   			pageNumbers = pageNumbers + "<li><a href='#' onclick='gotoPage(" + setCount +")'>" + (setCount + 1) +"</a></li>";
+   			if(setCount >= min && setCount <= max) {
+   				pageNumbers = pageNumbers + "<li><a href='#' onclick='gotoPage(" + setCount +")'>" + (setCount + 1) +"</a></li>";
+   			}
    			setCount++;
    			counter = 0;
    		}

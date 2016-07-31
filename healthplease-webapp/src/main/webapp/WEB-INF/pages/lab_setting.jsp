@@ -34,15 +34,122 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <h3 class="page-header">Coming Soon</h3>
                     <h4> Soon you are able to create your own slots </h4>
                     <h4> Block working days of yours  </h4>
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+                /.col-lg-12
+            </div> -->
+			<div class="row">
+				<%--  <%@include file="admin_header.jsp" %> --%>
+				<div class="col-lg-1 col-md-3 offset"></div>
+				<div class="col-lg-9 col-md-9" style="">
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#setting1">Report
+								Settings</a></li>
+						<li><a data-toggle="tab" href="#setting2">Other Settings</a></li>
+					</ul>
+
+					<div class="tab-content">
+
+						<div id="setting1" class="tab-pane fade in active">
+							<div class="container">
+								<div class="row">
+									<form action="<%=Constants.UPDATE_LAB_REPORT_SETTINGS_POST_URL %>" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="id" value="${user.lab.id}">
+									<div class="col-md-9">
+										<div class="panel panel-default" style="margin-top: 5%">
+											<div class="panel-heading">Header</div>
+											<div class="panel-body">
+												<div class="checkbox">
+													<label>
+														<c:if test="${user.lab.reportConfig.isHeader == 'y'}">
+															<input type="checkbox" name="reportConfig.isHeader" value="y" checked>Include Header
+														</c:if>
+														<c:if test="${user.lab.reportConfig.isHeader != 'y'}">
+															<input type="checkbox" name="reportConfig.isHeader" value="y">Include Header
+														</c:if>
+													</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="panel panel-default">
+											<div class="panel-heading">Footer</div>
+											<div class="panel-body">
+												<div class="checkbox">
+													<label>
+														<c:if test="${user.lab.reportConfig.isFooter == 'y'}">
+															<input type="checkbox" name="reportConfig.isFooter" value="y" checked>Include Footer
+														</c:if>
+														<c:if test="${user.lab.reportConfig.isFooter != 'y'}">
+															<input type="checkbox" name="reportConfig.isFooter" value="y">Include Footer
+														</c:if>
+													</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="panel panel-default">
+											<div class="panel-heading">Signature</div>
+											<div class="panel-body">
+												<span>Choose file</span></br>
+												<div class="fileinput fileinput-new"
+													data-provides="fileinput">
+													<span class="btn btn-default btn-file"><input type="file" name="reportConfig.signatureFile" /></span>
+												</div>
+												<!-- <div class="checkbox">
+													<label><input type="checkbox" value="">Include
+														Signature</label>
+												</div> -->
+												<div class="">
+                									<input name="reportConfig.name" value="${user.lab.reportConfig.name}" placeholder="Doctor Name" class="form-control input-md" type="text">      
+              									</div>
+              									<div class="">
+                									<input name="reportConfig.designation" value="${user.lab.reportConfig.designation}" placeholder="Designation" class="form-control input-md" type="text">      
+              									</div>
+											</div>
+										</div>
+										<button type="submit" style="float: right"
+											class="btn btn-primary">Save</button>
+
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+
+						<div id="setting2" class="tab-pane fade in">
+							<div class="container" style="height: 500px">
+								<div class="row">
+
+									<div class="col-md-9" style="margin: 5%">
+										<div class="panel panel-default">
+											<div class="panel-heading">Lab Logo</div>
+											<div class="panel-body">
+												<span>Choose file</span></br>
+												<div class="fileinput fileinput-new"
+													data-provides="fileinput">
+													<span class="btn btn-default btn-file"><input
+														type="file" /></span>
+												</div>
+
+											</div>
+										</div>
+										<button type="button" style="float: right"
+											class="btn btn-primary">Submit</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
 

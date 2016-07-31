@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperReport;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -49,6 +48,7 @@ import com.rns.healthplease.web.dao.domain.LabLocations;
 import com.rns.healthplease.web.dao.domain.Labs;
 import com.rns.healthplease.web.dao.domain.Locations;
 import com.rns.healthplease.web.dao.domain.PaymentStatus;
+import com.rns.healthplease.web.dao.domain.ReportConfig;
 import com.rns.healthplease.web.dao.domain.RequestCollections;
 import com.rns.healthplease.web.dao.domain.Slots;
 import com.rns.healthplease.web.dao.domain.TestLabs;
@@ -187,6 +187,8 @@ public class UserBoImpl implements UserBo, Constants {
 		Session session = this.sessionFactory.openSession();
 		Labs labs = appointmentDao.getLabById(labId, session);
 		Lab lab = DataConverters.getLab(labs);
+		ReportConfig config = new LabDaoImpl().getReportConfig(labs.getId(), session);
+		lab.setReportConfig(DataConverters.getReportConfigurations(config));
 		user.setLab(lab);
 		user.setAppointments(new ArrayList<Appointment>());
 		user.setPendingAppointments(new ArrayList<Appointment>());

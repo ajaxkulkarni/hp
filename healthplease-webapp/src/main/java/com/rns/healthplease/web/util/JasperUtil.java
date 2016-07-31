@@ -22,6 +22,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import com.rns.healthplease.web.bo.domain.Appointment;
 import com.rns.healthplease.web.bo.domain.LabTest;
+import com.rns.healthplease.web.bo.domain.ReportConfigurations;
 import com.rns.healthplease.web.bo.domain.TestParameter;
 
 public class JasperUtil {
@@ -95,6 +96,13 @@ public class JasperUtil {
 		parameters.put("labAddress", appointment.getLab().getAddress());
 		parameters.put("doctorName", appointment.getDoctorName());
 		parameters.put("printRequired", "y");
+		ReportConfigurations reportConfig = appointment.getLab().getReportConfig();
+		if(reportConfig != null) {
+			parameters.put("printRequired", StringUtils.lowerCase(reportConfig.getIsHeader()));
+			parameters.put("pathName", reportConfig.getName());
+			parameters.put("designation", reportConfig.getDesignation());
+			parameters.put("imagePath", Constants.ROOT_URL + "/" + Constants.GET_LAB_SIGNATURE_GET_URL + "?labId=" + appointment.getLab().getId());
+		}
 		//parameters.put("isbold", "");
 		analyzeTestParameters(appointment.getTests());
 		JRBeanCollectionDataSource testSource = new JRBeanCollectionDataSource(appointment.getTests());

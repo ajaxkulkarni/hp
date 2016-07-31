@@ -1,6 +1,7 @@
 package com.rns.healthplease.web.controller;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -44,12 +46,17 @@ import com.rns.healthplease.web.bo.domain.TestParameter;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
 import com.rns.healthplease.web.util.JasperUtil;
+import com.rns.healthplease.web.util.LoggingUtil;
 
 @Controller
 public class HPLabControllerWeb implements Constants {
 
 	private UserBo userBo;
 	private LabBo labBo;
+	
+	public HPLabControllerWeb() {
+		LoggingUtil.logMessage("##### Deployment Successful! #########");
+	}
 
 	@Autowired(required = true)
 	@Qualifier(value = "manager")
@@ -341,9 +348,16 @@ public class HPLabControllerWeb implements Constants {
 
 	@RequestMapping(value = "/" + LAB_SETTINGS_GET_URL, method = RequestMethod.GET)
 	public String initSettings(ModelMap model) {
+		userBo.populateLabDetails(manager.getUser(), manager.getUser().getLab().getId());
 		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return LAB_SETTINGS_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + UPDATE_LAB_REPORT_SETTINGS_POST_URL, method = RequestMethod.POST)
+	public RedirectView updateSettings(ModelMap model, Lab lab) {
+		manager.setResult(labBo.updateReportConfigurations(lab));
+		return new RedirectView(LAB_SETTINGS_GET_URL);
 	}
 	
 	@RequestMapping(value = "/" + LAB_PREPARE_REPORT_GET_URL, method = RequestMethod.GET)
@@ -394,14 +408,16 @@ public class HPLabControllerWeb implements Constants {
 	}*/
 	
 	@RequestMapping(value = "/" + GENERATE_REPORT_POST_URL, method = RequestMethod.POST)
-	public RedirectView generateReport(ModelMap model,Appointment appointment,String[] testIds,HttpServletResponse response) throws JRException, IOException {
+	public void generateReport(ModelMap model,Appointment appointment,String[] testIds,HttpServletResponse response) throws JRException, IOException {
 		String generateReportView = LAB_PREPARE_REPORT_GET_URL + "?appointmentId=" + appointment.getId();
 		Appointment app = new Appointment();
 		app.setId(appointment.getId());
 		Appointment currentAppointment = labBo.getAppointment(app);
 		if(currentAppointment == null) {
-			return new RedirectView(generateReportView);
+			return;
 		}
+		userBo.populateLabDetails(manager.getUser(), currentAppointment.getLab().getId());
+		currentAppointment.setLab(manager.getUser().getLab());
 		currentAppointment.setStatus(new AppointmentStatus(3));
 		setTestValues(currentAppointment, appointment, testIds);
 		//currentAppointment.setPrepareReport(PdfUtil.createPdf(currentAppointment));
@@ -414,7 +430,7 @@ public class HPLabControllerWeb implements Constants {
 				result = "Your report has been uploaded and sent to the user successfully!";
 			}
 			manager.setResult(result);
-			return new RedirectView(generateReportView);
+			return;
 		} else {
 			String result = labBo.updateTestResults(currentAppointment);
 			if(RESPONSE_OK.equals(result)) {
@@ -423,14 +439,14 @@ public class HPLabControllerWeb implements Constants {
 			manager.setResult(result);
 		}
 		if(appointment.getPrintRequired() != null && 'P' == appointment.getPrintRequired()) {
-			return new RedirectView(generateReportView);
+			return;
 		}
 		byte[] reportData = currentAppointment.getReportData();
 		if(reportData == null) {
-			return new RedirectView(generateReportView);
+			return;
 		}
 		writeToResponse(response, reportData);
-		return new RedirectView(generateReportView);
+		return;
 	}
 
 	private void writeToResponse(HttpServletResponse response, byte[] reportData) {
@@ -497,6 +513,26 @@ public class HPLabControllerWeb implements Constants {
 			}
 		}
 		labTest.setParameters(params);
+	}
+	
+	@RequestMapping(value = "/" + GET_LAB_SIGNATURE_GET_URL, method = RequestMethod.GET)
+	public void getReport(int labId,HttpServletResponse response, ModelMap model) {
+		try {
+			Lab lab = new Lab();
+			lab.setId(labId);
+			InputStream is = labBo.downloadSignatureFile(lab);
+			if (is != null) {
+				IOUtils.copy(is, response.getOutputStream());
+				response.setHeader("Content-Disposition", "attachment; filename=\"report\"");
+				response.flushBuffer();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(e));
+		} catch (IOException e) {
+			e.printStackTrace();
+			LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(e));
+		}
 	}
 
 }

@@ -14,6 +14,7 @@ import com.rns.healthplease.web.dao.api.LabDao;
 import com.rns.healthplease.web.dao.domain.LabActiveDaysStatus;
 import com.rns.healthplease.web.dao.domain.LabBlockedSlots;
 import com.rns.healthplease.web.dao.domain.Labs;
+import com.rns.healthplease.web.dao.domain.ReportConfig;
 import com.rns.healthplease.web.dao.domain.TestLabs;
 
 public class LabDaoImpl implements LabDao {
@@ -70,6 +71,16 @@ public class LabDaoImpl implements LabDao {
 			return null;
 		}
 		return testLabs.get(0);
+	}
+
+	public ReportConfig getReportConfig(Integer id, Session session) {
+		Query createQuery = session.createQuery("from ReportConfig where labId=:labId");
+		createQuery.setInteger("labId",id);
+		List<ReportConfig> configs = createQuery.list();
+		if(CollectionUtils.isEmpty(configs)) {
+			return null;
+		}
+		return configs.get(0);
 	}
 
 }
