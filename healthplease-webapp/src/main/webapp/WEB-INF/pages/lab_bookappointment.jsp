@@ -541,10 +541,13 @@ $(document).ready(function(){
 
 $("#idAppointmentPName").keypress(function (e) {
     var regex = new RegExp("^[a-zA-Z]+$");
+    var key = e.charCode||e.keyCode;
     var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
     if (regex.test(str)) {
         return true;
     }
+    else if(key == 8||key == 46|| key == 9||key==37||key==39||key==32)
+    	return true;
     else
     {
     e.preventDefault();
@@ -564,14 +567,21 @@ $("#idAppointmentPAge").focusout(function(){
 		document.getElementById("idAppAgeErr").innerHTML="";
 	return true;
 });
-$("#idAppointmentPDoctor").keypress(function (e) {
+$("#idAppointmentPDoctor").keypress(function (e) {	    
     var regex = new RegExp("^[a-zA-Z]+$");
+    var key = e.charCode||e.keyCode;
+    
     var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
     if (regex.test(str)) {
+    	
         return true;
     }
+    else if(key == 8||key == 46|| key == 9||key==37||key==39||key==32||key==190)
+    	return true;
+  
     else
     {
+    
     e.preventDefault();
     //alert('Please Enter Alphabate');
     return false;
@@ -600,6 +610,12 @@ $("#idAppointmentPContact").focusout(function(){
 		getElementById("idAppointmentPContact").focus();
 		return false;	
 	}
+	else if(no.length!= 10){
+		document.getElementById("idAppPContactErr").innerHTML= "enter valid Phone no.";
+		getElementById("idAppointmentPContact").focus();
+		return false;	
+	}
+		
 	 	else 
 		document.getElementById("idAppPContactErr").innerHTML= "";
 		return true;
@@ -696,4 +712,5 @@ function calculateCost() {
 	$("#total").val(cost);
 }
     
-</script>
+</script></body>
+</html>

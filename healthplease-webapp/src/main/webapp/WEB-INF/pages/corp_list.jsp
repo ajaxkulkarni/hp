@@ -12,11 +12,23 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <link href="<c:url value="/resources/css/external/select2/select2.min.css"/>" rel="stylesheet" ></link>
+    <script src="<c:url value="/resources/js/external/select2/select2.min.js"/>"></script>
     <title>Book Diagnostic & Pathology Test like Thyroid, Sugar, Urine, Cholesterol, ECG and X-Ray. Pay for them Online. Sample Collected at home or in lab. EMR Storage Available.</title>
-    
+ <style type="text/css">
+ input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {-moz-appearance: textfield;}
+}
+ </style>
 </head>
 
 <body>
+
 <%@include file="user_header.jsp" %>
 <div class="classTopHeading">
         <div class="container">
@@ -147,7 +159,7 @@
 			  </div> -->
 			   <div class="form-group">
 			    <label for="age">Age:</label>
-			    <input type="number" class="form-control" id="age" name="user.age" style="width:50px">
+			    <input type="number" class="form-control" id="age" name="user.age" style="width:100%">
 			  </div>
 			 
 			    <div class="form-group">

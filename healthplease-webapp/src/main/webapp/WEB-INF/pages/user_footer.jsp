@@ -90,9 +90,9 @@
                   <p>
             	We wish you a happy time here at Health Please! <br/>
 				You can <a id="callback" name="callback" href="javascript:void(0);" style="color:#46b8da;"><strong>Request a call back</strong></a> or call us on <a href="tel:7620012092" style="color:#46b8da;">+91 7620012092</a> if you wish to talk to us.<br/>
-				You can also write to us at <a style="color:#46b8da;" href="Mailto:help@healthplease.in">help@healthplease.in</a> <br/>
+				You can also write to us at <a style="color:#46b8da;" href="Mailto:care@healthplease.in">care@healthplease.in</a> <br/>
 				We will be glad to help you.<br/>
-<!-- We wish you a happy time here at Health Please! <br/>In case you need help feel free to write to us at <a href="mailto:help@healthplease.in" target="_blank" style="color:#46b8da;text-decoration:none;"><strong>help@healthplease.in</strong></a> or
+<!-- We wish you a happy time here at Health Please! <br/>In case you need help feel free to write to us at <a href="mailto:care@healthplease.in" target="_blank" style="color:#46b8da;text-decoration:none;"><strong>care@healthplease.in</strong></a> or
 <a id="callback" name="callback" href="javascript:void(0);" style="color:#46b8da;"><strong>Request a call back.</strong></a> <br/>We will be glad to help you. -->
 </p>
 		</div>

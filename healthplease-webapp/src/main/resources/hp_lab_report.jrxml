@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-08-02T01:24:26 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -19,7 +21,7 @@
 	<parameter name="printRequired" class="java.lang.String"/>
 	<parameter name="pathName" class="java.lang.String"/>
 	<parameter name="designation" class="java.lang.String"/>
-    <parameter name="imagePath" class="java.lang.String"/>
+	<parameter name="imagePath" class="java.lang.String"/>
 	<field name="parameters" class="java.util.List"/>
 	<field name="name" class="java.lang.String"/>
 	<background>
@@ -138,12 +140,15 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="37" splitType="Stretch">
+		<band height="43" splitType="Stretch">
 			<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
+			<rectangle>
+				<reportElement x="1" y="12" width="552" height="8" forecolor="#3399FF" backcolor="#3399FF" uuid="e90aa4b4-ae1d-4bb0-86da-eeaa8acf86af"/>
+			</rectangle>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="150" splitType="Stretch">
+		<band height="180" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<image>
 				<reportElement x="415" y="10" width="70" height="70" uuid="5814f574-7252-4fbd-ae11-d812a4e1d14b"/>
@@ -157,6 +162,10 @@
 				<reportElement x="400" y="120" width="100" height="20" uuid="d14c6d0c-62b0-47ca-bef7-d96844669b32"/>
 				<textFieldExpression><![CDATA[$P{designation}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="3" y="157" width="67" height="13" uuid="c8371901-4780-48f6-8e2d-5ae7ac575aba"/>
+				<text><![CDATA[Remark:]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

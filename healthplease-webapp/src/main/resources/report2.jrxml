@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-23T12:06:22 -->
+<!-- 2016-08-02T01:31:24 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3515439f-2e5b-4788-a9ad-7f8b90acd397">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -36,21 +36,21 @@
 				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="0" width="91" height="20" uuid="be9f9ec6-97c2-47ac-83d9-92327fe10f68"/>
+				<reportElement x="266" y="0" width="91" height="20" uuid="be9f9ec6-97c2-47ac-83d9-92327fe10f68"/>
 				<textElement>
 					<font fontName="SansSerif" size="12" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Listed Price]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="382" y="0" width="62" height="20" uuid="2ed3935c-f867-4659-bc8e-0bc68ef80cb7"/>
+				<reportElement x="362" y="0" width="62" height="20" uuid="2ed3935c-f867-4659-bc8e-0bc68ef80cb7"/>
 				<textElement>
 					<font fontName="SansSerif" size="12" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Discount]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="463" y="0" width="83" height="20" uuid="8cb2f12e-7a98-4950-a0d0-ab63098952b5"/>
+				<reportElement x="444" y="0" width="83" height="20" uuid="8cb2f12e-7a98-4950-a0d0-ab63098952b5"/>
 				<textElement>
 					<font fontName="SansSerif" size="12" isBold="true" isUnderline="true"/>
 				</textElement>
@@ -59,7 +59,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="30" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
 				<reportElement x="79" y="1" width="170" height="20" uuid="0f7661b5-88e1-409f-bb59-2fba1a6aaeba"/>
 				<textElement>
@@ -95,6 +95,18 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{srNo}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="268" y="1" width="51" height="17" uuid="f1b70170-6eb9-4b7c-93df-5e34685c952b"/>
+				<text><![CDATA[Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="1" width="51" height="17" uuid="339d9ef2-0831-4007-8c22-9abfa902d50e"/>
+				<text><![CDATA[Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="51" height="17" uuid="4ac974d8-601c-4114-a0eb-b8433cc491f1"/>
+				<text><![CDATA[Rs.]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>

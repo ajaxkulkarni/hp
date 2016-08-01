@@ -24,7 +24,7 @@
             </div>
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                    <h3 class="page-header classHeaderText">We Are In Support</h3>
+                    <h3 class="page-header classHeaderText">Partner Labs</h3>
                     <a href="<%=Constants.PARTNER_LABS_GET_URL%>"> 
                     <div class="classSFormHolder">
                         <img src="<c:url value="/resources/images/1.jpg"/>" width="100%"/>
@@ -36,10 +36,7 @@
                        </div>
                       </a>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                    <h3 class="page-header classHeaderText">Importance Of Check Ups</h3>
-                    <a href="#"><img src="<c:url value="/resources/images/2.jpg"/>" width="100%"/></a>
-                </div>
+               
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                     <h3 class="page-header classHeaderText">Ask your Query</h3>
                     
@@ -98,6 +95,48 @@
                     </div>
 
                 </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                    <h3 class="page-header classHeaderText">Contact Us</h3>
+           <div class="classSFormHolder" style="background-color:#eee;padding:3%;height:390px"> 
+                    <div class="wrapper" style="padding:5%;">
+                    	<div class="row" style="padding-top:4%;margin-top:2%;background-color:#fff;padding-left:6%;height:50px">
+                    	<span><h5><i class="fa fa-phone" aria-hidden="true" style="margin:"></i> Phone: <a href="tel:7620012092" style="color:#46b8da;">+91 7620012092</a></h5></span>
+                    	</div>
+                    	<div class="row" style="padding-top:3%;margin-top:2%;background-color:#fff;padding-left:6%;height:50px">
+                    	<span><h5><i class="fa fa-envelope" aria-hidden="true" style="margin:"></i> Customer Care: <a style="color:#46b8da;" href="Mailto:care@healthplease.in"> care@healthplease.in</a></h5></span>
+                    	</div>
+                    	<div class="row" style="margin-top:2%;padding-top:5%;padding-left:6%;height:50px;background-color:#fff">
+                    	<a class="" id="callback" name="callback" href="javascript:void(0);" style="color:#46b8da;margin-top:5%">Request a call back</a></br>
+                    	</div>
+                    	<div class="row" style="border:;margin-top:2%;padding-top:5%;padding-left:6%;height:50px;background-color:#fff">
+                    	<a class="" style="color:#46b8da;margin-left:;margin-top:" href="/hp/faq.htm">Frequently Asked Questions</a>
+                    	</div>
+                    	<div class="row" style="border:;margin-top:2%;padding-top:1%;height:50px;background-color:#fff">
+                    	
+                    		<div class="col-md-4" style="border:;padding-left:6%;height:50px">
+                    		<h5>Follow Us: </h5>
+                    		</div>
+                    		<div class="col-md-2" style="border:;padding-right:5%;height:50px">
+                    		<a href="https://twitter.com/HealthPleaseOff" id="gh" target="_blank" title="Twitter">
+									<span class="fa-stack fa-lg">
+									  <i class="fa fa-twitter fa-stack-1x classMColor"></i>
+									</span>
+								</a>&nbsp;&nbsp;
+                    		</div>
+                    		<div class="col-md-2">
+					              
+								  <a href="https://www.facebook.com/pages/Health-Please/1614865218755696" id="gh" target="_blank" title="Facebook">
+									<span class="fa-stack fa-lg">
+									  <i class="fa fa-facebook fa-stack-1x  classMColor"></i>
+									</span>
+									</a>
+							</div>
+							</div>
+					</div>
+								
+                    		</div>
+                       </div>
                 <!-- /.col-lg-12 -->
             </div>
         </div>
