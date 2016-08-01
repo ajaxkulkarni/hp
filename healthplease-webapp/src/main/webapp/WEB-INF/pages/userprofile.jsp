@@ -101,11 +101,14 @@
                   	<c:forEach items="${user.appointments}" var="appointment">
                   		<c:if test="${appointment.status.id == 3 }">
                   		<div class="classROItem">
-						<c:forEach items="${appointment.tests}" var="test">
-							${test.name},
+						<c:forEach items="${appointment.tests}" var="test" varStatus="i">
+							${test.name}
+							<c:if test="${i.index < (fn:length(appointment.tests) -1) }">
+                            	,
+                            </c:if>
 						</c:forEach>
-						<div class="pull-right">20</div>
-						</div>
+						<!-- <div class="pull-right">20</div>-->
+						</div> 
 						</c:if>
                   	</c:forEach>
                   <hr/>

@@ -314,7 +314,7 @@
                                                                         <h4>
                                                                             <i style="vertical-align:top;" class="fa fa-calendar"></i>
                                                                             <div style="display:inline-block;">
-                                                                                <div><fmt:formatDate pattern="EEEEE" value="${appointment.date}"/> , ${appointment.slot.startTime} to ${appointment.slot.endTime}</div>
+                                                                                <div><fmt:formatDate pattern="EEEEE" value="${appointment.date}"/> , ${appointment.slot.startTime} To ${appointment.slot.endTime}</div>
                                                                                 <div>
                                                                                     <small><fmt:formatDate pattern="MMM, dd yyyy" value="${appointment.date}"/></small>
                                                                                 </div>
