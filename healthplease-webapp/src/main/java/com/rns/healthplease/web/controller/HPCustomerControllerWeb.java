@@ -478,7 +478,7 @@ public class HPCustomerControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/" + GET_TEST_DETAILS_POST_URL, method = RequestMethod.POST)
-	public @ResponseBody String paymentResult(ModelMap model, int testId) {
+	public @ResponseBody String getTestDetails(ModelMap model, int testId) {
 		LabTest test = new LabTest();
 		test.setId(testId);
 		return new Gson().toJson(userBo.getTestWithPackages(test));

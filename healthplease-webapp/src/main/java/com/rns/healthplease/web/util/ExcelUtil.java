@@ -112,6 +112,9 @@ public class ExcelUtil {
 
 		header.createCell(13).setCellValue("Status");
 		header.getCell(13).setCellStyle(style);
+		
+		header.createCell(14).setCellValue("Discount");
+		header.getCell(14).setCellStyle(style);
 
 		int rowCount = 1;
 
@@ -130,6 +133,9 @@ public class ExcelUtil {
 			if (appointment.getPayment() != null) {
 				aRow.createCell(4).setCellValue(appointment.getPayment().getAmount());
 				aRow.createCell(5).setCellValue(appointment.getPayment().getType().name());
+				if(appointment.getPayment().getDiscount() != null) {
+					aRow.createCell(14).setCellValue(appointment.getPayment().getDiscount());
+				}
 			}
 			if (appointment.getLab() != null) {
 				aRow.createCell(6).setCellValue(appointment.getLab().getName());

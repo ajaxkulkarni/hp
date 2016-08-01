@@ -173,6 +173,13 @@ public class AdminBoImpl implements AdminBo, Constants {
 		Transaction tx = session.beginTransaction();
 		Tests tests = null;
 		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		List<Tests> allTests = appointmentDao.getAllTests(session, null);
+		for(Tests allTest: allTests) {
+			if(StringUtils.equalsIgnoreCase(allTest.getTestName(), test.getName())) {
+				session.close();
+				return ERROR_TEST_EXISTS;
+			}
+		}
 		if (test.getId() != null && test.getId().intValue() > 0) {
 			tests = appointmentDao.getTestById(test.getId(), session);
 			if (tests == null) {

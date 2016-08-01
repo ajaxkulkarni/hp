@@ -281,6 +281,10 @@
                                                             <span class="fa fa-sort"></span>
                                                         </th>
                                                         <th>
+                                                            Discount
+                                                            <span class="fa fa-sort"></span>
+                                                        </th>
+                                                        <th>
                                                             Address
                                                             <span class="fa fa-sort"></span>
                                                         </th>
@@ -300,8 +304,11 @@
                                                                 <div class="row">
                                                                     <div class="col-md-12 col-xs-12">
                                                                         <div id="test_name_{{order.id}}" style="display:block">
-                                                                        	<c:forEach items="${appointment.tests}" var="test">
-                                                                        		${test.name},
+                                                                        	<c:forEach items="${appointment.tests}" var="test" varStatus="i">
+                                                                        		${test.name}
+                                                                        		<c:if test="${i.index < (fn:length(appointment.tests) -1) }">
+                                                                        			,
+                                                                        		</c:if>
                                                                         	</c:forEach>
                                                                         </div>
                                                                         <h4>
@@ -353,9 +360,9 @@
                                                             </div>                                            
                                                         </td>
                                                         <td><h4>Rs. ${appointment.payment.amount}
-                                                        		<c:if test="${appointment.payment.discount != null }">
-                                                        			(${appointment.payment.discount}/- OFF)
-                                                        		</c:if>	
+                                                        	</h4>
+                                                        </td>
+                                                        <td><h4>Rs. ${appointment.payment.discount}
                                                         	</h4>
                                                         </td>
                                                         <td>
