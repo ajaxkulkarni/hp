@@ -44,7 +44,7 @@ public class HPSecurityHandler implements HandlerInterceptor {
 			} else if (StringUtils.containsIgnoreCase(requestURL, "lab") && manager.getUser().getLab() == null) {
 				response.sendRedirect(Constants.HOME_GET_URL);
 				return false;
-			} else if (StringUtils.containsIgnoreCase(requestURL, "admin") && manager.getUser().getGroup() == null || manager.getUser().getGroup().getId().intValue() != 2) {
+			} else if (StringUtils.containsIgnoreCase(requestURL, "admin") && (manager.getUser().getGroup() == null || manager.getUser().getGroup().getId().intValue() != 2)) {
 				response.sendRedirect(Constants.HOME_GET_URL);
 				return false;
 			}
