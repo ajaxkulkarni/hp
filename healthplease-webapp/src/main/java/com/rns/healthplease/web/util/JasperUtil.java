@@ -101,7 +101,7 @@ public class JasperUtil {
 			parameters.put("printRequired", StringUtils.lowerCase(reportConfig.getIsHeader()));
 			parameters.put("pathName", reportConfig.getName());
 			parameters.put("designation", reportConfig.getDesignation());
-			parameters.put("imagePath", Constants.ROOT_URL + "/" + Constants.GET_LAB_SIGNATURE_GET_URL + "?labId=" + appointment.getLab().getId());
+			parameters.put("imagePath", reportConfig.getSignaturePath());
 		}
 		//parameters.put("isbold", "");
 		analyzeTestParameters(appointment.getTests());
