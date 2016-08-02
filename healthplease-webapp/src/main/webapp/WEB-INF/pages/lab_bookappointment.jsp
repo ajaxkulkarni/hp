@@ -181,7 +181,7 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPContact">Patient's Contact</label>  
               <div class="">
-                <input id="idAppointmentPContact" name="user.phone" placeholder="Mobile No" class="form-control input-md" type="number" required="required">      
+                <input id="idAppointmentPContact" name="user.phone" placeholder="Mobile No" class="form-control input-md" type="text" required="required">      
               </div>
               <div class="" id="idAppPContactErr"></div>
             </div>
@@ -198,7 +198,7 @@
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper">
               <label class=" control-label" for="appointmentPAge">Patient's Age</label>  
               <div class="">
-                <input id="idAppointmentPAge" align="left" name="user.age" placeholder="Age" class="form-control input-md" type="number" required="required">      
+                <input id="idAppointmentPAge" align="left" name="user.age" placeholder="Age" class="form-control input-md" type="text" required="required">      
               </div>
               <div class="" id="idAppAgeErr"></div>
             </div>
@@ -247,7 +247,7 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPincode">Patient's Pincode</label>  
               <div class="">
-                <input id="idappointmentPincode" type="number" pattern="[0-9]{6}" name="address.zipCode" placeholder="Pincode" class="form-control input-md"  type="text" required="required" />      
+                <input id="idappointmentPincode"  pattern="[0-9]{6}" name="address.zipCode" placeholder="Pincode" class="form-control input-md"  type="text" required="required" />      
               </div>
               <div class="" id="idAppPPincodeErr"></div>
             </div>
@@ -366,8 +366,15 @@ var check_array = [];
 
 
 function onSubmit() {
-	var form=$("#labAppform");
-   	return form.valid();
+		if(validateContact()){
+		if(validateAge()){
+		if(validatePin()){	
+			return true;
+		}
+		}
+		
+	}
+		return false;
 }
 
 
@@ -555,18 +562,7 @@ $("#idAppointmentPName").keypress(function (e) {
     return false;
     }
 });
-$("#idAppointmentPAge").focusout(function(){
-	
-	var age= document.getElementById("idAppointmentPAge").value;
-	if(age < 0)
-	{
-		document.getElementById("idAppAgeErr").innerHTML="Age should be positive";
-		return false;
-	}
-	else
-		document.getElementById("idAppAgeErr").innerHTML="";
-	return true;
-});
+
 $("#idAppointmentPDoctor").keypress(function (e) {	    
     var regex = new RegExp("^[a-zA-Z]+$");
     var key = e.charCode||e.keyCode;
@@ -587,39 +583,63 @@ $("#idAppointmentPDoctor").keypress(function (e) {
     return false;
     }
 });
-$("#idappointmentPincode").focusout(function(){
+function validatePin(){	
 	var pin =  document.getElementById("idappointmentPincode").value;
-	var x = pin.length;
-	console.log(x);
+	if(isNaN(pin))
+	{
+		document.getElementById("idAppPPincodeErr").innerHTML="pin code must be a number";
+		return false
+	}
 	if(pin.length != 6 )
 	{
 		document.getElementById("idAppPPincodeErr").innerHTML="length of pin code must be 6";
-		document.getElementById("idAppPPincodeErr").focus();
 		return false;
 	}
-	else{
 		document.getElementById("idAppPPincodeErr").innerHTML="";
 		return true;
-	}
-});
-$("#idAppointmentPContact").focusout(function(){
+}
+function validateContact(){
 	var no = document.getElementById("idAppointmentPContact").value;
+	if(isNaN(no))
+	{
+		document.getElementById("idAppPContactErr").innerHTML="Contact must be a number";
+		return false
+	}
 	if(no[0] ==="0" )
 	{
 		document.getElementById("idAppPContactErr").innerHTML= "enter valid Phone no.";
-		getElementById("idAppointmentPContact").focus();
 		return false;	
 	}
-	else if(no.length!= 10){
+	if(no.length!= 10)
+	{
 		document.getElementById("idAppPContactErr").innerHTML= "enter valid Phone no.";
-		getElementById("idAppointmentPContact").focus();
 		return false;	
 	}
-		
-	 	else 
-		document.getElementById("idAppPContactErr").innerHTML= "";
-		return true;
-});
+	document.getElementById("idAppPContactErr").innerHTML= "";
+	return true;
+}
+function validateAge(){	
+	var age= document.getElementById("idAppointmentPAge").value;
+	if(isNaN(age))
+	{
+		document.getElementById("idAppAgeErr").innerHTML="Age must be a number";
+		document.getElementById("idAppointmentPAge").focus();
+		return false
+	}
+	if(age < 0)
+	{
+		document.getElementById("idAppAgeErr").innerHTML="Age must be positive";
+		document.getElementById("idAppointmentPAge").focus();
+		return false;
+	}
+	
+		document.getElementById("idAppAgeErr").innerHTML="";
+	    return true;
+	
+}
+function validateEmail(){
+	return true;
+}
 function checkIfDateAvailable(date) {
  	var dates = $("#dbdate").val();
  	if(dates.length == 0) {
