@@ -41,7 +41,19 @@ border-radius:2px;
 
 }
 
+.partButton{
+color:#03A9F4;
+height:50px;
+width:250px;
+background-color:#fff;
+border:none;
+box-shadow:0px 2px 5px #999;
 
+}
+.partButton:hover{
+background-color:#fff;
+box-shadow:1px 5px 5px #999;
+}
 </style>
 </head>
 
@@ -49,13 +61,21 @@ border-radius:2px;
 <%@include file="user_header.jsp" %>
 <div class ="container" >
 <div class="row">
-	<div class="col-sm-12">
-		<div class ="card1" style="height:100px">
+	<div class="col-md-4">
+		<div class ="card1" style="height:100px;border:">
 		<div class="cardheader1">
 		<h1>Corporate Packages</h1>
 		</div>
 		</div>
 	</div>
+	<div class="col-md-8">
+		<div class ="card1" style="height:100px;border:">
+		<div class="cardheader1" style="padding-top:3%">
+		<button type="button" class="partButton"  style="float:right;" onclick="loadModal('Basic Package + Diagnostic test')"><h4>Become Corporate Partner</h4></button>
+		</div>
+		</div>
+	</div>
+	
 </div>
 <div id="msg" class="container">
     	<c:if test="${result != null && result != 'OK' }">

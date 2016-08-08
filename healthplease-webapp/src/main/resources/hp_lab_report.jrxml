@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-02T01:24:26 -->
+<!-- 2016-08-08T17:13:10 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -151,15 +151,15 @@
 		<band height="180" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<image>
-				<reportElement x="415" y="10" width="70" height="70" uuid="5814f574-7252-4fbd-ae11-d812a4e1d14b"/>
+				<reportElement x="401" y="1" width="100" height="100" uuid="5814f574-7252-4fbd-ae11-d812a4e1d14b"/>
 				<imageExpression><![CDATA[$P{imagePath}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="400" y="90" width="100" height="20" uuid="dc25118e-111e-48bc-baef-b9cfafd7053f"/>
+				<reportElement x="401" y="113" width="100" height="20" uuid="dc25118e-111e-48bc-baef-b9cfafd7053f"/>
 				<textFieldExpression><![CDATA[$P{pathName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="400" y="120" width="100" height="20" uuid="d14c6d0c-62b0-47ca-bef7-d96844669b32"/>
+				<reportElement x="401" y="143" width="100" height="20" uuid="d14c6d0c-62b0-47ca-bef7-d96844669b32"/>
 				<textFieldExpression><![CDATA[$P{designation}]]></textFieldExpression>
 			</textField>
 			<staticText>

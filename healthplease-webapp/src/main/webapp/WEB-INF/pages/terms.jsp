@@ -204,10 +204,10 @@ The user also agree that all claims, differences and disputes arising under or i
 The User expressly agrees that use of the product is at their sole risk. To the extent   HealthPlease.in  acts only as a booking agent on behalf of third party service providers, it shall not have any liability whatsoever for any aspect of the standards of service provided by third party. No advice or information, whether oral or written, which the User obtains from HealthPlease.in shall create any warranty not expressly made herein or in the terms and conditions of the products. If the User does not agree with any of the terms above, they are advised not to read the material on any of the HealthPlease.in pages or otherwise use any of the contents, pages, information or any other material provided by  HealthPlease.in The sole and exclusive remedy of the User in case of disagreement, in whole or in part, of the user agreement, is to discontinue using the service after notifying HealthPlease.in  in writing.
 </p><p>
 <strong>ABUSE OF USER AGREEMENT</strong>
-In the event anyone comes across any abuse or violation of these Website User Agreement or if anyone becomes aware of any objectionable content on the Website, he/she may report to help@healthPlease.in.
+In the event anyone comes across any abuse or violation of these Website User Agreement or if anyone becomes aware of any objectionable content on the Website, he/she may report to care@healthPlease.in.
 </p><p>
 <strong>GENERAL PROVISIONS</strong></p><p>
-A User can unsubscribe/ opt-out from receiving marketing communications from HealthPlease.in  through SMS and e-mail anytime by sending an email to help@healthPlease.in or by clicking on the unsubscribe option attached at the bottom of newsletter received through e-mail.
+A User can unsubscribe/ opt-out from receiving marketing communications from HealthPlease.in  through SMS and e-mail anytime by sending an email to care@healthPlease.in or by clicking on the unsubscribe option attached at the bottom of newsletter received through e-mail.
 </p>
 
                     </div>

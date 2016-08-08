@@ -9,9 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
- <link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
-<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
-<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
+   <link rel="icon" type="image/png"  href="images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png"  href="images/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png"  href="images/favicon/favicon-16x16.png">
     <!-- Custom Fonts -->
     <link href="<c:url value="/resources/bootstrap/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/dialog.css"/>" rel="stylesheet"/>

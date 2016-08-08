@@ -13,7 +13,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link href="<c:url value="/resources/css/external/select2/select2.min.css"/>" rel="stylesheet" ></link>
-    <script src="<c:url value="/resources/js/external/select2/select2.min.js"/>"></script>
+    
     <title>Book Diagnostic & Pathology Test like Thyroid, Sugar, Urine, Cholesterol, ECG and X-Ray. Pay for them Online. Sample Collected at home or in lab. EMR Storage Available.</title>
  <style type="text/css">
  input[type=number]::-webkit-outer-spin-button,
@@ -28,6 +28,11 @@ input[type=number] {-moz-appearance: textfield;}
 </head>
 
 <body>
+<script type="text/javascript">
+<script src="<c:url value="/resources/js/external/select2/select2.min.js"/>">
+
+</script>
+
 
 <%@include file="user_header.jsp" %>
 <div class="classTopHeading">
@@ -108,8 +113,9 @@ input[type=number] {-moz-appearance: textfield;}
 			  </div>
 			  
 			   <div class="form-group">
-			  <label for="test" style="margin-top:"">Test:</label></br>
+			  <label for="test" >Test:</label></br>
 			  <select id="idTest" name="testIds" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLabs()">
+			
               	<c:forEach items="${tests}" var="test">
                 	<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
                	</c:forEach>
@@ -151,17 +157,18 @@ input[type=number] {-moz-appearance: textfield;}
 			  </div>
 			  <div class="form-group">
 			    <label for="pwd">Mobile No.:</label>
-			    <input type="number" class="form-control" id="mobile" name="user.phone">
+			    <input type="text" class="form-control" id="mobile" name="user.phone" onfocusout="validateMobile()">
 			  </div>
+			  <div class="" id="mobileError"></div>
 			   <!-- <div class="form-group">
 			    <label for="name">Employee's Name:</label>
 			    <input type="text" class="form-control" id="empname" name="name">
 			  </div> -->
 			   <div class="form-group">
 			    <label for="age">Age:</label>
-			    <input type="number" class="form-control" id="age" name="user.age" style="width:100%">
+			    <input type="text" class="form-control" id="age" name="user.age" style="width:100%"; onfocusout="validateAge()">
 			  </div>
-			 
+			  <div class="" id="ageError"></div>
 			    <div class="form-group">
 			   <label for="sel1"style="margin-top:1%">Location:</label>
 			  	<input type="text" class="form-control" id="area" name="address.area">
@@ -231,8 +238,44 @@ function getDates() {
 	       }); 
 	 
  }
+function validateMobile(){
 
+	var x = document.getElementById("mobile").value;
+	if(isNaN(x)){
+		document.getElementById("mobileError").innerHTML="enter a valid mobile no."
+			document.getElementById("mobile").focus();
+		return false;
+	}
+	else if(x.length != 10)
+		{
+		document.getElementById("mobileError").innerHTML="enter a valid mobile no."
+		document.getElementById("mobile").focus();
+		return false;
+		}
+	else{
+		document.getElementById("mobileError").innerHTML=""
+		return true;
+		}
+}
+function validateAge(){
 
+	var x = document.getElementById("age").value;
+	if(isNaN(x)){
+		document.getElementById("ageError").innerHTML="Age must be a no."
+			document.getElementById("age").focus();
+		return false;
+	}
+	else if(x < 0)
+		{
+		document.getElementById("ageError").innerHTML="Age must be positive"
+		document.getElementById("age").focus();
+		return false;
+		}
+	else{
+		document.getElementById("ageError").innerHTML=""
+		return true;
+		}
+}
 function checkIfDateAvailable(date) {
  	var dates = $("#dbdate").val();
  	var res = dates.split('*');

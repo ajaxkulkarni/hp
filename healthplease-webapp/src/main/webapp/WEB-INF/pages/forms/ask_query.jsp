@@ -26,13 +26,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                     <h3 class="page-header classHeaderText">Partner Labs</h3>
                     <a href="<%=Constants.PARTNER_LABS_GET_URL%>"> 
-                    <div class="classSFormHolder">
+                    <div class="classSFormHolder" >
                         <img src="<c:url value="/resources/images/1.jpg"/>" width="100%"/>
-                        <div class="classSupportForm">
+                      <!--   <div class="classSupportForm">
                             <div class="classLabDetailWrapper">
                                 
                             </div>             
-                        </div>
+                        </div> -->
                        </div>
                       </a>
                 </div>

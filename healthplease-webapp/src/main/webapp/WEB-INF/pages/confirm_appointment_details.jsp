@@ -16,9 +16,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   <!-- <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png"> -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
     <!-- Custom Fonts -->
     <!-- <link href="bootstrap/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/dialog.css" rel="stylesheet">
@@ -176,7 +176,7 @@ $(document).ready(function() {
             <div class="row">
                 <div class="col-md-12 alert alert-danger" style="margin-left: 10px;">
                     <p>Oops! It seems there was a problem in processing your Payment against appointment.</p><br/> 
-                    <p>If the amount has deducted from your account/card, please contact us at <a href="mailto:help@healthplease.in">help@healthplease.in</a> and we will take care of the issue.</p>
+                    <p>If the amount has deducted from your account/card, please contact us at <a href="mailto:care@healthplease.in">care@healthplease.in</a> and we will take care of the issue.</p>
                 </div>
                 <!-- <div class="col-md-12 alert alert-info" style="margin-left: 10px;">
                     <p>Please choose other option of payment or try one more time</p>
@@ -356,7 +356,7 @@ $(document).ready(function() {
                             <div class="col-md-12 alert alert-info" style="margin-left: 10px;margin-top:50px;">
                                 At Healthplease your convenience is our priority. We will not only make sure that you get the services right but we will provide them with great comfort.<br/>
                                 <br/>
-                                We wish you a happy time here at Healthplease! In case you need help feel free to write us at <a href="mailto:help@healthplease.in" target="_blank">help@healthplease.in</a> or <a href="javascript:void(0);">Request a call back.</a><br/> We will be glad to help you.
+                                We wish you a happy time here at Healthplease! In case you need help feel free to write us at <a href="mailto:care@healthplease.in" target="_blank">care@healthplease.in</a> or <a href="javascript:void(0);">Request a call back.</a><br/> We will be glad to help you.
                             </div>
                         </div>
                         
