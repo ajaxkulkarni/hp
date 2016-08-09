@@ -247,7 +247,7 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPincode">Patient's Pincode</label>  
               <div class="">
-                <input id="idappointmentPincode"  pattern="[0-9]{6}" name="address.zipCode" placeholder="Pincode" class="form-control input-md"  type="text" required="required" />      
+                <input id="idappointmentPincode"  pattern="[0-9]{6}" name="address.zipCode" placeholder="Pincode" class="form-control input-md"  type="text"  />      
               </div>
               <div class="" id="idAppPPincodeErr"></div>
             </div>
@@ -287,7 +287,7 @@
 			              <div class="">
 			                <input id="discount" type="number" pattern="[0-9]{3}" name="payment.discount" placeholder="Discount" class="form-control input-md" />      
 			              </div>
-			              <div class="" id="idAppPPincodeErr"></div>
+			              <div class=""  id="idAppPPincodeErr"></div>
             			</div>
             			
             			<div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper" style="border:">
@@ -595,6 +595,7 @@ function validatePin(){
 		document.getElementById("idAppPPincodeErr").innerHTML="length of pin code must be 6";
 		return false;
 	}
+
 		document.getElementById("idAppPPincodeErr").innerHTML="";
 		return true;
 }
@@ -694,6 +695,7 @@ function confirmActivate(day) {
 }
 
 function hideAddress() {
+
 	$("#addressFields").hide();
 	$("#homeCollection").val('false');
 	$("#idAppointmentDate").val("");
@@ -704,6 +706,7 @@ function hideAddress() {
 }
 
 function showAddress() {
+	
 	$("#addressFields").show();
 	$("#homeCollection").val('true');
 	$("#idAppointmentDate").val("");

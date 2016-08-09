@@ -84,7 +84,7 @@
 <p>903, Pecan Building, Marigold,</p> 
 <p>Kalyaninagar, Pune - 411014</p>
 <p style="color:#f00;">Email: <a href="Mailto:Yash.Bharwani@HealthPlease.in">Yash.Bharwani@HealthPlease.in</a></p>
-<p>If you have any questions about this Policy or other privacy concerns, you can also email us at <a href="mailto:help@HealthPlease.in">help@HealthPlease.in </a></p>
+<p>If you have any questions about this Policy or other privacy concerns, you can also email us at <a href="mailto:care@HealthPlease.in">care@HealthPlease.in </a></p>
 
 <p><strong>Updates to this policy</strong></p>
 <p>This Privacy Policy was last updated on 31/08/2015. From time to time we may change our privacy practices. We will notify you of any material changes to this policy as required by law. We will also post an updated copy on our website. Please check our site periodically for updates.</p>

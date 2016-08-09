@@ -23,7 +23,7 @@
 	<form method='post' id="form_register" action="<%=Constants.REGISTER_USER_POST_URL %>" >
 				<div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12" id="idErrName">
                   <label class=" control-label" for="fname">First Name *</label>
-                  <input type='text' name="firstName" id='fname' class='form-control classCustomControl' placeholder="First Name" title="Please enter your First name !" >
+                  <input type='text' name="firstName" id='fname' class='form-control classCustomControl' placeholder="First Name" title="Please enter your First name !" required="required">
                 </div>
 
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12" id="">
@@ -33,15 +33,15 @@
 
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12" id="">
                   <label class=" control-label" for="selectbasic">Username / Email *</label>
-                  <div class="input-group"> <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div><input type='email' name="email" id='idUsername' placeholder="E-mail" class='form-control classCustomControl' title="Please enter your email address!" required="required"></div>
+           <div class="input-group"> <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div><input type='email' name="email" id='idUsername' placeholder="E-mail" class='form-control classCustomControl' title="Please enter your email address!" required="required"></div> 
                 </div>
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label class=" control-label" for="selectbasic">Mobile no. *</label>
-                  <div  class="input-group"> <div class="input-group-addon">+91</div><input type='text' name="phone" id='contact' class='form-control classCustomControl numeric' placeholder="Mobile Number" maxlength="10" size="10" title="Please provide Contact no !" required="required"></div>
+                  <div  class="input-group"> <div class="input-group-addon">+91</div><input type='text' name="phone" id='contact' class='form-control classCustomControl numeric' placeholder="Mobile Number" maxlength="10" size="10" title="Please provide Contact no !"></div>
                 </div>
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label class=" control-label" for="selectbasic">Password *</label>
-                  <input type='password' name="password" id='idPassword' class='form-control classCustomControl' placeholder="Password" title="Please enter your password !" required="required">
+                  <input type='password' name="password" id='idPassword' class='form-control classCustomControl' placeholder="Password" title="Please enter your password !" required="required" onfocusout="IsMobileNumber(contact)">
                 </div>
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label class=" control-label" for="selectbasic">Confirm Password *</label>
@@ -120,6 +120,21 @@
                     </div> 
                   </div>
 	</form>
+	<script>
+	
+	function IsMobileNumber(contact) {
+	var mob = /^[1-9]{1}[0-9]{9}$/;
+	console.log("here");
+	var txtMobile = document.getElementById(contact);
+	if (mob.test(txtMobile.value) == false) {
+	    alert("Please enter valid mobile number.");
+	    txtMobile.focus();
+	    return false;
+	}
+	return true;
+	
+	</script>
 
 </body>
+
 </html>
