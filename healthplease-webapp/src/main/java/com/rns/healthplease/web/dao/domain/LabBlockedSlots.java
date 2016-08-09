@@ -31,6 +31,7 @@ public class LabBlockedSlots implements java.io.Serializable {
 	private Date date;
 	//private int slotId;
 	private Slots slots;
+	private String slotType;
 	
 	public LabBlockedSlots() {
 	}
@@ -94,6 +95,16 @@ public class LabBlockedSlots implements java.io.Serializable {
 
 	public void setSlots(Slots slots) {
 		this.slots = slots;
+	}
+
+	@Column(name = "slot_type")
+	public String getSlotType() {
+		return slotType;
+	}
+
+
+	public void setSlotType(String slotType) {
+		this.slotType = slotType;
 	}
 
 }

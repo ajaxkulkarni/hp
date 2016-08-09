@@ -122,7 +122,7 @@ public class LabBoImpl implements LabBo, Constants {
 		}
 	}
 
-	public void blockSlots(List<Slot> slots, Lab lab, Date date) {
+	public void blockSlots(List<Slot> slots, Lab lab, Date date, String slotType) {
 		if (lab == null || date == null) {
 			return;
 		}
@@ -140,7 +140,7 @@ public class LabBoImpl implements LabBo, Constants {
 			for (LabBlockedSlots slot : labs.getBlockedSlots()) {
 				if (DateUtils.isSameDay(date, slot.getDate()) & CollectionUtils.isNotEmpty(slots)) {
 					for (Slot activateSlot : slots) {
-						if (slot.getSlots().getId().intValue() == activateSlot.getId().intValue()) {
+						if (slot.getSlots().getId().intValue() == activateSlot.getId().intValue() && CommonUtils.isSameSlotType(slot, activateSlot)) {
 							activateSlot(session, labDao, slot);
 							break;
 						}
@@ -166,12 +166,16 @@ public class LabBoImpl implements LabBo, Constants {
 				blockedSlots.setLab(labs);
 				blockedSlots.setDate(date);
 				blockedSlots.setSlots(generalSlot);
+				blockedSlots.setSlotType(slotType);
+				Slot slot = new Slot();
+				slot.setType(slotType);
 				blockSlot(session, labDao, blockedSlots);
 			}
 		}
 		tx.commit();
 		session.close();
 	}
+
 
 	private void activateSlot(Session session, LabDao labDao, LabBlockedSlots labSlot) {
 		LabBlockedSlots labBlockedSlots = labDao.getBlockedSlot(labSlot, session);
@@ -490,7 +494,7 @@ public class LabBoImpl implements LabBo, Constants {
 		return labTests;
 	}
 
-	public List<Slot> getAllLabSlotsForDay(Lab lab, Date date) {
+	public List<Slot> getAllLabSlotsForDay(Lab lab, Date date, String slotType) {
 		if (lab == null || lab.getId() == null) {
 			return null;
 		}
@@ -509,6 +513,7 @@ public class LabBoImpl implements LabBo, Constants {
 		List<Slot> labSlots = new ArrayList<Slot>();
 		for (Slots slots : allSlots) {
 			Slot availSlot = DataConverters.getSlot(slots);
+			availSlot.setType(slotType);
 			checkIfSlotAvailable(labs, availSlot, date, appointmentDao, session);
 			availSlot.setBlockedDate(date);
 			labSlots.add(availSlot);
@@ -523,7 +528,7 @@ public class LabBoImpl implements LabBo, Constants {
 		}
 		if (CollectionUtils.isNotEmpty(labs.getBlockedSlots())) {
 			for (LabBlockedSlots labBlockedSlots : labs.getBlockedSlots()) {
-				if (availSlot.getId().intValue() == labBlockedSlots.getSlots().getId().intValue() && DateUtils.isSameDay(labBlockedSlots.getDate(), date)) {
+				if (availSlot.getId().intValue() == labBlockedSlots.getSlots().getId().intValue() && DateUtils.isSameDay(labBlockedSlots.getDate(), date) && CommonUtils.isSameSlotType(labBlockedSlots, availSlot)) {
 					availSlot.setBlocked(true);
 					break;
 				}

@@ -122,8 +122,17 @@ public class JasperUtil {
 		for(LabTest test: tests) {
 			if(CollectionUtils.isNotEmpty(test.getParameters())) {
 				for(TestParameter parameter: test.getParameters()) {
-					//TODO: Analyze based on normal values
 					parameter.setIsBold("");
+					String[] values = StringUtils.split(parameter.getNormalValue(), "-");
+					if(values == null || values.length < 2) {
+						continue;
+					}
+					int min = new Integer(StringUtils.trimToEmpty(values[0]));
+					int max = new Integer(StringUtils.trimToEmpty(values[1]));
+					int value = new Integer(parameter.getActualValue());
+					if(value < min || value > max) {
+						parameter.setIsBold("y");
+					}
 				}
 			}
 		}

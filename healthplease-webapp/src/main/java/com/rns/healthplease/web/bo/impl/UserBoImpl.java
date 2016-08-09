@@ -375,7 +375,13 @@ public class UserBoImpl implements UserBo, Constants {
 			return true;
 		}
 		for (LabBlockedSlots labBlockedSlots : labs.getBlockedSlots()) {
-			if (slots.getId() == labBlockedSlots.getSlots().getId() && DateUtils.isSameDay(labBlockedSlots.getDate(), date)) {
+			Slot slot = DataConverters.getSlot(slots);
+			if(appointment.isHomeCollection()) {
+				slot.setType(HOME_APP);
+			} else {
+				slot.setType(LAB_APP);
+			}
+			if (slots.getId() == labBlockedSlots.getSlots().getId() && DateUtils.isSameDay(labBlockedSlots.getDate(), date) && CommonUtils.isSameSlotType(labBlockedSlots, slot) ) {
 				return false;
 			}
 		}

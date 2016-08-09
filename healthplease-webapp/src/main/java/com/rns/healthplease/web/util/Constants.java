@@ -43,6 +43,8 @@ public interface Constants {
 	char ACTIVE_DAY = 'Y';
 	String PAYTM_TXN_SUCCESS = "TXN_SUCCESS";
 	String PAY_U_TX_SUCCESS = "success";
+	String HOME_APP = "Home";
+	String LAB_APP = "Lab";
 
 	String MODEL_APPOINTMENT = "appointment";
 	String MODEL_LOCATIONS = "locations";
@@ -68,7 +70,8 @@ public interface Constants {
 	String MODEL_ACTIVE_LIST = "activeList";
 	String MODEL_PARAMETER = "parameter";
 	String MODEL_REQUEST_FORMS = "requestForms";
-
+	String MODEL_SLOT_TYPE = "slotType";
+	
 	String EXCEL_VIEW = "excelView";
 	String PDF_VIEW = "pdfView";
 	String TOTAL_HEADER = "Total Appointments";
@@ -252,7 +255,7 @@ public interface Constants {
 	String ADMIN_MAILS = "yash.bharwani@healthplease.in,care@healthplease.in,ajinkyashiva@gmail.com";
 	String ADMIN_PHONES = "9890733740,9423040642";
 	String[] OPEN_URLS = {SUPPORT_GET_URL, PRICING_GET_URL, GET_PRICING_POST_URL, PRIVACY_GET_URL, TERMS_GET_URL, 
-			ABOUT_US_GET_URL, FAQ_PAGE, ACTIVATION_URL_GET, PARTNER_LABS_GET_URL, REGISTER_USER_GET_URL, REGISTER_USER_POST_URL, 
+			ABOUT_US_GET_URL, FAQ_GET_URL, ACTIVATION_URL_GET, PARTNER_LABS_GET_URL, REGISTER_USER_GET_URL, REGISTER_USER_POST_URL, 
 			"loginAjax", CORPORATE_PACKAGES_GET_URL, CORPORATE_REQUEST_POST_URL, LOGOUT_GET_URL, "getLabs", "getDates", "getSlots", "forgotPassword",
 			REQUEST_CALL_BACK_POST_URL, REQUEST_CHECK_UP_POST_URL, GET_TEST_DETAILS_POST_URL};
 

@@ -21,6 +21,7 @@ public class Lab {
 	private List<User> users;
 	private List<LabTest> tests;
 	private ReportConfigurations reportConfig;
+	private Integer discount;
 	
 	public void setTests(List<LabTest> tests) {
 		this.tests = tests;
@@ -134,6 +135,14 @@ public class Lab {
 
 	public void setReportConfig(ReportConfigurations reportConfig) {
 		this.reportConfig = reportConfig;
+	}
+
+	public Integer getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
 	}
 	
 

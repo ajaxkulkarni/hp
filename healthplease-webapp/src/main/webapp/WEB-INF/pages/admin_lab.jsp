@@ -95,6 +95,8 @@
                                             </th>
                                             <th>Lab Address
                                             </th>
+                                            <th>Lab Discount
+                                            </th>
                                             <th>Action
                                             </th>
                                     </tr>
@@ -109,6 +111,7 @@
                         <td id="labEmailT${lab.id}">${lab.email}</td>
                         <td id="labPhoneT${lab.id}">${lab.contact}</td>
                         <td id="labAddrT${lab.id}">${lab.address}</td>
+                        <td id="labDiscountT${lab.id}">${lab.discount}</td>
                         <td id="labName${lab.id}" style="display:none">
                         	<input type="hidden" name="id" value="${lab.id}"/>
                         	<input type="text" name="name" value="${lab.name}"/>
@@ -125,6 +128,7 @@
                         <td id="labEmail${lab.id}" style="display:none"><input type="text" name="email" value="${lab.email}"/></td>
                         <td id="labPhone${lab.id}" style="display:none"><input type="text" name="contact" value="${lab.contact}"/></td>
                         <td id="labAddr${lab.id}" style="display:none"><input type="text" name="address" value="${lab.address}"/></td>
+                        <td id="labDiscount${lab.id}" style="display:none"><input type="text" name="discount" value="${lab.discount}"/></td>
                         <td id="labEdit${lab.id}" style="display:none"><button type="submit" class="btn btn-large btn-info">Save</button></td>
                         </form>
                         <td id="labEditT${lab.id}" class="ng-scope">
@@ -409,12 +413,14 @@ function editButtons(labId) {
 		$("#labEmailT" + prev).show();
 		$("#labAddrT" + prev).show();
 		$("#labEditT" + prev).show();
+		$("#labDiscountT" + prev).show();
 		
 		$("#labName" + prev).hide();
 		$("#labArea" + prev).hide();
 		$("#labPhone" + prev).hide();
 		$("#labEmail" + prev).hide();
 		$("#labAddr" + prev).hide();
+		$("#labDiscount" + prev).hide();
 		$("#labEdit" + prev).hide();
 	}
 	
@@ -423,6 +429,7 @@ function editButtons(labId) {
 	$("#labPhoneT" + labId).hide();
 	$("#labEmailT" + labId).hide();
 	$("#labAddrT" + labId).hide();
+	$("#labDiscountT" + labId).hide();
 	$("#labEditT" + labId).hide();
 	
 	$("#labName" + labId).show();
@@ -430,6 +437,7 @@ function editButtons(labId) {
 	$("#labPhone" + labId).show();
 	$("#labEmail" + labId).show();
 	$("#labAddr" + labId).show();
+	$("#labDiscount" + labId).show();
 	$("#labEdit" + labId).show();
 	
 	$("#previousLabId").val(labId);

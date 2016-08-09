@@ -18,7 +18,7 @@ public interface LabBo {
 	
 	void blockDates(List<Date> dates, Lab lab);
 	
-	void blockSlots(List<Slot> slots, Lab lab, Date date);
+	void blockSlots(List<Slot> slots, Lab lab, Date date, String slotType);
 	
 	void activateSlots(List<Slot> slots, Lab lab);
 	
@@ -30,7 +30,7 @@ public interface LabBo {
 	
 	List<LabLocation> getAvailableLabLocations(Lab lab);
 	
-	List<Slot> getAllLabSlotsForDay(Lab lab, Date date);
+	List<Slot> getAllLabSlotsForDay(Lab lab, Date date, String slotType);
 	
 	List<Appointment> getAppointmentsBetween(Lab lab,Date date1, Date date2);
 

@@ -238,7 +238,7 @@ public class HPLabControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/" + SLOTS_GET_URL, method = RequestMethod.GET)
-	public String initSlots(ModelMap model) {
+	public String initSlots(ModelMap model, String slotType) {
 		Appointment appointment = new Appointment();
 		appointment.setLab(manager.getUser().getLab());
 		List<Date> blockedDates = userBo.getBlockedDates(appointment);
@@ -251,31 +251,32 @@ public class HPLabControllerWeb implements Constants {
 		model.addAttribute(MODEL_CALENDAR, calendar);
 		model.addAttribute(MODEL_USER, manager.getUser());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
+		model.addAttribute(Constants.MODEL_SLOT_TYPE, slotType);
 		manager.setResult(null);
 		return LAB_SLOTS_PAGE;
 	}
 
 	@RequestMapping(value = "/" + GET_LAB_SLOTS_GET_URL, method = RequestMethod.GET)
-	public RedirectView getSlotsForDay(ModelMap model, int day) {
+	public RedirectView getSlotsForDay(ModelMap model, int day, String slotType) {
 		Lab lab = manager.getUser().getLab();
 		Date date = prepareDate(day).getTime();
-		lab.setCurrentSlots(labBo.getAllLabSlotsForDay(lab, date));
-		return new RedirectView(SLOTS_GET_URL);
+		lab.setCurrentSlots(labBo.getAllLabSlotsForDay(lab, date, slotType));
+		return new RedirectView(SLOTS_GET_URL + "?slotType=" + slotType);
 	}
 
 	@RequestMapping(value = "/" + BLOCK_SLOTS_POST_URL, method = RequestMethod.POST)
-	public RedirectView blockSlots(ModelMap model, String[] availableSlots, String date) {
+	public RedirectView blockSlots(ModelMap model, String[] availableSlots, String date, String slotType) {
 
-		List<Slot> slots = CommonUtils.getSlots(availableSlots, date);
+		List<Slot> slots = CommonUtils.getSlots(availableSlots, date, slotType);
 		//prepareCurrentSlots(slots);
 		Lab lab = manager.getUser().getLab();
 		Date convertedDate = CommonUtils.convertDate(date);
-		labBo.blockSlots(slots, lab, convertedDate);
+		labBo.blockSlots(slots, lab, convertedDate, slotType);
 		manager.setResult("The selected slots have been modified successfully!");
 		return new RedirectView(GET_LAB_SLOTS_GET_URL + "?day=" + CommonUtils.getDay(convertedDate));
 	}
 
-	private void prepareCurrentSlots(List<Slot> slots) {
+	/*private void prepareCurrentSlots(List<Slot> slots) {
 		List<Slot> currentSlots = manager.getUser().getLab().getCurrentSlots();
 		if (CollectionUtils.isEmpty(currentSlots)) {
 			return;
@@ -292,7 +293,7 @@ public class HPLabControllerWeb implements Constants {
 				slot.setBlocked(true);
 			}
 		}
-	}
+	}*/
 
 	@RequestMapping(value = "/" + GET_APPOINTMENTS_FOR_DATES_POST_URL, method = RequestMethod.POST)
 	public RedirectView getAppointmentsForDates(ModelMap model, String date1, String date2) {
@@ -430,7 +431,6 @@ public class HPLabControllerWeb implements Constants {
 				result = "Your report has been uploaded and sent to the user successfully!";
 			}
 			manager.setResult(result);
-			return;
 		} else {
 			String result = labBo.updateTestResults(currentAppointment);
 			if(RESPONSE_OK.equals(result)) {
@@ -438,15 +438,14 @@ public class HPLabControllerWeb implements Constants {
 			}
 			manager.setResult(result);
 		}
-		if(appointment.getPrintRequired() != null && 'P' == appointment.getPrintRequired()) {
+		/*if(appointment.getPrintRequired() != null && 'P' == appointment.getPrintRequired()) {
 			return;
-		}
+		}*/
 		byte[] reportData = currentAppointment.getReportData();
 		if(reportData == null) {
 			return;
 		}
 		writeToResponse(response, reportData);
-		return;
 	}
 
 	private void writeToResponse(HttpServletResponse response, byte[] reportData) {

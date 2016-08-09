@@ -145,7 +145,7 @@
     
      function getAppointmentDetails(id) {
     	 title = $("#appFor").html();
-    	 testNo = $("#tests_dropdown_list").val()
+    	 testNo = $("#tests_dropdown_list").val();
     	 if(testNo == null) {
     		 testNo = 0;
     	 }
@@ -189,9 +189,14 @@
     	 
      }
      
+     /* function resetSlotType() {
+    	alert("Here!");
+    	window.location.href = window.location.href + "&slotType=" $("#slotType").val();
+     } */
+     
      function onTestSelect() {
     	 title = $("#appFor").html();
-    	 testNo = $("#tests_dropdown_list").val()
+    	 testNo = $("#tests_dropdown_list").val();
     	 //alert(title + ":" + $("#rpt_app_id").text() + ":" + $("#tests_dropdown_list").val());
     	 getAppointmentDetails($("#rpt_app_id").text());
      }

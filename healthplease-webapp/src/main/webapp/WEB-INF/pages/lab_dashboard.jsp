@@ -370,7 +370,7 @@
                                                         	NA
                                                         </c:if>
                                                         <c:if test="${appointment.address != null }">
-                                                        	<p id="address_{{order.id}}">${appointment.address.street},${appointment.address.landmark},${appointment.address.area},${appointment.address.zipCode}
+                                                        	<p id="address_{{order.id}}">${appointment.address}
                                                         	</p>
                                                         </c:if>
                                                         </td>

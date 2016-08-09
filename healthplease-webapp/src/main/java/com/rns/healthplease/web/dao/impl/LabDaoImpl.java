@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
@@ -28,10 +29,17 @@ public class LabDaoImpl implements LabDao {
 	}
 
 	public LabBlockedSlots getBlockedSlot(LabBlockedSlots blockedSlots, Session session) {
-		Query createQuery = session.createQuery("from LabBlockedSlots where lab.id=:lab_id AND slots.id=:slot_id AND date=:date");
+		String queryString = "from LabBlockedSlots where lab.id=:lab_id AND slots.id=:slot_id AND date=:date";
+		if(StringUtils.isNotEmpty(blockedSlots.getSlotType())) {
+			queryString = queryString + " AND slotType=:slot_type";
+		}
+		Query createQuery = session.createQuery(queryString);
 		createQuery.setInteger("lab_id", blockedSlots.getLab().getId());
 		createQuery.setInteger("slot_id", blockedSlots.getSlots().getId());
 		createQuery.setDate("date", blockedSlots.getDate());
+		if(StringUtils.isNotEmpty(blockedSlots.getSlotType())) {
+			createQuery.setString("slot_type", blockedSlots.getSlotType());
+		}
 		List<LabBlockedSlots> slots = createQuery.list();
 		if (CollectionUtils.isEmpty(slots)) {
 			return null;

@@ -52,6 +52,7 @@ public class Labs implements java.io.Serializable {
 	private Set<LabBlockedSlots> blockedSlots = new HashSet<LabBlockedSlots>(0);
 	//private Set<LabActiveDaysStatus> labActiveDaysStatus = new HashSet<LabActiveDaysStatus>(0);
 	private Locations location;
+	private Integer labDiscount;
 
 	public Labs() {
 	}
@@ -259,6 +260,15 @@ public class Labs implements java.io.Serializable {
 
 	public void setLocation(Locations location) {
 		this.location = location;
+	}
+
+	@Column(name = "lab_discount")
+	public Integer getLabDiscount() {
+		return labDiscount;
+	}
+
+	public void setLabDiscount(Integer labDiscount) {
+		this.labDiscount = labDiscount;
 	}
 
 	/*@OneToMany(mappedBy = "labs", cascade = CascadeType.ALL)

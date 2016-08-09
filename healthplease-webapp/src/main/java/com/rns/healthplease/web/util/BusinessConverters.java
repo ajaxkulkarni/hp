@@ -152,7 +152,7 @@ public class BusinessConverters {
 		if (lab.getArea() != null && lab.getArea().getId() != null) {
 			labs.setLocation(getLocation(lab.getArea()));
 		}
-
+		labs.setLabDiscount(lab.getDiscount());
 	}
 
 	public static Locations getLocation(LabLocation location) {

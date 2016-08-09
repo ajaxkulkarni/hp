@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
 
 import com.rns.healthplease.web.bo.domain.Address;
@@ -90,6 +91,7 @@ public class DataConverters {
 		lab.setAddress(labs.getAddress());
 		lab.setArea(getLocation(labs.getLocation()));
 		prepareLocations(lab, labs.getLabses());
+		lab.setDiscount(labs.getLabDiscount());
 		return lab;
 	}
 
@@ -269,6 +271,19 @@ public class DataConverters {
 				if (results != null) {
 					parameter.setActualValue(results.getActualValue());
 					parameter.setRemark(results.getRemarks());
+				}
+				if(appointments.getAge() != null && appointments.getAge().intValue() <= 10) {
+					if(StringUtils.isNotEmpty(parameter.getNormalValueChild())) {
+						parameter.setNormalValue(parameter.getNormalValueChild());
+					}
+				} else if (StringUtils.isNotEmpty(appointments.getGender()) && StringUtils.equalsIgnoreCase(appointments.getGender(), "M")) {
+					if(StringUtils.isNotEmpty(parameter.getNormalValueMale())) {
+						parameter.setNormalValue(parameter.getNormalValueMale());
+					}
+				} else if (StringUtils.isNotEmpty(appointments.getGender()) && StringUtils.equalsIgnoreCase(appointments.getGender(), "F")) {
+					if(StringUtils.isNotEmpty(parameter.getNormalValueFemale())) {
+						parameter.setNormalValue(parameter.getNormalValueFemale());
+					}
 				}
 			}
 			parameters.add(parameter);

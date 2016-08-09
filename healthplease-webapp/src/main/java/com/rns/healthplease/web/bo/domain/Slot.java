@@ -11,6 +11,7 @@ public class Slot {
 	private Date blockedDate;
 	private String isBooked;
 	private boolean isBlocked;
+	private String type;
 	
 	public String getStartTime() {
 		return startTime;
@@ -53,5 +54,11 @@ public class Slot {
 	}
 	public void setBlocked(boolean isBlocked) {
 		this.isBlocked = isBlocked;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 }

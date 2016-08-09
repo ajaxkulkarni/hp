@@ -38,6 +38,7 @@ import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.dao.api.AppointmentDao;
 import com.rns.healthplease.web.dao.api.UserDao;
+import com.rns.healthplease.web.dao.domain.LabBlockedSlots;
 import com.rns.healthplease.web.dao.domain.LocationWiseLabCharges;
 import com.rns.healthplease.web.dao.domain.TestLabs;
 import com.rns.healthplease.web.dao.domain.Tests;
@@ -246,7 +247,7 @@ public class CommonUtils implements Constants {
 		return false;
 	}
 
-	public static List<Slot> getSlots(String[] blockedSlots, String date) {
+	public static List<Slot> getSlots(String[] blockedSlots, String date, String type) {
 		if (blockedSlots == null || blockedSlots.length == 0 || StringUtils.isEmpty(date)) {
 			return null;
 		}
@@ -255,6 +256,7 @@ public class CommonUtils implements Constants {
 			Slot slot = new Slot();
 			slot.setId(Integer.valueOf(slotId));
 			slot.setBlockedDate(convertDate(date));
+			slot.setType(type);
 			slots.add(slot);
 		}
 		return slots;
@@ -525,6 +527,24 @@ public class CommonUtils implements Constants {
 			}
 		}
 		appointmentDetails.setTests(filteredTests);
+	}
+	
+	public static boolean isSameSlotType(LabBlockedSlots slot, Slot activateSlot) {
+		/*if(StringUtils.isEmpty(slot.getSlotType())) {
+			return true;
+		}*/
+		/*if(StringUtils.equalsIgnoreCase(slot.getSlotType(), activateSlot.getType())) {
+			return true;
+		}
+		return false;*/
+		return isSameSlotType(slot.getSlotType(), activateSlot);
+	}
+
+	public static boolean isSameSlotType(String slotType, Slot activateSlot) {
+		if(StringUtils.equalsIgnoreCase(slotType, activateSlot.getType())) {
+			return true;
+		}
+		return false;
 	}
 	
 	/*public static void main(String[] args) {

@@ -242,6 +242,9 @@ $(document).ready(function() {
                                     <tr>
                                         <td></td>
                                         <td class="text-right">
+                                        	<p>
+                                                <strong>Discount: </strong>
+                                            </p>
                                             <p>
                                                 <strong>Subtotal: </strong>
                                             </p>
@@ -250,6 +253,9 @@ $(document).ready(function() {
                                             </p>
                                         </td>
                                         <td class="text-center">
+                                        	<p>
+                                                <strong><i class="fa fa-inr"></i> ${appointment.lab.discount} </strong>
+                                            </p>
                                             <p>
                                                 <strong><i class="fa fa-inr"></i> ${appointment.lab.testPrice}</strong>
                                             </p>

@@ -174,6 +174,10 @@ public class MailUtil implements Constants, Runnable {
 					result = StringUtils.replace(result, "{status}", appointment.getStatus().getName());
 					result = StringUtils.replace(result, "{cancelReason}", appointment.getStatus().getCancellationReason());
 				}
+				result = StringUtils.replace(result, "{discount}", "");
+				if(appointment.getLab().getDiscount() != null) {
+					result = StringUtils.replace(result, "{discount}", appointment.getLab().getDiscount().toString());
+				}
 
 			}
 

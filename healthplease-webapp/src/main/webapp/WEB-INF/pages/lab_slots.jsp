@@ -109,9 +109,26 @@
 
 	<p>
 	The following slots are available on <span> <fmt:formatDate value="${slots[0].blockedDate}" pattern="MMM dd, yyyy"/></span>
+	<input type="hidden" id="selectedDay" value="<fmt:formatDate value="${slots[0].blockedDate}" pattern="dd"/>"> 
 	</p>
 	Select All <input class="fields" type="checkbox" value="" name="" id = "selectAllChk" onclick="checkAll(this)">
 	<form action="<%=Constants.BLOCK_SLOTS_POST_URL%>" method="post">
+	<select id="slotType" name="slotType" onchange="resetSlots()">
+		<c:choose>
+			<c:when test="${slotType == 'Lab' }">
+				<option value="<%=Constants.LAB_APP%>" selected>Lab Visit</option>
+			</c:when>
+			<c:when test="${slotType == 'Home' }">
+				<option value="<%=Constants.HOME_APP%>" selected>Home Visit</option>
+			</c:when>
+			<%-- <c:otherwise>
+				<option value="" selected>Both</option>
+			</c:otherwise> --%>
+		</c:choose>
+		<option value="">Both</option>
+		<option value="<%=Constants.HOME_APP%>">Home Visit</option>
+		<option value="<%=Constants.LAB_APP%>">Lab Visit</option>
+	</select>
 	<table width='400' border='0' cellpadding='2' cellspacing='0' id='booking'>
 		<tr>
 			<th width='150' align='left'>Start</th>
@@ -166,11 +183,12 @@
 
 <script type="text/javascript">
 
-var check_array = [];
+/* var check_array = [];
 var unselectedList =  "";
 var isChanged = 0;
 var date = '';
-var labid = '';
+var labid = ''; */
+
 
   function checkAll(bx) {
 	  var cbs = document.getElementsByTagName('input');
@@ -180,8 +198,19 @@ var labid = '';
 	    }
 	  }
 	}
+	
+	function resetSlots() {
+		//alert( "Handler for .change() called." + $("#slotType").val());
+		//alert(document.getElementById("slotType"));
+		window.location.href = "getlabslots.htm?day=" + $("#selectedDay").val() + "&slotType=" + $("#slotType").val();
+	}
+	
+	
+/* $("#slotType").change(function() {
+	  alert( "Handler for .change() called." );
+	}); */
 
-$(document).ready(function(){
+/* $(document).ready(function(){
 
     $( document ).on ( "click", ".fields", function(){
             var $this = $( this );
@@ -320,7 +349,9 @@ $(document).ready(function(){
     var buttonHtml = '<div class="col-lg-6" style="margin-top: 20px;margin-left: -15px;">\
                         <button type="button" class="btn btn-primary" id="save">Save</button>\
                     </div>';
-    $('#slots').append(buttonHtml);
+    $('#slots').append(buttonHtml); */
+
+    
 </script>
             
    <%@include file="lab_footer.jsp" %>         

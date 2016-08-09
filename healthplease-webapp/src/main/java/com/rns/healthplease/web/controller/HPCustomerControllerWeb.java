@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -292,8 +293,24 @@ public class HPCustomerControllerWeb implements Constants {
 		appointment.getUser().setId(currentAppointment.getUser().getId());
 		currentAppointment.setUser(appointment.getUser());
 		userBo.populateAppointment(currentAppointment);
+		calculateDiscount(currentAppointment);
 		manager.setResult(null);
 		return new RedirectView(CONFIRM_APPOINTMENT_DETAILS_GET_URL);
+	}
+
+	private void calculateDiscount(Appointment currentAppointment) {
+		if(currentAppointment.getLab().getDiscount() != null) {
+			int deduction = calculateDeduction(currentAppointment);
+			currentAppointment.getLab().setPrice(currentAppointment.getLab().getPrice() -  deduction);
+			currentAppointment.getLab().setDiscount(deduction);
+		}
+	}
+
+	private int calculateDeduction(Appointment currentAppointment) {
+		double discount = currentAppointment.getLab().getDiscount().doubleValue();
+		double price = currentAppointment.getLab().getPrice().doubleValue();
+		Double deduction = price*(discount/100);
+		return deduction.intValue();
 	}
 
 	@RequestMapping(value = "/" + BOOK_APPOINTMENT_OTHER_POST, method = RequestMethod.POST)
@@ -304,6 +321,7 @@ public class HPCustomerControllerWeb implements Constants {
 		currentAppointment.setUser(appointment.getUser());
 		currentAppointment.setPrintRequired(appointment.getPrintRequired());
 		userBo.populateAppointment(currentAppointment);
+		calculateDiscount(currentAppointment);
 		manager.setResult(null);
 		return new RedirectView(CONFIRM_APPOINTMENT_DETAILS_GET_URL);
 	}
@@ -455,10 +473,14 @@ public class HPCustomerControllerWeb implements Constants {
 	private void preparePayment(PaymentType type) {
 		Payment payment = new Payment();
 		Appointment currentAppointment = manager.getCurrentAppointment();
-		payment.setAmount(currentAppointment.getLab().getPrice());
+		Integer price = currentAppointment.getLab().getPrice();
+		payment.setAmount(price);
 		payment.setDate(new Date());
 		payment.setStatus(PaymentStatus.SUCCESS);
 		payment.setType(type);
+		if(currentAppointment.getLab().getDiscount() != null) {
+			payment.setDiscount(currentAppointment.getLab().getDiscount());
+		}
 		currentAppointment.setPayment(payment);
 	}
 
