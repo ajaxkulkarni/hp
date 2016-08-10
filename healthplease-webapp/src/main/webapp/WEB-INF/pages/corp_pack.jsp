@@ -432,9 +432,7 @@ box-shadow:1px 5px 5px #999;
 			    <div class="cardbody">
 
 			          <h4>Male - Upto 46% off </br>
-                             Female - Upto 46% off </h4>
-
-			     
+                             Female - Upto 46% off </h4>			     
                   <div class="panel-group">
 							  <div class="panel panel-default">
 							    <div class="panel-heading">
@@ -532,18 +530,18 @@ box-shadow:1px 5px 5px #999;
 			  </div>
 			   <div class="form-group">
 			    <label for="name">Name:</label>
-			    <input type="text" class="form-control" id="name" name="name">
+			    <input type="text" class="form-control"  required="required" id="name" name="name">
 			  </div>
 			  <div class="form-group">
 			    <label for="email">Company Email:</label>
-			    <input type="email" class="form-control" id="email" name="email">
+			    <input type="email" class="form-control" id="email" required="required" name="email">
 			  </div>
 			  <div class="form-group">
 			    <label for="pwd">Mobile No.:</label>
-			    <input type="number" class="form-control" id="mobile" name="phone">
+			    <input type="number" class="form-control" required="required" id="mobile" name="phone">
 			  </div>
 			  <input type="hidden" name="testName" id="package_name">
-			  <button type="submit" class="btn btn-default"style="margin-top:5%">Submit</button>
+			  <button type="submit" class="btn btn-default" style="margin-top:5%" onsubmit="onSubmit">Submit</button>
 			</form>
           
         </div>
@@ -552,13 +550,37 @@ box-shadow:1px 5px 5px #999;
 
 
 <script type="text/javascript">
-
+function onSubmit(){
+	if(validateContact())
+		return true;
+	else return false;
+}
 function loadModal(packageName) {
 	
 	$("#package_name").val(packageName);
 	$("#modal_title").text(packageName);
 	$("#myModal").modal('show');
 	
+}
+function validateContact(){
+	var no = document.getElementById("mobile").value;
+	if(isNaN(no))
+	{
+/* 		document.getElementById("idAppPContactErr").innerHTML="Contact must be a number";
+ */		return false
+	}
+	if(no[0] ==="0" )
+	{
+/* 		document.getElementById("idAppPContactErr").innerHTML= "enter valid Phone no.";
+ */		return false;	
+	}
+	if(no.length!= 10)
+	{
+/* 		document.getElementById("idAppPContactErr").innerHTML= "enter valid Phone no.";
+ */		return false;	
+	}
+	/* document.getElementById("idAppPContactErr").innerHTML= ""; */
+	return true;
 }
 
 </script>

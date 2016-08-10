@@ -53,6 +53,7 @@ input[type=number] {-moz-appearance: textfield;}
 <ul class="nav nav-tabs">
 			    <li class="active"><a data-toggle="tab" href="#request">Corporate Requests</a></li>
 			    <li><a data-toggle="tab" href="#appoint">Corporate Appointments</a></li>
+			    <li><a data-toggle="tab" href="#partner">Partner Requests</a></li>
 			  </ul>
 			  
 	 <div class="tab-content">
@@ -148,16 +149,16 @@ input[type=number] {-moz-appearance: textfield;}
                
 			   <div class="form-group">
 			    <label for="name">Name:</label>
-			    <input type="text" class="form-control" id="name" name="user.firstName">
+			    <input type="text" class="form-control" required="required" id="name" name="user.firstName">
 			  </div>
 			  
 			  <div class="form-group">
 			    <label for="email">Company Email:</label>
-			    <input type="email" class="form-control" id="email" name="user.email">
+			    <input type="email" class="form-control" required="required" id="email" name="user.email">
 			  </div>
 			  <div class="form-group">
 			    <label for="pwd">Mobile No.:</label>
-			    <input type="text" class="form-control" id="mobile" name="user.phone" onfocusout="validateMobile()">
+			    <input type="text" class="form-control" required="required" id="mobile" name="user.phone" onfocusout="validateMobile()">
 			  </div>
 			  <div class="" id="mobileError"></div>
 			   <!-- <div class="form-group">
@@ -171,7 +172,7 @@ input[type=number] {-moz-appearance: textfield;}
 			  <div class="" id="ageError"></div>
 			    <div class="form-group">
 			   <label for="sel1"style="margin-top:1%">Location:</label>
-			  	<input type="text" class="form-control" id="area" name="address.area">
+			  	<input type="text" class="form-control" id="area" required="required" name="address.area">
 			  </div>
 			   <div class="form-group">
 				<input id="id_report_checkbox" name="printRequired" class="" style="width: 20px; height: 20px;" value="Y" type="checkbox"> 
@@ -187,7 +188,48 @@ input[type=number] {-moz-appearance: textfield;}
    		
 				
 				
-	<!-- //////////////////// -->			
+	<!-- //////////////////// -->	
+	
+	    <div id="partner" class="tab-pane fade" >
+				<div class="container">
+				<div class="row">
+				<div class="col-md-10 col-xl-10">
+						<div class="tablespace"  style="background-color:#fff;margin-top:5%;height:500px">
+						<table id="categories_table" class="table table-bordered table-responsive paginate">
+					                    <tbody>
+					                    <tr class="page_header">
+					                    	<th>#</th>
+					                    	<th>Name</th>
+					                    	<th>Company</th>
+					                    	<th>HR/Admin</th>
+					                    	<th>Contact</th>
+					                    	<th>HR/Admin Email</th>
+					                    	<th>Location</th>
+					                    	<th colspan="2" align="center">Actions</th>
+					                    </tr>                
+					             		 <c:forEach items="${requestForms}" var="req" varStatus="i">
+					             		 <tr>
+					                    	<td>${i.index + 1}</td>
+					                    	<td>${req.name}</td>
+					                    	<td>${req.email}</td>
+					                    	<td>${req.companyName}</td>
+					                    	<td>${req.testName}</td>
+					                    	<td>${req.labName}</td>
+					                    	<td>${req.phone}</td>
+					                    	<td colspan="2" align="center">Actions</td>
+					                    </tr>   
+					                    </c:forEach>   
+					                </tbody>
+					      </table>
+					     
+					   </div>
+					    <ul class="pagination" id="pagination_list">
+						</ul>
+					</div>	</div></div>
+					
+				</div>
+	
+		<!-- //////////////////// -->		
 				
 	</div>
 </div>
