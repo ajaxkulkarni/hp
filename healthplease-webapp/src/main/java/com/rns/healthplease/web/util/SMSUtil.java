@@ -184,6 +184,8 @@ public class SMSUtil implements Constants {
 			put(MAIL_TYPE_REQUEST_CALLBACK_LAB, "request_call_back_admin.txt");
 			put(MAIL_TYPE_CORPORATE_REQUEST_ADMIN, "admin_corp_call_back.txt");
 			put(MAIL_TYPE_CORPORATE_REQUEST, "corporate_request.txt");
+			put(MAIL_TYPE_CORPORATE_PARTNER, "corporate_partner.txt");
+			put(MAIL_TYPE_CORPORATE_PARTNER_ADMIN, "admin_corporate_partner.txt");
 		}
 	});
 

@@ -16,6 +16,8 @@ public class RequestForm {
 	private String testName;
 	private String labName;
 	private String companyName;
+	private String location;
+	private String adminName;
 	
 	public String getName() {
 		return name;
@@ -85,5 +87,17 @@ public class RequestForm {
 	}
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getAdminName() {
+		return adminName;
+	}
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
 	}
 }

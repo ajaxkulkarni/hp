@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -14,13 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +40,6 @@ import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
-import com.rns.healthplease.web.util.LoggingUtil;
 import com.rns.healthplease.web.util.PaymentUtils;
 
 @Controller
@@ -603,6 +599,20 @@ public class HPCustomerControllerWeb implements Constants {
 		appointment.setDate(CommonUtils.convertDate(appointmentDate));
 		manager.setResult(userBo.editAppointment(appointment));
 		return new RedirectView(USER_HOME_GET_URL);
+	}
+	
+	@RequestMapping(value = "/" + CORPORATE_PARTNER_GET_URL, method = RequestMethod.GET)
+	public String initRequestPartner(ModelMap model) {
+		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_RESULT, manager.getResult());
+		manager.setResult(null);
+		return CORP_PARTNER_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + REQUEST_CORPORATE_PARTNER_POST_URL, method = RequestMethod.POST)
+	public RedirectView requestPartner(ModelMap model, RequestForm form) {
+		manager.setResult(userBo.requestCorporatePartner(form));
+		return new RedirectView(CORPORATE_PARTNER_GET_URL);
 	}
 	
 

@@ -574,6 +574,7 @@ public class HPAdminController implements Constants {
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests("C"));
 		model.addAttribute(MODEL_REQUEST_FORMS, adminBo.getAllCorporateRequests());
 		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(ADMIN_CORPORATE_TAB));
+		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return ADMIN_CORPORATE_PAGE;
 	}

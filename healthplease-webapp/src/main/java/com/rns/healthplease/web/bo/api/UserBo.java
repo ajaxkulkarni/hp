@@ -65,5 +65,7 @@ public interface UserBo {
 	String editAppointment(Appointment appointment);
 
 	List<Lab> getAllCorporateLabs();
+	
+	String requestCorporatePartner(RequestForm form);
 
 }

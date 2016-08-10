@@ -288,6 +288,8 @@ public class MailUtil implements Constants, Runnable {
 			put(MAIL_TYPE_FORGOT_PASSWORD, "user_temporary_password.html");
 			put(MAIL_TYPE_CORPORATE_REQUEST, "corporate_request.html");
 			put(MAIL_TYPE_CORPORATE_REQUEST_ADMIN, "admin_corp_call_back.html");
+			put(MAIL_TYPE_CORPORATE_PARTNER, "corporate_partner.html");
+			put(MAIL_TYPE_CORPORATE_PARTNER_ADMIN, "admin_corp_partner.html");
 		}
 	});
 
@@ -307,6 +309,8 @@ public class MailUtil implements Constants, Runnable {
 			put(MAIL_TYPE_FORGOT_PASSWORD, "Your temporary password is generated!");
 			put(MAIL_TYPE_CORPORATE_REQUEST_ADMIN, "A new Corporate package has been requested for {labName}");
 			put(MAIL_TYPE_CORPORATE_REQUEST, "Thank you for booking the Corporate Package with Health Please");
+			put(MAIL_TYPE_CORPORATE_PARTNER, "Thank you for choosing Health Please");
+			put(MAIL_TYPE_CORPORATE_PARTNER_ADMIN, "A New Coporate partner request");
 		}
 	});
 

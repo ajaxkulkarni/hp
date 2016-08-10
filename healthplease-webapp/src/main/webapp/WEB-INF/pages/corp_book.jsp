@@ -252,28 +252,36 @@ body{
 
 	</div>
 	<div class="col-md-4 col-sm-6 col-xs-12" style="border: ">
-
+		<div id="msg" class="container">
+    	<c:if test="${result != null && result != 'OK' }">
+			<div class="alert alert-danger">${result}</div>
+		</c:if>
+			<c:if test="${result != null && result == 'OK' }">
+			<div class="alert alert-success">Thank you for showing interest in us. Our Health Please Convenience team will get in touch with you shortly.
+			</c:if>
+    	</div>
+		</div>
         <div class="panel panel-default">
+         <form action="<%=Constants.REQUEST_CORPORATE_PARTNER_POST_URL%>" method="post">    
             <div class="panel-heading">
                 <h2 class="text-center panel-title">Become Our Corporate Partner</h2></div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-10 col-lg-push-1 col-md-10 col-md-push-1 col-sm-10 col-sm-push-1 col-xs-12" style="border: ">
-                        <form>    
                             <label for="name">Name of Requester</label>
-                            <input class="form-control" id="name" type="text" required ="required" placeholder="Name" pattern="[a-zA-Z]+">
+                            <input class="form-control" name="name" id="name" type="text" required ="required" placeholder="Name" pattern="[a-zA-Z]+">
                             <label for="name" style="margin-top:10px">Company Name</label>
-                            <input class="form-control" id="company" type="text" required ="required" placeholder="Company" pattern="[a-zA-Z]+">
+                            <input class="form-control" name="companyName" id="company" type="text" required ="required" placeholder="Company" pattern="[a-zA-Z]+">
                             <label for="name" style="margin-top:10px">Name of HR/Admin</label>
-                            <input class="form-control" id="hr" type="text" required ="required" placeholder="HR/Admin" pattern="[a-zA-Z]+">
+                            <input class="form-control" name="name" id="hr" type="text" required ="required" placeholder="HR/Admin" pattern="[a-zA-Z]+">
                              <label style="margin-top:10px">Contact No.</label>
-                            <input class="form-control" id="contact" required ="required" type="text" placeholder="Mobile" pattern="[0-9]{10}">
+                            <input class="form-control" name="phone" id="contact" required ="required" type="text" placeholder="Mobile" pattern="[0-9]{10}">
                             <label style="margin-top:10px">Email of HR/Admin</label>
-                            <input class="form-control" id="email" type="email" required ="required" placeholder="Email">
+                            <input class="form-control" name="email" id="email" type="email" required ="required" placeholder="Email">
                             <label style="margin-top:10px">Corporate's Location</label>
-                             <input class="form-control" id="location" type="text" placeholder="Location" required ="required" pattern="[a-zA-Z]+">
+                             <input class="form-control" name="location" id="location" type="text" placeholder="Location" required ="required" pattern="[a-zA-Z]+">
                            
-                        </form>
+                        
                     </div>
                 </div>
             </div>
@@ -283,10 +291,11 @@ body{
                 <button class="btn btn-primary" type="submit" style="margin-left:20%;height:35px;width:105px">Request</button>
             </div>
              <div class="col-xs-6">
-                <button class="btn btn-primary" type="submit" style="margin-left:10%;height:35px;width:105px">Cancel</button>
+                <button class="btn btn-primary" type="reset" style="margin-left:10%;height:35px;width:105px">Cancel</button>
             </div>
             </div>
         </div>
+        </form>
         </div>
     </div>
     </div>

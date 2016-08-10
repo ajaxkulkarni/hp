@@ -341,6 +341,7 @@ public class DataConverters {
 		form.setCompanyName(CommonUtils.getFormValue(collection.getRemark(), 2));
 		form.setTestName(CommonUtils.getFormValue(collection.getRemark(), 0));
 		form.setLabName(CommonUtils.getFormValue(collection.getRemark(), 1));
+		form.setLocation(CommonUtils.getFormValue(collection.getRemark(), 3));
 		return form;
 	}
 	

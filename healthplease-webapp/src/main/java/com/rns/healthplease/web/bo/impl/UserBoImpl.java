@@ -736,7 +736,7 @@ public class UserBoImpl implements UserBo, Constants {
 		form.setAdmins(CommonUtils.prepareContactUsers(ADMIN_MAILS, "mail"));
 		form.getAdmins().addAll(CommonUtils.prepareContactUsers(ADMIN_PHONES, "phone"));
 		RequestCollections requestCollections = BusinessConverters.getRequestCollections(form);
-		requestCollections.setRequestedFor(Short.valueOf("2"));
+		requestCollections.setRequestedFor(Short.valueOf(CORP_PACKAGE));
 		session.persist(requestCollections);
 		tx.commit();
 		session.close();
@@ -829,6 +829,25 @@ public class UserBoImpl implements UserBo, Constants {
 		BusinessConverters.getAppointmentAddresses(appointment.getAddress(), appoinAddresses);
 		tx.commit();
 		session.close();
+		return RESPONSE_OK;
+	}
+	
+	@Override
+	public String requestCorporatePartner(RequestForm form) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		form.setAdmins(CommonUtils.prepareContactUsers(ADMIN_MAILS, "mail"));
+		form.getAdmins().addAll(CommonUtils.prepareContactUsers(ADMIN_PHONES, "phone"));
+		RequestCollections requestCollections = BusinessConverters.getRequestCollections(form);
+		requestCollections.setRequestedFor(Short.valueOf(CORP_PARTNER));
+		requestCollections.setName(StringUtils.join(form.getName(), ":", form.getAdminName()));
+		session.persist(requestCollections);
+		tx.commit();
+		session.close();
+		threadPoolTaskExecutor.execute(new MailUtil(form, MAIL_TYPE_CORPORATE_PARTNER));
+		threadPoolTaskExecutor.execute(new MailUtil(form, MAIL_TYPE_CORPORATE_PARTNER_ADMIN));
+		SMSUtil.sendSMS(form, MAIL_TYPE_CORPORATE_PARTNER);
+		SMSUtil.sendSMS(form, MAIL_TYPE_CORPORATE_PARTNER_ADMIN);
 		return RESPONSE_OK;
 	}
 

@@ -12,6 +12,8 @@ public interface Constants {
 	String PAY_TM_INDUSTRY_TYPE = "Retail";
 	String PAY_TM_MID = "Health30574555479792";
 	String PAY_TM_MERCHANT_KEY = "7a30TvYKmyQWIN4#";
+	String ADMIN_MAILS = "ajinkyashiva@gmail.com";
+	String ADMIN_PHONES = "9423040642";
 
 	// IMPORTANT : Production Environment Credentials below! Handle with care!
 
@@ -24,7 +26,9 @@ public interface Constants {
 	String PAY_TM_WEBSITE = "HealthPleaseweb";
 	String PAY_TM_INDUSTRY_TYPE = "Retail120";
 	String PAY_TM_MID = "Health49217529407325";
-	String PAY_TM_MERCHANT_KEY = "oxsdUfWmMhpSwWGR";*/
+	String PAY_TM_MERCHANT_KEY = "oxsdUfWmMhpSwWGR";
+	String ADMIN_MAILS = "yash.bharwani@healthplease.in,care@healthplease.in,ajinkyashiva@gmail.com";
+	String ADMIN_PHONES = "9890733740,9423040642";*/
 	 
 
 	String PRODUCT_INFO = "HealthPlease";
@@ -45,6 +49,8 @@ public interface Constants {
 	String PAY_U_TX_SUCCESS = "success";
 	String HOME_APP = "Home";
 	String LAB_APP = "Lab";
+	String CORP_PACKAGE = "2";
+	String CORP_PARTNER = "3";
 
 	String MODEL_APPOINTMENT = "appointment";
 	String MODEL_LOCATIONS = "locations";
@@ -87,6 +93,8 @@ public interface Constants {
 	String ERROR_FORGOT_PWD_NO_USER = "No user found with given Email.";
 	String ERROR_INVALID_TEST_DETAILS = "Test does not exist!";
 	String ERROR_NOT_ACTIVE = "Your account is not activated yet!";
+	String ERROR_TEST_EXISTS = "Test already exists!";
+	
 
 	String BOOK_APPOINTMENT_POST_URL = "bookAppointment";
 	String USER_HOME_GET_URL = "userhome.htm";
@@ -232,8 +240,9 @@ public interface Constants {
 	String EDIT_APPOINTMENT_POST_URL = "editAppointment";
 	String UPDATE_LAB_REPORT_SETTINGS_POST_URL = "updateLabReportSettings";
 	String GET_LAB_SIGNATURE_GET_URL = "getLabSignature.htm";
-	String ERROR_TEST_EXISTS = "Test already exists!";
-	
+	String CORP_PARTNER_PAGE = "corp_book";
+	String CORPORATE_PARTNER_GET_URL = "corporatePartner.htm";
+	String REQUEST_CORPORATE_PARTNER_POST_URL = "requestCorporatePartner";
 
 	String MAIL_TYPE_ACTIVATION = "activationMail";
 	String MAIL_TYPE_REPORT_UPLOAD = "reportUpload";
@@ -249,14 +258,14 @@ public interface Constants {
 	String MAIL_TYPE_FORGOT_PASSWORD = "forgotPassword";
 	String MAIL_TYPE_CORPORATE_REQUEST = "coprporateRequest";
 	String MAIL_TYPE_CORPORATE_REQUEST_ADMIN = "corporateRequestAdmin";
+	String MAIL_TYPE_CORPORATE_PARTNER = "coporatePartner";
+	String MAIL_TYPE_CORPORATE_PARTNER_ADMIN = "corporatePartnerAdmin";
 
 	String[] ADMIN_MAIL_TYPES = { MAIL_TYPE_REQUEST_CHECKUP_LAB, MAIL_TYPE_REQUEST_CALLBACK_LAB, MAIL_TYPE_CORPORATE_REQUEST_ADMIN };
 	String[] LAB_NAME_MAIL_TYPES = { MAIL_TYPE_BOOK_APP_LAB, MAIL_TYPE_CANCEL_APP_LAB };
-	String ADMIN_MAILS = "yash.bharwani@healthplease.in,care@healthplease.in,ajinkyashiva@gmail.com";
-	String ADMIN_PHONES = "9890733740,9423040642";
 	String[] OPEN_URLS = {SUPPORT_GET_URL, PRICING_GET_URL, GET_PRICING_POST_URL, PRIVACY_GET_URL, TERMS_GET_URL, 
 			ABOUT_US_GET_URL, FAQ_GET_URL, ACTIVATION_URL_GET, PARTNER_LABS_GET_URL, REGISTER_USER_GET_URL, REGISTER_USER_POST_URL, 
 			"loginAjax", CORPORATE_PACKAGES_GET_URL, CORPORATE_REQUEST_POST_URL, LOGOUT_GET_URL, "getLabs", "getDates", "getSlots", "forgotPassword",
-			REQUEST_CALL_BACK_POST_URL, REQUEST_CHECK_UP_POST_URL, GET_TEST_DETAILS_POST_URL};
+			REQUEST_CALL_BACK_POST_URL, REQUEST_CHECK_UP_POST_URL, GET_TEST_DETAILS_POST_URL, CORPORATE_PARTNER_GET_URL, REQUEST_CORPORATE_PARTNER_POST_URL};
 
 }
