@@ -259,7 +259,7 @@ function onLogin() {
 		success: function(response){
 				$("#post_login").hide();
 				$("#pre_login").show();
-                if (response == $("#root_url").val() ||  response.search(".htm") > 0 ){
+                if (response == $("#root_url").val() ||  response.search(".htm") > 0 || response.search("Corporate") > 0 ){
 					window.location.href = response;
                 } else {
                     $('#idMsgLogin').html("<div class='alert alert-danger'>" + response + "</div>");

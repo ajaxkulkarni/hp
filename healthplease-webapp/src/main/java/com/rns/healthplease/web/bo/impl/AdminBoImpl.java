@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -378,8 +379,14 @@ public class AdminBoImpl implements AdminBo, Constants {
 	public String deleteLocation(LabLocation location) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Locations locations = new AppointmentDaoImpl().getLocationsById(location.getId(), session);
-		session.delete(locations);
+		//Locations locations = new AppointmentDaoImpl().getLocationsById(location.getId(), session);
+		//Locations locations = (Locations) session.get(Locations.class, location.getId());
+		Query query = session.createQuery("delete from Locations where id=:loc_id");
+		query.setParameter("loc_id", location.getId());
+		query.executeUpdate();
+		session.flush();
+		//session.delete(locations);
+		//session.flush();
 		tx.commit();
 		session.close();
 		return RESPONSE_OK;
