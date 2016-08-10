@@ -78,4 +78,6 @@ public interface AdminBo {
 
 	String bookCorporateAppointment(Appointment appointment);
 
+	List<RequestForm> getAllCorporatePartnerRequests();
+
 }

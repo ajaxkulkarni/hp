@@ -496,11 +496,11 @@ public class CommonUtils implements Constants {
 		if (StringUtils.isEmpty(remark)) {
 			return null;
 		}
-		String[] formValues = StringUtils.split(remark, ":");
-		if (formValues.length < 2) {
+		String[] formValues = remark.split(":");
+		if (formValues.length < 2 || i >= formValues.length) {
 			return null;
 		}
-		return formValues[i];
+		return StringUtils.trimToEmpty(formValues[i]);
 	}
 	
 	public static int getDay(Date date) {

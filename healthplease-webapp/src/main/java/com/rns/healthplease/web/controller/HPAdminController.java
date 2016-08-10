@@ -43,6 +43,7 @@ import com.rns.healthplease.web.util.ExcelUtil;
 @Controller
 public class HPAdminController implements Constants {
 
+	private static final String MODEL_PARTNER_FORMS = "partnerForms";
 	private static final int ADMIN_PARAMETERS_TAB = 7;
 	private static final int ADMIN_CORPORATE_TAB = 6;
 	private static final int ADMIN_LAB_DASHBOARD_TAB = 5;
@@ -573,6 +574,7 @@ public class HPAdminController implements Constants {
 	public String initCorporatePage(ModelMap model) {
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests("C"));
 		model.addAttribute(MODEL_REQUEST_FORMS, adminBo.getAllCorporateRequests());
+		model.addAttribute(MODEL_PARTNER_FORMS, adminBo.getAllCorporatePartnerRequests());
 		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(ADMIN_CORPORATE_TAB));
 		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);

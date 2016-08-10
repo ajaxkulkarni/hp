@@ -27,6 +27,7 @@ public class Appointment {
 	private boolean homeCollection;
 	private byte[] reportData;
 	private byte[] invoiceData;
+	private String remark;
 	
 	public Integer getId() {
 		return id;
@@ -132,6 +133,12 @@ public class Appointment {
 	}
 	public void setInvoiceData(byte[] invoiceData) {
 		this.invoiceData = invoiceData;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	
 }

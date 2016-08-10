@@ -97,6 +97,7 @@ Custom Fonts
 			</div>
 		</nav> -->
 		<div id="page-wrapper">
+			<form action="<%=Constants.GENERATE_REPORT_POST_URL%>" method="post" id="report_form" onsubmit="return validate()">
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">Prepare Report</h1>
@@ -112,45 +113,46 @@ Custom Fonts
 			<div id="header_footer">
 			<div class="panel panel-default">
 			<div class="panel-heading">Report Settings</div>
+			<input type="hidden" name="signaturePath" value="${user.lab.reportConfig.signaturePath}">
 			<div class="row" style="margin:20px">
 			<div class="col-md-4">
 				<c:if test="${user.lab.reportConfig.isHeader == 'y'}">
-					<input type="checkbox" name="reportConfig.isHeader" value="y" checked> Include Header
+					<input type="checkbox" name="isHeader" value="y" checked> Include Header
 				</c:if>
 				<c:if test="${user.lab.reportConfig.isHeader != 'y'}">
-					<input type="checkbox" name="reportConfig.isHeader" value="y"> Include Header
+					<input type="checkbox" name="isHeader" value="y"> Include Header
 				</c:if>
            </div> 
            
            	<div class="col-md-4">
 				<c:if test="${user.lab.reportConfig.isFooter == 'y'}">
-					<input type="checkbox" name="reportConfig.isFooter" value="y" checked> Include Footer
+					<input type="checkbox" name="isFooter" value="y" checked> Include Footer
 				</c:if>
 				<c:if test="${user.lab.reportConfig.isFooter != 'y'}">
-					<input type="checkbox" name="reportConfig.isFooter" value="y"> Include Footer
+					<input type="checkbox" name="isFooter" value="y"> Include Footer
 				</c:if>
            </div> 
            
 			</div>
 			<div class="row" style="margin:20px"">
 			<div class="col-md-8">
-			<span>Choose file</span></br>
+			<!-- <span>Choose file</span></br>
 			<div class="fileinput fileinput-new"
 				data-provides="fileinput">
-				<span class="btn btn-default btn-file"><input type="file" name="reportConfig.signatureFile" /></span>
-			</div>
+				<span class="btn btn-default btn-file"><input type="file" name="signatureFile" /></span>
+			</div> -->
 			<!-- <div class="checkbox">
 				<label><input type="checkbox" value="">Include
 					Signature</label>
 			</div> -->
 			<div class="">
-				<input name="reportConfig.name" style="margin-top:20px" value="${user.lab.reportConfig.name}" placeholder="Doctor Name" class="form-control input-md" type="text">      
+				<input name="name" style="margin-top:20px" value="${user.lab.reportConfig.name}" placeholder="Doctor Name" class="form-control input-md" type="text">      
 			</div>
 			<div class="">
-				<input name="reportConfig.designation" style="margin-top:20px" value="${user.lab.reportConfig.designation}" placeholder="Designation" class="form-control input-md" type="text">      
+				<input name="designation" style="margin-top:20px" value="${user.lab.reportConfig.designation}" placeholder="Designation" class="form-control input-md" type="text">      
 			</div>
 			<div class="">
-				<input name="reportConfig.designation" style="margin-top:20px" value="${user.lab.reportConfig.designation}" placeholder="Remark" class="form-control input-md" type="text">      
+				<input name="remark" style="margin-top:20px" value="${appointment.remark}" placeholder="Remark" class="form-control input-md" type="text">      
 			</div>
 			</div>
 			</div>
@@ -170,8 +172,8 @@ Custom Fonts
 							<div class="panel-heading">Select tests which you want to
 								prepare</div>
 							<!-- .panel-heading -->
-							<form action="<%=Constants.GENERATE_REPORT_POST_URL%>" method="post" id="report_form" onsubmit="return validate()">
-							<div class="panel-body">
+							<%-- <form action="<%=Constants.GENERATE_REPORT_POST_URL%>" method="post" id="report_form" onsubmit="return validate()">
+							 --%><div class="panel-body">
 									<div class="panel-group" id="accordion">
 									<input type="hidden" id="is_send_mail" name="printRequired" value="N">
 									<input type="hidden" id="appointment_id" name="id" value="${appointment.id}">

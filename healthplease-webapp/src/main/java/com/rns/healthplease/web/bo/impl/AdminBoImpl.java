@@ -790,7 +790,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 	public List<RequestForm> getAllCorporateRequests() {
 		List<RequestForm> corporateRequestForms = new ArrayList<RequestForm>();
 		Session session = this.sessionFactory.openSession();
-		List<RequestCollections> collections = new UserDaoImpl().getAllRequestCollections("2", session);
+		List<RequestCollections> collections = new UserDaoImpl().getAllRequestCollections(CORP_PACKAGE, session);
 		if (CollectionUtils.isEmpty(collections)) {
 			session.close();
 			return corporateRequestForms;
@@ -870,6 +870,28 @@ public class AdminBoImpl implements AdminBo, Constants {
 		tx.commit();
 		session.close();
 		return RESPONSE_OK;
+	}
+	
+	@Override
+	public List<RequestForm> getAllCorporatePartnerRequests() {
+		List<RequestForm> corporateRequestForms = new ArrayList<RequestForm>();
+		Session session = this.sessionFactory.openSession();
+		List<RequestCollections> collections = new UserDaoImpl().getAllRequestCollections(CORP_PARTNER, session);
+		if (CollectionUtils.isEmpty(collections)) {
+			session.close();
+			return corporateRequestForms;
+		}
+		for (RequestCollections collection : collections) {
+			RequestForm form = DataConverters.getRequestForm(collection);
+			if(StringUtils.contains(form.getName(), ":")) {
+				String name = CommonUtils.getFormValue(form.getName(), 0);
+				form.setAdminName(CommonUtils.getFormValue(form.getName(), 1));
+				form.setName(name);
+			}
+			corporateRequestForms.add(form);
+		}
+		session.close();
+		return corporateRequestForms;
 	}
 
 }

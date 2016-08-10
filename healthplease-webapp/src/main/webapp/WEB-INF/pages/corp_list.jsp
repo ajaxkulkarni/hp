@@ -207,15 +207,15 @@ input[type=number] {-moz-appearance: textfield;}
 					                    	<th>Location</th>
 					                    	<th colspan="2" align="center">Actions</th>
 					                    </tr>                
-					             		 <c:forEach items="${requestForms}" var="req" varStatus="i">
+					             		 <c:forEach items="${partnerForms}" var="req" varStatus="i">
 					             		 <tr>
 					                    	<td>${i.index + 1}</td>
 					                    	<td>${req.name}</td>
-					                    	<td>${req.email}</td>
 					                    	<td>${req.companyName}</td>
-					                    	<td>${req.testName}</td>
-					                    	<td>${req.labName}</td>
+					                    	<td>${req.adminName}</td>
 					                    	<td>${req.phone}</td>
+					                    	<td>${req.email}</td>
+					                    	<td>${req.location}</td>
 					                    	<td colspan="2" align="center">Actions</td>
 					                    </tr>   
 					                    </c:forEach>   

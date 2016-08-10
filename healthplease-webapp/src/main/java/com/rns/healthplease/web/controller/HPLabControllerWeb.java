@@ -41,6 +41,7 @@ import com.rns.healthplease.web.bo.domain.LabTest;
 import com.rns.healthplease.web.bo.domain.Payment;
 import com.rns.healthplease.web.bo.domain.PaymentStatus;
 import com.rns.healthplease.web.bo.domain.PaymentType;
+import com.rns.healthplease.web.bo.domain.ReportConfigurations;
 import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.bo.domain.TestParameter;
 import com.rns.healthplease.web.util.CommonUtils;
@@ -371,6 +372,7 @@ public class HPLabControllerWeb implements Constants {
 		Appointment appointment = labBo.getAppointment(app);
 		model.addAttribute(MODEL_APPOINTMENT, appointment);
 		model.addAttribute(MODEL_RESULT, manager.getResult());
+		model.addAttribute(MODEL_USER, manager.getUser());
 		manager.setResult(null);
 		return LAB_TEST_PARAMS_PAGE;
 	}
@@ -409,7 +411,7 @@ public class HPLabControllerWeb implements Constants {
 	}*/
 	
 	@RequestMapping(value = "/" + GENERATE_REPORT_POST_URL, method = RequestMethod.POST)
-	public void generateReport(ModelMap model,Appointment appointment,String[] testIds,HttpServletResponse response) throws JRException, IOException {
+	public void generateReport(ModelMap model,Appointment appointment,String[] testIds,ReportConfigurations reportConfigurations, HttpServletResponse response) throws JRException, IOException {
 		String generateReportView = LAB_PREPARE_REPORT_GET_URL + "?appointmentId=" + appointment.getId();
 		Appointment app = new Appointment();
 		app.setId(appointment.getId());
@@ -418,7 +420,9 @@ public class HPLabControllerWeb implements Constants {
 			return;
 		}
 		userBo.populateLabDetails(manager.getUser(), currentAppointment.getLab().getId());
-		currentAppointment.setLab(manager.getUser().getLab());
+		Lab lab = manager.getUser().getLab();
+		lab.setReportConfig(reportConfigurations);
+		currentAppointment.setLab(lab);
 		currentAppointment.setStatus(new AppointmentStatus(3));
 		setTestValues(currentAppointment, appointment, testIds);
 		//currentAppointment.setPrepareReport(PdfUtil.createPdf(currentAppointment));
