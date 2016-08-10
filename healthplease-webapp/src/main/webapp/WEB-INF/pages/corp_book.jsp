@@ -224,7 +224,10 @@ body{
 <%@include file="user_header.jsp" %>
 <div class="container">
 	 <div class="row" >
-		 <div class="col-md-12" style="color:#fff"><h1>Corporate Partner</h1></div> 
+		 <div class="col-md-6 col-sm-6" style="color:#fff"><h1>Corporate Partner</h1></div> 
+		  <div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2" style="border:">
+		 	   <button class="btn btn-primary" type="submit" style="height:35px;;margin-top:15px">Book Corporate Package</button>
+		  </div>
 	</div>
 	<div class="row" style="margin:25px">
 	<div class="col-md-8 col-sm-6 col-xs-12" >
@@ -249,14 +252,14 @@ body{
 
 	</div>
 	<div class="col-md-4 col-sm-6 col-xs-12" style="border: ">
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="text-center panel-title">Become Our Corporate Partner</h2></div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-10 col-lg-push-1 col-md-10 col-md-push-1 col-sm-10 col-sm-push-1 col-xs-12" style="border: ">
-                        <form>
-                            
+                        <form>    
                             <label for="name">Name of Requester</label>
                             <input class="form-control" id="name" type="text" required ="required" placeholder="Name" pattern="[a-zA-Z]+">
                             <label for="name" style="margin-top:10px">Company Name</label>

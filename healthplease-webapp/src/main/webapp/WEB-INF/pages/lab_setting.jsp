@@ -49,13 +49,14 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" href="#setting1">Report
 								Settings</a></li>
+						<li><a data-toggle="tab" href="#setting3">Profile Settings</a></li>
 						<li><a data-toggle="tab" href="#setting2">Other Settings</a></li>
 					</ul>
 
 					<div class="tab-content">
-
+				
 						<div id="setting1" class="tab-pane fade in active">
-							<div class="container">
+							<!-- <div class="container"> -->
 								<div class="row">
 									<form action="<%=Constants.UPDATE_LAB_REPORT_SETTINGS_POST_URL %>" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="id" value="${user.lab.id}">
@@ -105,10 +106,10 @@
 														Signature</label>
 												</div> -->
 												<div class="">
-                									<input name="reportConfig.name" value="${user.lab.reportConfig.name}" placeholder="Doctor Name" class="form-control input-md" type="text">      
+                									<input name="reportConfig.name" style="margin-top:20px" value="${user.lab.reportConfig.name}" placeholder="Doctor Name" class="form-control input-md" type="text">      
               									</div>
               									<div class="">
-                									<input name="reportConfig.designation" value="${user.lab.reportConfig.designation}" placeholder="Designation" class="form-control input-md" type="text">      
+                									<input name="reportConfig.designation" style="margin-top:20px" value="${user.lab.reportConfig.designation}" placeholder="Designation" class="form-control input-md" type="text">      
               									</div>
 											</div>
 										</div>
@@ -118,12 +119,12 @@
 									</div>
 									</form>
 								</div>
-							</div>
+							<!-- </div> -->
 						</div>
 
 
 						<div id="setting2" class="tab-pane fade in">
-							<div class="container" style="height: 500px">
+							<!-- <div class="container" style="height: 500px"> -->
 								<div class="row">
 
 									<div class="col-md-9" style="margin: 5%">
@@ -144,8 +145,28 @@
 
 									</div>
 								</div>
-							</div>
+						<!-- 	</div> -->
 						</div>
+						
+							<div id="setting3" class="tab-pane fade in">
+							<!-- <div class="container" style="height: 500px"> -->
+								<div class="row">
+								<div class="col-md-9" style="margin: 5%">
+										<div class="panel panel-default">
+											<div class="panel-heading">Change Password</div>
+											<div class="panel-body">
+											<div class="col-md-8 col-md-offset-2">
+												<%@include file="forms/change_password_form.jsp" %>
+											</div>
+											</div>
+										</div>
+										
+									</div>
+						
+								</div>
+						<!-- 	</div> -->
+							</div>
+				
 					</div>
 				</div>
 			</div>
