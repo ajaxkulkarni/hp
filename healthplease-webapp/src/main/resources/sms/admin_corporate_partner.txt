@@ -1,11 +1,3 @@
 Hello Admin,
 
-There is a request to avail corporate package by the below employee: -
-
-Name: - {name}
-
-Contact No: - {phone}
-
-Email Id: - {email}
-
-Corporate: - {company}
+There is a Corporate Partner request. Please check your email for details

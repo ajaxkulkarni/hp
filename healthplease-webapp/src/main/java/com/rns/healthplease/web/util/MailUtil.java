@@ -310,7 +310,7 @@ public class MailUtil implements Constants, Runnable {
 			put(MAIL_TYPE_CORPORATE_REQUEST_ADMIN, "A new Corporate package has been requested for {labName}");
 			put(MAIL_TYPE_CORPORATE_REQUEST, "Thank you for booking the Corporate Package with Health Please");
 			put(MAIL_TYPE_CORPORATE_PARTNER, "Thank you for choosing Health Please");
-			put(MAIL_TYPE_CORPORATE_PARTNER_ADMIN, "A New Coporate partner request");
+			put(MAIL_TYPE_CORPORATE_PARTNER_ADMIN, "A new Corporate Partner request has been received");
 		}
 	});
 

@@ -70,8 +70,9 @@ box-shadow:1px 5px 5px #999;
 	</div>
 	<div class="col-md-8">
 		<div class ="card1" style="height:100px;border:">
-		<div class="cardheader1" style="padding-top:3%">
-		<button type="button" class="partButton"  style="float:right;" onclick="loadModal('Basic Package + Diagnostic test')"><h4>Become Corporate Partner</h4></button>
+		<div class="cardheader1" style="padding-top:2%">
+		<!-- <button type="button" class="partButton"  style="float:right;"><h4>Become Corporate Partner</h4></button> -->
+		 <a href="corporatePartner.htm"  class="btn btn-large btn-primary partButton" style="float:right;"><h4>Become Corporate Partner</h4></a>
 		</div>
 		</div>
 	</div>
