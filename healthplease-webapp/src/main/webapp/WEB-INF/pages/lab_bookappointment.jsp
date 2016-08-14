@@ -215,7 +215,7 @@
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper">
               <label class=" control-label" for="appointmentPAdd">Patient's Address</label>  
               <div class="">
-                <textarea id="idAppointmentPAdd" name="address.street" placeholder="Address" class="form-control input-md"  required="required"></textarea>      
+                <textarea id="idAppointmentPAdd" name="address.street" placeholder="Address" class="form-control input-md"></textarea>      
               </div>
               <div class="" id="idAppPAddErr"></div>
             </div>
@@ -585,7 +585,7 @@ $("#idAppointmentPDoctor").keypress(function (e) {
 });
 function validatePin(){	
 	var pin =  document.getElementById("idappointmentPincode").value;
-	if(isNaN(pin))
+	/* if(isNaN(pin))
 	{
 		document.getElementById("idAppPPincodeErr").innerHTML="pin code must be a number";
 		return false
@@ -596,7 +596,7 @@ function validatePin(){
 		return false;
 	}
 
-		document.getElementById("idAppPPincodeErr").innerHTML="";
+		document.getElementById("idAppPPincodeErr").innerHTML=""; */
 		return true;
 }
 function validateContact(){
