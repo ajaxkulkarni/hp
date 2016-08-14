@@ -422,6 +422,7 @@ public class HPLabControllerWeb implements Constants {
 		userBo.populateLabDetails(manager.getUser(), currentAppointment.getLab().getId());
 		Lab lab = manager.getUser().getLab();
 		lab.setReportConfig(reportConfigurations);
+		currentAppointment.setRemark(appointment.getRemark());
 		currentAppointment.setLab(lab);
 		currentAppointment.setStatus(new AppointmentStatus(3));
 		setTestValues(currentAppointment, appointment, testIds);

@@ -96,6 +96,7 @@ public class JasperUtil {
 		parameters.put("labAddress", appointment.getLab().getAddress());
 		parameters.put("doctorName", appointment.getDoctorName());
 		parameters.put("printRequired", "y");
+		parameters.put("remark", appointment.getRemark());
 		ReportConfigurations reportConfig = appointment.getLab().getReportConfig();
 		if(reportConfig != null) {
 			parameters.put("printRequired", StringUtils.lowerCase(reportConfig.getIsHeader()));
