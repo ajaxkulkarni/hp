@@ -584,7 +584,7 @@ $("#idAppointmentPDoctor").keypress(function (e) {
     }
 });
 function validatePin(){	
-	var pin =  document.getElementById("idappointmentPincode").value;
+	/* var pin =  document.getElementById("idappointmentPincode").value; */
 	/* if(isNaN(pin))
 	{
 		document.getElementById("idAppPPincodeErr").innerHTML="pin code must be a number";
