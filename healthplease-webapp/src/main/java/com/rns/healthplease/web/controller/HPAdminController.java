@@ -354,6 +354,7 @@ public class HPAdminController implements Constants {
 
 	@RequestMapping(value = "/" + ADMIN_DELETE_LOCATION_POST_URL, method = RequestMethod.POST)
 	public RedirectView deleteLocation(ModelMap model, LabLocation location) {
+		System.out.println("About to delete location ..");
 		manager.setResult(adminBo.deleteLocation(location));
 		return new RedirectView(ADMIN_LOCATIONS_GET_URL);
 	}

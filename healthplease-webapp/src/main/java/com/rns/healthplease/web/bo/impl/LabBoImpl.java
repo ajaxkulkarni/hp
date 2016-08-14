@@ -683,5 +683,40 @@ public class LabBoImpl implements LabBo, Constants {
 		}
 		return null;
 	}
+	
+	@Override
+	public String uploadLogo(Lab lab, MultipartFile file) {
+		if(lab == null || lab.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Labs labs = new AppointmentDaoImpl().getLabById(lab.getId(), session);
+		if(labs == null) {
+			session.close();
+			return null;
+		}
+		if(file != null && !file.isEmpty()) {
+			try {
+				String directory = ROOT_DOCS_PATH + "lab-data/" + lab.getId() + "/logo/";
+				String path = directory + file.getOriginalFilename();
+				File dir = new File(directory);
+				dir.mkdirs();
+				File document = new File(path);
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(document));
+				stream.write(file.getBytes());
+				stream.close();
+				labs.setLabLogo(path);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+				LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(e));
+			}
+			
+		}
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
+	}
 
 }

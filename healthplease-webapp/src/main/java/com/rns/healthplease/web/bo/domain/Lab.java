@@ -22,6 +22,7 @@ public class Lab {
 	private List<LabTest> tests;
 	private ReportConfigurations reportConfig;
 	private Integer discount;
+	private String logo;
 	
 	public void setTests(List<LabTest> tests) {
 		this.tests = tests;
@@ -143,6 +144,14 @@ public class Lab {
 
 	public void setDiscount(Integer discount) {
 		this.discount = discount;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}
 	
 

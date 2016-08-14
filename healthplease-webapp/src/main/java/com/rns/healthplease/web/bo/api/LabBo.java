@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rns.healthplease.web.bo.domain.Appointment;
 import com.rns.healthplease.web.bo.domain.Lab;
@@ -46,4 +47,5 @@ public interface LabBo {
 
 	InputStream downloadSignatureFile(Lab lab);
 	
+	String uploadLogo(Lab lab,MultipartFile file);
 }

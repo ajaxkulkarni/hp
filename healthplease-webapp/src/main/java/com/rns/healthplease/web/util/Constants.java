@@ -243,6 +243,8 @@ public interface Constants {
 	String CORP_PARTNER_PAGE = "corp_book";
 	String CORPORATE_PARTNER_GET_URL = "corporatePartner.htm";
 	String REQUEST_CORPORATE_PARTNER_POST_URL = "requestCorporatePartner";
+	String UPLOAD_LOGO_POST_URL = "uploadLogo";
+	
 
 	String MAIL_TYPE_ACTIVATION = "activationMail";
 	String MAIL_TYPE_REPORT_UPLOAD = "reportUpload";

@@ -126,8 +126,9 @@
 						<div id="setting2" class="tab-pane fade in">
 							<!-- <div class="container" style="height: 500px"> -->
 								<div class="row">
-
+				
 									<div class="col-md-9" style="margin: 5%">
+										<form action="<%=Constants.UPLOAD_LOGO_POST_URL%>" method="post" enctype="multipart/form-data">
 										<div class="panel panel-default">
 											<div class="panel-heading">Lab Logo</div>
 											<div class="panel-body">
@@ -135,14 +136,14 @@
 												<div class="fileinput fileinput-new"
 													data-provides="fileinput">
 													<span class="btn btn-default btn-file"><input
-														type="file" /></span>
+														type="file" name="logoFile" /></span>
+													<input type="hidden" name="id" value="${user.lab.id}">
 												</div>
-
 											</div>
 										</div>
-										<button type="button" style="float: right"
+										<button type="submit" style="float: right"
 											class="btn btn-primary">Submit</button>
-
+										</form>
 									</div>
 								</div>
 						<!-- 	</div> -->

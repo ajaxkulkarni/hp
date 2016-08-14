@@ -77,7 +77,7 @@
                 		<a href="<%=Constants.ADMIN_EDIT_CATEOGORY_GET_URL%>?id=${cat.id}&name=${cat.categoryName}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
                 	</td>
                 	<td align="center">
-                		<a href="" class="js-deleteuser" onclick="confirmDelete('${cat.categoryName}','${cat.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
+                		<a href="#" class="js-deleteuser" onclick="confirmDelete('${cat.categoryName}','${cat.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
                 	</td>
                 </tr>
                 </c:forEach>

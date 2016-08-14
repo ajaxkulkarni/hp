@@ -92,6 +92,7 @@ public class DataConverters {
 		lab.setArea(getLocation(labs.getLocation()));
 		prepareLocations(lab, labs.getLabses());
 		lab.setDiscount(labs.getLabDiscount());
+		lab.setLogo(labs.getLabLogo());
 		return lab;
 	}
 

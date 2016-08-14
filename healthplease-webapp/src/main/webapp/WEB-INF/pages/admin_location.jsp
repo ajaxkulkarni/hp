@@ -84,7 +84,7 @@
                 		<a href="<%=Constants.ADMIN_EDIT_LOCATION_GET_URL%>?id=${loc.id}&name=${loc.name}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
                 	</td>
                 	<td align="center">
-                		<a href="" class="js-deleteuser" onclick="confirmDelete('${loc.name}','${loc.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
+                		<a href="#" class="js-deleteuser" onclick="confirmDelete('${loc.name}','${loc.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
                 	</td>
                 </tr>
                 </c:forEach>
@@ -93,7 +93,6 @@
 </div>    
 <ul class="pagination" id="pagination_list">
 </ul>
-
 
 
 <form id="loc_form" action="<%=Constants.ADMIN_DELETE_LOCATION_POST_URL %>" method="post">
@@ -136,7 +135,9 @@ function resetTable() {
 	   if(confirm("Are you sure you want to delete location " + name + " ?")) {
 		   $("#loc_id").val(id);
 		   $("#loc_form").submit();
+		   //document.getElementById("loc_form").submit();
 	   }
+	   return false;
    }
    
 </script>
