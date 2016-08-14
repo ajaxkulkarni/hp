@@ -157,7 +157,9 @@ public class JasperUtil {
 		if (appointment.getLab().getPickUpCharge()!= null) {
 			parameters.put("pickupCharges", appointment.getLab().getPickUpCharge());
 		} 
-		parameters.put("total", appointment.getLab().getPrice());
+		parameters.put("total", getTotalPrice(appointment));
+		parameters.put("discount", appointment.getLab().getDiscount() != null ? appointment.getLab().getDiscount().toString() : "");
+		parameters.put("price", appointment.getLab().getPrice());
 		parameters.put("phone", appointment.getUser().getPhone());
 		parameters.put("address", appointment.getUser().getAddress().getArea());
 		addSerialNumbers(appointment.getTests());
@@ -166,6 +168,13 @@ public class JasperUtil {
 		parameters.put("labTests", appointment.getTests());
 		parameters.put("printRequired", "y");
 		appointment.setInvoiceData(generateReport(parameters, null, LAB_INVOICE_TEMPLATE));
+	}
+
+	private static Integer getTotalPrice(Appointment appointment) {
+		if(appointment.getLab().getDiscount() == null) {
+			return appointment.getLab().getPrice();
+		}
+		return appointment.getLab().getPrice() + appointment.getLab().getDiscount();
 	}
 
 	private static void addSerialNumbers(List<LabTest> tests) {
