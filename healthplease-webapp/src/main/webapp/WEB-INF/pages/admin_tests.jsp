@@ -84,7 +84,7 @@
                 		<a href="<%=Constants.ADMIN_EDIT_TEST_GET_URL%>?id=${test.id}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
                 	</td>
                 	<td align="center">
-                		<a href="" class="js-deleteuser" onclick="confirmDelete('${test.name}','${test.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
+                		<a href="#" class="js-deleteuser" onclick="confirmDelete('${test.name}','${test.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
                 	</td>
                 </tr>
                 </c:forEach>

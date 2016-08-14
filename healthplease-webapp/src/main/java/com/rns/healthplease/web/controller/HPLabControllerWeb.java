@@ -25,6 +25,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -537,6 +538,12 @@ public class HPLabControllerWeb implements Constants {
 			e.printStackTrace();
 			LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(e));
 		}
+	}
+	
+	@RequestMapping(value = "/" + UPLOAD_LOGO_POST_URL, method = RequestMethod.POST)
+	public RedirectView uploadLabLogo(MultipartFile logoFile,Lab lab, ModelMap model) {
+		manager.setResult(labBo.uploadLogo(lab, logoFile));
+		return new RedirectView(LAB_SETTINGS_GET_URL);
 	}
 
 }

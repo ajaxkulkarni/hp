@@ -159,7 +159,7 @@ public class JasperUtil {
 			parameters.put("pickupCharges", appointment.getLab().getPickUpCharge());
 		} 
 		parameters.put("total", getTotalPrice(appointment));
-		parameters.put("discount", appointment.getLab().getDiscount() != null ? appointment.getLab().getDiscount().toString() : "");
+		parameters.put("discount", appointment.getLab().getDiscount() != null ? appointment.getLab().getDiscount().toString() : "0");
 		parameters.put("price", appointment.getLab().getPrice());
 		parameters.put("phone", appointment.getUser().getPhone());
 		parameters.put("address", appointment.getUser().getAddress().getArea());

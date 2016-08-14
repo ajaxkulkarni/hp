@@ -98,9 +98,9 @@ public class HPCustomerControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/home.htm", method = RequestMethod.GET)
-	public String initHomePage(ModelMap model) {
-		initializeParameters(model);
-		return "index";
+	public RedirectView initHomePage(ModelMap model) {
+		//initializeParameters(model);
+		return new RedirectView(HOME_GET_URL);
 	}
 
 	@RequestMapping(value = "/getLabs", method = RequestMethod.POST, produces = "application/json")

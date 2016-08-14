@@ -58,11 +58,11 @@ public class Address {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(this.getStreet() == null ? "" : StringUtils.appendIfMissing(this.getStreet(), ","));
-		builder.append(this.getLandmark() == null ? "" : StringUtils.appendIfMissing(this.getLandmark(), ","));
-		builder.append(this.getArea() == null ? "" : StringUtils.appendIfMissing(this.getArea(), ","));
-		builder.append(this.getCity() == null ? "" : StringUtils.appendIfMissing(this.getCity(), ","));
-		builder.append(this.getZipCode() == null ? "" : StringUtils.appendIfMissing(this.getZipCode(), ","));
+		builder.append(StringUtils.isBlank(this.getStreet()) ? "" : StringUtils.appendIfMissing(this.getStreet(), ","));
+		builder.append(StringUtils.isBlank(this.getLandmark()) ? "" : StringUtils.appendIfMissing(this.getLandmark(), ","));
+		builder.append(StringUtils.isBlank(this.getArea()) ? "" : StringUtils.appendIfMissing(this.getArea(), ","));
+		builder.append(StringUtils.isBlank(this.getCity()) ? "" : StringUtils.appendIfMissing(this.getCity(), ","));
+		builder.append(StringUtils.isBlank(this.getZipCode()) ? "" : StringUtils.appendIfMissing(this.getZipCode(), ","));
 		return StringUtils.removeEnd(builder.toString(), ",");
 	}
 	

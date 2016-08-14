@@ -15,6 +15,7 @@
 <body>
 
 <%@include file="user_header.jsp" %>
+<link href="<c:url value="/resources/css/external/file_input/fileinput.css"/>" rel="stylesheet" type="text/css">
 
 <div id="main-div">
         <div id="reports_summary" class="classTopHeading" style="background-color: #29BAE9;">
@@ -387,6 +388,7 @@
 <%@include file="user_footer.jsp" %>
 <script src="<c:url value="/resources/js/paging.js"/>"></script> 
 <script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
+<script src="<c:url value="/resources/js/external/file_input/fileinput.min.js"/>"></script>
 <script type="text/javascript">
 
 function getAppointment(id) {
