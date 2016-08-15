@@ -16,6 +16,7 @@ import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -478,7 +479,7 @@ public class HPLabControllerWeb implements Constants {
 	}
 	
 	private void setTestValues(Appointment currentAppointment, Appointment appointment, String[] testIds) {
-		if(appointment == null || CollectionUtils.isEmpty(appointment.getTests())) {
+		if(appointment == null || CollectionUtils.isEmpty(appointment.getTests()) || ArrayUtils.isEmpty(testIds)) {
 			return;
 		}
 		List<LabTest> tests = new ArrayList<LabTest>();
