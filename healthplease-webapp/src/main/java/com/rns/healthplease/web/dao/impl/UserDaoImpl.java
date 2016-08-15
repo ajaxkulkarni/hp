@@ -15,7 +15,7 @@ import com.rns.healthplease.web.dao.domain.Users1;
 public class UserDaoImpl implements UserDao {
 
 	public void addNewuser(Users user, Session session) {
-		if (user.getLoginDetails() == null) {
+		if (user == null || user.getLoginDetails() == null) {
 			return;
 		}
 		session.persist(user.getLoginDetails());
