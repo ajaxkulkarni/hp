@@ -156,8 +156,8 @@ public class HPAdminController implements Constants {
 	@RequestMapping(value = "/" + ADMIN_DOWNLOAD_EXCEL_GET_URL, method = RequestMethod.GET)
 	public ModelAndView downloadExcel(ModelMap model, String header) {
 		List<Appointment> appointments = new ArrayList<Appointment>();
-		appointments = manager.getUser().getTodaysAppointments();
-		appointments = CommonUtils.getAppointmentsByType(manager, header);
+		appointments = manager.getUser().getSelectedAppointments();
+		//appointments = CommonUtils.getAppointmentsByType(manager, header);
 		ModelAndView modelAndView = new ModelAndView(EXCEL_VIEW, MODEL_APPOINTMENTS, appointments);
 		return modelAndView;
 	}
@@ -599,6 +599,14 @@ public class HPAdminController implements Constants {
 		String result = adminBo.bookCorporateAppointment(appointment);
 		manager.setResult(result);
 		return new RedirectView(ADMIN_CORPORATE_GET_URL);
+	}
+	
+	@RequestMapping(value = "/getLabUsers", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody String getLabUsers(Integer labId, ModelMap model) {
+		
+		Lab lab = new Lab();
+		lab.setId(labId);
+		return new Gson().toJson(adminBo.getLabusers(lab));
 	}
 	
 	/*@ExceptionHandler(Exception.class)

@@ -47,6 +47,7 @@ import com.rns.healthplease.web.dao.domain.Tests;
 import com.rns.healthplease.web.dao.domain.Users;
 import com.rns.healthplease.web.dao.domain.Users1;
 import com.rns.healthplease.web.dao.impl.AppointmentDaoImpl;
+import com.rns.healthplease.web.dao.impl.LabDaoImpl;
 import com.rns.healthplease.web.dao.impl.UserDaoImpl;
 import com.rns.healthplease.web.util.BusinessConverters;
 import com.rns.healthplease.web.util.CommonUtils;
@@ -892,6 +893,17 @@ public class AdminBoImpl implements AdminBo, Constants {
 		}
 		session.close();
 		return corporateRequestForms;
+	}
+	
+	@Override
+	public List<User> getLabusers(Lab lab) {
+		if(lab == null || lab.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		CommonUtils.getLabUsers(session, lab);
+		session.close();
+		return lab.getUsers();
 	}
 
 }

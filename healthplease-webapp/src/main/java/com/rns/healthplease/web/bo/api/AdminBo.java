@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
+import com.google.gson.JsonElement;
 import com.rns.healthplease.web.bo.domain.Appointment;
 import com.rns.healthplease.web.bo.domain.Lab;
 import com.rns.healthplease.web.bo.domain.LabLocation;
@@ -79,5 +80,7 @@ public interface AdminBo {
 	String bookCorporateAppointment(Appointment appointment);
 
 	List<RequestForm> getAllCorporatePartnerRequests();
+
+	List<User> getLabusers(Lab lab);
 
 }

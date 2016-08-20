@@ -247,13 +247,13 @@ $(document).ready(function(){
             placeholder: "Please select your test/s"
         });
         
-        $( "#idUserService" ).select2( {
+       $( "#idUserService" ).select2( {
             placeholder: "Please select user to associate with lab"
         });
         
          $( "#idLocation" ).select2( {
             placeholder: "Please select lab address"
-        });
+        }); 
 
 
       $("#idLocationService").select2({ width: 'resolve' });       
@@ -376,11 +376,11 @@ $(document).ready(function(){
                             <label for="call_back_number" class="classGColor">User Emails : ${lab.users}</label><br/>
                             <input type="hidden" id="user_lab_id" name="id" value="">
                             <select id="idUserService" class="form-control width100" style="width:100%" name="userIds" multiple>
-                            	<c:forEach items="${lab.users}" var="user">
+                            	<%-- <c:forEach items="${lab.users}" var="user">
                             		<option value="${user.email}" selected>&nbsp;&nbsp;${user.email}</option>
-                            	</c:forEach>
+                            	</c:forEach> --%>
                             	<c:forEach items="${users}" var="user">
-                            		<option value="${user.email}">&nbsp;&nbsp;${user.email}</option>
+                            		<option value="${user.email}">${user.email}</option>
                             	</c:forEach>
                              </select>
                             </div>
@@ -444,17 +444,39 @@ function editButtons(labId) {
 
 function addUser(labId) {
 	$("#user_lab_id").val(labId);
-	$("#myLabServiceUserModal").modal('show');
-	var users = $("#labUsers" + labId).val();
-	var userEmails = users.split(",");
-	if(userEmails.length == 0) {
-		return;
-	}
-	var emailsContent = $("#idUserService").html();
-	for(var i = 0; i  < userEmails.length; i++) {
-		emailsContent = emailsContent + "<option value='"+ userEmails[0] + "' selected>" + userEmails[0] + "</option>";
-	}
-	alert("Here!");
+	
+	
+	$.ajax({
+       	type : "POST",
+           url : 'getLabUsers',
+           dataType: 'json',
+           data: "labId="+ labId,
+           success : function(users) {
+        	   var i = 0;
+        	   var appendString = "";
+        	   for(i = 0; i  < users.length; i++) {
+        		   /* $('#idUserService').append(
+        			        $("<option></option>")
+        			          .attr("value", users[i].email)
+        			          .attr("selected",true)
+        			          .text(users[i].email)
+        			    );  */   
+        			    //var text1 = 'Two';
+        			    $("#idUserService option").filter(function() {
+        			        //may want to use $.trim in here
+        			        return $(this).text() == users[i].email; 
+        			    }).prop('selected', true);
+        		   //appendString = appendString + "<option value='" + users[i].email + "' selected='selected'>" + users[i].email + "</option>";
+        	   }
+        	   //$('#idUserService').html($("#idUserService").html() + appendString);
+        	   //$('#idUserService').val(users[0].email);
+        	   //alert($('#idUserService').val());
+        	   $("#myLabServiceUserModal").modal('show');
+           }
+        	   
+           });
+	
+	//alert("Here!");
 }
 
 </script>

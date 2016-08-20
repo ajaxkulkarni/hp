@@ -309,8 +309,8 @@ public class HPLabControllerWeb implements Constants {
 	@RequestMapping(value = "/" + DOWNLOAD_EXCEL_GET_URL, method = RequestMethod.GET)
 	public ModelAndView downloadExcel(ModelMap model, String header) {
 		List<Appointment> appointments = new ArrayList<Appointment>();
-		appointments = manager.getUser().getTodaysAppointments();
-		appointments = CommonUtils.getAppointmentsByType(manager,header);
+		appointments = manager.getUser().getSelectedAppointments();
+		//appointments = CommonUtils.getAppointmentsByType(manager,header);
 		ModelAndView modelAndView = new ModelAndView(EXCEL_VIEW, MODEL_APPOINTMENTS, appointments);
 		return modelAndView;
 	}
