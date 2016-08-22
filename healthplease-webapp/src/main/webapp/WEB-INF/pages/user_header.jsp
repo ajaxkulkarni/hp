@@ -150,7 +150,7 @@ s0.parentNode.insertBefore(s1,s0);
                                     </li>
                                     <li class="dropdown">
                                         <a class="dropdown-toggle"  href="<%=Constants.CORPORATE_PARTNER_GET_URL%>">
-                                           <i class="fa fa-question fa-fw"></i> Corporate
+                                           <i class="fa fa-building fa-fw"></i> Corporate
                                         </a>                    <!-- /.dropdown-messages -->
                                     </li>
                                                                         <!-- /.dropdown -->

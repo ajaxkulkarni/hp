@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add/Edit Lab Location</title>
+<title>Admin Map Lab Location | HealthPlease.in</title>
 </head>
 <body>
 

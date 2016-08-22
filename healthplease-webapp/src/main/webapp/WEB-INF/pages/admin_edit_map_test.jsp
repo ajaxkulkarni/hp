@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Admin | Test Mapping</title>
+<title>Admin Test Mapping | HealthPlease.in</title>
 </head>
 <body>
 

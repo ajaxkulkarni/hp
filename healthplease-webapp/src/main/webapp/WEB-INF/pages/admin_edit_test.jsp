@@ -12,7 +12,7 @@
 
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-   <title>Admin | edit tests</title>
+   <title>Admin Edit Tests | HealthPlease.in</title>
  
 </head>
 

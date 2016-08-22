@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 	
-    <title>Disclaimer</title>
+    <title>Disclaimer | HealthPlease.in</title>
 
 	</head>
 <body>

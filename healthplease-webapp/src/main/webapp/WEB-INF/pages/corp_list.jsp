@@ -14,7 +14,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link href="<c:url value="/resources/css/external/select2/select2.min.css"/>" rel="stylesheet" ></link>
     
-    <title>Book Diagnostic & Pathology Test like Thyroid, Sugar, Urine, Cholesterol, ECG and X-Ray. Pay for them Online. Sample Collected at home or in lab. EMR Storage Available.</title>
+    <title>Corporate Appointments | HealthPlease.in</title>
  <style type="text/css">
  input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {

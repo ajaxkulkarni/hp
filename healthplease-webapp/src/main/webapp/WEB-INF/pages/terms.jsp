@@ -8,7 +8,7 @@
 <head>
 	
 
-    <title>Book Diagnostic & Pathology Test like Thyroid, Sugar, Urine, Cholesterol, ECG and X-Ray. Pay for them Online. Sample Collected at home or in lab. EMR Storage Available.</title>
+    <title>Terms and Conditions | HealthPlease.in</title>
 
 	
 <body>

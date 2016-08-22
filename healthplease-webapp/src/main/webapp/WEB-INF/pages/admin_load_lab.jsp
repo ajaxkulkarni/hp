@@ -13,7 +13,7 @@
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Book Diagnostic & Pathology Test like Thyroid, Sugar, Urine, Cholesterol, ECG and X-Ray. Pay for them Online. Sample Collected at home or in lab. EMR Storage Available.</title>
+    <title>Admin Load Lab | HealthPlease.in</title>
    
 </head>
 

@@ -22,10 +22,16 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700);
 .classOSCFont{
-  font-family: '', sans-serif;
-  font-family: '', sans-serif;
+
+}
+#corp_form{
+      	-webkit-box-shadow: 2px 10px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: 4 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); 
+        border:none;
 }
 .classPoint{
+
 	float: left;
     width: 100%;
     margin-left: 0;
@@ -36,24 +42,27 @@
 .classPoint li{
 	margin-left: 0;
 	padding-left: 0;
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 	float: left;
 }
 .classInnerPoint li{
-	    background: #eee;
+    font-family:calibri;
+    font-size:20px;
+    font-weight:900;
+	background: #006daa;
     padding:5px 10px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: -28px 0 0 #14A7DF;
-    margin-bottom: 3px;
+    margin-bottom: 0px;
     margin-left: -15px;
     float: left;
     width: 100%;
     clear: both;
-    font-size: 16px;
     font-weight: 100;
 }
 .classPtSpan{
-	font-size: 20px;
+ 
+	font-size: 50px;
 	text-transform: uppercase;
 	font-weight: 1000;
 }
@@ -165,10 +174,10 @@ box-shadow:1px 5px 5px #999;
 <%@include file="user_header.jsp" %>
 <div class="container">
 	 <div class="row" >
-		 <div class="col-md-6 col-sm-6" style="color:#222"><h1>Corporate Partner</h1></div> 
+		 <div class="col-md-6 col-sm-6" style="color:#222;font-family:calibri;padding-left:50px"><div style="border-bottom:0.5px solid red"><h1>Corporate Partner</h1></div></div> 
 		  <div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2" style="border:">
 		 	   <!-- <button class="btn btn-primary" type="submit" >Book Corporate Package</button> -->
-		 	   <a href="Corporate.htm" style="height:50px;margin-top:15px" class="btn btn-large btn-primary partButton"><h4>Book Corporate Package</h4></a>
+		 	   <a href="Corporate.htm" style="height:50px;margin-top:15px" class="btn btn-large btn-primary partButton"><h4 class="" >Book Corporate Package</h4></a>
 		  </div>
 	</div>
 	<div id="msg" class="">
@@ -182,51 +191,56 @@ box-shadow:1px 5px 5px #999;
     </div>
 	<div class="row" style="margin:25px">
 	<div class="col-md-8 col-sm-6 col-xs-12" style="border:">
-	<h3 class="" style="color:#222">We at Heath Please, believe in bringing Healthcare at your doorstep 
-	   so you never have to choose between health and work. </h3>
+	<h3 class="" style="color:#222;font-family:calibri;font-size:28px">We at Heath Please, believe in bringing convenient Healthcare so you never have to
+choose between Health and Work. </h3>
 	  <ul class="classPoint">
 								
 								
 								<li class="classW12">
 					
 									 <ol class="classInnerPoint">
-										<li style="color:#222">Access to specially designed Preventive Healthcare Packages for Corporates employees and their family members.</li>
-										<li style="color:#222">Intuitive website with all the details of tests and packages available at your fingertips.</li>
-										<li style="color:#222">Pathology Samples may be collected from your office at time of your convenience.</li>
-										<li style="color:#222">Avail discounts of upto 46% or Rs.6500 on Pathology & Diagnostic Test Packages from trusted Labs in your neighborhood. </li>
-										
+										<li style="color:#fff;margin-bottom:25px;margin-top:25px">Access to specially designed Preventive Healthcare Packages for Corporates
+employees and their family members</li>
+										<li style="color:#fff;margin-bottom:25px">Intuitive website with all the details of tests and packages available at your fingertips.</li>				
+										<li style="color:#fff;margin-bottom:25px">Avail discounts of upto 46% or Rs.6500 on Pathology & Diagnostic Test Packages from trusted Labs in your neighborhood. </li>
+										<li style="color:#fff;margin-bottom:25px">Pathology Samples may be collected from your office at time of your convenience.</li>
 									</ol>
 								</li>
 								
 								
-								<h3 class="" style="color:#222">Simply provide us the details of the concerned person in your organization and Health Please's team will get in touch with him/her. </h3>
+								<h3 class="" style="color:#222;font-family:calibri;font-size:28px">Simply provide us the details of the concerned person in your organization and Health
+Please's team will get in touch with him/her. </h3>
 
 	</div>
 	<div class="col-md-4 col-sm-6 col-xs-12" style="border:">
          <form action="<%=Constants.REQUEST_CORPORATE_PARTNER_POST_URL%>" method="post">   
-         <div class="panel panel-default"> 
-            <div class="panel-heading">
-                <h2 class="text-center panel-title">Become Our Corporate Partner</h2></div>
-            <div class="panel-body" style="background-color:#eee">
+         <div class="panel panel-default" id="corp_form"> 
+            <div class="panel-heading" style="height:50px;background-color:#a4dbf4">
+                <h2 class="text-center panel-title" style="padding-top:2%;font-size:20px">Become Our Corporate Partner</h2></div>
+                 <div class="classGoldenDivider"></div>
+            <div class="panel-body" style="background-color:#fff">
                 <div class="row">
                     <div class="col-lg-10 col-lg-push-1 col-md-10 col-md-push-1 col-sm-10 col-sm-push-1 col-xs-12" style="border: ">
                             <label for="name">Name of Requester</label>
-                            <input class="form-control" name="name" id="name" type="text" required ="required" placeholder="Name" pattern="[a-zA-Z]+">
+                            <input class="form-control" name="name" id="name" type="text" required ="required" placeholder="Name" >
                             <label for="name" style="margin-top:10px">Company Name</label>
-                            <input class="form-control" name="companyName" id="company" type="text" required ="required" placeholder="Company" pattern="[a-zA-Z]+">
+                            <input class="form-control" name="companyName" id="company" type="text" required ="required" placeholder="Company">
                             <label for="name" style="margin-top:10px">Name of HR/Admin</label>
-                            <input class="form-control" name="name" id="hr" type="text" required ="required" placeholder="HR/Admin" pattern="[a-zA-Z]+">
+                            <input class="form-control" name="name" id="hr" type="text" required ="required" placeholder="HR/Admin" >
                              <label style="margin-top:10px">Contact No.</label>
                             <input class="form-control" name="phone" id="contact" required ="required" type="text" placeholder="Mobile" pattern="[0-9]{10}">
+                            <div id="idAppPContactErr"></div>
                             <label style="margin-top:10px">Email of HR/Admin</label>
                             <input class="form-control" name="email" id="email" type="email" required ="required" placeholder="Email">
                             <label style="margin-top:10px">Corporate's Location</label>
-                             <input class="form-control" name="location" id="location" type="text" placeholder="Location" required ="required" pattern="[a-zA-Z]+">
+                             <input class="form-control" name="location" id="location" type="text" placeholder="Location" required ="required">
                            
                         
                     </div>
                 </div>
+        
             </div>
+                  <div class="classGoldenDivider"></div>  
             <div class="panel-footer">
             <div class="row">
             <div class="col-xs-6">
@@ -274,7 +288,7 @@ box-shadow:1px 5px 5px #999;
 	    return false;
 	    }
 	});
- $("#name").keypress(function (e) {	    
+ $("#companyName").keypress(function (e) {	    
 	    var regex = new RegExp("^[a-zA-Z]+$");
 	    var key = e.charCode||e.keyCode;
 	    
@@ -335,7 +349,7 @@ box-shadow:1px 5px 5px #999;
 	    }
 	});
  function validateContact(){
-		var no = document.getElementById("idAppointmentPContact").value;
+		var no = document.getElementById("contact").value;
 		if(isNaN(no))
 		{
 			document.getElementById("idAppPContactErr").innerHTML="Contact must be a number";
