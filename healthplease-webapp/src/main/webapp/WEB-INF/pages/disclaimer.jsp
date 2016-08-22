@@ -9,7 +9,7 @@
 	
     <title>Disclaimer | HealthPlease.in</title>
 
-	</head>
+</head>
 <body>
 
  <div id="wrapper">

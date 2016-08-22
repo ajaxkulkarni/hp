@@ -10,6 +10,9 @@
 	
 
     <title>Top Medical Laboratory Packages and Test at most Affordable prices in Pune | HealthPlease.in</title>
+     <link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
+<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
+<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
 	 <meta name="keywords" content="Affordable Pathlogy Test, Blood Sugar Test, Thyroid Test, Cholestrol Test">
     <meta name="description" content="Pathalogy Test Packages and tests in Top Diagnostic Labs at Affordable prices.Check Blood Sugar Diabettes,Thyroid Cholestrol at lowest prices. ">
 	<!-- Latest compiled and minified CSS -->

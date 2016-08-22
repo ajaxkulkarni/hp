@@ -10,6 +10,9 @@
     <title>Support | HealthPlease.in</title>
   <meta name="keywords" content="HealthPlease Contact, HealthPlease Support">
     <meta name="description" content="Find ways to contact HealthPlease.in. Email us at info[at]HealthPlease.in,  Like us on Facebook, Follow us on Twitter, Connect with us at LinkedIn. ">
+    <link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
+<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
+<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
 <body>
         <%@include file="user_header.jsp" %>
         

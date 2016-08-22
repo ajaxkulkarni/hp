@@ -9,6 +9,9 @@
 <head>
 	
     <title>Sign Up to Store Medical Records and easy Lab bookings | HealthPlease.in</title>
+     <link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
+<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
+<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
 	 <meta name="keywords" content="HealthPlease Sign Up, EMR">
     <meta name="description" content="Sign Up to Book Medical Laboratory Appointments and Store your reports as Electronic Medical Records (EMR) for futrue reference in Pune ">
 	<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
