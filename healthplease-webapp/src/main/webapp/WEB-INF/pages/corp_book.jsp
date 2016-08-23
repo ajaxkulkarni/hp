@@ -180,7 +180,7 @@ box-shadow:1px 5px 5px #999;
 		 <div class="col-md-6 col-sm-6" style="color:#222;font-family:calibri;padding-left:50px"><div style="border-bottom:0.5px solid red"><h1>Corporate Partner</h1></div></div> 
 		  <div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2" style="border:">
 		 	   <!-- <button class="btn btn-primary" type="submit" >Book Corporate Package</button> -->
-		 	   <a href="Corporate.htm" style="height:50px;margin-top:15px" class="btn btn-large btn-primary partButton"><h4 class="" >Book Corporate Package</h4></a>
+		 	   <a href="Corporate" style="height:50px;margin-top:15px" class="btn btn-large btn-primary partButton"><h4 class="" >Book Corporate Package</h4></a>
 		  </div>
 	</div>
 	<div id="msg" class="">
