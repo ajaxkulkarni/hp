@@ -128,9 +128,9 @@ public class JasperUtil {
 					if(values == null || values.length < 2) {
 						continue;
 					}
-					int min = new Integer(StringUtils.trimToEmpty(values[0]));
-					int max = new Integer(StringUtils.trimToEmpty(values[1]));
-					int value = new Integer(parameter.getActualValue());
+					double min = new Double(StringUtils.trimToEmpty(values[0]));
+					double max = new Double(StringUtils.trimToEmpty(values[1]));
+					double value = new Double(parameter.getActualValue());
 					if(value < min || value > max) {
 						parameter.setIsBold("y");
 					}

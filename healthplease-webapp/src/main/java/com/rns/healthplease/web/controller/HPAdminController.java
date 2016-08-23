@@ -1,10 +1,12 @@
 package com.rns.healthplease.web.controller;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -608,6 +612,12 @@ public class HPAdminController implements Constants {
 		lab.setId(labId);
 		return new Gson().toJson(adminBo.getLabusers(lab));
 	}
+	
+	@RequestMapping(value="/upload", method = RequestMethod.POST)
+    public @ResponseBody String upload(MultipartFile report, int appId) {
+		System.out.println("Here!");
+        return RESPONSE_OK;
+    }
 	
 	/*@ExceptionHandler(Exception.class)
 	public @ResponseBody String onGenericException(Exception exception) {

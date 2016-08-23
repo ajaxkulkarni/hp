@@ -313,7 +313,7 @@
                                         </div>
 										<input type="hidden" id = "statusId" name="status.id" value="4"/>
                                         <br>
-                                        <button type="submit" id="btn_file_upload" class="btn btn-primary">Upload</button>
+                                        <button type="button" onclick="uploadReport()" id="btn_file_upload" class="btn btn-primary">Upload</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         <div id="uploadedReports">
@@ -443,6 +443,18 @@ function onUpload(appointmentId) {
 	$("#myModal").modal('show');
 }
 
+function uploadReport() {
+	var formData = new FormData();
+	formData.append("appId", $("#report_appid").val());
+	alert("Here!" + formData);
+	formData.append("report", $("#file_to_upload").files[0]);
+	alert("Here!" + formData);
+	var request = new XMLHttpRequest();
+	request.open("POST", "upload");
+	request.send(formData);
+	
+}
+
 function resetTable() {
 	 //$("#appointments_table").paging({limit:$("#limit").val()});
 	 paginateTable($("#limit").val(), 0);
@@ -476,6 +488,34 @@ $('#search').keyup(function()
 	    		}
 	    	});
 	    }
+	    
+	   /*  $('#file_to_upload').fileupload({
+	        dataType: 'json',
+	 
+	        done: function (e, data) {
+	            $("tr:has(td)").remove();
+	            $.each(data.result, function (index, file) {
+	 
+	                 $("#uploaded-files").append(
+	                        $('<tr/>')
+	                        .append($('<td/>').text(file.fileName))
+	                        .append($('<td/>').text(file.fileSize))
+	                        .append($('<td/>').text(file.fileType))
+	                        .append($('<td/>').html("<a href='rest/controller/get/"+index+"'>Click</a>"))
+	                        )//end $("#uploaded-files").append()
+	            });  
+	        },
+	 
+	        progressall: function (e, data) {
+	            var progress = parseInt(data.loaded / data.total * 100, 10);
+	             $('#progress .bar').css(
+	                'width',
+	                progress + '%'
+	            ); 
+	        },
+	 
+	        dropZone: $('#dropzone')
+	    }); */
 
 </script>
 
