@@ -158,6 +158,13 @@ public class JasperUtil {
 		if (appointment.getLab().getPickUpCharge()!= null) {
 			parameters.put("pickupCharges", appointment.getLab().getPickUpCharge());
 		} 
+		ReportConfigurations reportConfig = appointment.getLab().getReportConfig();
+		if(reportConfig != null) {
+			parameters.put("printRequired", StringUtils.lowerCase(reportConfig.getIsHeader()));
+			parameters.put("pathName", reportConfig.getName());
+			parameters.put("designation", reportConfig.getDesignation());
+			parameters.put("imagePath", reportConfig.getSignaturePath());
+		}
 		parameters.put("total", getTotalPrice(appointment));
 		parameters.put("discount", appointment.getLab().getDiscount() != null ? appointment.getLab().getDiscount().toString() : "0");
 		parameters.put("price", appointment.getLab().getPrice());
