@@ -474,6 +474,7 @@ public class HPLabControllerWeb implements Constants {
 		Appointment app = new Appointment();
 		app.setId(appointmentId);
 		Appointment appointment = labBo.getAppointment(app);
+		appointment.getLab().setReportConfig(manager.getUser().getLab().getReportConfig());
 		JasperUtil.getInvoice(appointment);
 		writeToResponse(response, appointment.getInvoiceData());
 	}

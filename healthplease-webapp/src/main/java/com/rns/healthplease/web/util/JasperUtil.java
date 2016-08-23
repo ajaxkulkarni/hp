@@ -166,7 +166,7 @@ public class JasperUtil {
 			parameters.put("imagePath", reportConfig.getSignaturePath());
 		}
 		parameters.put("total", getTotalPrice(appointment));
-		parameters.put("discount", appointment.getLab().getDiscount() != null ? appointment.getLab().getDiscount().toString() : "0");
+		parameters.put("discount", appointment.getPayment().getDiscount() != null ? appointment.getPayment().getDiscount().toString() : "0");
 		parameters.put("price", appointment.getLab().getPrice());
 		parameters.put("phone", appointment.getUser().getPhone());
 		parameters.put("address", appointment.getUser().getAddress().getArea());
@@ -182,7 +182,7 @@ public class JasperUtil {
 		if(appointment.getLab().getDiscount() == null) {
 			return appointment.getLab().getPrice();
 		}
-		return appointment.getLab().getPrice() + appointment.getLab().getDiscount();
+		return appointment.getLab().getPrice() + appointment.getPayment().getDiscount();
 	}
 
 	private static void addSerialNumbers(List<LabTest> tests) {
