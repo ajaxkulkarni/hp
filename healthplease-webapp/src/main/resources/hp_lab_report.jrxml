@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-08T17:13:10 -->
+<!-- 2016-08-23T21:38:07 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -22,6 +22,7 @@
 	<parameter name="pathName" class="java.lang.String"/>
 	<parameter name="designation" class="java.lang.String"/>
 	<parameter name="imagePath" class="java.lang.String"/>
+	<parameter name="remark" class="java.lang.String"/>
 	<field name="parameters" class="java.util.List"/>
 	<field name="name" class="java.lang.String"/>
 	<background>
@@ -148,7 +149,7 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="180" splitType="Stretch">
+		<band height="214" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<image>
 				<reportElement x="401" y="1" width="100" height="100" uuid="5814f574-7252-4fbd-ae11-d812a4e1d14b"/>
@@ -156,16 +157,22 @@
 			</image>
 			<textField>
 				<reportElement x="401" y="113" width="100" height="20" uuid="dc25118e-111e-48bc-baef-b9cfafd7053f"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{pathName}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="401" y="143" width="100" height="20" uuid="d14c6d0c-62b0-47ca-bef7-d96844669b32"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{designation}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="157" width="67" height="13" uuid="c8371901-4780-48f6-8e2d-5ae7ac575aba"/>
+				<reportElement x="3" y="167" width="67" height="13" uuid="c8371901-4780-48f6-8e2d-5ae7ac575aba"/>
 				<text><![CDATA[Remark:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="54" y="167" width="490" height="30" isPrintWhenDetailOverflows="true" uuid="2aec3dbc-ed28-4e79-84ad-89466b24f9f7"/>
+				<textFieldExpression><![CDATA[$P{remark}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
