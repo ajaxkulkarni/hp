@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-02T01:30:11 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_report_params" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7df0b4c9-a9f5-4694-990d-0bf775f2b11c">
+<!-- 2016-08-24T16:47:48 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_report_params" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" uuid="7df0b4c9-a9f5-4694-990d-0bf775f2b11c">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -28,7 +28,7 @@
 		<fieldDescription><![CDATA[unit]]></fieldDescription>
 	</field>
 	<background>
-		<band height="3" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band splitType="Stretch"/>
@@ -37,37 +37,42 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="45" splitType="Stretch">
+		<band height="18" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="1" y="11" width="100" height="20" uuid="ece6f90c-7d3d-4e04-8508-5cef7d50c3e1"/>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="1" width="100" height="16" uuid="ece6f90c-7d3d-4e04-8508-5cef7d50c3e1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
 				<textElement>
 					<font size="12" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="275" y="11" width="100" height="20" uuid="62e4eb58-ac3d-465d-829d-18e3b8819896"/>
+				<reportElement x="275" y="1" width="100" height="16" uuid="62e4eb58-ac3d-465d-829d-18e3b8819896"/>
 				<textElement>
 					<font size="12" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Normal Value]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="12" width="70" height="20" uuid="9e6d7b1d-6f32-4cb2-a602-317ff163c0b6"/>
+				<reportElement x="381" y="1" width="70" height="14" uuid="9e6d7b1d-6f32-4cb2-a602-317ff163c0b6"/>
 				<textElement>
 					<font size="11" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Unit]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="12" width="100" height="20" uuid="5b0b7cbf-978e-423d-88f2-d5c51574dcbf"/>
+				<reportElement x="180" y="1" width="100" height="17" uuid="5b0b7cbf-978e-423d-88f2-d5c51574dcbf">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
 				<textElement>
 					<font size="12" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Test Value]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="453" y="11" width="89" height="20" uuid="b237c19a-6197-4cdc-8136-1bacfe0387cc"/>
+				<reportElement x="452" y="1" width="89" height="14" uuid="b237c19a-6197-4cdc-8136-1bacfe0387cc"/>
 				<textElement>
 					<font size="11" isBold="true" isUnderline="true"/>
 				</textElement>
@@ -76,21 +81,25 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="39" splitType="Stretch">
+		<band height="17" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="1" y="10" width="159" height="20" uuid="eedd334b-6765-42d6-8e19-7340e2958854"/>
+				<reportElement x="1" y="1" width="159" height="14" uuid="eedd334b-6765-42d6-8e19-7340e2958854">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="281" y="10" width="100" height="20" uuid="7491ca9a-63a3-4ba0-b0f2-71feb90c192d"/>
+				<reportElement x="281" y="1" width="100" height="14" uuid="7491ca9a-63a3-4ba0-b0f2-71feb90c192d"/>
 				<textFieldExpression><![CDATA[$F{normalValue}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="382" y="10" width="70" height="20" uuid="aaee7149-38a8-41cb-93ce-3a7dc8ff5e73"/>
+				<reportElement x="382" y="1" width="70" height="14" uuid="aaee7149-38a8-41cb-93ce-3a7dc8ff5e73"/>
 				<textFieldExpression><![CDATA[$F{unit}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="183" y="10" width="100" height="20" uuid="d951c733-395f-4a4d-939d-26e7a93785a6">
+				<reportElement x="183" y="1" width="100" height="14" uuid="d951c733-395f-4a4d-939d-26e7a93785a6">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$F{isBold}.equals("")]]></printWhenExpression>
 				</reportElement>
 				<textElement>
@@ -99,11 +108,14 @@
 				<textFieldExpression><![CDATA[$F{actualValue}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="454" y="10" width="96" height="20" uuid="c3e89754-4dde-49ba-a1d2-b009501d65ee"/>
+				<reportElement x="452" y="1" width="96" height="14" uuid="c3e89754-4dde-49ba-a1d2-b009501d65ee">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
 				<textFieldExpression><![CDATA[$F{remark}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="180" y="10" width="100" height="20" uuid="29af9692-88c0-4c62-9722-68b326639ace">
+				<reportElement x="183" y="1" width="100" height="14" uuid="29af9692-88c0-4c62-9722-68b326639ace">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$F{isBold}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<textElement>

@@ -9,6 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
+
 </head>
 <body>
 
@@ -19,6 +21,7 @@
 		}
 	
 	</script>
+
 
 	<form method='post' id="form_register" action="<%=Constants.REGISTER_USER_POST_URL %>" >
 				<div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12" id="idErrName">
@@ -33,11 +36,11 @@
 
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12" id="">
                   <label class=" control-label" for="selectbasic">Username / Email *</label>
-           <div class="input-group"> <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div><input type='email' name="email" id='idUsername' placeholder="E-mail" class='form-control classCustomControl' title="Please enter your email address!" required="required"></div> 
+                  <div class="input-group" id="ff"><span class="input-group-addon"> <span class="fa fa-envelope-o"></span></span><input type='email' name="email" id='idUsername' placeholder="E-mail" class='form-control classCustomControl' title="Please enter your email address!" required="required"></div> 
                 </div>
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label class=" control-label" for="selectbasic">Mobile no. *</label>
-                  <div  class="input-group"> <div class="input-group-addon">+91</div><input type='text' name="phone" id='contact' class='form-control classCustomControl numeric' placeholder="Mobile Number" maxlength="10" size="10" title="Please provide Contact no !"></div>
+                  <div  class="input-group"> <div class="input-group-addon">+91</div><input type='text' name="phone" id='contact' class='form-control classCustomControl numeric' placeholder="Mobile Number" maxlength="10" size="10" title="Please provide Contact no !" required="required"></div>
                 </div>
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label class=" control-label" for="selectbasic">Password *</label>
@@ -132,7 +135,7 @@
 	    return false;
 	}
 	return true;
-	
+	}	
 	</script>
 
 </body>

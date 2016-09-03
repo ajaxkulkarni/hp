@@ -17,7 +17,7 @@
     <link href="<c:url value="/resources/css/dialog.css"/>" rel="stylesheet"/>
    
    <!--Adde by vikas for validation error custom messages on form 31-may-2015 -->
-    <link href="<c:url value="/resources/css/internal/form-validation.css"/>" rel="stylesheet">
+ <%--    <link href="<c:url value="/resources/css/internal/form-validation.css"/>" rel="stylesheet"> --%>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	
       <script src="<c:url value="/resources/bootstrap/js/jquery-1.11.2.min.js"/>"></script>

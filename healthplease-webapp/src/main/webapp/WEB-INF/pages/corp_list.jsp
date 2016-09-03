@@ -29,7 +29,7 @@ input[type=number] {-moz-appearance: textfield;}
 
 <body>
 <script type="text/javascript">
-<script src="<c:url value="/resources/js/external/select2/select2.min.js"/>">
+/* <script src="<c:url value="/resources/js/external/select2/select2.min.js"/>"> */
 
 </script>
 

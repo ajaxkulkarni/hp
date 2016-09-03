@@ -318,7 +318,7 @@ function onForgotPassword() {
         <h4 class="modal-title text-center" id="exampleModalLabel">Login</h4>
         <div id="idMsgLogin" class="msg"></div>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="background-color:#fff">
            <div id="msg_login" class="msg">
            </div>
         <form method='post' id="form_login">
@@ -326,13 +326,13 @@ function onForgotPassword() {
         <table class='table table-bordered'>
      
             <tr>
-                <td>Email</td>
+                <td style="color:#000">Email</td>
                 <td><input type='email' name="user.email" id='username' class='form-control' value="" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ></td>
             </tr>
             <tr><td colspan="2" id="idUsernameErr"></td></tr>
      
             <tr>
-                <td>Password</td>
+                <td style="color:#000">Password</td>
                 <td><input type='password' name="user.password" id='password' class='form-control' value="" required></td>
             </tr>
             <%-- <tr><td colspan="2" id="idPasswordErr">	${result}</td></tr> --%>

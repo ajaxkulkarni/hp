@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-23T21:38:40 -->
+<!-- 2016-08-24T23:28:47 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -24,6 +24,8 @@
 	<parameter name="pickupCharges" class="java.lang.Integer"/>
 	<parameter name="printRequired" class="java.lang.String"/>
 	<parameter name="pathName" class="java.lang.String"/>
+	<parameter name="logopath" class="java.lang.String"/>
+	<parameter name="printfooter" class="java.lang.String"/>
 	<parameter name="designation" class="java.lang.String"/>
 	<parameter name="imagePath" class="java.lang.String"/>
 	<parameter name="price" class="java.lang.Integer"/>
@@ -61,7 +63,7 @@
 				<reportElement x="15" y="6" width="105" height="84" uuid="8b35d50b-29bb-49db-9afe-b7d5897a74c5">
 					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
 				</reportElement>
-				<imageExpression><![CDATA["http://db.puneconnect.com/site_media/company_logos/Health_Please_Logo_png.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{logopath}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="222" y="101" width="100" height="20" uuid="55db8816-1f81-472a-89c6-766b1449025d"/>
@@ -191,6 +193,7 @@
 	</columnFooter>
 	<pageFooter>
 		<band height="36" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{printfooter}.equals("y")]]></printWhenExpression>
 			<rectangle>
 				<reportElement x="1" y="6" width="552" height="8" forecolor="#3399FF" backcolor="#3399FF" uuid="9121a783-1877-4b88-8e86-05cc0aa4bca1"/>
 			</rectangle>

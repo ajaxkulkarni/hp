@@ -539,7 +539,7 @@ box-shadow:1px 5px 5px #999;
 			  </div>
 			  <div class="form-group">
 			    <label for="pwd">Mobile No.:</label>
-			    <input type="number" class="form-control" required="required" id="mobile" name="phone">
+			    <input type="text" class="form-control" required="required" id="mobile" name="phone">
 			  </div>
 			  <input type="hidden" name="testName" id="package_name">
 			  <button type="submit" class="btn btn-default" style="margin-top:5%" onsubmit="onSubmit">Submit</button>
@@ -551,11 +551,7 @@ box-shadow:1px 5px 5px #999;
 
 
 <script type="text/javascript">
-function onSubmit(){
-	if(validateContact())
-		return true;
-	else return false;
-}
+
 function loadModal(packageName) {
 	
 	$("#package_name").val(packageName);
@@ -563,26 +559,23 @@ function loadModal(packageName) {
 	$("#myModal").modal('show');
 	
 }
-function validateContact(){
-	var no = document.getElementById("mobile").value;
-	if(isNaN(no))
-	{
-/* 		document.getElementById("idAppPContactErr").innerHTML="Contact must be a number";
- */		return false
-	}
-	if(no[0] ==="0" )
-	{
-/* 		document.getElementById("idAppPContactErr").innerHTML= "enter valid Phone no.";
- */		return false;	
-	}
-	if(no.length!= 10)
-	{
-/* 		document.getElementById("idAppPContactErr").innerHTML= "enter valid Phone no.";
- */		return false;	
-	}
-	/* document.getElementById("idAppPContactErr").innerHTML= ""; */
-	return true;
-}
+$("#mobile").keypress(function (e) {
+    var regex = new RegExp("^[0-9]+$");
+    var key = e.charCode||e.keyCode;
+    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+    if (regex.test(str)) {
+        return true;
+    }
+    else if(key == 8||key == 46|| key == 9||key==37||key==39)
+    	return true;
+    else
+    {
+    e.preventDefault();
+    //alert('Please Enter Alphabate');
+    return false;
+    }
+});
+
 
 </script>
 
