@@ -166,7 +166,7 @@
                <button type="submit" class="btn btn-primary" name="btn-save" id="submit">
                    <span class="glyphicon glyphicon-plus"></span> Update
                </button>  
-               <a href="test.php" class="btn btn-large btn-success"><i class="glyphicon glyphicon-backward"></i> &nbsp; Back to index</a>
+               <a href="<%=Constants.ADMIN_EDIT_TEST_GET_URL%>" class="btn btn-large btn-success"><i class="glyphicon glyphicon-backward"></i> &nbsp; Back to index</a>
             </div>
             <!-- <div id="edituser">
                 <button type="button" class="btn btn-primary" name="btn-update" id="btn-update">

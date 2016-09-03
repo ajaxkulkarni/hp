@@ -250,15 +250,17 @@ function onLogin() {
 		slotId = $("#idSlot").val();
 	}
 	var gotoPage = "";
-	if(window.location.href.search("Corporate") > 0) {
+	if(window.location.href.search("corporatePartner.htm") > 0 || window.location.href.search("Corporate") > 0) {
 		gotoPage = window.location.href;
 	}
+	//alert(gotoPage);
 	$.ajax({
 		type: "POST",
 		url : "loginAjax?username=" +$("#username").val() + "&password=" + $("#password").val() + "&slotId=" + slotId + "&gotoPage=" + gotoPage,
 		success: function(response){
 				$("#post_login").hide();
 				$("#pre_login").show();
+				//alert(response);
                 if (response == $("#root_url").val() ||  response.search(".htm") > 0 || response.search("Corporate") > 0 ){
 					window.location.href = response;
                 } else {

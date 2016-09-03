@@ -229,7 +229,7 @@ Please's team will get in touch with him/her. </h3>
                             <label for="name" style="margin-top:10px">Company Name</label>
                             <input class="form-control" name="companyName" id="company" type="text" required ="required" placeholder="Company">
                             <label for="name" style="margin-top:10px">Name of HR/Admin</label>
-                            <input class="form-control" name="name" id="hr" type="text" required ="required" placeholder="HR/Admin" >
+                            <input class="form-control" name="adminName" id="hr" type="text" required ="required" placeholder="HR/Admin" >
                              <label style="margin-top:10px">Contact No.</label>
                             <input class="form-control" name="phone" id="contact" required ="required" type="text" placeholder="Mobile" pattern="[0-9]{10}">
                             <div id="idAppPContactErr"></div>

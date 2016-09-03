@@ -98,6 +98,9 @@ public class MailUtil implements Constants, Runnable {
 			result = StringUtils.replace(result, "{testName}", form.getTestName());
 			result = StringUtils.replace(result, "{labName}", form.getLabName());
 			result = StringUtils.replace(result, "{company}", form.getCompanyName());
+			result = StringUtils.replace(result, "{adminName}", form.getAdminName());
+			result = StringUtils.replace(result, "{location}", form.getLocation());
+			
 			message.setContent(result, "text/html");
 			
 			if(MAIL_TYPE_CORPORATE_REQUEST_ADMIN.equals(type)) {
@@ -105,7 +108,7 @@ public class MailUtil implements Constants, Runnable {
 			}
 
 			if (Arrays.asList(ADMIN_MAIL_TYPES).contains(StringUtils.trimToEmpty(type))) {
-				message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(getEmails(form.getAdmins())));
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(getEmails(form.getAdmins())));
 			} else {
 				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(form.getEmail()));
 			}
@@ -174,11 +177,7 @@ public class MailUtil implements Constants, Runnable {
 					result = StringUtils.replace(result, "{status}", appointment.getStatus().getName());
 					result = StringUtils.replace(result, "{cancelReason}", appointment.getStatus().getCancellationReason());
 				}
-				result = StringUtils.replace(result, "{discount}", "");
-				if(appointment.getLab().getDiscount() != null) {
-					result = StringUtils.replace(result, "{discount}", appointment.getLab().getDiscount().toString());
-				}
-
+				result = StringUtils.replace(result, "{discount}", appointment.getPayment().getDiscount() != null ? appointment.getPayment().getDiscount().toString():"");
 			}
 
 			if (MAIL_TYPE_REPORT_UPLOAD.equals(type)) {
@@ -226,8 +225,8 @@ public class MailUtil implements Constants, Runnable {
 			}
 			builder.append(user.getEmail()).append(",");
 		}
-		StringUtils.removeEnd(builder.toString(), ",");
-		return builder.toString();
+		return StringUtils.removeEnd(builder.toString(), ",");
+		//return builder.toString();
 	}
 
 	private void attachReport(Message message, Appointment appointment, String result) throws MessagingException, IOException {
