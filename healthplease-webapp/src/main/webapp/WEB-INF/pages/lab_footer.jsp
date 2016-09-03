@@ -206,9 +206,15 @@
     	 $("#report_form").submit();
      }
      
-     function saveReport() {
-    	 $("#is_send_mail").val('P');
+     function exportReport() {
+    	 $("#is_send_mail").val('N');
     	 $("#report_form").submit();
+     }
+     
+     function saveReport() {
+    	 $("#is_send_mail").val('N');
+    	 $("#report_form").attr('action', "saveReport").submit();
+    	 //$("#report_form").submit();
      }
      
      

@@ -190,8 +190,8 @@ Custom Fonts
 									</c:forEach>
 								</div>
 								<button type="button" class="btn btn-primary" onclick="sendReport()">Send</button>
-								<button type="submit" class="btn btn-primary">Export</button>
-								<button type="submit" class="btn btn-primary" onclick="saveReport()">Save</button>
+								<button type="button" class="btn btn-primary" onclick="exportReport()">Export</button>
+								<button type="button" class="btn btn-primary" onclick="saveReport()">Save</button>
 								</div>
 							</form>
 							<!-- .panel-body -->

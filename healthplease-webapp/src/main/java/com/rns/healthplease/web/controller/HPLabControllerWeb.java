@@ -56,7 +56,7 @@ public class HPLabControllerWeb implements Constants {
 
 	private UserBo userBo;
 	private LabBo labBo;
-	
+
 	public HPLabControllerWeb() {
 		LoggingUtil.logMessage("##### Deployment Successful! #########");
 	}
@@ -96,12 +96,13 @@ public class HPLabControllerWeb implements Constants {
 	@RequestMapping(value = "/" + LAB_HOME_URL_GET, method = RequestMethod.GET)
 	public String initHomePage(ModelMap model, String appointmentsTitle) {
 		initHome(model);
-		/*if (StringUtils.isNotEmpty(appointmentsTitle)) {
-			model.addAttribute(MODEL_HEADER, appointmentsTitle);
-		} else {
-			//initHome(model);
-			
-		}*/
+		/*
+		 * if (StringUtils.isNotEmpty(appointmentsTitle)) {
+		 * model.addAttribute(MODEL_HEADER, appointmentsTitle); } else {
+		 * //initHome(model);
+		 * 
+		 * }
+		 */
 		model.addAttribute(MODEL_HEADER, TODAY_HEADER);
 		model.addAttribute(MODEL_APPOINTMENTS, manager.getUser().getTodaysAppointments());
 		return LAB_DASHBOARD_PAGE;
@@ -137,7 +138,7 @@ public class HPLabControllerWeb implements Constants {
 		model.addAttribute(MODEL_HEADER, TOTAL_HEADER);
 		return LAB_DASHBOARD_PAGE;
 	}
-	
+
 	@RequestMapping(value = "/" + LAB_APPOINTMENTS_FOR_DATES_GET_URL, method = RequestMethod.GET)
 	public String initAppointmentsForDate(ModelMap model, String appointmentsTitle) {
 		initHome(model);
@@ -151,7 +152,7 @@ public class HPLabControllerWeb implements Constants {
 		String result = "";
 		if (!appointment.getReport().isEmpty()) {
 			appointment.getTests().get(0).setReport(appointment.getReport());
-			//appointment.getTests().add(test);
+			// appointment.getTests().add(test);
 			appointment.setUser(manager.getUser());
 			result = labBo.uploadReport(appointment);
 			manager.setResult(result);
@@ -184,7 +185,7 @@ public class HPLabControllerWeb implements Constants {
 		appointment.setTests(CommonUtils.prepareTests(testIds));
 		appointment.setDate(CommonUtils.convertDate(appDate));
 		userBo.populateAppointment(appointment);
-		if(appointment.getPayment() == null) {
+		if (appointment.getPayment() == null) {
 			appointment.setPayment(new Payment());
 			appointment.getPayment().setAmount(appointment.getLab().getPrice());
 		} else {
@@ -271,7 +272,7 @@ public class HPLabControllerWeb implements Constants {
 	public RedirectView blockSlots(ModelMap model, String[] availableSlots, String date, String slotType) {
 
 		List<Slot> slots = CommonUtils.getSlots(availableSlots, date, slotType);
-		//prepareCurrentSlots(slots);
+		// prepareCurrentSlots(slots);
 		Lab lab = manager.getUser().getLab();
 		Date convertedDate = CommonUtils.convertDate(date);
 		labBo.blockSlots(slots, lab, convertedDate, slotType);
@@ -279,24 +280,14 @@ public class HPLabControllerWeb implements Constants {
 		return new RedirectView(GET_LAB_SLOTS_GET_URL + "?day=" + CommonUtils.getDay(convertedDate));
 	}
 
-	/*private void prepareCurrentSlots(List<Slot> slots) {
-		List<Slot> currentSlots = manager.getUser().getLab().getCurrentSlots();
-		if (CollectionUtils.isEmpty(currentSlots)) {
-			return;
-		}
-		for (Slot slot : currentSlots) {
-			boolean found = false;
-			for (Slot availableSlot : slots) {
-				if (slot.getId() == availableSlot.getId()) {
-					slot.setBlocked(false);
-					found = true;
-				}
-			}
-			if (!found) {
-				slot.setBlocked(true);
-			}
-		}
-	}*/
+	/*
+	 * private void prepareCurrentSlots(List<Slot> slots) { List<Slot>
+	 * currentSlots = manager.getUser().getLab().getCurrentSlots(); if
+	 * (CollectionUtils.isEmpty(currentSlots)) { return; } for (Slot slot :
+	 * currentSlots) { boolean found = false; for (Slot availableSlot : slots) {
+	 * if (slot.getId() == availableSlot.getId()) { slot.setBlocked(false);
+	 * found = true; } } if (!found) { slot.setBlocked(true); } } }
+	 */
 
 	@RequestMapping(value = "/" + GET_APPOINTMENTS_FOR_DATES_POST_URL, method = RequestMethod.POST)
 	public RedirectView getAppointmentsForDates(ModelMap model, String date1, String date2) {
@@ -309,12 +300,11 @@ public class HPLabControllerWeb implements Constants {
 	@RequestMapping(value = "/" + DOWNLOAD_EXCEL_GET_URL, method = RequestMethod.GET)
 	public ModelAndView downloadExcel(ModelMap model, String header) {
 		List<Appointment> appointments = new ArrayList<Appointment>();
-		appointments = manager.getUser().getSelectedAppointments();
-		//appointments = CommonUtils.getAppointmentsByType(manager,header);
+		// appointments = manager.getUser().getSelectedAppointments();
+		appointments = CommonUtils.getAppointmentsByType(manager, header);
 		ModelAndView modelAndView = new ModelAndView(EXCEL_VIEW, MODEL_APPOINTMENTS, appointments);
 		return modelAndView;
 	}
-
 
 	@RequestMapping(value = "/" + CANEL_APPOINTMENT_LAB_POST_URL, method = RequestMethod.POST)
 	public RedirectView cancelAppointment(ModelMap model, Appointment appointment) {
@@ -357,16 +347,16 @@ public class HPLabControllerWeb implements Constants {
 		manager.setResult(null);
 		return LAB_SETTINGS_PAGE;
 	}
-	
+
 	@RequestMapping(value = "/" + UPDATE_LAB_REPORT_SETTINGS_POST_URL, method = RequestMethod.POST)
 	public RedirectView updateSettings(ModelMap model, Lab lab) {
 		manager.setResult(labBo.updateReportConfigurations(lab));
 		return new RedirectView(LAB_SETTINGS_GET_URL);
 	}
-	
+
 	@RequestMapping(value = "/" + LAB_PREPARE_REPORT_GET_URL, method = RequestMethod.GET)
 	public String initPrepareReport(ModelMap model, int appointmentId) {
-		if(CollectionUtils.isEmpty(manager.getUser().getAppointments())) {
+		if (CollectionUtils.isEmpty(manager.getUser().getAppointments())) {
 			return null;
 		}
 		Appointment app = new Appointment();
@@ -381,9 +371,9 @@ public class HPLabControllerWeb implements Constants {
 
 	@RequestMapping(value = "/getAppointmentDetails", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody String getAppointment(Integer appointmentId, String header, ModelMap model) {
-		List<Appointment> appointments = CommonUtils.getAppointmentsByType(manager,header);
+		List<Appointment> appointments = CommonUtils.getAppointmentsByType(manager, header);
 		Appointment app = null;
-		if(CollectionUtils.isEmpty(appointments)) {
+		if (CollectionUtils.isEmpty(appointments)) {
 			return null;
 		}
 		for (Appointment appointment : appointments) {
@@ -395,30 +385,33 @@ public class HPLabControllerWeb implements Constants {
 		}
 		return new Gson().toJson(app);
 	}
-	
-	/*@RequestMapping(value = "/" + GENERATE_REPORT_POST_URL, method = RequestMethod.POST)
-	public ModelAndView generateReport(ModelMap model,Appointment appointment) {
-		if(CollectionUtils.isEmpty(manager.getUser().getSelectedAppointments())) {
-			return new ModelAndView(PDF_VIEW, MODEL_APPOINTMENT, appointment);
-		}
-		Appointment currentAppointment = manager.getUser().getSelectedAppointments().get(0);
-		setTestValues(currentAppointment, appointment);
-		currentAppointment.setPrepareReport(PdfUtil.createPdf(currentAppointment));
-		if(appointment.getPrintRequired()!= null && YES == appointment.getPrintRequired().charValue()) {
-			String result = labBo.uploadReport(currentAppointment);
-			manager.setResult(result);
-			return new ModelAndView(new RedirectView(LAB_PREPARE_REPORT_GET_URL + "?appointmentId=" + currentAppointment.getId()));
-		}
-		return new ModelAndView(PDF_VIEW, MODEL_APPOINTMENT, currentAppointment);
-	}*/
-	
+
+	/*
+	 * @RequestMapping(value = "/" + GENERATE_REPORT_POST_URL, method =
+	 * RequestMethod.POST) public ModelAndView generateReport(ModelMap
+	 * model,Appointment appointment) {
+	 * if(CollectionUtils.isEmpty(manager.getUser().getSelectedAppointments()))
+	 * { return new ModelAndView(PDF_VIEW, MODEL_APPOINTMENT, appointment); }
+	 * Appointment currentAppointment =
+	 * manager.getUser().getSelectedAppointments().get(0);
+	 * setTestValues(currentAppointment, appointment);
+	 * currentAppointment.setPrepareReport
+	 * (PdfUtil.createPdf(currentAppointment));
+	 * if(appointment.getPrintRequired()!= null && YES ==
+	 * appointment.getPrintRequired().charValue()) { String result =
+	 * labBo.uploadReport(currentAppointment); manager.setResult(result); return
+	 * new ModelAndView(new RedirectView(LAB_PREPARE_REPORT_GET_URL +
+	 * "?appointmentId=" + currentAppointment.getId())); } return new
+	 * ModelAndView(PDF_VIEW, MODEL_APPOINTMENT, currentAppointment); }
+	 */
+
 	@RequestMapping(value = "/" + GENERATE_REPORT_POST_URL, method = RequestMethod.POST)
-	public void generateReport(ModelMap model,Appointment appointment,String[] testIds,ReportConfigurations reportConfigurations, HttpServletResponse response) throws JRException, IOException {
-		String generateReportView = LAB_PREPARE_REPORT_GET_URL + "?appointmentId=" + appointment.getId();
+	public void generateReport(ModelMap model, Appointment appointment, String[] testIds, ReportConfigurations reportConfigurations, HttpServletResponse response)
+			throws JRException, IOException {
 		Appointment app = new Appointment();
 		app.setId(appointment.getId());
 		Appointment currentAppointment = labBo.getAppointment(app);
-		if(currentAppointment == null) {
+		if (currentAppointment == null) {
 			return;
 		}
 		userBo.populateLabDetails(manager.getUser(), currentAppointment.getLab().getId());
@@ -428,31 +421,53 @@ public class HPLabControllerWeb implements Constants {
 		currentAppointment.setLab(lab);
 		currentAppointment.setStatus(new AppointmentStatus(3));
 		setTestValues(currentAppointment, appointment, testIds);
-		//currentAppointment.setPrepareReport(PdfUtil.createPdf(currentAppointment));
-		if(appointment.getPrintRequired() == null || 'P' != appointment.getPrintRequired()) {
+		// currentAppointment.setPrepareReport(PdfUtil.createPdf(currentAppointment));
+		if (appointment.getPrintRequired() == null || 'P' != appointment.getPrintRequired()) {
 			JasperUtil.getReport(currentAppointment);
 		}
-		if(appointment.getPrintRequired()!= null && YES == appointment.getPrintRequired().charValue()) {
+		if (appointment.getPrintRequired() != null && YES == appointment.getPrintRequired().charValue()) {
 			String result = labBo.uploadReport(currentAppointment);
-			if(RESPONSE_OK.equals(result)) {
+			if (RESPONSE_OK.equals(result)) {
 				result = "Your report has been uploaded and sent to the user successfully!";
 			}
 			manager.setResult(result);
 		} else {
 			String result = labBo.updateTestResults(currentAppointment);
-			if(RESPONSE_OK.equals(result)) {
+			if (RESPONSE_OK.equals(result)) {
 				result = "Test values updated successfully!";
 			}
 			manager.setResult(result);
 		}
-		/*if(appointment.getPrintRequired() != null && 'P' == appointment.getPrintRequired()) {
-			return;
-		}*/
+		/*
+		 * if(appointment.getPrintRequired() != null && 'P' ==
+		 * appointment.getPrintRequired()) { return; }
+		 */
 		byte[] reportData = currentAppointment.getReportData();
-		if(reportData == null) {
+		if (reportData == null) {
 			return;
 		}
 		writeToResponse(response, reportData);
+	}
+
+	@RequestMapping(value = "/" + "saveReport", method = RequestMethod.POST)
+	public RedirectView saveReport(ModelMap model, Appointment appointment, String[] testIds, ReportConfigurations reportConfigurations) throws JRException, IOException {
+		RedirectView generateReportView = new RedirectView(LAB_PREPARE_REPORT_GET_URL + "?appointmentId=" + appointment.getId());
+		Appointment app = new Appointment();
+		app.setId(appointment.getId());
+		Appointment currentAppointment = labBo.getAppointment(app);
+		if (currentAppointment == null) {
+			return generateReportView;
+		}
+		
+		currentAppointment.setStatus(new AppointmentStatus(3));
+		setTestValues(currentAppointment, appointment, testIds);
+
+		String result = labBo.updateTestResults(currentAppointment);
+		if (RESPONSE_OK.equals(result)) {
+			result = "Test values updated successfully!";
+		}
+		manager.setResult(result);
+		return generateReportView;
 	}
 
 	private void writeToResponse(HttpServletResponse response, byte[] reportData) {
@@ -468,9 +483,9 @@ public class HPLabControllerWeb implements Constants {
 			}
 		}
 	}
-	
+
 	@RequestMapping(value = "/" + LAB_INVOICE_GET_URL, method = RequestMethod.GET)
-	public void generateInvoice(int appointmentId,ModelMap model, HttpServletResponse response) throws JRException, IOException {
+	public void generateInvoice(int appointmentId, ModelMap model, HttpServletResponse response) throws JRException, IOException {
 		Appointment app = new Appointment();
 		app.setId(appointmentId);
 		Appointment appointment = labBo.getAppointment(app);
@@ -478,41 +493,41 @@ public class HPLabControllerWeb implements Constants {
 		JasperUtil.getInvoice(appointment);
 		writeToResponse(response, appointment.getInvoiceData());
 	}
-	
+
 	private void setTestValues(Appointment currentAppointment, Appointment appointment, String[] testIds) {
-		if(appointment == null || CollectionUtils.isEmpty(appointment.getTests()) || ArrayUtils.isEmpty(testIds)) {
+		if (appointment == null || CollectionUtils.isEmpty(appointment.getTests()) || ArrayUtils.isEmpty(testIds)) {
 			return;
 		}
 		List<LabTest> tests = new ArrayList<LabTest>();
-		for(LabTest test: appointment.getTests()) {
-			if(test == null || test.getId() == null || !Arrays.asList(testIds).contains(String.valueOf(test.getId()))) {
+		for (LabTest test : appointment.getTests()) {
+			if (test == null || test.getId() == null || !Arrays.asList(testIds).contains(String.valueOf(test.getId()))) {
 				continue;
 			}
-			for(LabTest labTest:currentAppointment.getTests()) {
-				if(labTest.getId().intValue() == test.getId().intValue()) {
+			for (LabTest labTest : currentAppointment.getTests()) {
+				if (labTest.getId().intValue() == test.getId().intValue()) {
 					setParameters(test, labTest);
 					tests.add(labTest);
 					break;
 				}
 			}
 		}
-		if(currentAppointment.getTests().size() > tests.size()) {
+		if (currentAppointment.getTests().size() > tests.size()) {
 			currentAppointment.setStatus(new AppointmentStatus(4));
 		}
 		currentAppointment.setTests(tests);
 	}
 
 	private void setParameters(LabTest test, LabTest labTest) {
-		if(CollectionUtils.isEmpty(test.getParameters()) || CollectionUtils.isEmpty(labTest.getParameters())) {
+		if (CollectionUtils.isEmpty(test.getParameters()) || CollectionUtils.isEmpty(labTest.getParameters())) {
 			return;
 		}
 		List<TestParameter> params = new ArrayList<TestParameter>();
-		for(TestParameter parameter: test.getParameters()) {
-			if(parameter == null || parameter.getId() == null || StringUtils.isEmpty(parameter.getActualValue())) {
+		for (TestParameter parameter : test.getParameters()) {
+			if (parameter == null || parameter.getId() == null || StringUtils.isEmpty(parameter.getActualValue())) {
 				continue;
 			}
-			for(TestParameter param:labTest.getParameters()) {
-				if(parameter.getId().intValue() == param.getId().intValue()) {
+			for (TestParameter param : labTest.getParameters()) {
+				if (parameter.getId().intValue() == param.getId().intValue()) {
 					param.setActualValue(parameter.getActualValue());
 					param.setRemark(parameter.getRemark());
 					params.add(param);
@@ -521,9 +536,9 @@ public class HPLabControllerWeb implements Constants {
 		}
 		labTest.setParameters(params);
 	}
-	
+
 	@RequestMapping(value = "/" + GET_LAB_SIGNATURE_GET_URL, method = RequestMethod.GET)
-	public void getReport(int labId,HttpServletResponse response, ModelMap model) {
+	public void getReport(int labId, HttpServletResponse response, ModelMap model) {
 		try {
 			Lab lab = new Lab();
 			lab.setId(labId);
@@ -541,9 +556,9 @@ public class HPLabControllerWeb implements Constants {
 			LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(e));
 		}
 	}
-	
+
 	@RequestMapping(value = "/" + UPLOAD_LOGO_POST_URL, method = RequestMethod.POST)
-	public RedirectView uploadLabLogo(MultipartFile logoFile,Lab lab, ModelMap model) {
+	public RedirectView uploadLabLogo(MultipartFile logoFile, Lab lab, ModelMap model) {
 		manager.setResult(labBo.uploadLogo(lab, logoFile));
 		return new RedirectView(LAB_SETTINGS_GET_URL);
 	}

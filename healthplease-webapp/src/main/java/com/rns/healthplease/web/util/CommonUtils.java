@@ -428,6 +428,8 @@ public class CommonUtils implements Constants {
 			return manager.getUser().getCancelledAppointments();
 		} else if (TOTAL_HEADER.equals(StringUtils.trimToEmpty(header))) {
 			return manager.getUser().getAppointments();
+		} else if (StringUtils.containsIgnoreCase(header, "From")) {
+			return manager.getUser().getAppointments();
 		}
 		return manager.getUser().getTodaysAppointments();
 	}
