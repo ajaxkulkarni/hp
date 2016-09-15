@@ -71,13 +71,13 @@ text-align: center;
         	</div>
         	 <div class="col-md-3 col-sm-3 col-xs-6" style="border:none;padding-top:8px;padding-right:10%;margin-top:1.5%">	
         	    <form id="labsForm" action="<%=Constants.GET_PRICING_POST_URL %>" method="post">
-                    <select id="labs" name="id" onChange="getPricing()" style="width:100%;height:28px;">
+                    <select id="labs" name="id" onChange="getPricing('lab_name_2')" style="width:100%;height:28px;">
                       <option value="${lab.id}" selected>${lab.name}</option>
                       <c:forEach items="${labs}" var="lab">
 						<option value="${lab.id}">${lab.name}</option>
                       </c:forEach>
                     </select>
-                    <input type="hidden" id="lab_name" value="${lab.name}" name="name"/>
+                    <input type="hidden" id="lab_name_2" value="${lab.name}" name="name"/>
 					</form>
 			</div>
 			 <div class="col-md-4 col-sm-4 col-xs-12" style="border:;margin-top:2%">
@@ -133,14 +133,14 @@ text-align: center;
        
         	 <div class="col-md-4 col-lg-4 col-xs-12" style="padding-top:17%;padding-bottom:20%;border:"> 	
         	    <form id="labsForm" action="<%=Constants.GET_PRICING_POST_URL %>" method="post">
-                    <select id="labs" name="id" onChange="getPricing()" style="width:200px;height:28px;">
+                    <select id="labs" name="id" onChange="getPricing('lab_name')" style="width:200px;height:28px;">
                     <option value="${lab.id}" selected>${lab.name}</option>
                       <option value="" selected="selected">select a lab</option>
                       <c:forEach items="${labs}" var="lab">
 						<option value="${lab.id}">${lab.name}</option>
                       </c:forEach>
                     </select>
-                    <input type="hidden" name="lab_name"  value="${lab.name}" name="name"/>
+                    <input type="hidden" id="lab_name"  value="${lab.name}" name="name"/>
 					</form>
 					</div>
 			</div>
@@ -196,8 +196,9 @@ text-align: center;
 	</div>
     <script type="text/javascript">
     
-    function getPricing() {
-    	$("#lab_name").val($("#labs option:selected").text());
+    function getPricing(tag) {
+    	$("#" + tag).val($("#labs option:selected").text());
+    	//alert($("#lab_name").val());
     	$("#labsForm").submit();
     }
     

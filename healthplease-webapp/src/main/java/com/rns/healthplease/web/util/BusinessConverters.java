@@ -507,6 +507,9 @@ public class BusinessConverters {
 		if(StringUtils.isNotEmpty(reportConfigurations.getSignaturePath())) {
 			reportConfig.setSignatureFileLocation(reportConfigurations.getSignaturePath());
 		}
+		if(StringUtils.isNotEmpty(reportConfigurations.getIsSignature())) {
+			reportConfig.setSignatureRequired(reportConfigurations.getIsSignature());
+		}
 		if(lab.getId() != null) {
 			reportConfig.setLabId(lab.getId());
 		}

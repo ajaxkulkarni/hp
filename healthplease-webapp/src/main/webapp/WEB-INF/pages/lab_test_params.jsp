@@ -133,6 +133,15 @@ Custom Fonts
 				</c:if>
            </div> 
            
+           <div class="col-md-4">
+				<c:if test="${user.lab.reportConfig.isSignature == 'y'}">
+					<input type="checkbox" name="isSignature" value="y" checked> Include Signature
+				</c:if>
+				<c:if test="${user.lab.reportConfig.isSignature != 'y'}">
+					<input type="checkbox" name="isSignature" value="y"> Include Signature
+				</c:if>
+           </div> 
+           
 			</div>
 			<div class="row" style="margin:20px"">
 			<div class="col-md-8">

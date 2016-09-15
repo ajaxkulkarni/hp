@@ -356,6 +356,7 @@ public class DataConverters {
 		reportConfigurations.setName(reportConfig.getSignatureName());
 		reportConfigurations.setDesignation(reportConfig.getSignatureDesignation());
 		reportConfigurations.setSignaturePath(reportConfig.getSignatureFileLocation());
+		reportConfigurations.setIsSignature(reportConfig.getSignatureRequired());
 		return reportConfigurations;
 	}
 

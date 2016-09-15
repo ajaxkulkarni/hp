@@ -1,6 +1,8 @@
 package com.rns.healthplease.web.controller;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRException;
@@ -561,6 +564,26 @@ public class HPLabControllerWeb implements Constants {
 	public RedirectView uploadLabLogo(MultipartFile logoFile, Lab lab, ModelMap model) {
 		manager.setResult(labBo.uploadLogo(lab, logoFile));
 		return new RedirectView(LAB_SETTINGS_GET_URL);
+	}
+	
+	@RequestMapping(value = "/" + "getLabLogo", method = RequestMethod.GET)
+	public void generateReport(ModelMap model, String logoPath, HttpServletResponse response) {
+		if(StringUtils.isEmpty(logoPath)) {
+			return;
+		}
+		try {
+			InputStream is = new FileInputStream(new File(logoPath));
+			if (is != null) {
+				IOUtils.copy(is, response.getOutputStream());
+				response.setHeader("Content-Disposition", "attachment; filename=\"logo\"");
+				response.flushBuffer();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

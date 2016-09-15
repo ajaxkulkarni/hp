@@ -10,6 +10,7 @@ public class ReportConfigurations {
 	private String name;
 	private String designation;
 	private String signaturePath;
+	private String isSignature;
 	private MultipartFile signatureFile;
 	
 	public Integer getId() {
@@ -53,6 +54,12 @@ public class ReportConfigurations {
 	}
 	public void setSignatureFile(MultipartFile signatureFile) {
 		this.signatureFile = signatureFile;
+	}
+	public String getIsSignature() {
+		return isSignature;
+	}
+	public void setIsSignature(String isSignature) {
+		this.isSignature = isSignature;
 	}
 	
 

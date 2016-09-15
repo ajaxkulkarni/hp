@@ -57,6 +57,8 @@
         padding: 3px 10px;
         box-shadow: 1px -2px 0px #F80, -1px -2px 0px #F80;
         background-color: #FFF;
+        #max-width: 100%;
+    	max-height: 100%;
     }
 
 .paging-nav {
@@ -97,7 +99,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://www.healthplease.in/"><img src="<c:url value="/resources/images/LOGO-2.png"/>" class="classLogoImg"/></a>
+                <a class="navbar-brand" href="http://www.healthplease.in/"><img src="getLabLogo?logoPath=${user.lab.logo}" class="classLogoImg"/></a>
             </div>
             <!-- /.navbar-header -->
 

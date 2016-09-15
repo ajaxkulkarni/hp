@@ -96,10 +96,14 @@ public class JasperUtil {
 		parameters.put("labAddress", appointment.getLab().getAddress());
 		parameters.put("doctorName", appointment.getDoctorName());
 		parameters.put("printRequired", "y");
+		parameters.put("printFooter", "y");
+		parameters.put("printSign", "y");
 		parameters.put("remark", appointment.getRemark());
 		ReportConfigurations reportConfig = appointment.getLab().getReportConfig();
 		if(reportConfig != null) {
-			parameters.put("printRequired", StringUtils.lowerCase(reportConfig.getIsHeader()));
+			parameters.put("printRequired", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsHeader())));
+			parameters.put("printFooter", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsFooter())));
+			parameters.put("printSign", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsSignature())));
 			parameters.put("pathName", reportConfig.getName());
 			parameters.put("designation", reportConfig.getDesignation());
 			parameters.put("imagePath", reportConfig.getSignaturePath());
@@ -123,6 +127,9 @@ public class JasperUtil {
 		for(LabTest test: tests) {
 			if(CollectionUtils.isNotEmpty(test.getParameters())) {
 				for(TestParameter parameter: test.getParameters()) {
+					if(parameter.getActualValue() == null) {
+						continue;
+					}
 					parameter.setIsBold("");
 					String[] values = StringUtils.split(parameter.getNormalValue(), "-");
 					if(values == null || values.length < 2) {
@@ -158,6 +165,7 @@ public class JasperUtil {
 		if (appointment.getLab().getPickUpCharge()!= null) {
 			parameters.put("pickupCharges", appointment.getLab().getPickUpCharge());
 		} 
+		parameters.put("printRequired", "y");
 		ReportConfigurations reportConfig = appointment.getLab().getReportConfig();
 		if(reportConfig != null) {
 			parameters.put("printRequired", StringUtils.lowerCase(reportConfig.getIsHeader()));
@@ -174,7 +182,6 @@ public class JasperUtil {
 		// JRBeanCollectionDataSource testSource = new
 		// JRBeanCollectionDataSource(new ArrayList());
 		parameters.put("labTests", appointment.getTests());
-		parameters.put("printRequired", "y");
 		appointment.setInvoiceData(generateReport(parameters, null, LAB_INVOICE_TEMPLATE));
 	}
 

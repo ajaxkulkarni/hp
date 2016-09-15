@@ -79,6 +79,8 @@
                     <table class="table table-striped table-hover">
                             <thead>
                                     <tr>
+                                    		<th>Sr. No.
+                                            </th>
                                             <th>Lab Id
                                             </th>
                                             <th>Lab Name
@@ -105,6 +107,7 @@
                          <tr>
                          <form action="<%=Constants.ADMIN_EDIT_LAB_POST_URL%>" method="post">
                         <td>${i.index + 1}</td>
+                        <td>${lab.id}</td>
                         <td id="labNameT${lab.id}">${lab.name}</td>
                         <td id="labAreaT${lab.id}">${lab.area.name}</td>
                         <td id="labEmailT${lab.id}">${lab.email}</td>

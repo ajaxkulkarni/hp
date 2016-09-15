@@ -92,6 +92,8 @@
 												</div>
 											</div>
 										</div>
+										
+										
 
 										<div class="panel panel-default">
 											<div class="panel-heading">Signature</div>
@@ -105,6 +107,16 @@
 													<label><input type="checkbox" value="">Include
 														Signature</label>
 												</div> -->
+												<div class="checkbox">
+													<label>
+														<c:if test="${user.lab.reportConfig.isSignature == 'y'}">
+															<input type="checkbox" name="reportConfig.isSignature" value="y" checked>Include Signature
+														</c:if>
+														<c:if test="${user.lab.reportConfig.isSignature != 'y'}">
+															<input type="checkbox" name="reportConfig.isSignature" value="y">Include Signature
+														</c:if>
+													</label>
+												</div>
 												<div class="">
                 									<input name="reportConfig.name" style="margin-top:20px" value="${user.lab.reportConfig.name}" placeholder="Doctor Name" class="form-control input-md" type="text">      
               									</div>

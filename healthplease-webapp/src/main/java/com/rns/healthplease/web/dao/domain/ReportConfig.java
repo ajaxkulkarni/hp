@@ -23,6 +23,7 @@ public class ReportConfig implements java.io.Serializable {
 	private String signatureName;
 	private String signatureDesignation;
 	private String signatureFileLocation;
+	private String signatureRequired;
 	private Integer labId;
 
 	public ReportConfig() {
@@ -98,6 +99,17 @@ public class ReportConfig implements java.io.Serializable {
 
 	public void setLabId(Integer labId) {
 		this.labId = labId;
+	}
+
+
+	@Column(name = "signature_required")
+	public String getSignatureRequired() {
+		return signatureRequired;
+	}
+
+
+	public void setSignatureRequired(String signatureRequired) {
+		this.signatureRequired = signatureRequired;
 	}
 
 }
