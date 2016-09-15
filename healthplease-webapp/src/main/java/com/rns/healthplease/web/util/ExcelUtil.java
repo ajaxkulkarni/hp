@@ -85,36 +85,37 @@ public class ExcelUtil {
 
 		header.createCell(4).setCellValue("Charges");
 		header.getCell(4).setCellStyle(style);
-
-		header.createCell(5).setCellValue("Payment Type");
+		
+		header.createCell(5).setCellValue("Discount");
 		header.getCell(5).setCellStyle(style);
 
-		header.createCell(6).setCellValue("Lab name");
+		header.createCell(6).setCellValue("Payment Type");
 		header.getCell(6).setCellStyle(style);
 
-		header.createCell(7).setCellValue("Name");
+		header.createCell(7).setCellValue("Lab name");
 		header.getCell(7).setCellStyle(style);
 
-		header.createCell(8).setCellValue("Contact no");
+		header.createCell(8).setCellValue("Name");
 		header.getCell(8).setCellStyle(style);
 
-		header.createCell(9).setCellValue("Address");
+		header.createCell(9).setCellValue("Contact no");
 		header.getCell(9).setCellStyle(style);
 
-		header.createCell(10).setCellValue("Gender");
+		header.createCell(10).setCellValue("Address");
 		header.getCell(10).setCellStyle(style);
 
-		header.createCell(11).setCellValue("Email ID");
+		header.createCell(11).setCellValue("Gender");
 		header.getCell(11).setCellStyle(style);
 
-		header.createCell(12).setCellValue("Print Required");
+		header.createCell(12).setCellValue("Email ID");
 		header.getCell(12).setCellStyle(style);
 
-		header.createCell(13).setCellValue("Status");
+		header.createCell(13).setCellValue("Print Required");
 		header.getCell(13).setCellStyle(style);
-		
-		header.createCell(14).setCellValue("Discount");
+
+		header.createCell(14).setCellValue("Status");
 		header.getCell(14).setCellStyle(style);
+		
 
 		int rowCount = 1;
 
@@ -132,26 +133,26 @@ public class ExcelUtil {
 			aRow.createCell(3).setCellValue(CommonUtils.getTests(appointment.getTests()));
 			if (appointment.getPayment() != null) {
 				aRow.createCell(4).setCellValue(appointment.getPayment().getAmount());
-				aRow.createCell(5).setCellValue(appointment.getPayment().getType().name());
+				aRow.createCell(6).setCellValue(appointment.getPayment().getType().name());
 				if(appointment.getPayment().getDiscount() != null) {
-					aRow.createCell(14).setCellValue(appointment.getPayment().getDiscount());
+					aRow.createCell(5).setCellValue(appointment.getPayment().getDiscount());
 				}
 			}
 			if (appointment.getLab() != null) {
-				aRow.createCell(6).setCellValue(appointment.getLab().getName());
+				aRow.createCell(7).setCellValue(appointment.getLab().getName());
 			}
 			if (appointment.getUser() != null) {
-				aRow.createCell(7).setCellValue(appointment.getUser().getFirstName());
-				aRow.createCell(8).setCellValue(appointment.getUser().getPhone());
-				aRow.createCell(10).setCellValue(appointment.getUser().getGender());
-				aRow.createCell(11).setCellValue(appointment.getUser().getEmail());
+				aRow.createCell(8).setCellValue(appointment.getUser().getFirstName());
+				aRow.createCell(9).setCellValue(appointment.getUser().getPhone());
+				aRow.createCell(11).setCellValue(appointment.getUser().getGender());
+				aRow.createCell(12).setCellValue(appointment.getUser().getEmail());
 			}
 			if (appointment.getAddress() != null) {
-				aRow.createCell(9).setCellValue(appointment.getAddress().toString());
+				aRow.createCell(10).setCellValue(appointment.getAddress().toString());
 			}
-			aRow.createCell(12).setCellValue(CommonUtils.getAffirmation(appointment.getPrintRequired()));
+			aRow.createCell(13).setCellValue(CommonUtils.getAffirmation(appointment.getPrintRequired()));
 			if (appointment.getStatus() != null) {
-				aRow.createCell(13).setCellValue(appointment.getStatus().getName());
+				aRow.createCell(14).setCellValue(appointment.getStatus().getName());
 			}
 		}
 

@@ -137,6 +137,7 @@ public class UserBoImpl implements UserBo, Constants {
 		Transaction tx = session.beginTransaction();
 		existingLogin.setActive(new Byte("1"));
 		Appointment appointment = new Appointment();
+		user.setFirstName(existingLogin.getName());
 		appointment.setUser(user);
 		threadPoolTaskExecutor.execute(new MailUtil(appointment, MAIL_TYPE_REGISTRATION));
 		SMSUtil.sendSMS(appointment, MAIL_TYPE_REGISTRATION);

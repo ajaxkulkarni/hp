@@ -394,10 +394,17 @@ public class BusinessConverters {
 	}
 
 	private static String prepareReportName(Appointment appointment) {
+		StringBuilder builder = new StringBuilder();
 		if (appointment.getUser() == null) {
-			return "" + appointment.getId();
+			builder.append(CommonUtils.getStringValue(appointment.getUser().getFirstName())).append("_");
 		}
-		return CommonUtils.convertDate(appointment.getDate()) + "_" + appointment.getId();
+		if(CollectionUtils.isNotEmpty(appointment.getTests())) {
+			builder.append(CommonUtils.getStringValue(appointment.getTests().get(0).getName())).append("_");
+		}
+		if(appointment.getId() != null) {
+			builder.append(appointment.getId()).append("_");
+		}
+		return builder.toString();
 	}
 
 	public static RequestCollections getRequestCollections(RequestForm form) {
