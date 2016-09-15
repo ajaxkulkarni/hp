@@ -382,7 +382,7 @@ $(document).ready(function(){
 	
     $("select").select2();
 
-    $( document ).on ( "click", ".fields", function(){
+    /*  $( document ).on ( "click", ".fields", function(){
             dataval = $(this).data( 'val' );
             
             // Show the Selected Slots box if someone selects a slot
@@ -421,7 +421,7 @@ $(document).ready(function(){
             if(check_array.length == 0)
             $("#outer_basket").css("display", "none");
 
-    });
+    }); 
 
 
     $( document ).on ( "click", ".classname", function(){
@@ -441,9 +441,9 @@ $(document).ready(function(){
                             alert(msg);
                             return false;
                     }
-    });
+    });*/
     
-    $( document ).on ( "click", ".js-active_day_slot", function(){
+    /* $( document ).on ( "click", ".js-active_day_slot", function(){
             msg = '';
 
             if($("#name").val() == '')
@@ -459,9 +459,9 @@ $(document).ready(function(){
                     alert(msg);
                     return false;
             }
-    });
+    }); */
             // Firefox caches the checkbox state.  This resets all checkboxes on each page load 
-            $('input:checkbox').removeAttr('checked');
+            //$('input:checkbox').removeAttr('checked');
 });
 
 // My settings for calendar starts from here
@@ -476,18 +476,7 @@ $(document).ready(function(){
    
     $( document ).ready( function(){
         $(".js-slots").select2("val", "");
-        $.ajax({
-            type:"POST",
-            url:'appoinController.php?',
-            data:'lab='+1+'&action=getLabBlockedDate',//only input
-            success: function(response){
-                bookedDays =  [];
-                var obj = $.parseJSON( response );
-                $.each( obj, function( key, value ) {
-                    bookedDays[key] = value.date;
-                });
-            }
-        });
+        
         $(function() {
             $( "#idAppointmentDate").datepicker({
             	changeMonth: true,
@@ -503,19 +492,7 @@ $(document).ready(function(){
         * Load slots on date change
         */
 
-        /* $( '.slots' ).change(function(){
-           var date = $(this).val();
-           //var lab_id = $(".labs").select2("val");
-           $.ajax({
-               type:"POST",
-               url:'appoinController.php?',
-               data:'curr_date='+date+'&action=getslots&labid='+1,//only input
-               success: function(response){
-                   $("#idAppTime").html( response );
-                   $("#idAppTime").select2("val", "");
-               }
-            });
-        });*/
+        
         
         $( '.locations' ).change(function(){
             $("#idAppointmentPArea").val( $("#idLocation option:selected").text() );
