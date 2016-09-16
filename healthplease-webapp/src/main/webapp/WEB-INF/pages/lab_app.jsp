@@ -13,7 +13,7 @@
 	    <title>Pathology Lab Management Software on Cloud | HealthPlease.in</title>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	    <meta name="keywords" content="Cloud Based Diagnostic Lab Management Software ">
-    <meta name="description" content="HealthPlease.in’s Cloud Based Lab Management software helps conveniently track Appointments, Create and Send Test Reports and manage Finances.">
+    <meta name="description" content="HealthPlease.inâs Cloud Based Lab Management software helps conveniently track Appointments, Create and Send Test Reports and manage Finances.">
 	    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
@@ -31,6 +31,7 @@
 /*@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700);
+        @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
 .classOSCFont{
   font-family: 'Open Sans', sans-serif;
   font-family: 'Open Sans', sans-serif;
@@ -49,7 +50,8 @@
 	float: left;
 }
 .classInnerPoint li{
-	    background: rgba(0, 0, 0, 0.37);
+/*	    background: #414243;*/
+    background: #006DAA;
     padding:5px 10px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: -28px 0 0 #14A7DF;
@@ -59,12 +61,16 @@
     width: 100%;
     clear: both;
     font-size: 16px;
-    font-weight: 100;
+    color: rgba(255, 255, 255, 0.87);
+         font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }
 .classPtSpan{
-	font-size: 20px;
+	font-size: 18px;
 	text-transform: uppercase;
-	font-weight: 600;
+	font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(0, 0, 0, 0.87);
 }
 .classCTA{
 	    margin: 30px auto;
@@ -99,8 +105,11 @@
 	z-index: 999;
 }
 .classMainContainer{
-	height: 100VH;
+/*	height: 100VH;*/
+
+    padding: 16px;
 }
+
 	.loadDiv .classLDiv{
 	max-width: 100%;
 	max-height: 100vh;
@@ -123,6 +132,9 @@
 	/*
 Float Form Controls code start
 */
+
+    
+    
 .form-control{
 	color: #fff;
 	letter-spacing: 2px;
@@ -195,15 +207,17 @@ Float Form Controls code start
 /* Float Form Controls Code end*/
 .classLPageFormHolder{
 	border-color: #14A7DF;
-	    margin-top: 11vh;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.26);
+	    margin-top:32px;
+    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.26);
     position:
     width: 360px;
+    border-radius: 10px;
 }
 .modal-header{
 	    background-color: #FFF;
     color: #00538B;
     text-align: center;
+       border-radius: 10px;
 }
 .modal-body{
 	background: #04568E;
@@ -212,6 +226,7 @@ Float Form Controls code start
 .modal-footer{
 	    background: #fff;
     border-bottom: 2px solid #00528B;
+       border-radius: 10px;
 }
 body{
 	position: relative;
@@ -240,6 +255,7 @@ body{
     font-weight: 500;
     margin: 0;
     letter-spacing: 4px;
+    color: rgba(0, 0, 0, 0.87);
 }
 .classW12{
 	width: 95%;
@@ -433,24 +449,85 @@ $('#classCallCTA').click(function() {
 });
       </script>
 
-
+<style>
+       @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+    
+    #tp_line{
+        font-family: 'Roboto', sans-serif;
+        text-transform: uppercase;
+        font-size: 18px;
+        text-align: center;
+    }
+        #classHeader1{
+            color: rgba(0, 0, 0, 0.87);
+        text-transform: uppercase;
+        font-size: 24px;
+        font-family: 'Roboto', sans-serif;
+        border-bottom:1px solid rgba(199, 148, 55, 0.87);
+        font-weight: 400;
+            margin-top: 30px;
+            font-weight: 300;
+    }
+    
+         .first_letter1{
+        font-size: 32px;
+    }
+    
+    .class_para1{
+        color: rgba(0, 0, 0, 0.87);  
+        font-family: 'Roboto', sans-serif;
+        margin: 16px auto;
+        font-weight: 400;
+    }
+    
+    
+.lab_app_footer_btn {
+    background-color: #03a9f4;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    color: #fff;
+    transition: all 0.5s ease 0s;
+    display: block;
+        margin: auto;
+        font-size: 16px;
+        padding: 8px;
+                font-family: 'Roboto', sans-serif;
+}
+.lab_app_footer_btn:hover {
+    background-color: #0288d1;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+    color: #fff;
+    transition: all 0.5s ease 0s;
+}
+    
+    #frm_label{
+        font-family: 'Roboto', sans-serif;
+        color: rgba(0, 0, 0, 0.87);
+        font-weight: 400;
+        font-size: 16px;
+        margin: 8px auto;
+    }
+    </style>
 
 
 </head>
-<body style="background-color:#555;">
+<body style="background-color:#ffffff;">
 
-		<%@include file="user_header.jsp" %>
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 classMColor2 text-center classTopLine"style="background-color:#fff;">
-					<h4>To request a demo or free 1 month trial, please enter your details in the below form. <i class="fa fa-hand-o-down" aria-hidden="true"></h4></i>
+
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 classMColor2 classTopLine"style="background-color:#14A7DF;">
+            <h4 id="tp_line">To request a demo or free 1 month trial, please enter your details in the below form. <i class="fa fa-hand-o-down" aria-hidden="true"></i></h4>
 					</div>
 		<div class="container">
 		
 		<div class="classMainContainer">
 			<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 classWColor class10TVH">
-							<h1 class="classWColor classHeader">Pathology & Diagnostics Lab management software on Cloud</h1>
+                <div class="col-xs-12">
+                  <label class="" id="classHeader1"><span class="first_letter1">P</span>athology & <span class="first_letter1">D</span>iagnostics <span class="first_letter1">L</span>ab management software on <span class="first_letter1">C</span>loud</label>
 							<br/>
-							<p>
+                </div>
+							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 classWColor">
+                              
+							<p class="class_para1">
 								HealthPlease.in is proud to introduce a Cloud Based App for Labs that helps them manage their In Centre and Home Visit appointments, Test Reporting and Finances more efficiently and conveniently.
 							</p>
 							<ul class="classPoint">
@@ -518,8 +595,8 @@ $('#classCallCTA').click(function() {
 											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
 							<div class="classLPageFormHolder">
 	<form name="regForm" id="idRegForm" method="POST" action="landing-page-amulator.php">
-		        <div class="modal-header classMBg2">
-		          <h4 class="classFTitle"><img src="http://www.healthplease.in/images/LOGO-2.png" style="width:100%"/>Demo or Free 1 month trial</h4>
+		        <div class="modal-header classMBg2" >
+		          <h4 class="classFTitle">Demo or Free 1 month trial</h4>
 		        </div>
 		        <div class="modal-body" style="color:#fff">
 		        	
@@ -543,8 +620,9 @@ $('#classCallCTA').click(function() {
 	                <input type="hidden" name="sMobile" style="color:#fff"id="idSMobile" value="userMobile" style="display:none;"/>
 	        	</div>
 		        <div class="modal-footer">
-		        	<a href="" data-toggle="modal" data-target="#myLoginModal" class="pull-left classModalLinks"  data-dismiss="modal" style="font-size:14px;">All fields are mandatory</a>
-		          <button type="submit" id="idSubmit" class="btn btn-default classMBg2 classCTSSubmit " >Submit</button>
+		        	<label class="pull-left" id="frm_label">All fields are mandatory</label>
+<!--		          <button type="submit"  class="btn btn-default classMBg2 classCTSSubmit " >Submit</button>-->
+                                       <button type="submit" id="idSubmit" class="btn lab_app_footer_btn">Submit</button>
 		          	<div class="classMsg" id="idMsg"></div>
 		        </div>
 	        </form>
@@ -557,7 +635,8 @@ $('#classCallCTA').click(function() {
 		</div>
 		
 		
+
+		
 		<%@include file="user_footer.jsp" %>
-	
 </body>
 </html>
