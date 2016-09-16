@@ -49,13 +49,13 @@
             <div class="stepwizard">
               <div class="stepwizard-row">
                   <div class="stepwizard-step pull-left">
-                      <button type="button" class="btn btn-primary btn-square pull-left">1</button>
+                      <button type="button" class="btn btn-primary btn-square pull-left" disabled="disabled">1</button>
                       <p><span class="classSText text-left"> No need to type your address and contact details every time.</span><p>
                   </div>
               </div>
               <div class="stepwizard-row">   
                   <div class="stepwizard-step pull-left">
-                      <button type="button" class="btn btn-primary btn-square pull-left">2</button>
+                      <button type="button" class="btn btn-primary btn-square pull-left" disabled="disabled">2</button>
                       <p><span class="classSText text-left"> Free Online storage of Lab reports in your Health Please account.</span></p>
                   </div>
               </div>

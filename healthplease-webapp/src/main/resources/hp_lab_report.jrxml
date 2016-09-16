@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-24T23:23:37 -->
+<!-- 2016-09-16T00:34:06 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -20,6 +20,7 @@
 	<parameter name="doctorName" class="java.lang.String"/>
 	<parameter name="printRequired" class="java.lang.String"/>
 	<parameter name="printfooter" class="java.lang.String"/>
+	<parameter name="printsign" class="java.lang.String"/>
 	<parameter name="pathName" class="java.lang.String"/>
 	<parameter name="logopath" class="java.lang.String"/>
 	<parameter name="designation" class="java.lang.String"/>
@@ -123,7 +124,7 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="45" splitType="Stretch">
+		<band height="54" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<subreport>
@@ -146,38 +147,36 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="43" splitType="Stretch">
+		<band height="218" splitType="Stretch">
 			<printWhenExpression><![CDATA[$P{printfooter}.equals("y")]]></printWhenExpression>
 			<rectangle>
 				<reportElement x="1" y="12" width="552" height="8" forecolor="#3399FF" backcolor="#3399FF" uuid="e90aa4b4-ae1d-4bb0-86da-eeaa8acf86af"/>
 			</rectangle>
-		</band>
-	</pageFooter>
-	<summary>
-		<band height="214" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<image>
-				<reportElement x="401" y="1" width="100" height="100" uuid="5814f574-7252-4fbd-ae11-d812a4e1d14b"/>
-				<imageExpression><![CDATA[$P{imagePath}]]></imageExpression>
-			</image>
 			<textField>
-				<reportElement x="401" y="113" width="100" height="20" uuid="dc25118e-111e-48bc-baef-b9cfafd7053f"/>
+				<reportElement x="410" y="149" width="100" height="20" uuid="dc25118e-111e-48bc-baef-b9cfafd7053f">
+					<printWhenExpression><![CDATA[$P{printsign}.equals("y")]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{pathName}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="410" y="37" width="100" height="100" uuid="5814f574-7252-4fbd-ae11-d812a4e1d14b">
+					<printWhenExpression><![CDATA[$P{printsign}.equals("y")]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{imagePath}]]></imageExpression>
+			</image>
 			<textField>
-				<reportElement x="401" y="143" width="100" height="20" uuid="d14c6d0c-62b0-47ca-bef7-d96844669b32"/>
+				<reportElement x="410" y="179" width="100" height="20" uuid="d14c6d0c-62b0-47ca-bef7-d96844669b32">
+					<printWhenExpression><![CDATA[$P{printsign}.equals("y")]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{designation}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="3" y="167" width="67" height="13" uuid="c8371901-4780-48f6-8e2d-5ae7ac575aba"/>
-				<text><![CDATA[Remark:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="54" y="167" width="490" height="30" isPrintWhenDetailOverflows="true" uuid="2aec3dbc-ed28-4e79-84ad-89466b24f9f7"/>
-				<textFieldExpression><![CDATA[$P{remark}]]></textFieldExpression>
-			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 		</band>
 	</summary>
 </jasperReport>
