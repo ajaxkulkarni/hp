@@ -99,6 +99,7 @@ public class JasperUtil {
 		parameters.put("printFooter", "y");
 		parameters.put("printSign", "y");
 		parameters.put("remark", appointment.getRemark());
+		parameters.put("logopath", appointment.getLab().getLogo());
 		ReportConfigurations reportConfig = appointment.getLab().getReportConfig();
 		if(reportConfig != null) {
 			parameters.put("printRequired", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsHeader())));
