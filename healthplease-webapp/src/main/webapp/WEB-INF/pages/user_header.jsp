@@ -157,7 +157,7 @@ s0.parentNode.insertBefore(s1,s0);
                                                                         <!-- /.dropdown -->
                                     
                                     <!-- /.dropdown -->
-                                    <c:if test="${user.group.id == 2}">
+                                    <c:if test="${user.group.id == 2 || user.group.id == 4}">
                                     <li class="dropdown">
                                       <a class="dropdown-toggle"  href="<%=Constants.ADMIN_HOME_GET_URL%>">
                                            <i class="fa fa-tachometer fa-fw"></i>

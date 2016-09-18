@@ -339,9 +339,11 @@
                                                 <td width="0px">${appointment.status.name}</td>
                                                  <td colspan="2">
                                                     <c:if test="${appointment.status.id == 1 || appointment.status.id == 4 }">
+                                                    <c:if test="${user.group.id == 2 }">
                                                     <a id="process_app" class="btn btn-success btn-mini" onclick="onUpload(${appointment.id})">
 														<i class="glyphicon glyphicon-ok"></i>
 													</a>
+													</c:if>
 													<a class="btn btn-danger btn-mini" onclick="onCancel('${appointment.id}','${appointment.lab.id}')">
 														<i class="glyphicon glyphicon-remove"></i>
 													</a>

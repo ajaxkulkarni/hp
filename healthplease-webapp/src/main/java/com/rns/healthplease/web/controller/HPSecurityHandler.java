@@ -39,7 +39,7 @@ public class HPSecurityHandler implements HandlerInterceptor {
 			return true;
 		}
 		if (manager.getUser().getId() != null) {
-			if (manager.getUser().getGroup() != null && manager.getUser().getGroup().getId().intValue() == 2) {
+			if (manager.getUser().getGroup() != null && (manager.getUser().getGroup().getId().intValue() == 2 || manager.getUser().getGroup().getId().intValue() == 4 )) {
 				return true;
 			} else if (StringUtils.containsIgnoreCase(requestURL, "lab") && manager.getUser().getLab() == null) {
 				response.sendRedirect(Constants.HOME_GET_URL);
