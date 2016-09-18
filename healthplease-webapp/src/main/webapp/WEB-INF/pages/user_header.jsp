@@ -145,8 +145,8 @@ s0.parentNode.insertBefore(s1,s0);
                                         </a>                    <!-- /.dropdown-messages -->
                                     </li>
                                       <li class="dropdown">
-                                        <a class="dropdown-toggle"  href="<%=Constants.SUPPORT_GET_URL%>">
-                                            <i class="fa fa-cogs fa-fw"></i> Support
+                                        <a class="dropdown-toggle"  href="<%=Constants.LAB_PARTNER_GET_URL%>">
+                                            <i class="fa fa-cogs fa-fw"></i> Lab App
                                         </a>                    <!-- /.dropdown-messages -->
                                     </li>
                                     <li class="dropdown">
