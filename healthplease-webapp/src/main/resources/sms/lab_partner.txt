@@ -1,0 +1,5 @@
+Hello {name},
+
+Thank you for choosing Health Please.
+
+Our Health Please Convenience team will get you in touch with the concerned person shortly.
