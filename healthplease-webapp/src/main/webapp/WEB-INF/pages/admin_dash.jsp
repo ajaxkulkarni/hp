@@ -11,6 +11,75 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin | HealthPlease.in</title>
+<style>
+        @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+        .upload_file_div {
+            margin: 32px auto;
+            padding: 16px;
+            box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.47);
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+        }
+        
+        .label_file1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            margin: 8px auto;
+        }
+        
+        .label_file2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            margin: 8px auto;
+        }
+        
+        .btn1 {
+            background-color: #03a9f4;
+            border-radius: 2px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            color: #fff;
+            transition: all 0.5s ease 0s;
+            display: block;
+            font-size: 16px;
+            padding: 4px 16px;
+            font-family: 'Roboto', sans-serif;
+            width: 100px;
+        }
+        
+        .btn1:hover {
+            background-color: #0288d1;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+            color: #fff;
+            transition: all 0.5s ease 0s;
+        }
+        
+        #progress-bar {
+            background-color: #12CC1A;
+            height: 20px;
+            color: #FFFFFF;
+            width: 0%;
+            -webkit-transition: width .3s;
+            -moz-transition: width .3s;
+            transition: width .3s;
+        }
+        
+        #progress-div {
+            /*    border:#0FA015 1px solid;*/
+            padding: 5px 0px;
+            margin: 8px 0px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        #targetLayer {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+
+
 </head>
 <body>
 
@@ -300,7 +369,7 @@
                                 </div>
                                 <div class="modal-body" id="file_upload_form">
                                     <div id="upload_error"></div>
-                                    <form id="file_upload" enctype="multipart/form-data" action="<%=Constants.ADMIN_UPLOAD_REPORT_POST_URL %>" method="post">
+                                    <form id="uploadForm" enctype="multipart/form-data" action="<%=Constants.ADMIN_UPLOAD_REPORT_POST_URL %>" method="post">
                                         <input type="hidden" value="" name="id" id="report_appid">
                                         <div class="form-group">
                                             <label for="sel1">Select Test:</label>
@@ -309,11 +378,20 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="sel1">Upload report for Test:</label>
-                                            <input id="file_to_upload" name="report" class="file" type="file" multiple data-min-file-count="1">
+                                            <!-- <input id="file_to_upload" name="report" class="file" type="file"> -->
+                                            <input name="report" id="userImage" type="file" class="form-control input_file11" required />
                                         </div>
 										<input type="hidden" id = "statusId" name="status.id" value="4"/>
                                         <br>
-                                        <button type="button" onclick="uploadReport()" id="btn_file_upload" class="btn btn-primary">Upload</button>
+                                        
+                                        <div class="col-md-12">
+                    						<div id="file_status"></div>
+                    							<div id="progress-div">
+                        							<div id="progress-bar"></div>
+                    						</div>
+                						</div>
+                						
+                                        <button type="submit" id="btn_file_upload" class="btn btn-primary">Upload</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         <div id="uploadedReports">
@@ -389,6 +467,7 @@
 <script src="<c:url value="/resources/js/paging.js"/>"></script> 
 <script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
 <script src="<c:url value="/resources/js/external/file_input/fileinput.min.js"/>"></script>
+<script src="<c:url value="/resources/js/jquery.form.min.js"/>" type="text/javascript"></script>
 <script type="text/javascript">
 
 function getAppointment(id) {
@@ -420,6 +499,34 @@ $(document).ready(function () {
 	
 	$(document).ready(function(){
 		paginateTable($("#limit").val(), 0);
+		
+		$('#uploadForm').submit(function (e) {
+			//alert("Here!");
+            if ($('#userImage').val()) {
+                e.preventDefault();
+                //$('#loader-icon').show();
+                $(this).ajaxSubmit({
+                    target: '#targetLayer',
+                    beforeSubmit: function () {
+                        $("#progress-bar").width('0%');
+                    },
+                    uploadProgress: function (event, position, total, percentComplete) {
+                        $("#progress-bar").width(percentComplete + '%');
+                        $("#progress-bar").html('<div id="progress-status">' + percentComplete + ' %</div>');
+                        if (percentComplete == "100") {
+                            $("#file_status").html('<label class="label_file2">file uploaded successfully.</label>');
+                        }
+                    },
+                    success: function () {
+
+                    },
+
+                    resetForm: true
+                });
+                return false;
+            }
+        });
+		
 	}); 
 
 	
@@ -427,6 +534,7 @@ $(document).ready(function () {
     	dateFormat: "yy-mm-dd",
         changeMonth : true
     });  
+    
 
 });
 
@@ -443,17 +551,17 @@ function onUpload(appointmentId) {
 	$("#myModal").modal('show');
 }
 
-function uploadReport() {
+/* function uploadReport() {
 	var formData = new FormData();
 	formData.append("appId", $("#report_appid").val());
-	alert("Here!" + formData);
+	//alert("Here!" + formData);
 	formData.append("report", $("#file_to_upload").files[0]);
 	alert("Here!" + formData);
 	var request = new XMLHttpRequest();
 	request.open("POST", "upload");
 	request.send(formData);
 	
-}
+} */
 
 function resetTable() {
 	 //$("#appointments_table").paging({limit:$("#limit").val()});
