@@ -615,5 +615,18 @@ public class HPCustomerControllerWeb implements Constants {
 		return new RedirectView(CORPORATE_PARTNER_GET_URL);
 	}
 	
+	@RequestMapping(value = "/" + REQUEST_LAB_PARTNER_POST_URL, method = RequestMethod.POST)
+	public RedirectView requestLabPartner(ModelMap model, RequestForm form) {
+		manager.setResult(userBo.requestLabPartner(form));
+		return new RedirectView(LAB_PARTNER_GET_URL);
+	}
+	
+	@RequestMapping(value = "/" + LAB_PARTNER_GET_URL, method = RequestMethod.GET)
+	public String initLabPartner(ModelMap model) {
+		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_RESULT, manager.getResult());
+		manager.setResult(null);
+		return LAB_PARTNER_PAGE;
+	}
 
 }

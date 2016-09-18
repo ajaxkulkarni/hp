@@ -592,9 +592,21 @@ $('#classCallCTA').click(function() {
 
 						</div>
 						
+						<div id="msg" class="">
+    	<c:if test="${result != null && result != 'OK' }">
+			<div class="alert alert-danger">${result}</div>
+		</c:if>
+			<c:if test="${result != null && result == 'OK' }"> 
+			<div class="alert alert-success">Thank you for choosing healthplease.
+						Our Health Please Convenience team will get in touch with the concerned person shortly.</div>
+			 </c:if> 
+    </div>
+						
+						
+						
 											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
 							<div class="classLPageFormHolder">
-	<form name="regForm" id="idRegForm" method="POST" action="landing-page-amulator.php">
+	<form name="regForm" id="idRegForm" method="POST" action="<%=Constants.REQUEST_LAB_PARTNER_POST_URL %>">
 		        <div class="modal-header classMBg2" >
 		          <h4 class="classFTitle">Demo or Free 1 month trial</h4>
 		        </div>
@@ -606,18 +618,18 @@ $('#classCallCTA').click(function() {
 	                </div>
 	                <div class="form-group float-label-control">
 	                    <label for="lName">Lab Name</label>
-	                    <input type="text" style="color:#fff"id="idLName" name="lName" class="classCapitalize form-control" placeholder="Lab Name" required />
+	                    <input type="text" style="color:#fff"id="idLName" name="labName" class="classCapitalize form-control" placeholder="Lab Name" required />
 	                </div>
 	                <div class="form-group float-label-control">
 	                    <label for="userEmail">Email</label>
-	                    <input type="email" style="color:#fff"id="idEmail" name="userEmail" class="form-control" placeholder="Email" required />
+	                    <input type="email" style="color:#fff"id="idEmail" name="email" class="form-control" placeholder="Email" required />
 	                </div>
-	                <input type="hidden" name="sEmail" id="idSEmail" value="userEmail" style="display:none;"/>
+	                <!-- <input type="hidden" name="sEmail" id="idSEmail" value="userEmail" style="display:none;"/> -->
 	                <div class="form-group float-label-control">
 	                    <label for="userMobile">Mobile No</label>
-	                    <input type="tel" id="idMobile" style="color:#fff"name="userMobile" onkeyup="check(); return false;"  class="form-control" placeholder="Mobile No" required />
+	                    <input type="tel" id="idMobile" style="color:#fff"name="phone" onkeyup="check(); return false;"  class="form-control" placeholder="Mobile No" required />
 	                </div>
-	                <input type="hidden" name="sMobile" style="color:#fff"id="idSMobile" value="userMobile" style="display:none;"/>
+	                <!-- <input type="hidden" name="sMobile" style="color:#fff"id="idSMobile" value="userMobile" style="display:none;"/> -->
 	        	</div>
 		        <div class="modal-footer">
 		        	<label class="pull-left" id="frm_label">All fields are mandatory</label>

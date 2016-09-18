@@ -68,4 +68,6 @@ public interface UserBo {
 	
 	String requestCorporatePartner(RequestForm form);
 
+	String requestLabPartner(RequestForm form);
+
 }
