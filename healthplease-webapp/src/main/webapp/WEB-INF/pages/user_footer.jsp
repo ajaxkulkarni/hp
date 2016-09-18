@@ -55,7 +55,7 @@
 							<label for="call_back_name" class="classGColor">Name</label>
 							<div  class="input-group"> 
 								<div class="input-group-addon"><i class="fa fa-user"></i></div>
-								<input type="text" pattern="[A-Za-z]{3}" class="form-control" id="call_back_name" name="name" placeholder="Name" required>
+								<input type="text" class="form-control" id="call_back_name" name="name" placeholder="Name" required>
 							</div>
 							</div>
 							<div class="form-group">
@@ -168,6 +168,8 @@
 
 
 <div id="fb-root"></div>
+
+
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -176,7 +178,22 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-
+$("#call_back_name").keypress(function (e) {
+    var regex = new RegExp("^[a-zA-Z]+$");
+    var key = e.charCode||e.keyCode;
+    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+    if (regex.test(str)) {
+        return true;
+    }
+    else if(key == 8||key == 46|| key == 9||key==37||key==39||key==32)
+    	return true;
+    else
+    {
+    e.preventDefault();
+    //alert('Please Enter Alphabate');
+    return false;
+    }
+});
 
 $('#callback').on("click", function(){
 $('#upload_error').hide();

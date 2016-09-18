@@ -25,8 +25,8 @@
          <!-- Bootstrap Core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/jquery-ui.css" rel="stylesheet">
-
-
+</head>
+<body>
 <style type="text/css">
 /*@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
@@ -137,8 +137,8 @@ Float Form Controls code start
     
 .form-control{
 	color: #fff;
-	letter-spacing: 2px;
-	word-spacing: 4px;
+	letter-spacing: 0px;
+	word-spacing: 0px;
 	font-size: 16px;
 }
 
@@ -237,7 +237,7 @@ body{
     background-position: 0 -100px;
     font-family: 'Open Sans', sans-serif;
         font-size: 18px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     font-weight: 400;
     color: #fff;
     /*text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25)*/
@@ -254,7 +254,7 @@ body{
 	    font-size: 40px;
     font-weight: 500;
     margin: 0;
-    letter-spacing: 4px;
+    letter-spacing: 0px;
     color: rgba(0, 0, 0, 0.87);
 }
 .classW12{
@@ -510,16 +510,24 @@ $('#classCallCTA').click(function() {
     </style>
 
 
-</head>
-<body style="background-color:#ffffff;">
 
+<%@include file="user_header.jsp" %>
 
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 classMColor2 classTopLine"style="background-color:#14A7DF;">
             <h4 id="tp_line">To request a demo or free 1 month trial, please enter your details in the below form. <i class="fa fa-hand-o-down" aria-hidden="true"></i></h4>
-					</div>
-		<div class="container">
+		</div>
 		
+		<div class="container">
 		<div class="classMainContainer">
+		<div id="msg" class="">
+    	<c:if test="${result != null && result != 'OK' }">
+			<div class="alert alert-danger">${result}</div>
+		</c:if>
+			<c:if test="${result != null && result == 'OK' }"> 
+			<div class="alert alert-success">Thank you for choosing healthplease.
+						Our Health Please Convenience team will get in touch with the concerned person shortly.</div>
+			 </c:if> 
+         </div>
 			<div class="row">
                 <div class="col-xs-12">
                   <label class="" id="classHeader1"><span class="first_letter1">P</span>athology & <span class="first_letter1">D</span>iagnostics <span class="first_letter1">L</span>ab management software on <span class="first_letter1">C</span>loud</label>
@@ -584,29 +592,20 @@ $('#classCallCTA').click(function() {
 								<li class="classW12">
 								 <span class="classPtSpan"><i class="fa fa-users" aria-hidden="true"></i> User Database</span>
 								 <ol class="classInnerPoint">
-								<li>Anytime access to historic Patient’s details & their reports.</li>
+								<li>Anytime access to historic Patient's details & their reports.</li>
 								</ol>
 								</li>
 								</ul>
 
 
 						</div>
-						
-						<div id="msg" class="">
-    	<c:if test="${result != null && result != 'OK' }">
-			<div class="alert alert-danger">${result}</div>
-		</c:if>
-			<c:if test="${result != null && result == 'OK' }"> 
-			<div class="alert alert-success">Thank you for choosing healthplease.
-						Our Health Please Convenience team will get in touch with the concerned person shortly.</div>
-			 </c:if> 
-    </div>
+					
 						
 						
 						
-											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-							<div class="classLPageFormHolder">
-	<form name="regForm" id="idRegForm" method="POST" action="<%=Constants.REQUEST_LAB_PARTNER_POST_URL %>">
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+			<div class="classLPageFormHolder">
+	        <form name="regForm" id="idRegForm" method="POST" action="<%=Constants.REQUEST_LAB_PARTNER_POST_URL %>">
 		        <div class="modal-header classMBg2" >
 		          <h4 class="classFTitle">Demo or Free 1 month trial</h4>
 		        </div>
@@ -645,10 +644,7 @@ $('#classCallCTA').click(function() {
 		
 		</div>
 		</div>
-		
-		
 
-		
 		<%@include file="user_footer.jsp" %>
 </body>
 </html>

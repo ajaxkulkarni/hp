@@ -9,9 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
-<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
-<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
+<%--  <link rel="icon" type="image/png"  href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
+<link rel="icon" type="image/png"  href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
+<link rel="icon" type="image/png"  href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>"> --%>
     <!-- Custom Fonts -->
     <link href="<c:url value="/resources/bootstrap/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/dialog.css"/>" rel="stylesheet"/>
@@ -86,11 +86,13 @@ function doScroll(){
     if (window.name) window.scrollTo(0, window.name);
 }
 
+
 </script>
 
     <!-- Code Additon ends here by vikas on 23-May-2015 -->
      <link href="<c:url value="/resources/css/style.css?ver=5"/>" rel="stylesheet"></link>
      <!-- Timeline CSS -->
+      
     
 </head>
 

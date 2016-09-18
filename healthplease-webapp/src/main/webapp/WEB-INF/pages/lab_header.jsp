@@ -51,14 +51,15 @@
 
 <style>
     .classLogoImg {
-        margin-top: -13px;
-        margin-left: 0px;
+     /*   margin-top: -13px; */
+     
+     margin:auto;
+/*         margin-left: 0px; */
         width: 190px;
-        padding: 3px 10px;
-        box-shadow: 1px -2px 0px #F80, -1px -2px 0px #F80;
+    /*     padding: 3px 10px; */
+    border: 1px #f80 solid;
+      /*   box-shadow: 1px -2px 0px #F80, -1px -2px 0px #F80; */
         background-color: #FFF;
-        #max-width: 100%;
-    	max-height: 100%;
     }
 
 .paging-nav {
@@ -90,29 +91,22 @@
 
 </head>
 <body>
- <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="http://www.healthplease.in/"><img src="getLabLogo?logoPath=${user.lab.logo}" class="classLogoImg"/></a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <!-- /.dropdown -->
-                <!-- /.dropdown -->
+<div class="row" style="height:120px;">
+	<div class="col-md-4">
+	  <a class="navbar-brand" href="http://www.healthplease.in/"><img src="<c:url value="/resources/images/LOGO-2.png"/>" class="classLogoImg"/></a>
+	</div>
+	<div class="col-md-4" >
+	  <img src="getLabLogo?logoPath=${user.lab.logo}" class="classLogoImg" />
+	</div>
+	<div class="col-md-4">
+	 <ul class="nav navbar-top-links navbar-right">
+                
                 <li class="dropdown">
                     <div class="sidebar-nav navbar-collapse">
                         <input type="hidden" id="lab_id" name="lab_name" value="1">
                         <h3> ${user.lab.name} </h3>
                     </div>
-                    <!-- /.dropdown-user -->
+                 
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${user.firstName} <b class="caret"></b></a>
@@ -129,11 +123,60 @@
                         </li>
                     </ul>
                 </li>
-                <!-- /.dropdown -->
+              
             </ul>
-            <!-- /.navbar-top-links -->
+	
+	</div>
+</div>
+ <!-- Navigation 
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                 <div class="row">
+                <div class="col-md-4" >
+                <a class="navbar-brand" href="http://www.healthplease.in/"><img src="<c:url value="/resources/images/LOGO-2.png"/>" class="classLogoImg"/></a>
+                </div>
+                <div class="col-md-offset-4 col-md-4">
+                 <img src="getLabLogo?logoPath=${user.lab.logo}" class="classLogoImg" />
+                 </div>
+                </div> 
+            </div>
+             /.navbar-header
 
-            <div class="navbar-default sidebar" role="navigation">
+            <ul class="nav navbar-top-links navbar-right">
+                
+                <li class="dropdown">
+                    <div class="sidebar-nav navbar-collapse">
+                        <input type="hidden" id="lab_id" name="lab_name" value="1">
+                        <h3> ${user.lab.name} </h3>
+                    </div>
+                    /.dropdown-user 
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${user.firstName} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="<%=Constants.LAB_HOME_URL_GET%>"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="<%=Constants.LAB_SETTINGS_GET_URL%>"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="<%=Constants.LOGOUT_GET_URL%>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+                 /.dropdown
+            </ul>
+             /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation" style="margin-top:-35px">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
