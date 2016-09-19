@@ -25,6 +25,8 @@
 			<input type="hidden" name="tests[${t.index}].id" value="${test.id}" />
 			<div id="${test.id}" class="panel-collapse collapse">
 				<div class="panel-body">
+					<input name="tests[${t.index}].remark" style="margin-top:20px" value="${test.remark}" placeholder="Remark" class="form-control input-md" type="text">      
+			
 					<table class="table table-bordered">
 						<thead>
 							<th>Sr.No</th>

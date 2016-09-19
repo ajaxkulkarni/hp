@@ -17,6 +17,7 @@ import com.rns.healthplease.web.dao.domain.AppFileLocations;
 import com.rns.healthplease.web.dao.domain.AppoinAddresses;
 import com.rns.healthplease.web.dao.domain.AppointmentStatus;
 import com.rns.healthplease.web.dao.domain.AppointmentTestResults;
+import com.rns.healthplease.web.dao.domain.AppointmentTests;
 import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.CancelReasons;
 import com.rns.healthplease.web.dao.domain.LabActiveDaysStatus;
@@ -347,6 +348,18 @@ public class AppointmentDaoImpl implements AppointmentDao {
 			return null;
 		}
 		return status.get(0);
+	}
+	
+	@Override
+	public AppointmentTests getAppointmentTest(Integer testId,Integer appId , Session session) {
+		Query createQuery = session.createQuery("from AppointmentTests where tests.id=:testId AND appointments.id=:appId");
+		createQuery.setInteger("testId", testId);
+		createQuery.setInteger("appId", appId);
+		List<AppointmentTests> tests = createQuery.list();
+		if(CollectionUtils.isEmpty(tests)) {
+			return null;
+		}
+		return tests.get(0);
 	}
 	
 }

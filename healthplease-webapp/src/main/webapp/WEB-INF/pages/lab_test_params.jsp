@@ -193,6 +193,7 @@ Custom Fonts
 										<c:if test="${fn:length(test.childTests) > 0 && fn:length(test.parameters) == 0 }">
 											<h3>${test.name}</h3>
 											<c:forEach items="${appointment.tests}" var="test" varStatus="t">
+												
 												<%@include file="forms/test_parameters_form.jsp" %>
 											</c:forEach>
 										</c:if>

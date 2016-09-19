@@ -295,7 +295,13 @@ public class HPAdminController implements Constants {
 	}
 	
 	@RequestMapping(value = "/" + ADMIN_EDIT_LAB_POST_URL, method = RequestMethod.POST)
-	public RedirectView editLab(ModelMap model, Lab lab) {
+	public RedirectView editLab(ModelMap model, Lab lab, String labUsers) {
+		List<String> emails = CommonUtils.getStrings(labUsers);		
+		if(CollectionUtils.isNotEmpty(emails)) {
+			String[] emailsArray = new String[emails.size()];
+			emailsArray = emails.toArray(emailsArray);
+			populateUsers(lab, emailsArray);
+		}
 		manager.setResult(adminBo.editLab(lab));
 		return new RedirectView(ADMIN_LABS_GET_URL);
 	}

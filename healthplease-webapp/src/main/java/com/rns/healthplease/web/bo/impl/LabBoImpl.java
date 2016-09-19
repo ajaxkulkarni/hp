@@ -447,6 +447,8 @@ public class LabBoImpl implements LabBo, Constants {
 			return;
 		}
 		for (LabTest test : appointment.getTests()) {
+			AppointmentTests tests = new AppointmentDaoImpl().getAppointmentTest(test.getId(), appointment.getId(), session);
+			tests.setRemark(test.getRemark());
 			List<AppointmentTestResults> results = BusinessConverters.getAppointmentResults(test.getParameters(), appointment.getId(), test.getId(), session);
 			if (CollectionUtils.isEmpty(results)) {
 				continue;

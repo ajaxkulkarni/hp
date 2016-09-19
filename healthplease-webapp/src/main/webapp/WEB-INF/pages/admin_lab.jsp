@@ -98,6 +98,8 @@
                                             </th>
                                             <th>Lab Discount
                                             </th>
+                                            <th>Lab Users
+                                            </th>
                                             <th>Action
                                             </th>
                                     </tr>
@@ -114,6 +116,11 @@
                         <td id="labPhoneT${lab.id}">${lab.contact}</td>
                         <td id="labAddrT${lab.id}">${lab.address}</td>
                         <td id="labDiscountT${lab.id}">${lab.discount}</td>
+                        <td id="labUsersT${lab.id}">
+                        	<c:forEach items="${lab.users}" var="user">
+                        		${user.email},
+                        	</c:forEach>
+                        </td>
                         <td id="labName${lab.id}" style="display:none">
                         	<input type="hidden" name="id" value="${lab.id}"/>
                         	<input type="text" name="name" value="${lab.name}"/>
@@ -131,6 +138,9 @@
                         <td id="labPhone${lab.id}" style="display:none"><input type="text" name="contact" value="${lab.contact}"/></td>
                         <td id="labAddr${lab.id}" style="display:none"><input type="text" name="address" value="${lab.address}"/></td>
                         <td id="labDiscount${lab.id}" style="display:none"><input type="text" name="discount" value="${lab.discount}"/></td>
+                        <td id="labUsers${lab.id}" style="display:none">
+                        	<input type="text" name="labUsers" value="<c:forEach items="${lab.users}" var="user">${user.email},</c:forEach>"/>
+                        </td>
                         <td id="labEdit${lab.id}" style="display:none"><button type="submit" class="btn btn-large btn-info">Save</button></td>
                         </form>
                         <td id="labEditT${lab.id}" class="ng-scope">
@@ -416,6 +426,7 @@ function editButtons(labId) {
 		$("#labAddrT" + prev).show();
 		$("#labEditT" + prev).show();
 		$("#labDiscountT" + prev).show();
+		$("#labUsersT" + prev).show();
 		
 		$("#labName" + prev).hide();
 		$("#labArea" + prev).hide();
@@ -423,6 +434,7 @@ function editButtons(labId) {
 		$("#labEmail" + prev).hide();
 		$("#labAddr" + prev).hide();
 		$("#labDiscount" + prev).hide();
+		$("#labUsers" + prev).hide();
 		$("#labEdit" + prev).hide();
 	}
 	
@@ -432,6 +444,7 @@ function editButtons(labId) {
 	$("#labEmailT" + labId).hide();
 	$("#labAddrT" + labId).hide();
 	$("#labDiscountT" + labId).hide();
+	$("#labUsersT" + labId).hide();
 	$("#labEditT" + labId).hide();
 	
 	$("#labName" + labId).show();
@@ -440,6 +453,7 @@ function editButtons(labId) {
 	$("#labEmail" + labId).show();
 	$("#labAddr" + labId).show();
 	$("#labDiscount" + labId).show();
+	$("#labUsers" + labId).show();
 	$("#labEdit" + labId).show();
 	
 	$("#previousLabId").val(labId);

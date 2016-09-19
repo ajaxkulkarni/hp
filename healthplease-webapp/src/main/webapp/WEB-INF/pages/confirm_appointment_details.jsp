@@ -198,7 +198,9 @@ $(document).ready(function() {
                                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
                                             ${appointment.address.street}  , ${appointment.address.area},<br/> ${appointment.address.landmark}, ${appointment.address.zipCode}                                       </div>
                                     </div>
-                                    <abbr title="Phone">C:</abbr> ${appointment.user.phone}                                </address>
+                                    <abbr title="Phone">C:</abbr> ${appointment.user.phone}      
+                                    <p> ${appointment.user.email}</p>
+                                    </address>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 text-right">
 <!--                                <p>

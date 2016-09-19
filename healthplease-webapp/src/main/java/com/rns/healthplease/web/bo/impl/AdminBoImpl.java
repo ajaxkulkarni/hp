@@ -292,6 +292,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 		labs.setPickCharge(Short.valueOf("0"));
 		labs.setUpdatedBy(new Date());
 		labs.setUpdatedDate(new Date());
+		setLabUsers(lab, session);
 		if (labs.getId() == null) {
 			session.persist(labs);
 		}
@@ -303,6 +304,14 @@ public class AdminBoImpl implements AdminBo, Constants {
 	public String updateLabUsers(Lab lab) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
+		setLabUsers(lab, session);
+
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
+	}
+
+	private void setLabUsers(Lab lab, Session session) {
 		List<Users> oldUsers = new UserDaoImpl().getUsersForLab(lab.getId(), session);
 		if (CollectionUtils.isNotEmpty(oldUsers)) {
 			for (Users users : oldUsers) {
@@ -325,10 +334,6 @@ public class AdminBoImpl implements AdminBo, Constants {
 				users1.setGroup(group);
 			}
 		}
-
-		tx.commit();
-		session.close();
-		return RESPONSE_OK;
 	}
 
 	@Override

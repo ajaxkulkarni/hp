@@ -508,6 +508,7 @@ public class HPLabControllerWeb implements Constants {
 			}
 			for (LabTest labTest : currentAppointment.getTests()) {
 				if (labTest.getId().intValue() == test.getId().intValue()) {
+					labTest.setRemark(test.getRemark());
 					setParameters(test, labTest);
 					tests.add(labTest);
 					break;

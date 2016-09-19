@@ -247,6 +247,7 @@ public class DataConverters {
 				}
 				labTest.setParameters(getTestParameters(appointmentTests.getTests().getTestFactors(), appointments, session));*/
 				labTest.setReportSent(appointmentTests.getReportSent());
+				labTest.setRemark(appointmentTests.getRemark());
 				if(appointmentTests.getFileLocation() != null) {
 					labTest.setFileLocation(appointmentTests.getFileLocation().getFilePath());
 				}

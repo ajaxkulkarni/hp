@@ -73,12 +73,14 @@
 <table id="locs_table" class="table table-bordered table-responsive paginate">
                     <tbody><tr class="page_header">
                     <th>#</th>
+                    <th>Location ID</th>
                     <th>Location Name</th>
                     <th colspan="2" align="center">Actions</th>
                     </tr>                
                 <c:forEach items="${locations}" var="loc" varStatus="i">
                 <tr>
                 	<td>${i.index + 1}</td>
+                	<td>${loc.id}</td>
                 	<td>${loc.name}</td>
                 	<td align="center">
                 		<a href="<%=Constants.ADMIN_EDIT_LOCATION_GET_URL%>?id=${loc.id}&name=${loc.name}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>

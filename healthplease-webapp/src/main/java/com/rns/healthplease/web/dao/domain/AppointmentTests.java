@@ -31,6 +31,7 @@ public class AppointmentTests implements java.io.Serializable {
 	private Tests tests;
 	private AppFileLocations fileLocation;
 	private String reportSent;
+	private String remark;
 
 	public AppointmentTests() {
 	}
@@ -107,6 +108,17 @@ public class AppointmentTests implements java.io.Serializable {
 
 	public void setReportSent(String reportSent) {
 		this.reportSent = reportSent;
+	}
+
+
+	@Column(name = "remark")
+	public String getRemark() {
+		return remark;
+	}
+
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

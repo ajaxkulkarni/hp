@@ -73,12 +73,14 @@
                     <tbody>
                     <tr class="page_header">
                     <th>#</th>
+                    <th>Test ID</th>
                     <th>Test Name</th>
                     <th colspan="2" align="center">Actions</th>
                     </tr>                
                 <c:forEach items="${tests}" var="test" varStatus="i">
                 <tr>
                 	<td>${i.index + 1}</td>
+                	<td>${test.id}</td>
                 	<td>${test.name}</td>
                 	<td align="center">
                 		<a href="<%=Constants.ADMIN_EDIT_TEST_GET_URL%>?id=${test.id}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>

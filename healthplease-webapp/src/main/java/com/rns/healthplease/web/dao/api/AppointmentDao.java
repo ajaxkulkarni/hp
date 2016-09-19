@@ -9,6 +9,7 @@ import com.rns.healthplease.web.dao.domain.AppFileLocations;
 import com.rns.healthplease.web.dao.domain.AppoinAddresses;
 import com.rns.healthplease.web.dao.domain.AppointmentStatus;
 import com.rns.healthplease.web.dao.domain.AppointmentTestResults;
+import com.rns.healthplease.web.dao.domain.AppointmentTests;
 import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.CancelReasons;
 import com.rns.healthplease.web.dao.domain.LabActiveDaysStatus;
@@ -96,5 +97,7 @@ public interface AppointmentDao {
 	List<TestLabs> getLabsForTest(List<Integer> tests,Integer labId, Session session);
 	
 	AppointmentStatus getAppointmentStatusById(Integer id, Session session);
+
+	AppointmentTests getAppointmentTest(Integer testId, Integer appId, Session session);
 
 }
