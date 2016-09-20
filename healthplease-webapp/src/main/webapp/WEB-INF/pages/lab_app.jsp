@@ -10,10 +10,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-	    <title>Pathology Lab Management Software on Cloud | HealthPlease.in</title>
+	    <title> Laboratory Information Management System (LIMS) on Cloud | HealthPlease.in</title>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	    <meta name="keywords" content="Cloud Based Diagnostic Lab Management Software ">
-    <meta name="description" content="HealthPlease.inâs Cloud Based Lab Management software helps conveniently track Appointments, Create and Send Test Reports and manage Finances.">
+	    <meta name="keywords" content="LMS, LIS, EMR, LIMS, Medical Software, Pathology Lab Software">
+    <meta name="description" content="Pathology & Diagnostic LMS to Manage Appointment, Create Test Report, Maintain EMR, Integrate with Lab Instruments & access through App Interface.">
 	    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
@@ -60,8 +60,9 @@
     float: left;
     width: 100%;
     clear: both;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.87);
+    font-size: 19px;
+    color:#fff;
+  /*   color: rgba(255, 255, 255, 0.87); */
          font-family: 'Roboto', sans-serif;
     font-weight: 300;
 }
@@ -476,7 +477,7 @@ $('#classCallCTA').click(function() {
     .class_para1{
         color: rgba(0, 0, 0, 0.87);  
         font-family: 'Roboto', sans-serif;
-        margin: 16px auto;
+        margin: 20px auto;
         font-weight: 400;
     }
     
@@ -535,9 +536,9 @@ $('#classCallCTA').click(function() {
                 </div>
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 classWColor">
                               
-							<p class="class_para1">
+							<h3 class="class_para1">
 								HealthPlease.in is proud to introduce a Cloud Based App for Labs that helps them manage their In Centre and Home Visit appointments, Test Reporting and Finances more efficiently and conveniently.
-							</p>
+							</h3>
 							<ul class="classPoint">
 								<li class="classW12">
 									<span class="classPtSpan"><i class="fa fa-circle" aria-hidden="true"></i> Online Presence</span>

@@ -230,11 +230,11 @@ Please's team will get in touch with him/her. </h3>
                             <input class="form-control" name="companyName" id="company" type="text" required ="required" placeholder="Company">
                             <label for="name" style="margin-top:10px">Name of HR/Admin</label>
                             <input class="form-control" name="adminName" id="hr" type="text" required ="required" placeholder="HR/Admin" >
-                             <label style="margin-top:10px">Contact No.</label>
-                            <input class="form-control" name="phone" id="contact" required ="required" type="text" placeholder="Mobile" pattern="[0-9]{10}">
-                            <div id="idAppPContactErr"></div>
                             <label style="margin-top:10px">Email of HR/Admin</label>
                             <input class="form-control" name="email" id="email" type="email" required ="required" placeholder="Email">
+                             <label style="margin-top:10px">Contact No.</label>
+                            <input class="form-control" name="phone" id="contact" required ="required" type="text" placeholder="Requestor's Mobile" pattern="[0-9]{10}">
+                            <div id="idAppPContactErr"></div>
                             <label style="margin-top:10px">Corporate's Location</label>
                              <input class="form-control" name="location" id="location" type="text" placeholder="Location" required ="required">
                            
