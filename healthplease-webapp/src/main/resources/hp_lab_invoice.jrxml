@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-09-20T22:42:56 -->
+<!-- 2016-09-21T01:50:12 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -38,32 +38,24 @@
 	<pageHeader>
 		<band height="123" splitType="Stretch">
 			<rectangle>
-				<reportElement x="-1" y="0" width="555" height="95" uuid="758eec19-c5ca-4d1f-9d06-2d9c9d5040cf">
-					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="-1" y="0" width="555" height="95" uuid="758eec19-c5ca-4d1f-9d06-2d9c9d5040cf"/>
 			</rectangle>
 			<textField>
-				<reportElement x="160" y="10" width="404" height="34" forecolor="#030000" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592">
-					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="160" y="10" width="404" height="34" forecolor="#030000" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592"/>
 				<textElement>
 					<font fontName="SansSerif" size="24" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{labName}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="160" y="50" width="386" height="20" uuid="44dd132c-1c05-4a19-80a8-f4c67b8b0e29">
-					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="160" y="50" width="386" height="20" uuid="44dd132c-1c05-4a19-80a8-f4c67b8b0e29"/>
 				<textElement>
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{labAddress}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="15" y="6" width="105" height="84" uuid="8b35d50b-29bb-49db-9afe-b7d5897a74c5">
-					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="15" y="6" width="105" height="84" uuid="8b35d50b-29bb-49db-9afe-b7d5897a74c5"/>
 				<imageExpression><![CDATA[$P{logopath}]]></imageExpression>
 			</image>
 			<staticText>
@@ -195,9 +187,7 @@
 	<pageFooter>
 		<band height="36" splitType="Stretch">
 			<rectangle>
-				<reportElement x="1" y="6" width="552" height="8" forecolor="#3399FF" backcolor="#3399FF" uuid="9121a783-1877-4b88-8e86-05cc0aa4bca1">
-					<printWhenExpression><![CDATA[$P{printfooter}.equals("y")]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="1" y="6" width="552" height="8" forecolor="#3399FF" backcolor="#3399FF" uuid="9121a783-1877-4b88-8e86-05cc0aa4bca1"/>
 			</rectangle>
 		</band>
 	</pageFooter>
@@ -241,22 +231,16 @@
 				<text><![CDATA[Rs.]]></text>
 			</staticText>
 			<image>
-				<reportElement x="399" y="106" width="100" height="100" uuid="bf4e95f3-596c-4e54-bac3-5260ccb2845d">
-					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="399" y="106" width="100" height="100" uuid="bf4e95f3-596c-4e54-bac3-5260ccb2845d"/>
 				<imageExpression><![CDATA[$P{imagePath}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="400" y="245" width="100" height="14" uuid="9b37f2d4-0710-4f16-af08-10355bbfebb4">
-					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="400" y="245" width="100" height="14" uuid="9b37f2d4-0710-4f16-af08-10355bbfebb4"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{designation}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="400" y="217" width="100" height="21" uuid="dca3fc0f-2300-4a6b-a1ae-d5988611a5a6">
-					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="400" y="217" width="100" height="21" uuid="dca3fc0f-2300-4a6b-a1ae-d5988611a5a6"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{pathName}]]></textFieldExpression>
 			</textField>

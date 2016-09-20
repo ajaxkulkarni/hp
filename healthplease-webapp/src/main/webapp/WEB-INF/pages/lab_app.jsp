@@ -321,134 +321,6 @@ body{
 </style>
 
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#loadDiv').delay(3000).fadeOut(400);
-	});
-	
-</script>
-<script type="text/javascript">
-    $(document).ready(function(){
-	    $('#idRegForm').submit(function(ev){
-	    	var frm = $(this);	    	
-	          $("#idSubmit").val("Sending..")
-	          $("#idSubmit").html("<i class='fa fa-spinner fa-spin' aria-hidden='true' ></i> Sending....");
-	    	  $.ajax({
-	            type: frm.attr('method'),
-	            url: frm.attr('action'),
-	            data: frm.serialize(),
-	            success: function (data) {
-	                $("#idSubmit").html("<i class='fa fa-spinner fa-spin' aria-hidden='true' ></i> Sending....");
-	                //alert("Thank You!"); 
-	                console.log(data);
-	            	$(".modal-body").html("<span class='classAfterFormSubmit'>"+data+"</span>");
-	            	$(".modal-footer").hide();
-	            }
-	        });
-	    	  $("#idSubmit").val("Submit")
-	    	  $("#idSubmit").html("Submit");
-	        // stop the form from submitting the normal way and refreshing the page        
-	        ev.preventDefault();
-	    });
-	});
-</script>
-		<script type="text/javascript">
-			/* Float Label Pattern Plugin for Bootstrap 3.1.0 by Travis Wilson
-**************************************************/
-
-(function ($) {
-    $.fn.floatLabels = function (options) {
-
-        // Settings
-        var self = this;
-        var settings = $.extend({}, options);
-
-
-        // Event Handlers
-        function registerEventHandlers() {
-            self.on('input keyup change', 'input, textarea', function () {
-                actions.swapLabels(this);
-            });
-        }
-
-
-        // Actions
-        var actions = {
-            initialize: function() {
-                self.each(function () {
-                    var $this = $(this);
-                    var $label = $this.children('label');
-                    var $field = $this.find('input,textarea').first();
-
-                    if ($this.children().first().is('label')) {
-                        $this.children().first().remove();
-                        $this.append($label);
-                    }
-
-                    var placeholderText = ($field.attr('placeholder') && $field.attr('placeholder') != $label.text()) ? $field.attr('placeholder') : $label.text();
-
-                    $label.data('placeholder-text', placeholderText);
-                    $label.data('original-text', $label.text());
-
-                    if ($field.val() == '') {
-                        $field.addClass('empty')
-                    }
-                });
-            },
-            swapLabels: function (field) {
-                var $field = $(field);
-                var $label = $(field).siblings('label').first();
-                var isEmpty = Boolean($field.val());
-
-                if (isEmpty) {
-                    $field.removeClass('empty');
-                    $label.text($label.data('original-text'));
-                }
-                else {
-                    $field.addClass('empty');
-                    $label.text($label.data('placeholder-text'));
-                }
-            }
-        }
-
-
-        // Initialization
-        function init() {
-            registerEventHandlers();
-
-            actions.initialize();
-            self.each(function () {
-                actions.swapLabels($(this).find('input,textarea').first());
-            });
-        }
-        init();
-
-
-        return this;
-    };
-
-    $(function () {
-        $('.float-label-control').floatLabels();
-    });
-})(jQuery);
-		</script>
-
-<script type="text/javascript">
-$(".bg").interactive_bg({
-   strength: 25,
-   scale: 1.05,
-   animationSpeed: "100ms",
-   contain: true,
-   wrapContent: false
- });
-</script>
-
-
-<script type="text/javascript">
-$('#classCallCTA').click(function() {
-     $('#idName').focus();
-});
-      </script>
 
 <style>
        @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
@@ -520,7 +392,7 @@ $('#classCallCTA').click(function() {
 		
 		<div class="container">
 		<div class="classMainContainer">
-		<div id="msg" class="">
+		<div id="msg" class="" style="margin-top:5px">
     	<c:if test="${result != null && result != 'OK' }">
 			<div class="alert alert-danger">${result}</div>
 		</c:if>

@@ -84,9 +84,9 @@
 			<div class="">
 				<input name="designation" style="margin-top:20px" value="${user.lab.reportConfig.designation}" placeholder="Designation" class="form-control input-md" type="text">      
 			</div>
-			<div class="">
+		<%-- 	<div class="">
 				<input name="remark" style="margin-top:20px" value="${appointment.remark}" placeholder="Remark" class="form-control input-md" type="text">      
-			</div>
+			</div> --%>
 			</div>
 			</div>
 			</div>
@@ -94,7 +94,7 @@
 			</div>
 			
 	<!-- invoice setting%%%%%%%%%%%%%%%%%%%%%%%%%%5 -->		
-			<div id="header_footer" style="margin-top:10px">
+<%-- 			<div id="header_footer" style="margin-top:10px">
 			<div class="panel panel-default">
 			<div class="panel-heading">Invoice Settings</div>
 			<input type="hidden" name="signaturePath" value="${user.lab.reportConfig.signaturePath}">
@@ -127,7 +127,7 @@
            </div> 
 		</div>	
 		</div>
-		</div>
+		</div> --%>
 		<!-- **** Code added for prepare report div **** -->		
 			
 			<div id="prepare_report_div">
