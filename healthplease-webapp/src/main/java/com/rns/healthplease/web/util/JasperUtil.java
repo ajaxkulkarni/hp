@@ -187,7 +187,7 @@ public class JasperUtil {
 	}
 
 	private static Integer getTotalPrice(Appointment appointment) {
-		if(appointment.getLab().getDiscount() == null) {
+		if(appointment.getPayment().getDiscount() == null) {
 			return appointment.getLab().getPrice();
 		}
 		return appointment.getLab().getPrice() + appointment.getPayment().getDiscount();
