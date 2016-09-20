@@ -13,8 +13,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link href="<c:url value="/resources/css/external/select2/select2.min.css"/>" rel="stylesheet" ></link>
-    
+		 <link href="<c:url value="/resources/css/external/select2/select2.css"/>" rel="stylesheet" ></link>    
     <title>Corporate Appointments | HealthPlease.in</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
+<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
+<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
  <style type="text/css">
  input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
@@ -28,10 +31,6 @@ input[type=number] {-moz-appearance: textfield;}
 </head>
 
 <body>
-<script type="text/javascript">
-/* <script src="<c:url value="/resources/js/external/select2/select2.min.js"/>"> */
-
-</script>
 
 
 <%@include file="user_header.jsp" %>
@@ -115,7 +114,7 @@ input[type=number] {-moz-appearance: textfield;}
 			  
 			   <div class="form-group">
 			  <label for="test" >Test:</label></br>
-			  <select id="idTest" name="testIds" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLabs()">
+			  <select id="idTest"  name="testIds" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLabs()">
 			
               	<c:forEach items="${tests}" var="test">
                 	<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
@@ -242,6 +241,8 @@ input[type=number] {-moz-appearance: textfield;}
 <script>
 
 $(document).ready(function(){
+	$("#idTest").refresh();
+	
 	paginateTable(20,0);
 	
 	$( "#idAppointmentDate").datepicker({
