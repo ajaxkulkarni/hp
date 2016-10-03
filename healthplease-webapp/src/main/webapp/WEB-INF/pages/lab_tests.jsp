@@ -17,28 +17,16 @@
 </head>
 
 <body>
-<%@include file="user_header.jsp" %>
+ <div id="wrapper">
 
-        <div class="classGoldenDivider"></div>       
-        <div id="msg" class="container">
-        	<c:if test="${result == 'OK'}">
-        		<div class="alert alert-success">
-        			Record updated successfully!
-        		</div>
-        	</c:if>	
-        	<c:if test="${result != 'OK' && result != null}">
-        		<div class="alert alert-danger">
-        			${result}
-        		</div>
-        	</c:if>
-        </div>
+        <%@include file="lab_header.jsp" %>
 
-
+ <div id="page-wrapper">
 <!--Add user start from here-->
 <div class="container" id="addUser" name="addUser">
    
   <div class="row">
-    <%@include file="lab_header.jsp" %> 
+    
 <div class="col-lg-9 col-md-9">
 
 
@@ -102,9 +90,11 @@
    </div>  
   </div>      
 </div>
+</div>
+</div>
         <!-- /#page-wrapper -->
     <!-- /#wrapper -->
-<%@include file="user_footer.jsp" %>
+
 <%--<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="/resources/js/jquery.paging.min.js"/>"></script>
 <script src="<c:url value="/resources/js/jquery.easy-paging.js"/>"></script> --%>
@@ -153,6 +143,7 @@ $(document).ready(function(){
 		    }
    
 </script>
+
 </body>
 
 </html>
