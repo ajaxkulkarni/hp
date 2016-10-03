@@ -345,9 +345,9 @@
 																		<a href="<%=Constants.LAB_PREPARE_REPORT_GET_URL %>?appointmentId=${appointment.id}"  >
                                                                         <button style="text-transform:capitalize;" class="btn btn-sm btn-default">View Report</button>
                                                                         </a>	
-                                                                        <a href="<%=Constants.LAB_INVOICE_GET_URL %>?appointmentId=${appointment.id}"  >
-                                                                        <button style="text-transform:capitalize;" class="btn btn-sm btn-default">Invoice</button>
-                                                                        </a>
+                                                                       <%--  <a href="<%=Constants.LAB_INVOICE_GET_URL %>?appointmentId=${appointment.id}"  > --%>
+                                                                        <button style="text-transform:capitalize;" class="btn btn-sm btn-default" data-toggle="modal" data-target="#invoiceSetting">Invoice</button>
+                                                                       <!--  </a> -->
 																	</div>
 																	</c:if>
 																	<c:if test="${appointment.status.id == 4}">
@@ -402,7 +402,41 @@
         </div>
     </div>
 
-<!-- Modal -->
+<!-- Modal for invoice settings-->
+ <div class="modal fade" id="invoiceSetting" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Invoice Settings</h4>
+        </div>
+        <div class="modal-body">  
+                <div class="row">
+                    <div class="col-md-4">
+                          <label><input type="checkbox" value=""> Include Header</label>
+                    </div>
+                    <div class="col-md-4">
+                          <label><input type="checkbox" value=""> Include Footer</label>
+                    </div>
+                    <div class="col-md-4">
+                      <label><input type="checkbox" value=""> Include Signature</label>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" >Save</button>
+        </div>
+      </div>    
+    </div>
+  </div>
+
+
+
+<!-- Modal for invoice settings-->
+
+
 <div class="modal fade" id="cancel-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <form class="form-horizontal" method="post" action="<%=Constants.CANEL_APPOINTMENT_LAB_POST_URL %>">
