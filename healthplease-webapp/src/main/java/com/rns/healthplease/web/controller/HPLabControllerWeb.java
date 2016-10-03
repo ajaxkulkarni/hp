@@ -487,7 +487,7 @@ public class HPLabControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/" + LAB_INVOICE_GET_URL, method = RequestMethod.GET)
-	public void generateInvoice(int appointmentId, ModelMap model, HttpServletResponse response) throws JRException, IOException {
+	public void generateInvoice(int appointmentId, ReportConfigurations reportConfigurations, ModelMap model, HttpServletResponse response) throws JRException, IOException {
 		Appointment app = new Appointment();
 		app.setId(appointmentId);
 		Appointment appointment = labBo.getAppointment(app);
