@@ -12,7 +12,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRException;
@@ -534,6 +533,8 @@ public class HPLabControllerWeb implements Constants {
 				if (parameter.getId().intValue() == param.getId().intValue()) {
 					param.setActualValue(parameter.getActualValue());
 					param.setRemark(parameter.getRemark());
+					param.setNormalValue(parameter.getNormalValue());
+					param.setUnit(parameter.getUnit());
 					params.add(param);
 				}
 			}
@@ -541,6 +542,15 @@ public class HPLabControllerWeb implements Constants {
 		labTest.setParameters(params);
 	}
 
+	
+	
+	@RequestMapping(value = "/" + LAB_TESTS_GET_URL, method = RequestMethod.GET)
+	public String initLabTests(HttpServletResponse response, ModelMap model) {
+		Lab lab = manager.getUser().getLab();
+		model.addAttribute(MODEL_TESTS, labBo.getAvailableLabTests(lab));
+		return LAB_TESTS_PAGE;
+	}
+	
 	@RequestMapping(value = "/" + GET_LAB_SIGNATURE_GET_URL, method = RequestMethod.GET)
 	public void getReport(int labId, HttpServletResponse response, ModelMap model) {
 		try {

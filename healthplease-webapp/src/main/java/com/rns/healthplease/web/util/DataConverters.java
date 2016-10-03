@@ -59,6 +59,7 @@ public class DataConverters {
 		user.setPhone(users.getContact());
 		if (users.getLoginDetails() != null) {
 			user.setEmail(users.getLoginDetails().getUsername());
+			user.setRegisteredEmail(users.getLoginDetails().getUsername());
 			user.setPassword(users.getLoginDetails().getPassword());
 			user.setLoginId(users.getLoginDetails().getId());
 			user.setPasswordRecovery(users.getLoginDetails().isPasswordRecover());
@@ -272,6 +273,12 @@ public class DataConverters {
 						.getId(), session);
 				if (results != null) {
 					parameter.setActualValue(results.getActualValue());
+					if(StringUtils.isNotBlank(results.getNormalValue())) {
+						parameter.setNormalValue(results.getNormalValue());
+					}
+					if(StringUtils.isNotBlank(results.getUnit())) {
+						parameter.setUnit(results.getUnit());
+					}
 					parameter.setRemark(results.getRemarks());
 				}
 				if(appointments.getAge() != null && appointments.getAge().intValue() <= 10) {

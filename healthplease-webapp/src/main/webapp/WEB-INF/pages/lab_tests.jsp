@@ -12,7 +12,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Admin Map Tests | HealthPlease.in</title>
+    <title>Your Tests | HealthPlease.in</title>
     
 </head>
 
@@ -63,7 +63,7 @@
                     <th>Charge</th>
                     <th colspan="2" align="center">Actions</th>
                     </tr>                
-                <c:forEach items="${lab.tests}" var="test" varStatus="i">
+                <c:forEach items="${tests}" var="test" varStatus="i">
                 <tr>
                 	<td>${i.index + 1}</td>
                 	<td>${test.name}</td>

@@ -67,8 +67,8 @@
 										</c:if> <input type="hidden"
 										name="tests[${t.index}].parameters[${p.index}].id"
 										value="${testParameter.id}" /></td>
-									<td>${testParameter.unit}</td>
-									<td>${testParameter.normalValue}</td>
+									<td><input type="text" value="${testParameter.unit}" name="tests[${t.index}].parameters[${p.index}].unit"></td>
+									<td><input type="text" value="${testParameter.normalValue}" name="tests[${t.index}].parameters[${p.index}].normalValue"></td>
 									<td><c:if test="${test.reportSent == 'Y' }">
 											<input type="text"
 												name="tests[${t.index}].parameters[${p.index}].remark"

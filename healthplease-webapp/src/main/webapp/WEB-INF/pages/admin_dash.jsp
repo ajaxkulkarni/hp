@@ -297,6 +297,8 @@
                                                 </th>
                                                 <th>Doctor's Name
                                                 </th>
+                                                <th>Account holder
+                                                </th>
                                                 <th>Payment Mode
                                                 </th>
                                                 <th>Print <br/> Required
@@ -335,6 +337,7 @@
                                                 <td width="0px">${appointment.user.email}</td>
                                                 <td width="0px">${appointment.user.gender}</td>
                                                 <td width="0px">${appointment.doctorName}</td>
+                                                <td width="0px">${appointment.user.registeredEmail}</td>
                                                 <td width="0px">${appointment.payment.type}</td>
                                                 <td width="0px">${appointment.printRequired}</td>
                                                

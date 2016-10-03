@@ -248,6 +248,8 @@ public interface Constants {
 	String LAB_PARTNER_GET_URL = "labPartner.htm";
 	String REQUEST_LAB_PARTNER_POST_URL = "requestLabPartner";
 	String LAB_PARTNER_PAGE = "lab_app";
+	String LAB_TESTS_PAGE = "lab_tests";
+	String LAB_TESTS_GET_URL = "labTests.htm";
 	
 
 	String MAIL_TYPE_ACTIVATION = "activationMail";

@@ -27,6 +27,7 @@ public class User {
 	private UserGroup group;
 	private Lab lab;
 	private String activationCode;
+	private String registeredEmail;
 
 	public String getEmail() {
 		return email;
@@ -206,6 +207,14 @@ public class User {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public String getRegisteredEmail() {
+		return registeredEmail;
+	}
+
+	public void setRegisteredEmail(String registeredEmail) {
+		this.registeredEmail = registeredEmail;
 	}
 
 

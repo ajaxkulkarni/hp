@@ -24,6 +24,8 @@ public class AppointmentTestResults {
 	private Integer testId;
 	private Integer appointmentId;
 	private String remarks;
+	private String normalValue;
+	private String unit;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -81,6 +83,24 @@ public class AppointmentTestResults {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	@Column(name = "normal_val")
+	public String getNormalValue() {
+		return normalValue;
+	}
+
+	public void setNormalValue(String normalValue) {
+		this.normalValue = normalValue;
+	}
+
+	@Column(name = "unit")
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 }

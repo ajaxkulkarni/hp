@@ -443,6 +443,12 @@ public class BusinessConverters {
 			if (existingResult != null) {
 				existingResult.setActualValue(result.getActualValue());
 				existingResult.setRemarks(result.getRemarks());
+				if(StringUtils.isNotBlank(result.getNormalValue())) {
+					existingResult.setNormalValue(result.getNormalValue());
+				}
+				if(StringUtils.isNotBlank(result.getUnit())) {
+					existingResult.setUnit(result.getUnit());
+				}
 				results.add(existingResult);
 				continue;
 			}
@@ -460,6 +466,12 @@ public class BusinessConverters {
 		testFactor.setId(parameter.getId());
 		result.setFactor(testFactor);
 		result.setRemarks(parameter.getRemark());
+		if(StringUtils.isNotBlank(parameter.getNormalValue())) {
+			result.setNormalValue(parameter.getNormalValue());
+		}
+		if(StringUtils.isNotBlank(parameter.getUnit())) {
+			result.setUnit(parameter.getUnit());
+		}
 		return result;
 	}
 

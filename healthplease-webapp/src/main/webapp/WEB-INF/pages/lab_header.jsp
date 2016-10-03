@@ -200,7 +200,7 @@
                             <a class="" href="<%=Constants.SLOTS_GET_URL%>"><i class="fa fa-table fa-fw"></i> Slots</a>
                         </li>
                          <li>
-                            <a class="" href="<%=Constants.SLOTS_GET_URL%>"><i class="fa fa-table fa-fw"></i> Tests</a>
+                            <a class="" href="<%=Constants.LAB_TESTS_GET_URL%>"><i class="fa fa-table fa-fw"></i> Tests</a>
                         </li>
                         <li>
                             <a class="" href="<%=Constants.LAB_SETTINGS_GET_URL%>"><i class="fa fa-cogs fa-fw"></i> Settings</a>
