@@ -277,7 +277,7 @@ $(window).load(function() {
 
 
         <div class="classSliderHolder">
-            <div class="container">
+            <div class="container">  
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
                       <div class="classHAbtTextWrapper">                         

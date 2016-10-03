@@ -5,26 +5,25 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
+<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
+<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-	    <title> Laboratory Information Management System (LIMS) on Cloud | HealthPlease.in</title>
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	    <meta name="keywords" content="LMS, LIS, EMR, LIMS, Medical Software, Pathology Lab Software">
-    <meta name="description" content="Pathology & Diagnostic LMS to Manage Appointment, Create Test Report, Maintain EMR, Integrate with Lab Instruments & access through App Interface.">
-	    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+<title> Laboratory Information Management System (LIMS) on Cloud | HealthPlease.in</title> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<meta name="keywords" content="LMS, LIS, EMR, LIMS, Medical Software, Pathology Lab Software">
+<meta name="description" content="Pathology & Diagnostic LMS to Manage Appointment, Create Test Report, Maintain EMR, Integrate with Lab Instruments & access through App Interface.">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!-- load jquery via CDN -->
-    
-      <script src="bootstrap/js/jquery-1.11.2.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="js/jquery-ui.js"></script>
+<script src="bootstrap/js/jquery-1.11.2.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/jquery-ui.js"></script>
          <!-- Bootstrap Core CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/jquery-ui.css" rel="stylesheet">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/jquery-ui.css" rel="stylesheet">
 </head>
 <body>
 <style type="text/css">
@@ -347,10 +346,10 @@ body{
     }
     
     .class_para1{
-        color: rgba(0, 0, 0, 0.87);  
-        font-family: 'Roboto', sans-serif;
-        margin: 20px auto;
-        font-weight: 400;
+    font-size: 18px;
+	font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(0, 0, 0, 0.87);
     }
     
     
@@ -383,7 +382,79 @@ body{
     </style>
 
 
-
+        <style>
+              @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+        #corp_form{
+      	-webkit-box-shadow: 2px 10px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.16); 
+       /*  border:1px solid black; */
+    border-radius: 10px;
+}
+            
+              #corp_form_head_div{
+        background-color: #a4dbf4;
+        border-bottom: 2px solid rgba(199, 148, 55, 0.87);
+        border-top-left-radius: 10px;
+         border-top-right-radius: 10px;
+    }
+            
+               #corp_form_heading{
+        margin: 8px auto;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.87);
+         font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        text-align: center;
+    }
+            
+              .first_letter{
+        font-size: 20px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+            
+    }
+            
+              .corp_form_label{
+        color: rgba(0, 0, 0, 0.87);  
+        padding: 8px 0px;
+        font-size: 16px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+    }
+             .form-control{
+         font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+                 color: rgba(0, 0, 0, 0.76);
+    }
+            
+                #corp_form_footer_div{
+        border-bottom-left-radius: 10px;
+         border-bottom-right-radius: 10px;
+    }
+    
+    .corp_footer_btn {
+    background-color: #03a9f4;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    color: #fff;
+    transition: all 0.5s ease 0s;
+    display: block;
+        margin:4px  auto;
+        font-size: 16px;
+        padding: 8px 16px;
+                font-family: 'Roboto', sans-serif;
+        width: 100px;
+}
+.corp_footer_btn:hover {
+    background-color: #0288d1;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+    color: #fff;
+    transition: all 0.5s ease 0s;
+}  
+</style>
 <%@include file="user_header.jsp" %>
 
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 classMColor2 classTopLine"style="background-color:#14A7DF;">
@@ -392,7 +463,7 @@ body{
 		
 		<div class="container">
 		<div class="classMainContainer">
-		<div id="msg" class="" style="margin-top:5px">
+		<div id="msg" class="" style="margin-top:35px">
     	<c:if test="${result != null && result != 'OK' }">
 			<div class="alert alert-danger">${result}</div>
 		</c:if>
@@ -408,9 +479,9 @@ body{
                 </div>
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 classWColor">
                               
-							<h3 class="class_para1">
+							<h4 class="class_para1">
 								HealthPlease.in is proud to introduce a Cloud Based App for Labs that helps them manage their In Centre and Home Visit appointments, Test Reporting and Finances more efficiently and conveniently.
-							</h3>
+							</h4>
 							<ul class="classPoint">
 								<li class="classW12">
 									<span class="classPtSpan"><i class="fa fa-circle" aria-hidden="true"></i> Online Presence</span>
@@ -476,47 +547,64 @@ body{
 						
 						
 						
-		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
 			<div class="classLPageFormHolder">
 	        <form name="regForm" id="idRegForm" method="POST" action="<%=Constants.REQUEST_LAB_PARTNER_POST_URL %>">
-		        <div class="modal-header classMBg2" >
-		          <h4 class="classFTitle">Demo or Free 1 month trial</h4>
-		        </div>
-		        <div class="modal-body" style="color:#fff">
+		       
+		        <div class="panel panel-default" id="corp_form">
+		       <div class="panel-heading" style="height:50px;background-color:#a4dbf4">
+                <h2 class="text-center panel-title" style="padding-top:2%;font-size:20px">Demo Or Free 1 Month Trial</h2></div>
+                
+                
+               <div class="classGoldenDivider"></div>
+		       <div class="panel-body" style="background-color:#fff">
+                 <div class="row">
+                    <div class="col-lg-10 col-lg-push-1 col-md-10 col-md-push-1 col-sm-10 col-sm-push-1 col-xs-12" style="border: ">  
+		       
+		        
 		        	
-	                <div class="form-group float-label-control"style="color:#fff">
+	                
 	                    <label for="name">Name</label>
-	                    <input type="text" style="color:#fff"id="idName" name="name" class="classCapitalize form-control" placeholder="Name" required />
-	                </div>
-	                <div class="form-group float-label-control">
-	                    <label for="lName">Lab Name</label>
-	                    <input type="text" style="color:#fff"id="idLName" name="labName" class="classCapitalize form-control" placeholder="Lab Name" required />
-	                </div>
-	                <div class="form-group float-label-control">
-	                    <label for="userEmail">Email</label>
-	                    <input type="email" style="color:#fff"id="idEmail" name="email" class="form-control" placeholder="Email" required />
-	                </div>
-	                <!-- <input type="hidden" name="sEmail" id="idSEmail" value="userEmail" style="display:none;"/> -->
-	                <div class="form-group float-label-control">
-	                    <label for="userMobile">Mobile No</label>
-	                    <input type="tel" id="idMobile" style="color:#fff"name="phone" onkeyup="check(); return false;"  class="form-control" placeholder="Mobile No" required />
-	                </div>
-	                <!-- <input type="hidden" name="sMobile" style="color:#fff"id="idSMobile" value="userMobile" style="display:none;"/> -->
+	                    <input type="text" style="color:#000"id="idName" name="name" class="classCapitalize form-control" placeholder="Name" required />
+	                    <label for="lName"style="margin-top:10px">Lab Name</label>
+	                    <input type="text" style="color:#000"id="idLName" name="labName" class="classCapitalize form-control" placeholder="Lab Name" required />
+	               
+	                    <label for="userEmail"style="margin-top:10px">Email</label>
+	                    <input type="email" style="color:#000"id="idEmail" name="email" class="form-control" placeholder="Email" required />
+	               
+	                    <label for="userMobile"style="margin-top:10px">Mobile No</label>
+	                    <input type="tel" id="idMobile" style="color:#000"name="phone" onkeyup="check(); return false;"  class="form-control" placeholder="Mobile No" required />
+	               
+	               
 	        	</div>
-		        <div class="modal-footer">
-		        	<label class="pull-left" id="frm_label">All fields are mandatory</label>
-<!--		          <button type="submit"  class="btn btn-default classMBg2 classCTSSubmit " >Submit</button>-->
-                                       <button type="submit" id="idSubmit" class="btn lab_app_footer_btn">Submit</button>
-		          	<div class="classMsg" id="idMsg"></div>
-		        </div>
+	        	 </div>
+	        	</div>
+            
+            <div class="classGoldenDivider"></div>  
+		              <div class="panel-footer" id="corp_form_footer_div">
+            <div class="row" style="padding-left:25px">
+                 <div class="col-md-12 col-xs-12">
+                     <label class="pull-left" id="frm_label">All fields are mandatory</label>
+                </div>
+            <div class="col-md-6 col-xs-12">
+                    <button type="submit" class="btn corp_footer_btn" id="idSubmit">Submit</button>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <button type="reset" class="btn corp_footer_btn">Cancel</button>
+                </div>
+                 	<div class="classMsg" id="idMsg"></div>
+            </div>
+                
+        </div>
+                </div>
 	        </form>
-							</div>
-						</div>
+		</div>
+	</div>
 						
 			</div>
 		
-		</div>
-		</div>
+		   </div>
+		   </div>
 
 		<%@include file="user_footer.jsp" %>
 </body>

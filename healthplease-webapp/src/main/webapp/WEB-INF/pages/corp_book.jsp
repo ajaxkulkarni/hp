@@ -1,6 +1,5 @@
 <%@page import="com.rns.healthplease.web.util.Constants"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -11,10 +10,11 @@
 
 <head>
           <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>Corporate Partners | HealthPlease.in</title>
            <link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
-<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
-<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
+			<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
+			<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
           	<link href="<c:url value="/resources/css/mui.css" />" rel="stylesheet" ></link>
           	<link href="<c:url value="/resources/css/mui.min.css" />" rel="stylesheet" ></link>
           	<link href="<c:url value="/resources/js/mui.js" />" rel="javascript" ></link>
@@ -25,7 +25,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700);
 .classOSCFont{
-
 }
 #corp_form{
       	-webkit-box-shadow: 2px 10px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);

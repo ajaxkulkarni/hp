@@ -41,7 +41,7 @@ height:80px;
 
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12" id="">
                   <label class=" control-label" for="selectbasic">Username / Email *</label>
-                  <div class="input-group" id="ff"><input type='email' name="email" id='idUsername' placeholder="E-mail" class='form-control classCustomControl' title="Please enter your email address!" required="required"></div> 
+                  <div class="input-group" id="ff"><input type='text' name="email" id='idUsername' placeholder="E-mail" class='form-control classCustomControl' title="Please enter your email address!" required="required"></div> 
                 </div>
 <!--
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -189,29 +189,45 @@ height:80px;
             //form validation rules
             $("#form_register").validate({
                 rules: {   
+                	 email: {
+                		 required: true,
+                		 emailCustom: true
+                     },
+                    phone: {
+                        required: true,
+                        number: true
+                      },
                 	password: {
                         required: true,
-                        minlength: 5
+                        minlength: 6
                     },
                     password_again : {
-                    minlength : 5,
+                    minlength : 6,
                     equalTo : "#idPassword"
-                },
+                    },
                 	
                 messages: {
                 	
+                	 email:{
+                         required:"please enter email",
+                             emailCustom:"alphabetical email"
+                     },
                     password: {
                         required: "Please provide a password",
-                        minlength: "Your password must be at least 5 characters long"
+                        minlength: "Your password must be at least 6 characters long"
                     },
-                    password_again :"Please enter your same password",
-                    phone:"please enter valid mobile number"
+                    password_again :"Please enter same password",
+                    phone:
+                    	{
+                    	number:"please enter valid mobile number"
+                    	}
                     
 
                 },
                 submitHandler: function(form) {
             
                     form.submit();
+                }
                 }
             });
         }
@@ -221,9 +237,15 @@ height:80px;
     $(D).ready(function($) {
         JQUERY4U.UTIL.setupFormValidation();
     });
+    
+    
 
 })(jQuery, window, document);
-    
+
+$.validator.addMethod("emailCustom", function (value, element, params) {
+	var re = /^[a-z]+$/;
+	return re.test(value);
+	}, "Please enter a valid email address.");
     </script>
     
     
@@ -240,6 +262,57 @@ height:80px;
 	}
 	return true;
 	}	
+	
+	$("#fname").keypress(function (e) {
+	    var regex = new RegExp("^[a-zA-Z]+$");
+	    var key = e.charCode||e.keyCode;
+	    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+	    if (regex.test(str)) {
+	        return true;
+	    }
+	    else if(key == 8||key == 46|| key == 9||key==37||key==39||key==32)
+	    	return true;
+	    else
+	    {
+	    e.preventDefault();
+	    //alert('Please Enter Alphabate');
+	    return false;
+	    }
+	});
+	
+	$("#add_city").keypress(function (e) {
+	    var regex = new RegExp("^[a-zA-Z]+$");
+	    var key = e.charCode||e.keyCode;
+	    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+	    if (regex.test(str)) {
+	        return true;
+	    }
+	    else if(key == 8||key == 46|| key == 9||key==37||key==39||key==32)
+	    	return true;
+	    else
+	    {
+	    e.preventDefault();
+	    //alert('Please Enter Alphabate');
+	    return false;
+	    }
+	});
+	
+	$("#lname").keypress(function (e) {
+	    var regex = new RegExp("^[a-zA-Z]+$");
+	    var key = e.charCode||e.keyCode;
+	    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+	    if (regex.test(str)) {
+	        return true;
+	    }
+	    else if(key == 8||key == 46|| key == 9||key==37||key==39||key==32)
+	    	return true;
+	    else
+	    {
+	    e.preventDefault();
+	    //alert('Please Enter Alphabate');
+	    return false;
+	    }
+	});
 	</script>
 
 </body>
