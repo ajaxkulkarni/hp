@@ -225,15 +225,16 @@ Please's team will get in touch with him/her. </h3>
                     <div class="col-lg-10 col-lg-push-1 col-md-10 col-md-push-1 col-sm-10 col-sm-push-1 col-xs-12" style="border: ">
                             <label for="name">Name of Requester</label>
                             <input class="form-control" name="name" id="name" type="text" required ="required" placeholder="Name" >
+                             <label style="margin-top:10px">Contact No.</label>
+                            <input class="form-control" name="phone" id="contact" required ="required" type="text" placeholder="Requestor's Mobile" pattern="[0-9]{10}">
+                            <div id="idAppPContactErr"></div>
                             <label for="name" style="margin-top:10px">Company Name</label>
                             <input class="form-control" name="companyName" id="company" type="text" required ="required" placeholder="Company">
                             <label for="name" style="margin-top:10px">Name of HR/Admin</label>
                             <input class="form-control" name="adminName" id="hr" type="text" required ="required" placeholder="HR/Admin" >
                             <label style="margin-top:10px">Email of HR/Admin</label>
                             <input class="form-control" name="email" id="email" type="email" required ="required" placeholder="Email">
-                             <label style="margin-top:10px">Contact No.</label>
-                            <input class="form-control" name="phone" id="contact" required ="required" type="text" placeholder="Requestor's Mobile" pattern="[0-9]{10}">
-                            <div id="idAppPContactErr"></div>
+                            
                             <label style="margin-top:10px">Corporate's Location</label>
                              <input class="form-control" name="location" id="location" type="text" placeholder="Location" required ="required">
                            

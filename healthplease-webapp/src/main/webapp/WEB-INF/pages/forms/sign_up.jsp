@@ -41,14 +41,10 @@ height:80px;
 
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12" id="">
                   <label class=" control-label" for="selectbasic">Username / Email *</label>
-                  <div class="input-group" id="ff"><input type='text' name="email" id='idUsername' placeholder="E-mail" class='form-control classCustomControl' title="Please enter your email address!" required="required"></div> 
+                  <div class="input-group" id="ff"><input type='text' name="email" id='idUsername' placeholder="E-mail" class='form-control classCustomControl' title="Please enter your email address!" required="required" onfocusout="validEmail()" ></div> 
+                  <div id="err" style="color:red"></div>
                 </div>
-<!--
-                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                  <label class=" control-label" for="selectbasic">Mobile no. *</label>
-                  <div  class="input-group"> <input type='text' name="phone" id='contact' class='form-control classCustomControl numeric' placeholder="Mobile Number" maxlength="10" size="10" title="Please provide Contact no !" required="required"></div>
-                </div>
--->
+
     
     <style>
     /* enable absolute positioning */
@@ -92,7 +88,7 @@ height:80px;
     
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label class=" control-label" for="selectbasic">Password *</label>
-                  <input type='password' name="password" id='idPassword' class='form-control classCustomControl' placeholder="Password" title="Please enter your password !" required="required" onfocusout="IsMobileNumber(contact)">
+                  <input type='password' name="password" id='idPassword' class='form-control classCustomControl' placeholder="Password" title="Please enter your password !" required="required" >
                 </div>
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label class=" control-label" for="selectbasic">Confirm Password *</label>
@@ -191,7 +187,7 @@ height:80px;
                 rules: {   
                 	 email: {
                 		 required: true,
-                		 emailCustom: true
+                		
                      },
                     phone: {
                         required: true,
@@ -210,7 +206,7 @@ height:80px;
                 	
                 	 email:{
                          required:"please enter email",
-                             emailCustom:"alphabetical email"
+                            
                      },
                     password: {
                         required: "Please provide a password",
@@ -253,7 +249,7 @@ $.validator.addMethod("emailCustom", function (value, element, params) {
 	
 	function IsMobileNumber(contact) {
 	var mob = /^[1-9]{1}[0-9]{9}$/;
-	console.log("here");
+	console.log(txtMobile.value);
 	var txtMobile = document.getElementById(contact);
 	if (mob.test(txtMobile.value) == false) {
 	    alert("Please enter valid mobile number.");
@@ -262,6 +258,19 @@ $.validator.addMethod("emailCustom", function (value, element, params) {
 	}
 	return true;
 	}	
+	function validEmail() {
+	    var x = document.getElementById("idUsername").value;
+	    var atpos = x.indexOf("@");
+	    var dotpos = x.lastIndexOf(".");
+	    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+	        document.getElementById("err").innerHTML="enter valid email";
+	        document.getElementById("err").focus;
+	        return false;
+	    }
+	    else
+	    	document.getElementById("err").innerHTML="";
+	    	return true;
+	}
 	
 	$("#fname").keypress(function (e) {
 	    var regex = new RegExp("^[a-zA-Z]+$");

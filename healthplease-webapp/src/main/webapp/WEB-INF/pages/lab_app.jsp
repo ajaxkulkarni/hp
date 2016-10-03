@@ -479,9 +479,9 @@ body{
                 </div>
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 classWColor">
                               
-							<h4 class="class_para1">
-								HealthPlease.in is proud to introduce a Cloud Based App for Labs that helps them manage their In Centre and Home Visit appointments, Test Reporting and Finances more efficiently and conveniently.
-							</h4>
+							<h3 class="" style="color:#000">
+								<p>HealthPlease.in is proud to introduce a Cloud Based App for </br>Labs that helps them manage their In Centre and Home Visit</br> appointments, Test Reporting and Finances more efficiently</br> and conveniently.</p>
+							</h3>
 							<ul class="classPoint">
 								<li class="classW12">
 									<span class="classPtSpan"><i class="fa fa-circle" aria-hidden="true"></i> Online Presence</span>

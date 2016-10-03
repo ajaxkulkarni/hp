@@ -12,7 +12,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Your Tests | HealthPlease.in</title>
+    <title> Tests | HealthPlease.in</title>
     
 </head>
 
