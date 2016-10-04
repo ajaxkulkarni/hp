@@ -95,8 +95,8 @@ public interface Constants {
 	String ERROR_INVALID_TEST_DETAILS = "Test does not exist!";
 	String ERROR_NOT_ACTIVE = "Your account is not activated yet!";
 	String ERROR_TEST_EXISTS = "Test already exists!";
+	String ERROR_INCORRECT_CURRENT_PASSWORD = "Incorrect current password!";
 	
-
 	String BOOK_APPOINTMENT_POST_URL = "bookAppointment";
 	String USER_HOME_GET_URL = "userhome.htm";
 	String BOOK_APPOINTMENT_PAGE = "confirm_appointment";

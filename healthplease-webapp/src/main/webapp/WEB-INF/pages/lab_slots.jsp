@@ -125,9 +125,13 @@
 				<option value="" selected>Both</option>
 			</c:otherwise> --%>
 		</c:choose>
-		<option value="">Both</option>
-		<option value="<%=Constants.HOME_APP%>">Home Visit</option>
-		<option value="<%=Constants.LAB_APP%>">Lab Visit</option>
+		<!-- <option value="">Both</option> -->
+		<c:if test="${slotType != 'Home' }">
+			<option value="<%=Constants.HOME_APP%>">Home Visit</option>
+		</c:if>
+		<c:if test="${slotType != 'Lab' }">
+			<option value="<%=Constants.LAB_APP%>">Lab Visit</option>
+		</c:if>
 	</select>
 	<table width='400' border='0' cellpadding='2' cellspacing='0' id='booking'>
 		<tr>

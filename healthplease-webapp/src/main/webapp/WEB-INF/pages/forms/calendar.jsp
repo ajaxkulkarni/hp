@@ -38,7 +38,7 @@
     		</c:when>  
     		<c:when test="${week.monday.active == 'A'}">
     			<td width='21' valign='top'>
-    			<a href="getlabslots.htm?day=${week.monday.day}" class='green' title='Please click to view bookings'>${week.monday.day}</a>  
+    			<a href="getlabslots.htm?day=${week.monday.day}&slotType='Home'" class='green' title='Please click to view bookings'>${week.monday.day}</a>  
     			<a href="javascript:void(0);" class="js-active_day_slot" onclick="confirmBlock(${week.monday.day})"> 
                   <i class="fa fa-times" title="Block day"></i>
                 </a>
@@ -61,7 +61,7 @@
     		</c:when>  
     		<c:when test="${week.tuesday.active == 'A'}">
     			<td width='21' valign='top'>
-    			<a href="getlabslots.htm?day=${week.tuesday.day}" class='green' title='Please click to view bookings'>${week.tuesday.day}</a>  
+    			<a href="getlabslots.htm?day=${week.tuesday.day}&slotType='Home'" class='green' title='Please click to view bookings'>${week.tuesday.day}</a>  
     			<a href="javascript:void(0);" class="js-active_day_slot" onclick="confirmBlock(${week.tuesday.day})" > 
                   <i class="fa fa-times" title="Block day"></i>
                 </a>
@@ -84,7 +84,7 @@
     		</c:when>  
     		<c:when test="${week.wednesday.active == 'A'}">
     			<td width='21' valign='top'>
-    			<a href="getlabslots.htm?day=${week.wednesday.day}" class='green' title='Please click to view bookings'>${week.wednesday.day}</a>  
+    			<a href="getlabslots.htm?day=${week.wednesday.day}&slotType='Home'" class='green' title='Please click to view bookings'>${week.wednesday.day}</a>  
     			<a href="javascript:void(0);" class="js-active_day_slot" onclick="confirmBlock(${week.wednesday.day})" > 
                   <i class="fa fa-times" title="Block day"></i>
                 </a>
@@ -107,7 +107,7 @@
     		</c:when>  
     		<c:when test="${week.thursday.active == 'A'}">
     			<td width='21' valign='top'>
-    			<a href="getlabslots.htm?day=${week.thursday.day}" class='green' title='Please click to view bookings'>${week.thursday.day}</a>  
+    			<a href="getlabslots.htm?day=${week.thursday.day}&slotType='Home'" class='green' title='Please click to view bookings'>${week.thursday.day}</a>  
     			<a href="javascript:void(0);" class="js-active_day_slot" onclick="confirmBlock(${week.thursday.day})" > 
                   <i class="fa fa-times" title="Block day"></i>
                 </a>
@@ -130,7 +130,7 @@
     		</c:when>  
     		<c:when test="${week.friday.active == 'A'}">
     			<td width='21' valign='top'>
-    			<a href="getlabslots.htm?day=${week.friday.day}" class='green' title='Please click to view bookings'>${week.friday.day}</a>  
+    			<a href="getlabslots.htm?day=${week.friday.day}&slotType='Home'" class='green' title='Please click to view bookings'>${week.friday.day}</a>  
     			<a href="javascript:void(0)" class="js-active_day_slot" onclick="confirmBlock(${week.friday.day})" >
                   <i class="fa fa-times" title="Block day"></i>
                 </a>
@@ -153,7 +153,7 @@
     		</c:when>  
     		<c:when test="${week.saturday.active == 'A'}">
     			<td width='21' valign='top'>
-    			<a href="getlabslots.htm?day=${week.saturday.day}" class='green' title='Please click to view bookings'>${week.saturday.day}</a>  
+    			<a href="getlabslots.htm?day=${week.saturday.day}&slotType='Home'" class='green' title='Please click to view bookings'>${week.saturday.day}</a>  
     			<a href="javascript:void(0);" class="js-active_day_slot" onclick="confirmBlock(${week.saturday.day})" > 
                   <i class="fa fa-times" title="Block day"></i>
                 </a>
@@ -176,7 +176,7 @@
     		</c:when>  
     		<c:when test="${week.sunday.active == 'A'}">
     			<td width='21' valign='top'>
-    			<a href="getlabslots.htm?day=${week.sunday.day}" class='green' title='Please click to view bookings'>${week.sunday.day}</a>  
+    			<a href="getlabslots.htm?day=${week.sunday.day}&slotType='Home'" class='green' title='Please click to view bookings'>${week.sunday.day}</a>  
     			<a href="javascript:void(0);" class="js-active_day_slot" onclick="confirmBlock(${week.sunday.day})" > 
                   <i class="fa fa-times" title="Block day"></i>
                 </a>

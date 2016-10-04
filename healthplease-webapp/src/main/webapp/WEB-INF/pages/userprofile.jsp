@@ -83,15 +83,16 @@
   <div class="row">
      
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <!-- <input type="text" id="tabType">  -->
       <div id="content">
           <div id="my-tab-content" class="tab-content">
-              <div class="tab-pane active" id="profile">
+              <div class="tab-pane active" id="profile" onclick="onTabChange()">
 				<%@include file="forms/edit_user_form.jsp" %>
               </div>
-              <div class="tab-pane" id="history">
+              <div class="tab-pane" id="history" onclick="onTabChange()">
                   <%@include file = "forms/user_history_form.jsp" %>
               </div>
-              <div class="tab-pane" id="settings">
+              <div class="tab-pane" id="settings" onclick="onTabChange()">
       				<%@include file="forms/change_password_form.jsp" %>
               </div>
 	      <div class="tab-pane" id="id_recent_checkups">
@@ -481,5 +482,19 @@
 
 
 <div id="fb-root"></div>
+
+<script type="text/javascript">
+
+$( document ).ready(function() {
+    //alert("Here!");
+});
+
+function onTabChange() {
+	alert("Changed!");
+	$("#tabType").val("Changed!");
+}
+
+</script>
+
 </body>
 </html>

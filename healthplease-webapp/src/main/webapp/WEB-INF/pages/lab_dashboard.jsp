@@ -27,7 +27,6 @@
 
     <div id="wrapper">
 		<%@include file = "lab_header.jsp" %>
-       <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/external/file_input/fileinput.css"/>">     
 <style>
     .order-detail-well{
 	max-width:400px;
@@ -498,7 +497,7 @@
             </div>-->
             <div class="modal-body" id="file_upload_form">
                 <div id="upload_error"></div>
-                <form id="file_upload" enctype="multipart/form-data" action="<%=Constants.UPLOAD_REPORT_POST_URL%>" method="post">
+                <%-- <form id="file_upload" enctype="multipart/form-data" action="<%=Constants.UPLOAD_REPORT_POST_URL%>" method="post">
                     <input type="hidden" name="id" id="report_appid">
                     <div class="form-group">
                         <label for="sel1">Select Test:</label>
@@ -517,7 +516,36 @@
                     <div id="uploadedReports">
                                         	
                     </div>
-                </form>
+                </form> --%>
+                <form id="uploadForm" enctype="multipart/form-data" action="<%=Constants.UPLOAD_REPORT_POST_URL%>" method="post">
+                	<input type="hidden" value="" name="id" id="report_appid">
+                    <div class="form-group">
+                    	<label for="sel1">Select Test:</label>
+                    	<select class="form-control" id="appTests" name="tests[0].id">
+                    	</select>
+                    </div>
+                    <div class="form-group">
+                    	<label for="sel1">Upload report for Test:</label>
+                        <!-- <input id="file_to_upload" name="report" class="file" type="file"> -->
+                   		<input name="report" id="userImage" type="file" class="form-control input_file11" required />
+                    </div>
+										<input type="hidden" id = "statusId" name="status.id" value="4"/>
+                                        <br>
+                                        
+                                        <div class="col-md-12">
+                    						<div id="file_status"></div>
+                    							<div id="progress-div">
+                        							<div id="progress-bar"></div>
+                    						</div>
+                						</div>
+                						
+                                        <button type="submit" id="btn_file_upload" class="btn btn-primary">Upload</button>
+                                        <button type="reset" class="btn btn-default">Reset</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <div id="uploadedReports">
+                                        	
+                                        </div>
+                                    </form>
 
             </div>
 

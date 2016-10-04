@@ -8,6 +8,7 @@ public class User {
 
 	private Integer id;
 	private String email;
+	private String oldPassword;
 	private String password;
 	private String phone;
 	private String firstName;
@@ -215,6 +216,14 @@ public class User {
 
 	public void setRegisteredEmail(String registeredEmail) {
 		this.registeredEmail = registeredEmail;
+	}
+
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
 	}
 
 

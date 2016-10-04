@@ -723,6 +723,12 @@ public class UserBoImpl implements UserBo, Constants {
 			session.close();
 			return ERROR_FORGOT_PWD_NO_USER;
 		}
+		User temp = new User();
+		temp.setPassword(user.getOldPassword());
+		if(!StringUtils.equals(users1.getPassword(), getEncytptedPassword(temp, users1))) {
+			session.close();
+			return ERROR_INCORRECT_CURRENT_PASSWORD;
+		}
 		users1.setPasswordRecover(false);
 		users1.setPassword(getEncytptedPassword(user, users1));
 		tx.commit();
@@ -845,7 +851,7 @@ public class UserBoImpl implements UserBo, Constants {
 		session.persist(requestCollections);
 		tx.commit();
 		session.close();
-		threadPoolTaskExecutor.execute(new MailUtil(form, MAIL_TYPE_CORPORATE_PARTNER));
+		//threadPoolTaskExecutor.execute(new MailUtil(form, MAIL_TYPE_CORPORATE_PARTNER));
 		threadPoolTaskExecutor.execute(new MailUtil(form, MAIL_TYPE_CORPORATE_PARTNER_ADMIN));
 		SMSUtil.sendSMS(form, MAIL_TYPE_CORPORATE_PARTNER);
 		SMSUtil.sendSMS(form, MAIL_TYPE_CORPORATE_PARTNER_ADMIN);

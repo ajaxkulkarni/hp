@@ -532,7 +532,7 @@ public class CommonUtils implements Constants {
 	}
 	
 	public static boolean isSameSlotType(LabBlockedSlots slot, Slot activateSlot) {
-		/*if(StringUtils.isEmpty(slot.getSlotType())) {
+		/*if(StringUtils.isBlank(slot.getSlotType())) {
 			return true;
 		}*/
 		/*if(StringUtils.equalsIgnoreCase(slot.getSlotType(), activateSlot.getType())) {

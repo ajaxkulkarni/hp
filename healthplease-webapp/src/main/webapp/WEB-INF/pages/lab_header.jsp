@@ -18,6 +18,8 @@
 
     <!-- MetisMenu CSS -->
     <link href="<c:url value="/resources/labcomponents/css/plugins/metisMenu/metisMenu.min.css"/>" rel="stylesheet">
+    
+    <link href="<c:url value="/resources/css/external/file_input/fileinput.css"/>" rel="stylesheet" type="text/css">
 
     <!-- Timeline CSS -->
     <link href="<c:url value="/resources/labcomponents/css/plugins/timeline.css"/>" rel="stylesheet">

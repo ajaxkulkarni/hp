@@ -10,14 +10,13 @@
 <body>
 
 	<div class="row">
-		<div
-			class="col-md-offset-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+		<%-- <div class="col-md-offset-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
 			<div id="msg_pwd">
 				<c:if test="${result != null && result != 'OK' }">
 					<div class="alert alert-info">${result}</div>
 				</c:if>
 			</div>
-		</div>
+		</div> --%>
 	 	 <c:if test="${user.email == null }">
 		<form method='post' id="form_upd_user_pwd" action="<%=Constants.CHANGE_PASSWORD_URL_POST%>">
 		</c:if> 
@@ -33,7 +32,7 @@
 					<label class="control-label" for="age">Current Password</label> <input
 						type='password' id='c_pwd'
 						class='form-control classProfileCustomControl'
-						placeholder="Current password" value="" data="">
+						placeholder="Current password" value="" name="oldPassword" data="">
 				</div>
 			</div>
 			<div class="row">

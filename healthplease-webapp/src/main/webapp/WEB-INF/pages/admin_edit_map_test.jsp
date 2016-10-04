@@ -76,7 +76,7 @@
                <button type="submit" class="btn btn-primary" name="btn-save" id="submit">
                    <span class="glyphicon glyphicon-plus"></span> Update
                </button>  
-                <a href="<%=Constants.ADMIN_LAB_TESTS_GET_URL %>" class="btn btn-large btn-success"><i class="glyphicon glyphicon-backward"></i> &nbsp; Back to index</a>
+                <a href="<%=Constants.ADMIN_LAB_TESTS_GET_URL %>?labId=${lab.id}" class="btn btn-large btn-success"><i class="glyphicon glyphicon-backward"></i> &nbsp; Back to index</a>
             </div>
         </td>
             

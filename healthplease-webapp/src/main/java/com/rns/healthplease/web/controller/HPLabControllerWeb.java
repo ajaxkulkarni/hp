@@ -272,24 +272,13 @@ public class HPLabControllerWeb implements Constants {
 
 	@RequestMapping(value = "/" + BLOCK_SLOTS_POST_URL, method = RequestMethod.POST)
 	public RedirectView blockSlots(ModelMap model, String[] availableSlots, String date, String slotType) {
-
 		List<Slot> slots = CommonUtils.getSlots(availableSlots, date, slotType);
-		// prepareCurrentSlots(slots);
 		Lab lab = manager.getUser().getLab();
 		Date convertedDate = CommonUtils.convertDate(date);
 		labBo.blockSlots(slots, lab, convertedDate, slotType);
 		manager.setResult("The selected slots have been modified successfully!");
-		return new RedirectView(GET_LAB_SLOTS_GET_URL + "?day=" + CommonUtils.getDay(convertedDate));
+		return new RedirectView(GET_LAB_SLOTS_GET_URL + "?day=" + CommonUtils.getDay(convertedDate) + "&slotType=" + slotType);
 	}
-
-	/*
-	 * private void prepareCurrentSlots(List<Slot> slots) { List<Slot>
-	 * currentSlots = manager.getUser().getLab().getCurrentSlots(); if
-	 * (CollectionUtils.isEmpty(currentSlots)) { return; } for (Slot slot :
-	 * currentSlots) { boolean found = false; for (Slot availableSlot : slots) {
-	 * if (slot.getId() == availableSlot.getId()) { slot.setBlocked(false);
-	 * found = true; } } if (!found) { slot.setBlocked(true); } } }
-	 */
 
 	@RequestMapping(value = "/" + GET_APPOINTMENTS_FOR_DATES_POST_URL, method = RequestMethod.POST)
 	public RedirectView getAppointmentsForDates(ModelMap model, String date1, String date2) {
@@ -460,7 +449,7 @@ public class HPLabControllerWeb implements Constants {
 		if (currentAppointment == null) {
 			return generateReportView;
 		}
-		
+
 		currentAppointment.setStatus(new AppointmentStatus(3));
 		setTestValues(currentAppointment, appointment, testIds);
 
@@ -542,15 +531,13 @@ public class HPLabControllerWeb implements Constants {
 		labTest.setParameters(params);
 	}
 
-	
-	
 	@RequestMapping(value = "/" + LAB_TESTS_GET_URL, method = RequestMethod.GET)
 	public String initLabTests(HttpServletResponse response, ModelMap model) {
 		Lab lab = manager.getUser().getLab();
 		model.addAttribute(MODEL_TESTS, labBo.getAvailableLabTests(lab));
 		return LAB_TESTS_PAGE;
 	}
-	
+
 	@RequestMapping(value = "/" + GET_LAB_SIGNATURE_GET_URL, method = RequestMethod.GET)
 	public void getReport(int labId, HttpServletResponse response, ModelMap model) {
 		try {
@@ -576,10 +563,10 @@ public class HPLabControllerWeb implements Constants {
 		manager.setResult(labBo.uploadLogo(lab, logoFile));
 		return new RedirectView(LAB_SETTINGS_GET_URL);
 	}
-	
+
 	@RequestMapping(value = "/" + "getLabLogo", method = RequestMethod.GET)
 	public void generateReport(ModelMap model, String logoPath, HttpServletResponse response) {
-		if(StringUtils.isEmpty(logoPath)) {
+		if (StringUtils.isEmpty(logoPath)) {
 			return;
 		}
 		try {
@@ -594,7 +581,7 @@ public class HPLabControllerWeb implements Constants {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

@@ -34,6 +34,7 @@
     <script src="<c:url value="/resources/labcomponents/js/lab-dashboard.js?ver=1000"/>"></script>
     <%-- <script type="text/javascript" src="<c:url value="/resources/js/pagination.js"/>"></script> --%>
     <script src="<c:url value="/resources/js/myPagination.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.form.min.js"/>" type="text/javascript"></script>
 
     <script>
         $(".fromCalendar").datepicker({
@@ -127,6 +128,34 @@
      $(document).ready(function(){
     	 //$("#appointments_table").paging({limit:$("#limit").val()});
     	 paginateTable($("#limit").val(), 0);
+    	 
+    	 $('#uploadForm').submit(function (e) {
+ 			//alert("Here!");
+             if ($('#userImage').val()) {
+                 e.preventDefault();
+                 //$('#loader-icon').show();
+                 $(this).ajaxSubmit({
+                     target: '#targetLayer',
+                     beforeSubmit: function () {
+                         $("#progress-bar").width('0%');
+                     },
+                     uploadProgress: function (event, position, total, percentComplete) {
+                         $("#progress-bar").width(percentComplete + '%');
+                         $("#progress-bar").html('<div id="progress-status">' + percentComplete + ' %</div>');
+                         if (percentComplete == "100") {
+                             $("#file_status").html('<label class="label_file2">file uploaded successfully.</label>');
+                         }
+                     },
+                     success: function () {
+
+                     },
+
+                     resetForm: true
+                 });
+                 return false;
+             }
+         });
+    	 
  	}); 
      
      function resetTable() {
