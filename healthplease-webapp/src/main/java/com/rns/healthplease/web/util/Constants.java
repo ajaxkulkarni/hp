@@ -173,7 +173,7 @@ public interface Constants {
 	String LAB_PREPARE_REPORT_GET_URL = "preparereport.htm";
 	String LAB_TEST_PARAMS_PAGE = "lab_test_params";
 	String CHANGE_PASSWORD_SETTINGS_URL_POST = "changePasswordSettings";
-	String LAB_INVOICE_GET_URL = "generateInvoice.htm";
+	String LAB_INVOICE_POST_URL = "generateInvoice";
 	String ADMIN_APPOINTMENTS_BETWEEN_GET_URL = "adminAppointmentsBetween.htm";
 	String ADMIN_GET_APPOINTMENTS_FOR_DATES_POST_URL = "adminGetAppointmentsForDates";
 	String ADMIN_DOWNLOAD_EXCEL_GET_URL = "adminDownloadExcel";
@@ -250,8 +250,12 @@ public interface Constants {
 	String LAB_PARTNER_PAGE = "lab_app";
 	String LAB_TESTS_PAGE = "lab_tests";
 	String LAB_TESTS_GET_URL = "labTests.htm";
+	String LAB_EDIT_TESTS_PAGE = "lab_edit_tests";
+	String LAB_EDIT_TEST_GET_URL = "labEditTest.htm";
+	String LAB_EDIT_LABTEST_POST_URL = "labEditLabtest";
+	String LAB_DELETE_LAB_TEST_POST_URL = "labDeleteLabTest";
 	
-
+	
 	String MAIL_TYPE_ACTIVATION = "activationMail";
 	String MAIL_TYPE_REPORT_UPLOAD = "reportUpload";
 	String MAIL_TYPE_BOOK_APP_USER = "bookAppointmentUser";

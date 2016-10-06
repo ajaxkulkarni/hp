@@ -345,7 +345,7 @@
                                                                         <button style="text-transform:capitalize;" class="btn btn-sm btn-default">View Report</button>
                                                                         </a>	
                                                                        <%--  <a href="<%=Constants.LAB_INVOICE_GET_URL %>?appointmentId=${appointment.id}"  > --%>
-                                                                        <button style="text-transform:capitalize;" class="btn btn-sm btn-default" data-toggle="modal" data-target="#invoiceSetting">Invoice</button>
+                                                                        <button style="text-transform:capitalize;" class="btn btn-sm btn-default" onclick="invoiceSetting(${appointment.id})" >Invoice</button>
                                                                        <!--  </a> -->
 																	</div>
 																	</c:if>
@@ -406,28 +406,54 @@
     <div class="modal-dialog">
     
       <!-- Modal content-->
+      <form action="<%=Constants.LAB_INVOICE_POST_URL %>" method="post">
       <div class="modal-content">
+      
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Invoice Settings</h4>
         </div>
         <div class="modal-body">  
-                <div class="row">
+        		<div class="row">
+                	<input type="hidden" value="" name="appointmentId" id="invoice_appId">
                     <div class="col-md-4">
-                          <label><input type="checkbox" value=""> Include Header</label>
+                          <label>
+                          <c:if test="${user.lab.reportConfig.isHeader == 'y'}">
+                          		<input type="checkbox" name="isHeader" value="y" checked="checked"> Include Header
+                          	</c:if>
+                          	<c:if test="${user.lab.reportConfig.isHeader != 'y'}">
+                          		<input type="checkbox" name="isHeader" value=""> Include Header
+                          	</c:if>
+                          </label>
                     </div>
                     <div class="col-md-4">
-                          <label><input type="checkbox" value=""> Include Footer</label>
+                    	<label>
+                          <c:if test="${user.lab.reportConfig.isFooter == 'y'}">
+                          		<input type="checkbox" name="isFooter" value="y" checked="checked"> Include Footer
+                          	</c:if>
+                          	<c:if test="${user.lab.reportConfig.isFooter != 'y'}">
+                          		<input type="checkbox" name="isFooter" value=""> Include Footer
+                          	</c:if>
+                          </label>
                     </div>
                     <div class="col-md-4">
-                      <label><input type="checkbox" value=""> Include Signature</label>
+                     	<label>
+                          <c:if test="${user.lab.reportConfig.isSignature == 'y'}">
+                          		<input type="checkbox" name="isSignature" value="y" checked="checked"> Include Signature
+                          	</c:if>
+                          	<c:if test="${user.lab.reportConfig.isFooter != 'y'}">
+                          		<input type="checkbox" name="isSignature" value=""> Include Signature
+                          	</c:if>
+                          </label>
                     </div>
                 </div>
+                
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" >Save</button>
+          <button type="submit" class="btn btn-default" >Save</button>
         </div>
-      </div>    
+      </div>  
+      </form>  
     </div>
   </div>
 
@@ -705,8 +731,13 @@
 </div>
 <%@include file="lab_footer.jsp" %>
 
+
 <script type="text/javascript">
 
+function invoiceSetting(appId) {
+	$("#invoice_appId").val(appId);
+	$("#invoiceSetting").modal('show');
+}
 
 </script>
 

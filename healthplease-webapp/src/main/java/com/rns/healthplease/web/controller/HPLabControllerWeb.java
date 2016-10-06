@@ -33,6 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
+import com.rns.healthplease.web.bo.api.AdminBo;
 import com.rns.healthplease.web.bo.api.HPSessionManager;
 import com.rns.healthplease.web.bo.api.LabBo;
 import com.rns.healthplease.web.bo.api.UserBo;
@@ -66,6 +67,7 @@ public class HPLabControllerWeb implements Constants {
 	@Autowired(required = true)
 	@Qualifier(value = "manager")
 	private com.rns.healthplease.web.bo.api.HPSessionManager manager;
+	private AdminBo adminBo;
 
 	public void setManager(HPSessionManager manager) {
 		this.manager = manager;
@@ -93,6 +95,16 @@ public class HPLabControllerWeb implements Constants {
 	@Qualifier(value = "userBo")
 	public void setUserBo(UserBo userBo) {
 		this.userBo = userBo;
+	}
+
+	@Autowired(required = true)
+	@Qualifier(value = "adminBo")
+	public void setAdminBo(AdminBo adminBo) {
+		this.adminBo = adminBo;
+	}
+
+	public AdminBo getAdminBo() {
+		return adminBo;
 	}
 
 	@RequestMapping(value = "/" + LAB_HOME_URL_GET, method = RequestMethod.GET)
@@ -475,12 +487,12 @@ public class HPLabControllerWeb implements Constants {
 		}
 	}
 
-	@RequestMapping(value = "/" + LAB_INVOICE_GET_URL, method = RequestMethod.GET)
+	@RequestMapping(value = "/" + LAB_INVOICE_POST_URL, method = RequestMethod.POST)
 	public void generateInvoice(int appointmentId, ReportConfigurations reportConfigurations, ModelMap model, HttpServletResponse response) throws JRException, IOException {
 		Appointment app = new Appointment();
 		app.setId(appointmentId);
 		Appointment appointment = labBo.getAppointment(app);
-		appointment.getLab().setReportConfig(manager.getUser().getLab().getReportConfig());
+		appointment.getLab().setReportConfig(reportConfigurations);
 		JasperUtil.getInvoice(appointment);
 		writeToResponse(response, appointment.getInvoiceData());
 	}
@@ -532,10 +544,40 @@ public class HPLabControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/" + LAB_TESTS_GET_URL, method = RequestMethod.GET)
-	public String initLabTests(HttpServletResponse response, ModelMap model) {
+	public String initLabTests(ModelMap model) {
 		Lab lab = manager.getUser().getLab();
 		model.addAttribute(MODEL_TESTS, labBo.getAvailableLabTests(lab));
 		return LAB_TESTS_PAGE;
+	}
+
+	@RequestMapping(value = "/" + LAB_EDIT_TEST_GET_URL, method = RequestMethod.GET)
+	public String initLabEditTests(Integer id, ModelMap model, String name, Integer charge) {
+		LabTest test = new LabTest();
+		Lab lab = manager.getUser().getLab();
+		if (StringUtils.isNotEmpty(name)) {
+			test.setId(id);
+			test.setName(name);
+			test.setPrice(charge);
+		} else {
+			model.addAttribute(MODEL_TESTS, adminBo.getUnmappedTests(lab));
+		}
+		model.addAttribute(MODEL_TEST, test);
+		model.addAttribute(MODEL_USER, manager.getUser());
+		return LAB_EDIT_TESTS_PAGE;
+	}
+
+	@RequestMapping(value = "/" + LAB_EDIT_LABTEST_POST_URL, method = RequestMethod.POST)
+	public RedirectView editLabTest(LabTest test, ModelMap model) {
+		manager.setResult(adminBo.updateLabTest(test, manager.getUser().getLab()));
+		return new RedirectView(LAB_TESTS_GET_URL);
+	}
+	
+	@RequestMapping(value = "/" + LAB_DELETE_LAB_TEST_POST_URL, method = RequestMethod.POST)
+	public RedirectView deleteLabTest(Integer testId,ModelMap model) {
+		LabTest test = new LabTest();
+		test.setId(testId);
+		manager.setResult(adminBo.deleteLabTest(test,manager.getUser().getLab()));
+		return new RedirectView(LAB_TESTS_GET_URL);
 	}
 
 	@RequestMapping(value = "/" + GET_LAB_SIGNATURE_GET_URL, method = RequestMethod.GET)

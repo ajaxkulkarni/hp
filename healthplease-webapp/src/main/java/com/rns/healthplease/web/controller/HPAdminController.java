@@ -505,17 +505,17 @@ public class HPAdminController implements Constants {
 	
 	@RequestMapping(value = "/" + ADMIN_EDIT_LAB_TEST_GET_URL, method = RequestMethod.GET)
 	public String initEditLabTests(ModelMap model,Integer labId, Integer id,String name, Integer charge) {
-		LabTest labLocation = new LabTest();
+		LabTest test = new LabTest();
 		Lab lab = new Lab();
 		lab.setId(labId);
 		if(StringUtils.isNotEmpty(name)) {
-			labLocation.setId(id);
-			labLocation.setName(name);
-			labLocation.setPrice(charge);
+			test.setId(id);
+			test.setName(name);
+			test.setPrice(charge);
 		} else {
 			model.addAttribute(MODEL_TESTS, adminBo.getUnmappedTests(lab));
 		}
-		model.addAttribute(MODEL_TEST, labLocation);
+		model.addAttribute(MODEL_TEST, test);
 		model.addAttribute(MODEL_LAB, lab);
 		model.addAttribute(MODEL_USER, manager.getUser());
 		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(ADMIN_LABS_TAB));

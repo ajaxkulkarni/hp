@@ -35,7 +35,7 @@
 <div id="msg" class="container"></div>
 
 <div class="" id="div_add">
-<a href="<%=Constants.ADMIN_EDIT_LAB_TEST_GET_URL %>?labId=${lab.id}" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Test</a>
+<a href="<%=Constants.LAB_EDIT_TEST_GET_URL %>" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Test</a>
 </div>
 
 <div class="clearfix"></div><br/>
@@ -57,7 +57,7 @@
                 	<td>${test.name}</td>
                 	<td>${test.price}</td>
                 	<td align="center">
-                		<a href="<%=Constants.ADMIN_EDIT_LAB_TEST_GET_URL%>?labId=${lab.id}&id=${test.id}&name=${test.name}&charge=${test.price}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
+                		<a href="<%=Constants.LAB_EDIT_TEST_GET_URL%>?id=${test.id}&name=${test.name}&charge=${test.price}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
                 	</td>
                 	<td align="center">
                 		<a href="" class="js-deleteuser" onclick="confirmDelete('${test.name}','${test.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
@@ -73,10 +73,10 @@
 </ul>
 
 
-<form id="loc_form" action="<%=Constants.ADMIN_DELETE_LAB_TEST_POST_URL%>" method="post">
+<form id="loc_form" action="<%=Constants.LAB_DELETE_LAB_TEST_POST_URL%>" method="post">
 
 	<input type="hidden" id="test_id" name="testId"/>
-	<input type="hidden" id="lab_id" name="labId" value="${lab.id}"/>
+	<%-- <input type="hidden" id="lab_id" name="labId" value="${lab.id}"/> --%>
 
 </form>
 
@@ -95,12 +95,12 @@
         <!-- /#page-wrapper -->
     <!-- /#wrapper -->
 
-<%--<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="/resources/js/jquery.paging.min.js"/>"></script>
-<script src="<c:url value="/resources/js/jquery.easy-paging.js"/>"></script> --%>
+<script src="<c:url value="/resources/js/jquery.easy-paging.js"/>"></script>
 <script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
 
-<script>
+<script type="text/javascript">
 
 $(document).ready(function(){
 	paginateTable(10, 0);
@@ -108,7 +108,7 @@ $(document).ready(function(){
 }); 
    
    function confirmDelete(name,id) {
-	   if(confirm("Are you sure you want to delete test " + name + " from this Lab ?")) {
+	   if(confirm("Are you sure you want to delete this test " + name + " from this Lab ?")) {
 		   $("#test_id").val(id);
 		   $("#loc_form").submit();
 	   }

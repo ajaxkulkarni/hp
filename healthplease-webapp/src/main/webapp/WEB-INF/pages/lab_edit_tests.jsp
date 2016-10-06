@@ -34,21 +34,21 @@
 
 <div id="msg" class="container"></div>
 
-<div class="" id="div_add">
+<%-- <div class="" id="div_add">
 <a href="<%=Constants.ADMIN_EDIT_LAB_TEST_GET_URL %>?labId=${lab.id}" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Test</a>
-</div>
+</div> --%>
 
 <div class="clearfix"></div><br/>
 <!--Main div where content get loaded-->
 <h1>${lab.name}</h1>
 <div class="" id="addUser" name="addUser">
 
-<form method='post' id="form_add_user" action="<%=Constants.ADMIN_EDIT_LAB_TEST_POST_URL%>">
+<form method='post' id="form_add_user" action="<%=Constants.LAB_EDIT_LABTEST_POST_URL%>">
     <table class='table table-bordered'>
  
         <tr>
             <td>Test Name</td>
-            <input type='hidden' name='labId' id="lab_id" class='form-control' value="${lab.id}">
+            <%-- <input type='hidden' name='labId' id="lab_id" class='form-control' value="${lab.id}"> --%>
             <td>
             	<c:if test="${test.id != null }">
             		<input type='text' name='name' id='loc_name' class='form-control' value="${test.name}" required readonly="readonly">
