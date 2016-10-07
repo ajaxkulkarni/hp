@@ -159,6 +159,7 @@ public class JasperUtil {
 		parameters.put("doctorName", appointment.getDoctorName());
 		parameters.put("patientId", appointment.getUser().getId());
 		parameters.put("date", CommonUtils.convertDate(appointment.getDate()));
+		parameters.put("logopath", appointment.getLab().getLogo());
 		if (appointment.getPayment() != null) {
 			parameters.put("invoiceId", appointment.getPayment().getPaymentId());
 		}
@@ -169,7 +170,9 @@ public class JasperUtil {
 		parameters.put("printRequired", "y");
 		ReportConfigurations reportConfig = appointment.getLab().getReportConfig();
 		if(reportConfig != null) {
-			parameters.put("printRequired", StringUtils.lowerCase(reportConfig.getIsHeader()));
+			parameters.put("printRequired", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsHeader())));
+			parameters.put("printFooter", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsFooter())));
+			parameters.put("printSign", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsSignature())));
 			parameters.put("pathName", reportConfig.getName());
 			parameters.put("designation", reportConfig.getDesignation());
 			parameters.put("imagePath", reportConfig.getSignaturePath());
