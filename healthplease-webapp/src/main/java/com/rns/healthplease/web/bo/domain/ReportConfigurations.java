@@ -12,7 +12,29 @@ public class ReportConfigurations {
 	private String signaturePath;
 	private String isSignature;
 	private MultipartFile signatureFile;
+	private String invoiceDesignation;
+	private String invoiceName;
+	private String invoiceSignaturePath;
+	private String isInvoiceSignature;
 	
+	public String getInvoiceDesignation() {
+		return invoiceDesignation;
+	}
+	public void setInvoiceDesignation(String invoiceDesignation) {
+		this.invoiceDesignation = invoiceDesignation;
+	}
+	public String getInvoiceName() {
+		return invoiceName;
+	}
+	public void setInvoiceName(String invoiceName) {
+		this.invoiceName = invoiceName;
+	}
+	public String getInvoiceSignaturePath() {
+		return invoiceSignaturePath;
+	}
+	public void setInvoiceSignaturePath(String invoiceSignaturePath) {
+		this.invoiceSignaturePath = invoiceSignaturePath;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -60,6 +82,12 @@ public class ReportConfigurations {
 	}
 	public void setIsSignature(String isSignature) {
 		this.isSignature = isSignature;
+	}
+	public String getIsInvoiceSignature() {
+		return isInvoiceSignature;
+	}
+	public void setIsInvoiceSignature(String isInvoiceSignature) {
+		this.isInvoiceSignature = isInvoiceSignature;
 	}
 	
 

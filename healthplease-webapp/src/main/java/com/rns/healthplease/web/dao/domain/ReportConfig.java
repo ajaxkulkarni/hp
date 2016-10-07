@@ -25,6 +25,51 @@ public class ReportConfig implements java.io.Serializable {
 	private String signatureFileLocation;
 	private String signatureRequired;
 	private Integer labId;
+	private String invoiceName;
+	private String invoiceDesignation;
+	private String invoiceSignatureFileLocation;
+	private String invoiceSignatureRequired;
+
+	@Column(name = "invoice_name")
+	public String getInvoiceName() {
+		return invoiceName;
+	}
+
+
+	public void setInvoiceName(String invoiceName) {
+		this.invoiceName = invoiceName;
+	}
+
+	@Column(name = "invoice_designation")
+	public String getInvoiceDesignation() {
+		return invoiceDesignation;
+	}
+
+
+	public void setInvoiceDesignation(String invoiceDesignation) {
+		this.invoiceDesignation = invoiceDesignation;
+	}
+
+	@Column(name = "invoice_signature_file_loc")
+	public String getInvoiceSignatureFileLocation() {
+		return invoiceSignatureFileLocation;
+	}
+
+
+	public void setInvoiceSignatureFileLocation(String invoiceSignatureFileLocation) {
+		this.invoiceSignatureFileLocation = invoiceSignatureFileLocation;
+	}
+
+	@Column(name = "invoice_signature_required")
+	public String getInvoiceSignatureRequired() {
+		return invoiceSignatureRequired;
+	}
+
+
+	public void setInvoiceSignatureRequired(String invoiceSignatureRequired) {
+		this.invoiceSignatureRequired = invoiceSignatureRequired;
+	}
+
 
 	public ReportConfig() {
 	}

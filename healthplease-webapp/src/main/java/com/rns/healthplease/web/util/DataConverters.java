@@ -365,6 +365,11 @@ public class DataConverters {
 		reportConfigurations.setDesignation(reportConfig.getSignatureDesignation());
 		reportConfigurations.setSignaturePath(reportConfig.getSignatureFileLocation());
 		reportConfigurations.setIsSignature(reportConfig.getSignatureRequired());
+		reportConfigurations.setInvoiceName(reportConfig.getInvoiceName());
+		reportConfigurations.setInvoiceDesignation(reportConfig.getInvoiceDesignation());
+		reportConfigurations.setInvoiceSignaturePath(reportConfig.getInvoiceSignatureFileLocation());
+		reportConfigurations.setIsInvoiceSignature(reportConfig.getInvoiceSignatureRequired());
+		
 		return reportConfigurations;
 	}
 

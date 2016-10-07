@@ -438,11 +438,11 @@
                     </div>
                     <div class="col-md-4">
                      	<label>
-                          <c:if test="${user.lab.reportConfig.isSignature == 'y'}">
-                          		<input type="checkbox" name="isSignature" value="y" checked="checked"> Include Signature
+                          <c:if test="${user.lab.reportConfig.isInvoiceSignature == 'y'}">
+                          		<input type="checkbox" name="isInvoiceSignature" value="y" checked="checked"> Include Signature
                           	</c:if>
-                          	<c:if test="${user.lab.reportConfig.isFooter != 'y'}">
-                          		<input type="checkbox" name="isSignature" value=""> Include Signature
+                          	<c:if test="${user.lab.reportConfig.isInvoiceSignature != 'y'}">
+                          		<input type="checkbox" name="isInvoiceSignature" value=""> Include Signature
                           	</c:if>
                           </label>
                     </div>

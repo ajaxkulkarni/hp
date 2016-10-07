@@ -172,10 +172,10 @@ public class JasperUtil {
 		if(reportConfig != null) {
 			parameters.put("printRequired", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsHeader())));
 			parameters.put("printFooter", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsFooter())));
-			parameters.put("printSign", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsSignature())));
-			parameters.put("pathName", reportConfig.getName());
-			parameters.put("designation", reportConfig.getDesignation());
-			parameters.put("imagePath", reportConfig.getSignaturePath());
+			parameters.put("printSign", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsInvoiceSignature())));
+			parameters.put("pathName", reportConfig.getInvoiceName());
+			parameters.put("designation", reportConfig.getInvoiceDesignation());
+			parameters.put("imagePath", reportConfig.getInvoiceSignaturePath());
 		}
 		parameters.put("total", getTotalPrice(appointment));
 		parameters.put("discount", appointment.getPayment().getDiscount() != null ? appointment.getPayment().getDiscount().toString() : "0");

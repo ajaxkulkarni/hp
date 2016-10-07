@@ -529,6 +529,20 @@ public class BusinessConverters {
 		if(StringUtils.isNotEmpty(reportConfigurations.getIsSignature())) {
 			reportConfig.setSignatureRequired(reportConfigurations.getIsSignature());
 		}
+		
+		if(StringUtils.isNotEmpty(reportConfigurations.getInvoiceName())) {
+			reportConfig.setInvoiceName(reportConfigurations.getInvoiceName());
+		}
+		if(StringUtils.isNotEmpty(reportConfigurations.getInvoiceDesignation())) {
+			reportConfig.setInvoiceDesignation(reportConfigurations.getInvoiceDesignation());
+		}
+		if(StringUtils.isNotEmpty(reportConfigurations.getInvoiceSignaturePath())) {
+			reportConfig.setInvoiceSignatureFileLocation(reportConfigurations.getInvoiceSignaturePath());
+		}
+		if(StringUtils.isNotEmpty(reportConfigurations.getIsInvoiceSignature())) {
+			reportConfig.setInvoiceSignatureRequired(reportConfigurations.getIsInvoiceSignature());
+		}
+		
 		if(lab.getId() != null) {
 			reportConfig.setLabId(lab.getId());
 		}

@@ -133,7 +133,7 @@
 												<span>Choose file</span></br>
 												<div class="fileinput fileinput-new"
 													data-provides="fileinput">
-													<span class="btn btn-default btn-file"><input type="file" name="reportConfig.signatureFile" /></span>
+													<span class="btn btn-default btn-file"><input type="file" name="reportConfig.invoiceSignaturePath" /></span>
 												</div>
 												<!-- <div class="checkbox">
 													<label><input type="checkbox" value="">Include
@@ -141,19 +141,19 @@
 												</div> -->
 												<div class="checkbox">
 													<label>
-														<c:if test="${user.lab.reportConfig.isSignature == 'y'}">
-															<input type="checkbox" name="reportConfig.isSignature" value="y" checked>Include Signature
+														<c:if test="${user.lab.reportConfig.isInvoiceSignature == 'y'}">
+															<input type="checkbox" name="reportConfig.isInvoiceSignature" value="y" checked>Include Signature
 														</c:if>
-														<c:if test="${user.lab.reportConfig.isSignature != 'y'}">
-															<input type="checkbox" name="reportConfig.isSignature" value="y">Include Signature
+														<c:if test="${user.lab.reportConfig.isInvoiceSignature != 'y'}">
+															<input type="checkbox" name="reportConfig.isInvoiceSignature" value="y">Include Signature
 														</c:if>
 													</label>
 												</div>
 												<div class="">
-                									<input name="reportConfig.name" style="margin-top:20px" value="${user.lab.reportConfig.name}" placeholder="Doctor Name" class="form-control input-md" type="text">      
+                									<input name="reportConfig.invoiceName" style="margin-top:20px" value="${user.lab.reportConfig.invoiceName}" placeholder="Name" class="form-control input-md" type="text">      
               									</div>
               									<div class="">
-                									<input name="reportConfig.designation" style="margin-top:20px" value="${user.lab.reportConfig.designation}" placeholder="Designation" class="form-control input-md" type="text">      
+                									<input name="reportConfig.invoiceDesignation" style="margin-top:20px" value="${user.lab.reportConfig.invoiceDesignation}" placeholder="Designation" class="form-control input-md" type="text">      
               									</div>
 											</div>
 										</div>
