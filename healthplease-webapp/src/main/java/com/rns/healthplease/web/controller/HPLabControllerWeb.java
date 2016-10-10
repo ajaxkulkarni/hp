@@ -21,6 +21,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.bouncycastle.asn1.x509.UserNotice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -492,7 +493,16 @@ public class HPLabControllerWeb implements Constants {
 		Appointment app = new Appointment();
 		app.setId(appointmentId);
 		Appointment appointment = labBo.getAppointment(app);
-		appointment.getLab().setReportConfig(reportConfigurations);
+		userBo.populateLabDetails(manager.getUser(), appointment.getLab().getId());
+		Lab lab = manager.getUser().getLab();
+		ReportConfigurations reportConfig = lab.getReportConfig();
+		if(reportConfig == null) {
+			lab.setReportConfig(new ReportConfigurations());
+		}
+		reportConfig.setIsHeader(reportConfigurations.getIsHeader());
+		reportConfig.setIsFooter(reportConfigurations.getIsFooter());
+		reportConfig.setIsInvoiceSignature(reportConfigurations.getIsInvoiceSignature());
+		appointment.setLab(lab);
 		JasperUtil.getInvoice(appointment);
 		writeToResponse(response, appointment.getInvoiceData());
 	}
