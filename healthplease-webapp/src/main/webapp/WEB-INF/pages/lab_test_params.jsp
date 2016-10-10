@@ -65,9 +65,15 @@
 					<input type="checkbox" name="isSignature" value="y"> Include Signature
 				</c:if>
            </div> 
+         <div class="col-md-4">
+				<input type="checkbox" name="isSeparatePage" value="y"> Each Test on separate page
+           </div> 
            
 			</div>
+			
+			
 			<div class="row" style="margin:20px"">
+			 
 			<div class="col-md-8">
 			<!-- <span>Choose file</span></br>
 			<div class="fileinput fileinput-new"

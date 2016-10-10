@@ -16,6 +16,7 @@ public class ReportConfigurations {
 	private String invoiceName;
 	private String invoiceSignaturePath;
 	private String isInvoiceSignature;
+	private String isSeparatePage;
 	
 	public String getInvoiceDesignation() {
 		return invoiceDesignation;
@@ -88,6 +89,12 @@ public class ReportConfigurations {
 	}
 	public void setIsInvoiceSignature(String isInvoiceSignature) {
 		this.isInvoiceSignature = isInvoiceSignature;
+	}
+	public String getIsSeparatePage() {
+		return isSeparatePage;
+	}
+	public void setIsSeparatePage(String isSeparatePage) {
+		this.isSeparatePage = isSeparatePage;
 	}
 	
 

@@ -108,6 +108,7 @@ public class JasperUtil {
 			parameters.put("pathName", reportConfig.getName());
 			parameters.put("designation", reportConfig.getDesignation());
 			parameters.put("imagePath", reportConfig.getSignaturePath());
+			parameters.put("separatePage", reportConfig.getIsSeparatePage());
 		}
 		//parameters.put("isbold", "");
 		analyzeTestParameters(appointment.getTests());
