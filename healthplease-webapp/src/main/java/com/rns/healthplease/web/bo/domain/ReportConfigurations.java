@@ -17,6 +17,7 @@ public class ReportConfigurations {
 	private String invoiceSignaturePath;
 	private String isInvoiceSignature;
 	private String isSeparatePage;
+	private MultipartFile invoiceSignatureFile;
 	
 	public String getInvoiceDesignation() {
 		return invoiceDesignation;
@@ -95,6 +96,12 @@ public class ReportConfigurations {
 	}
 	public void setIsSeparatePage(String isSeparatePage) {
 		this.isSeparatePage = isSeparatePage;
+	}
+	public MultipartFile getInvoiceSignatureFile() {
+		return invoiceSignatureFile;
+	}
+	public void setInvoiceSignatureFile(MultipartFile invoiceSignatureFile) {
+		this.invoiceSignatureFile = invoiceSignatureFile;
 	}
 	
 

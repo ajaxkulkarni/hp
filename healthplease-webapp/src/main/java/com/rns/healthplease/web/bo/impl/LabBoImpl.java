@@ -638,7 +638,17 @@ public class LabBoImpl implements LabBo, Constants {
 			config = new ReportConfig();
 		}
 		BusinessConverters.getReportConfig(lab.getReportConfig(), lab, config);
-		MultipartFile signatureFile = lab.getReportConfig().getSignatureFile();
+		config.setSignatureFileLocation(storeSignature(lab, lab.getReportConfig().getSignatureFile()));
+		config.setInvoiceSignatureFileLocation(storeSignature(lab, lab.getReportConfig().getInvoiceSignatureFile()));
+		if(config.getId() == null) {
+			session.persist(config);
+		}
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
+	}
+
+	private String storeSignature(Lab lab, MultipartFile signatureFile) {
 		if(signatureFile != null && !signatureFile.isEmpty()) {
 			try {
 				String directory = ROOT_DOCS_PATH + "lab-data/" + lab.getId() + "/signature/";
@@ -649,20 +659,14 @@ public class LabBoImpl implements LabBo, Constants {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(document));
 				stream.write(signatureFile.getBytes());
 				stream.close();
-				config.setSignatureFileLocation(path);
-
+				//config.setSignatureFileLocation(path);
+				return path;
 			} catch (IOException e) {
 				e.printStackTrace();
 				LoggingUtil.logMessage(ExceptionUtils.getFullStackTrace(e));
 			}
-			
 		}
-		if(config.getId() == null) {
-			session.persist(config);
-		}
-		tx.commit();
-		session.close();
-		return RESPONSE_OK;
+		return null;
 	}
 	
 	@Override
