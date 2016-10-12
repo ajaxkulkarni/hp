@@ -7,15 +7,52 @@
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
-  <loc>http://www.healthplease.in/</loc>
+  <loc>https://www.healthplease.in/</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.healthplease.in/aboutus.htm</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.healthplease.in/pricing.htm</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.healthplease.in/support.htm</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.healthplease.in/corporatePartner.htm</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.healthplease.in/signup.htm</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.healthplease.in/partnerlabs.htm</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.healthplease.in/faq.htm</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.healthplease.in/privacy.htm</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.healthplease.in/terms.htm</loc>
+  <changefreq>daily</changefreq>
+</url>
+
+<url>
+  <loc>http://www.healthplease.in/Corporate</loc>
   <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>http://www.healthplease.in/aboutus.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/pricing.htm</loc>
   <changefreq>daily</changefreq>
 </url>
 <url>
@@ -26,64 +63,6 @@
   <loc>http://www.healthplease.in/corporatePartner.htm</loc>
   <changefreq>daily</changefreq>
 </url>
-<url>
-  <loc>http://www.healthplease.in/signup.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/partnerlabs.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/faq.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/privacy.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/terms.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/hp/faq.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/Corporate</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/hp/aboutus.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/hp/support.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/hp/pricing.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/hp/corporatePartner.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/hp/signup.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/hp/privacy.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/hp/terms.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.healthplease.in/hp/partnerlabs.htm</loc>
-  <changefreq>daily</changefreq>
-</url>
+
+
 </urlset>
