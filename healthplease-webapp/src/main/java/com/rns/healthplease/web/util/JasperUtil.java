@@ -29,6 +29,7 @@ public class JasperUtil {
 
 	private static final String LAB_REPORT_TEMPLATE = "hp_lab_report.jasper";
 	private static final String LAB_REPORT_TEMPLATE_DESC = "hp_lab_report_descriptive.jasper";
+	private static final String LAB_REPORT_TEMPLATE_SEP = "hp_lab_report_sep.jasper";
 	private static final String LAB_INVOICE_TEMPLATE = "hp_lab_invoice.jasper";
 
 	public static byte[] generateReport(Map<String, Object> parameters, JRBeanCollectionDataSource testsSource, String template) throws JRException, IOException {
@@ -108,7 +109,7 @@ public class JasperUtil {
 			parameters.put("pathName", reportConfig.getName());
 			parameters.put("designation", reportConfig.getDesignation());
 			parameters.put("imagePath", reportConfig.getSignaturePath());
-			parameters.put("separatePage", reportConfig.getIsSeparatePage());
+			//parameters.put("separatePage", reportConfig.getIsSeparatePage());
 		}
 		//parameters.put("isbold", "");
 		analyzeTestParameters(appointment.getTests());
@@ -118,8 +119,10 @@ public class JasperUtil {
 				&& StringUtils.equalsIgnoreCase("D", appointment.getTests().get(0).getParameters().get(0).getType())) {
 			reportName = LAB_REPORT_TEMPLATE_DESC;
 		}
+		if(StringUtils.equals("y", reportConfig.getIsSeparatePage())) {
+			reportName = LAB_REPORT_TEMPLATE_SEP;
+		}
 		appointment.setReportData(generateReport(parameters, testSource, reportName));
-
 	}
 
 	private static void analyzeTestParameters(List<LabTest> tests) {
