@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-09-24T19:31:03 -->
+<!-- 2016-10-10T17:21:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -26,7 +26,7 @@
 	<parameter name="pathName" class="java.lang.String"/>
 	<parameter name="logopath" class="java.lang.String"/>
 	<parameter name="printSign" class="java.lang.String"/>
-	<parameter name="printfooter" class="java.lang.String"/>
+	<parameter name="printFooter" class="java.lang.String"/>
 	<parameter name="designation" class="java.lang.String"/>
 	<parameter name="imagePath" class="java.lang.String"/>
 	<parameter name="price" class="java.lang.Integer"/>
@@ -38,24 +38,32 @@
 	<pageHeader>
 		<band height="105">
 			<rectangle>
-				<reportElement x="-1" y="0" width="555" height="80" uuid="758eec19-c5ca-4d1f-9d06-2d9c9d5040cf"/>
+				<reportElement x="-1" y="0" width="555" height="80" uuid="758eec19-c5ca-4d1f-9d06-2d9c9d5040cf">
+					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
+				</reportElement>
 			</rectangle>
 			<textField>
-				<reportElement x="160" y="10" width="386" height="34" forecolor="#030000" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592"/>
+				<reportElement x="160" y="10" width="386" height="34" forecolor="#030000" uuid="b3e2753e-648a-47f5-9e29-47f81ec21592">
+					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
+				</reportElement>
 				<textElement>
 					<font fontName="SansSerif" size="24" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{labName}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="160" y="50" width="386" height="20" uuid="44dd132c-1c05-4a19-80a8-f4c67b8b0e29"/>
+				<reportElement x="160" y="50" width="386" height="20" uuid="44dd132c-1c05-4a19-80a8-f4c67b8b0e29">
+					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
+				</reportElement>
 				<textElement>
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{labAddress}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="15" y="5" width="92" height="75" uuid="8b35d50b-29bb-49db-9afe-b7d5897a74c5"/>
+				<reportElement x="15" y="5" width="92" height="75" uuid="8b35d50b-29bb-49db-9afe-b7d5897a74c5">
+					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
+				</reportElement>
 				<imageExpression><![CDATA[$P{logopath}]]></imageExpression>
 			</image>
 			<staticText>
@@ -187,7 +195,9 @@
 	<pageFooter>
 		<band height="291" splitType="Stretch">
 			<rectangle>
-				<reportElement x="1" y="270" width="552" height="8" forecolor="#3399FF" backcolor="#3399FF" uuid="9121a783-1877-4b88-8e86-05cc0aa4bca1"/>
+				<reportElement x="1" y="270" width="552" height="8" forecolor="#3399FF" backcolor="#3399FF" uuid="9121a783-1877-4b88-8e86-05cc0aa4bca1">
+					<printWhenExpression><![CDATA[$P{printFooter}.equals("y")]]></printWhenExpression>
+				</reportElement>
 			</rectangle>
 			<staticText>
 				<reportElement x="375" y="32" width="100" height="20" uuid="941c1e74-ce94-48e5-ae3a-c74118357c6f"/>
@@ -216,7 +226,9 @@
 				<text><![CDATA[Rs.]]></text>
 			</staticText>
 			<image>
-				<reportElement x="399" y="112" width="100" height="100" uuid="2797cc6a-9f95-48b8-9cb0-591165a4d5ac"/>
+				<reportElement x="399" y="112" width="100" height="100" uuid="2797cc6a-9f95-48b8-9cb0-591165a4d5ac">
+					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
+				</reportElement>
 				<imageExpression><![CDATA[$P{imagePath}]]></imageExpression>
 			</image>
 			<textField>
@@ -266,13 +278,16 @@
 				<text><![CDATA[Discount       :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="400" y="237" width="100" height="14" uuid="26aee876-2404-47e4-ad5a-a0065f2a8e0c"/>
+				<reportElement x="400" y="237" width="100" height="14" uuid="26aee876-2404-47e4-ad5a-a0065f2a8e0c">
+					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{designation}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="400" y="219" width="100" height="16" uuid="52050505-214f-4039-af60-3111e4bceb2b">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{pathName}]]></textFieldExpression>
