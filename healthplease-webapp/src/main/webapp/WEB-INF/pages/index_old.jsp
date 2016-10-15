@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8">
-          <title>Book Diagnostic & Pathology Test like Thyroid, Sugar, Urine, Cholesterol, ECG and X-Ray. Pay for them Online. Sample Collected at home or in lab. EMR Storage Available.</title>
+          <title>Book online Pathology & Diagnostic Tests in Pune | HealthPlease.in</title>
     <meta name="keywords" content="Book Online Path Test, Book online diagnostic test, Blood Sugar test">
     <meta name="description" content="Book your online Pathology Lab test and test packages and have sample picked from home. Online Payment option and save reports for future reference.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,48 +17,7 @@
 </head>
 
 <body>
-
-<style>
-    .collap_img_div{
-        height: 400px;
   
-    }
-    
-    #collap_div{
-        padding: 0px;
-    }
-    .card1 {
-        font-family: 'Roboto', sans-serif;
-        margin-top: 10px;
-        position: relative;
-        border:;
-      /*   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-        -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-        box-shadow: 4 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); */
-      
-    }
-    
-    #collapse_div1,
-    #collapse_div2,
-    #collapse_div3 {
-        display: none;
-        font-family: 'Roboto', sans-serif;
-        font-size: 16px;
-/*        margin: 10px auto;*/
-        position: absolute;
-        top: -400px;
-        margin:0px;
-        -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-        -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-        box-shadow: 4 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-        padding: 16px;
-        height: 400px;
-        background-color: white;
-        width: 100%;
-    }
-
-</style>
-
 <%@include file="user_header.jsp" %>
   
 <div>
@@ -82,9 +41,6 @@
  
 <script type="text/javascript">
 
-
-
-
 	function reset() {
 		//$('#idLocation').removeAttr("selected");
         $('#select2-idLocation-container').html("Select Your Location");
@@ -98,8 +54,8 @@
       */
       $('#idTest').change(function(){
         reset();
-        
-    
+      });
+
 
         
     /**
@@ -113,11 +69,6 @@
                $( "#idAppointmentDate" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
 
     };     */
-
-  
-			
-    
-
 
     $("#idBookAppointmentOnLogin").on( "click", function(){
 
@@ -202,13 +153,7 @@
        
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  
-	
-});
-</script>
+
 <!--  Package Slider script start-->
 <script type="text/javascript">
 
@@ -331,152 +276,9 @@ $(window).load(function() {
 <!-- Package slider script end-->
 
 
-  <div class="classSliderHolder" style="margin-top:2%;height:500px;border:"> 
-	<div class="container" id="image_container">
-		 <div class="row"> 
-        <div class="collap_img_div">
-        <div class="col-sm-4">
-            <div class="card1" >
-            
-         <img class="img-responsive" style="height:60%;width:60%;margin-left:20%" src="<c:url value="/resources/images/home_doc.png"/>" id="collap_img1">
-          <h3>Doctor/In clinic Appointment</h3>
-                </div>
-               
-        </div>
-        
-         <div class="col-sm-4">
-             <div class="card1" style="border-right: 0.5px solid black">
-        <img class="img-responsive" style="height:60%;width:60%;margin-left:20%"src="<c:url value="/resources/images/home_lab.png"/>" id="collap_img2">
-         <h3>In Lab Appointment</h3>
-             </div>
-        </div>
-        
-     <div class="col-sm-4">
-         <div class="card1">
-        <img class="img-responsive" style="height:60%;width:60%;margin-left:20%"src="<c:url value="/resources/images/home_home.png"/>" id="collap_img3">
-         <h3>Home Collection<h3>
-         </div>
-        </div>
-        </div>  
-          <div class="col-xs-12" id="collap_div">
-          
-         <div id="collapse_div1" >
-        <button type="button" class="close" id="collap_close_btn1"><span aria-hidden="true">×</span></button>
-						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
-                      <div class="classHAbtTextWrapper">                         
-                        <div class="classOSCFont classFrontText">
-                          <!-- Your Convenience, Our Priority...<br/> -->
-                          <div class="text-left"><img src="<c:url value="/resources/images/steps/3-steps.png"/>" width="95%" class="classStepImg" /></div>
-                            <div class="classBColor">Request Sample Collection Now&nbsp;&nbsp;&nbsp;<span class="hvr-buzz-out"><i class="fa fa-hand-o-right "></i></span></div>
-                        </div>
-                       
-                      </div>                     
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 classNoPadding">
-                        <!-- Form Div Start-->
-                        <div class="auth">
-                            <div id="big-form" class="well auth-box">
-                            
-                                <fieldset>
-
-                                  <!-- Form Name -->
-                                  <legend><i class="fa fa-calendar"></i> Doctor/In clinic Appointment</legend>
-                                  <!-- Select Basic -->
-                                   <%--  <div class="form-group">
-                                      <!-- <label class=" control-label" for="selectbasic">Test</label> -->
-                                      <div class="ui-widget">
-                                        <select id="idTest" name="test" class="form-control selectpicker js-tests" multiple="multiple">
-                                          <optgroup label="Test Packages" style="margin-left: 10px">
-                                          <c:forEach items="${tests}" var="test">
-                                          		<c:if test="${test.testPackage}">
-                                          		<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
-                                          		</c:if>
-                                           </c:forEach>
-                                           <optgroup label="Regular Test" style="margin-left: 10px">
-                                           <c:forEach items="${tests}" var="test">
-                                           <c:if test="${!test.testPackage}">
-                                           <option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
-                                           </c:if>
-                                           </c:forEach>
-                                           </optgroup>
-                                         </select>
-                                      </div>
-                                      <div class="" id="idTestErr"></div>
-                                    </div>
- --%>
-                                    <div class="form-group">
-                                      <!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
-                                        <div class="ui-widget">
-                                            <select id="idLocation" name="location" class="form-control locations" onchange="getLabs('Y')">
-                                              <option value="">Select Doctor Type</option>
-                                              <c:forEach items="${locations}" var="loc">
-                                              	 <option value="${loc.id}">&nbsp;&nbsp;${loc.name}</option>
-                                              </c:forEach>
-                                            </select>
-                                        </div>
-                                      <div class="" id="idLocationErr"></div>
-                                    </div>
-
-                                    <div class="form-group">
-                                      <!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
-                                      <div class="ui-widget">
-                                        <select id="idLabs" name="labs" class="form-control labs" onchange="getDates()" >
-                                          <option value='select' disabled>Please select your clinic/Hospital</option>
-                                        </select>
-                                      </div>
-                                      <div class="" id="idLocationErr"></div>
-                                    </div>
-									<form method='post' id="on_form_appointment" action="login" autocomplete="off">
-                                  <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label class=" control-label" for="appointmentDate">Appointment Date</label>  
-                                            <div class="">
-                                              <input id="idAppointmentDate" name="appointmentDate" placeholder="yyyy-mm-dd" class="form-control input-md slots datepicker-app" type="text" onchange="getSlots()">
-                                              <input type="hidden" name="dbdate" id="dbdate" value="">
-                                            </div>
-                                            <div class="" id="idAppDateErr"></div>
-                                        </div> 
-                                        <div class="form-group col-md-6">
-                                          <label class=" control-label" for="appointmentTime">Appointment Time</label>
-                                          <div id="slots" class="ui-widget">
-                                            <select id="idAppTime" name="slot.id" class="form-control js-event-log js-slots" onchange="setData()">
-                                              <option value='select' disabled selected>Select time slot</option>
-                                            </select>
-                                            <!--<input id="idAppTime" name="appointmentTime" placeholder="" class="form-control input-md" type="text" value="Between 7:00 am to 12:00pm" readonly/>-->
-                                          </div>
-                                        </div>
-                                        
-                                    </div>
-                                                                  
-                                 
-                                  <div class="form-group">
-                                    <div class="">
-                                    	<c:if test="${user.firstName == null }">
-                                       		<a href="#idLoginModal" data-toggle="modal" data-keyboard="false" data-target="#idLoginModal">
-                                       		<input type="submit" id="idBookAppointment" name="bookAppointment" value="Book Appointment" class="classAptBtn btn btn-success"/>
-                                       		</a>
-                                       </c:if>
-                                       <c:if test="${user.firstName != null }">
-                                       		<a href="">
-                                       		<input type="submit" id="idBookAppointment" name="bookAppointment" value="Book Appointment" class="classAptBtn btn btn-success"/>
-                                       		</a>
-                                       </c:if>
-                                    </div>
-                                  </div>
-								</form>
-                                </fieldset>
-                            </div>
-                            <div class="clearfix"></div>
-                            <input type="hidden" value="${user.group.id}" id="user_group">
-                        </div>
-                        <!-- Form Div End-->
-                    </div>
-            
-              
-         </div>
-              
-                    <div id="collapse_div2">
-                    <button type="button" class="close" id="collap_close_btn2"><span aria-hidden="true">×</span></button>
+        <div class="classSliderHolder">
+            <div class="container">  
+                <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
                       <div class="classHAbtTextWrapper">                         
                         <div class="classOSCFont classFrontText">
@@ -495,7 +297,7 @@ $(window).load(function() {
                                 <fieldset>
 
                                   <!-- Form Name -->
-                                  <legend><i class="fa fa-calendar"></i> In Lab Appointment</legend>
+                                  <legend><i class="fa fa-calendar"></i> Request Collection</legend>
                                   <!-- Select Basic -->
                                     <div class="form-group">
                                       <!-- <label class=" control-label" for="selectbasic">Test</label> -->
@@ -586,134 +388,10 @@ $(window).load(function() {
                         </div>
                         <!-- Form Div End-->
                     </div>
-          
-</div>
-              
-                       <div id="collapse_div3">
-                                     <button type="button" class="close" id="collap_close_btn3"><span aria-hidden="true">×</span></button>
-                  <div class ="container">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
-                      <div class="classHAbtTextWrapper">                         
-                        <div class="classOSCFont classFrontText">
-                          <!-- Your Convenience, Our Priority...<br/> -->
-                          <div class="text-left"><img src="<c:url value="/resources/images/steps/3-steps.png"/>" width="95%" class="classStepImg" /></div>
-                            <div class="classBColor">Request Sample Collection Now&nbsp;&nbsp;&nbsp;<span class="hvr-buzz-out"><i class="fa fa-hand-o-right "></i></span></div>
-                        </div>
-                       
-                      </div>                     
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 classNoPadding">
-                        <!-- Form Div Start-->
-                        <div class="auth">
-                            <div id="big-form" class="well auth-box">
-                            
-                                <fieldset>
+                </div>    
+              </div>
+            </div>
 
-                                  <!-- Form Name -->
-                                  <legend><i class="fa fa-home"></i> Request Collection</legend>
-                                  <!-- Select Basic -->
-                                    <div class="form-group">
-                                      <!-- <label class=" control-label" for="selectbasic">Test</label> -->
-                                      <div class="ui-widget">
-                                        <select id="idTest" name="test" class="form-control selectpicker js-tests" multiple="multiple">
-                                          <optgroup label="Test Packages" style="margin-left: 10px">
-                                          <c:forEach items="${tests}" var="test">
-                                          		<c:if test="${test.testPackage}">
-                                          		<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
-                                          		</c:if>
-                                           </c:forEach>
-                                           <optgroup label="Regular Test" style="margin-left: 10px">
-                                           <c:forEach items="${tests}" var="test">
-                                           <c:if test="${!test.testPackage}">
-                                           <option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
-                                           </c:if>
-                                           </c:forEach>
-                                           </optgroup>
-                                         </select>
-                                      </div>
-                                      <div class="" id="idTestErr"></div>
-                                    </div>
-
-                                    <div class="form-group">
-                                      <!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
-                                        <div class="ui-widget">
-                                            <select id="idLocation" name="location" class="form-control locations" onchange="getLabs('Y')">
-                                              <option value="">Select your location</option>
-                                              <c:forEach items="${locations}" var="loc">
-                                              	 <option value="${loc.id}">&nbsp;&nbsp;${loc.name}</option>
-                                              </c:forEach>
-                                            </select>
-                                        </div>
-                                      <div class="" id="idLocationErr"></div>
-                                    </div>
-
-                                    <div class="form-group">
-                                      <!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
-                                      <div class="ui-widget">
-                                        <select id="idLabs" name="labs" class="form-control labs" onchange="getDates()" >
-                                          <option value='select' disabled>Please select lab</option>
-                                        </select>
-                                      </div>
-                                      <div class="" id="idLocationErr"></div>
-                                    </div>
-									<form method='post' id="on_form_appointment" action="login" autocomplete="off">
-                                  <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label class=" control-label" for="appointmentDate">Appointment Date</label>  
-                                            <div class="">
-                                              <input id="idAppointmentDate" name="appointmentDate" placeholder="yyyy-mm-dd" class="form-control input-md slots datepicker-app" type="text" onchange="getSlots()">
-                                              <input type="hidden" name="dbdate" id="dbdate" value="">
-                                            </div>
-                                            <div class="" id="idAppDateErr"></div>
-                                        </div> 
-                                        <div class="form-group col-md-6">
-                                          <label class=" control-label" for="appointmentTime">Appointment Time</label>
-                                          <div id="slots" class="ui-widget">
-                                            <select id="idAppTime" name="slot.id" class="form-control js-event-log js-slots" onchange="setData()">
-                                              <option value='select' disabled selected>Select time slot</option>
-                                            </select>
-                                            <!--<input id="idAppTime" name="appointmentTime" placeholder="" class="form-control input-md" type="text" value="Between 7:00 am to 12:00pm" readonly/>-->
-                                          </div>
-                                        </div>
-                                        
-                                    </div>
-                                                                  
-                                 
-                                  <div class="form-group">
-                                    <div class="">
-                                    	<c:if test="${user.firstName == null }">
-                                       		<a href="#idLoginModal" data-toggle="modal" data-keyboard="false" data-target="#idLoginModal">
-                                       		<input type="submit" id="idBookAppointment" name="bookAppointment" value="Book Appointment" class="classAptBtn btn btn-success"/>
-                                       		</a>
-                                       </c:if>
-                                       <c:if test="${user.firstName != null }">
-                                       		<a href="">
-                                       		<input type="submit" id="idBookAppointment" name="bookAppointment" value="Book Appointment" class="classAptBtn btn btn-success"/>
-                                       		</a>
-                                       </c:if>
-                                    </div>
-                                  </div>
-								</form>
-                                </fieldset>
-                            </div>
-                            <div class="clearfix"></div>
-                            <input type="hidden" value="${user.group.id}" id="user_group">
-                        </div>
-                        <!-- Form Div End-->
-                    </div></div></div>
-          
-          
-                      </div>
-        </div>
-        
-             </div>
-             
-	</div>
-              
-        	
-         
-</div>	<!-- slider -->
 
 
             
@@ -765,39 +443,11 @@ $(window).load(function() {
 <%@include file="forms/request_checkup.jsp" %>
 
 <%@include file="user_footer.jsp" %>
-<script type="text/javascript">
 
-	$("#collap_img1").click(function(){
-	
-		$("#collapse_div1").show();
-	});
-	    
-	     $("#collap_img2").click(function(){
-	$("#collapse_div2").show();
-	});
-	    
-	     $("#collap_img3").click(function(){
-	$("#collapse_div3").show();
-	});
-	    
-	          $("#collap_close_btn1").click(function(){
-	$("#collapse_div1").css("display","none");
-	});
-	    
-	               $("#collap_close_btn2").click(function(){
-	$("#collapse_div2").css("display","none");
-	});
-	    
-	               $("#collap_close_btn3").click(function(){
-	$("#collapse_div3").css("display","none");
-	});
-    
-</script>
 <!-- Forget modal form code end-->
 <!-- Share This Button Code Start -->
 <!--<script>var sharebutton_is_horizontal = true; document.write('<script src="//cdn.script.to/share.js"></scr' + 'ipt>'); document.write("<div style='display: none'>");</script><a href="http://sharebutton.org/">social sharing buttons</a><script>document.write("</div>");</script>-->
 <!-- Share This Button Code End -->
-
 </body>
 
 </html>
