@@ -30,6 +30,7 @@ import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
 import com.rns.healthplease.web.bo.domain.ReportConfigurations;
 import com.rns.healthplease.web.bo.domain.Slot;
+import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.dao.api.AppointmentDao;
 import com.rns.healthplease.web.dao.api.LabDao;
 import com.rns.healthplease.web.dao.api.UserDao;
@@ -723,6 +724,31 @@ public class LabBoImpl implements LabBo, Constants {
 		tx.commit();
 		session.close();
 		return RESPONSE_OK;
+	}
+	
+	@Override
+	public List<User> getAllUsers(Lab lab) {
+		if(lab == null || lab.getId() == null) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		LabDao labDao = new LabDaoImpl();
+		List<Appointments> appointments = labDao.getAllAppointmentsByUsers(lab.getId(), session);
+		if (CollectionUtils.isEmpty(appointments)) {
+			session.close();
+			return null;
+		}
+		List<User> users = new ArrayList<User>();
+		for (Appointments app : appointments) {
+			User user = new User();
+			if(app.getUser() == null) {
+				continue;
+			}
+			DataConverters.getUser(app.getUser(), user);
+			users.add(user);
+		}
+		session.close();
+		return users;
 	}
 
 }

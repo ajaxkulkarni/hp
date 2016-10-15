@@ -270,6 +270,51 @@
   	 	} 
   	 	$("#reports_table_body").html(reportData);
      }
+     
+
+     function showAppointments(userId) {
+     		$.ajax({
+     			type : "POST",
+     			url : 'getUserAppointments',
+     			dataType : 'json',
+     			data : "email=" + userId,
+     			success : function(user) {
+     				var appendString = "<tr><th>Appointment ID</th><th>Lab Name</th><th>Test Name || Test Charge</th><th>Date</th><th>Status</th></tr>";
+     				var i = 0;
+     				//alert(user.appointments);
+     				for (i = 0; i < user.appointments.length; i++) {
+     					var app = user.appointments[i];
+     					//alert(app);
+     					if(app.lab.id != $("#labId").val()) {
+     						continue;
+     					}
+     					
+     					appendString = appendString + "<tr>";
+     					appendString = appendString + "<td>" + app.id + "</td>";
+     					appendString = appendString + "<td>" + app.lab.name + "</td>";
+     					appendString = appendString + "<td>";
+     					var x = 0;
+     					for(x = 0; x < app.tests.length; x++) {
+     						//alert(app.tests[x].name);
+     						appendString = appendString + app.tests[x].name + "||" + app.tests[x].price + ",";
+     					}
+     					appendString = appendString + "</td>";
+     					appendString = appendString + "<td>" + app.status.name + "</td>";
+     					appendString = appendString + "<td>" + app.date + "</td>";
+     					appendString = appendString + "</tr>";
+     					if(i >= 2) {
+     						break;
+     					}
+     				}
+     				//alert(appendString);
+     				$("#tbody").html(appendString);
+     				$("#myModal").modal('show');
+     			}
+
+     		});
+     	}
+     
+     
     </script>
 <script src="<c:url value="/resources/js/external/file_input/fileinput.min.js"/>"></script>  
 <script src="<c:url value="/resources/js/external/angular/angular.js"/>"></script>

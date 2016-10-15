@@ -12,6 +12,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 
 import com.rns.healthplease.web.dao.api.LabDao;
+import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.LabActiveDaysStatus;
 import com.rns.healthplease.web.dao.domain.LabBlockedSlots;
 import com.rns.healthplease.web.dao.domain.Labs;
@@ -91,4 +92,11 @@ public class LabDaoImpl implements LabDao {
 		return configs.get(0);
 	}
 
+	@Override
+	public List<Appointments> getAllAppointmentsByUsers(Integer labId, Session session) {
+		Query createQuery = session.createQuery("from Appointments where lab.id=:labId group by user");
+		createQuery.setInteger("labId", labId);
+		return createQuery.list();
+	}
+	
 }

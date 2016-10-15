@@ -342,6 +342,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 		UserDao userDao = new UserDaoImpl();
 		List<Users> usersList = userDao.getAllUsers(session);
 		if (CollectionUtils.isEmpty(usersList)) {
+			session.close();
 			return null;
 		}
 		List<User> users = new ArrayList<User>();

@@ -311,6 +311,7 @@ function onForgotPassword() {
 	});  
 	
 }
+
   
 </script>
 

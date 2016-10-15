@@ -34,15 +34,27 @@
 
 <div id="msg" class="container"></div>
 
+
+<div class="clearfix"></div>
+
+<div id="msg" class="container">
+	<input type="hidden" id="labId" value="${user.lab.id}">
+</div>
+
 <div class="" id="div_add">
-<a href="<%=Constants.LAB_EDIT_TEST_GET_URL %>" class="btn btn-large btn-info" id="add"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add New Test</a>
+<select id="limit" id="limit" class="form-control"  onchange="resetTable()">
+                                        <option>5</option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                        <option>50</option>
+                                        <option>100</option>
+                                    </select>
+
 </div>
 
 <div class="clearfix"></div><br/>
 <!--Main div where content get loaded-->
-<h1>${lab.name}</h1>
 <div class="" id="loadUser" name="loadUser">
-<input type="text" id="search" class="form-control" placeholder="Search">
 <table id="user_table" class="table table-bordered table-responsive paginate">
                     <tbody><tr class="page_header">
                     <th>#</th>
@@ -52,40 +64,44 @@
                     <th>Email</th>
                     <th>Mobile No.</th>
                     <th>Address</th>
-                    <th>Landmark</th>
+                    <!-- <th>Landmark</th>
                     <th>Area</th>
                     <th>Pincode</th>
-                    <th>City</th>
+                    <th>City</th> -->
                     <th>Gender</th>
                     <th>Date Of Birth</th>
                     <th colspan="1" align="center">History</th>
                     </tr>                
-                <c:forEach items="${locations}" var="loc" varStatus="i">
+                <c:forEach items="${users}" var="user" varStatus="i">
                 <tr>
                 	<td>${i.index + 1}</td>
-                	<td>${loc.id}</td>
-                	<td>${loc.name}</td>
-                	<td align="center">
+                	<td>${user.id}</td>
+                	<td>${user.firstName}</td>
+                	<td>${user.lastName}</td>
+                	<td>${user.email}</td>
+                	<td>${user.phone}</td>
+                	<td>${user.address}</td>
+                	<td>${user.gender}</td>
+                	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${user.dob}"/></td>
+                	<td><button type="button" class="btn btn-info btn-lg" onclick="showAppointments('${user.email}')">History</button></td>
+                	<%-- <td align="center">
                 		<a href="<%=Constants.ADMIN_EDIT_LOCATION_GET_URL%>?id=${loc.id}&name=${loc.name}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
                 	</td>
                 	<td align="center">
                 		<a href="#" class="js-deleteuser" onclick="confirmDelete('${loc.name}','${loc.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
-                	</td>
+                	</td> --%>
                 </tr>
                 </c:forEach>
                 </tbody></table>
                 
 </div>    
-<!--Paging div will get content soon-->
-
 <ul class="pagination" id="pagination_list">
 </ul>
 
 
-<form id="loc_form" action="<%=Constants.LAB_DELETE_LAB_TEST_POST_URL%>" method="post">
+<form id="loc_form" action="<%=Constants.ADMIN_DELETE_LOCATION_POST_URL %>" method="post">
 
-	<input type="hidden" id="test_id" name="testId"/>
-	<%-- <input type="hidden" id="lab_id" name="labId" value="${lab.id}"/> --%>
+	<input type="hidden" id="loc_id" name="id"/>
 
 </form>
 
@@ -99,58 +115,27 @@
    </div>  
   </div>      
 </div>
-</div>
-</div>
         <!-- /#page-wrapper -->
     <!-- /#wrapper -->
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<%@include file="lab_footer.jsp" %>
+<script src="<c:url value="/resources/js/paging.js"/>"></script> 
+<%--<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="/resources/js/jquery.paging.min.js"/>"></script>
-<script src="<c:url value="/resources/js/jquery.easy-paging.js"/>"></script>
+<script src="<c:url value="/resources/js/jquery.easy-paging.js"/>"></script> --%>
 <script src="<c:url value="/resources/js/myPagination.js"/>"></script> 
-
-<script type="text/javascript">
+<script>
 
 $(document).ready(function(){
-	paginateTable(10, 0);
+	paginateTable($("#limit").val(),0);
 	 
 }); 
+
+function resetTable() {
+	 paginateTable($("#limit").val(),0);
+}   
+  
    
-   function confirmDelete(name,id) {
-	   if(confirm("Are you sure you want to delete this test " + name + " from this Lab ?")) {
-		   $("#test_id").val(id);
-		   $("#loc_form").submit();
-	   }
-   }
-   
-   $('#search').keyup(function()
-		    {
-		    	searchTable($(this).val());
-		    });
-		    
-		    function searchTable(inputVal)
-		    {
-		    	var table = $('#tests_table');
-		    	table.find('tr').each(function(index, row)
-		    	{
-		    		var allCells = $(row).find('td');
-		    		if(allCells.length > 0)
-		    		{
-		    			var found = false;
-		    			allCells.each(function(index, td)
-		    			{
-		    				var regExp = new RegExp(inputVal, 'i');
-		    				if(regExp.test($(td).text()))
-		    				{
-		    					found = true;
-		    					return false;
-		    				}
-		    			});
-		    			if(found == true)$(row).show();else $(row).hide();
-		    		}
-		    	});
-		    }
-   
+	
 </script>
   <!-- modal for histry of users past appointments -->
 <div class="modal fade" id="myModal" role="dialog">
@@ -166,19 +151,9 @@ $(document).ready(function(){
             <div class="row">
             <div class="col-md-12">    
           <table class="table table-bordered table-responsive">
-			<tbody>
-				<tr>
-					<th>Appointment ID</th>
-					<th>Name</th>
-					<th>Lab Name</th>
-					<th>Test Name || Test Charge</th>
-					<!--   <th>Test Charge</th> -->
-					<th>Date</th>
-					<th>Status</th>
-					
-				</tr>
-				<c:forEach items="${user.appointments}" var="appointment">
-					<tr>
+			<tbody id="tbody">
+				
+					<%-- <tr>
 						<td>${appointment.id}</td>
 						<td>${appointment.user.firstName}</td>
 						<td>${appointment.lab.name}</td>
@@ -194,8 +169,7 @@ $(document).ready(function(){
 						<td>${appointment.date}</td>
 						<td>${appointment.status.name}</td>
 						
-					</tr>
-				</c:forEach>
+					</tr> --%>
 			</tbody>
 		</table>
                 </div>

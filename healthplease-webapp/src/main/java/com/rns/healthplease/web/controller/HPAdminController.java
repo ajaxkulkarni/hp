@@ -50,6 +50,7 @@ public class HPAdminController implements Constants {
 	private static final String MODEL_PARTNER_FORMS = "partnerForms";
 	private static final int ADMIN_PARAMETERS_TAB = 7;
 	private static final int ADMIN_CORPORATE_TAB = 6;
+	private static final int ADMIN_USERS_TAB = 10;
 	private static final int ADMIN_LAB_DASHBOARD_TAB = 5;
 	private static final int ADMIN_LOCATIONS_TAB = 3;
 	private static final int ADMIN_LABS_TAB = 4;
@@ -609,6 +610,23 @@ public class HPAdminController implements Constants {
 		String result = adminBo.bookCorporateAppointment(appointment);
 		manager.setResult(result);
 		return new RedirectView(ADMIN_CORPORATE_GET_URL);
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_ALL_USERS_GET_URL, method = RequestMethod.GET)
+	public String initAllUsers(ModelMap model) {
+		model.addAttribute(MODEL_USERS, adminBo.getAllUsers());
+		model.addAttribute(MODEL_ACTIVE_LIST, makeActiveList(ADMIN_USERS_TAB));
+		model.addAttribute(MODEL_USER, manager.getUser());
+		manager.setResult(null);
+		return ADMIN_USERS_PAGE;
+	}
+	
+	@RequestMapping(value = "/getUserAppointments", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody String getUser(String email, ModelMap model) {
+		User user = new User();
+		user.setEmail(email);
+		userBo.populateUserDetails(user);
+		return new Gson().toJson(user);
 	}
 	
 	@RequestMapping(value = "/getLabUsers", method = RequestMethod.POST, produces = "application/json")

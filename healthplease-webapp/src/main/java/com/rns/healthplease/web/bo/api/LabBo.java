@@ -13,6 +13,7 @@ import com.rns.healthplease.web.bo.domain.LabLocation;
 import com.rns.healthplease.web.bo.domain.LabTest;
 import com.rns.healthplease.web.bo.domain.ReportConfigurations;
 import com.rns.healthplease.web.bo.domain.Slot;
+import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.dao.domain.TestLabs;
 
 public interface LabBo {
@@ -48,4 +49,6 @@ public interface LabBo {
 	InputStream downloadSignatureFile(Lab lab);
 	
 	String uploadLogo(Lab lab,MultipartFile file);
+
+	List<User> getAllUsers(Lab lab);
 }

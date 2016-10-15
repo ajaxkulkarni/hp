@@ -207,6 +207,9 @@
                         <li>
                             <a class="" href="<%=Constants.LAB_SETTINGS_GET_URL%>"><i class="fa fa-cogs fa-fw"></i> Settings</a>
                         </li>
+                        <li>
+                            <a class="" href="<%=Constants.LAB_USERS_GET_URL%>"><i class="fa fa-cogs fa-fw"></i> User</a>
+                        </li>
                          <li>
                              <a href="<%=Constants.LOGOUT_GET_URL%>"><i class="fa fa-sign-out fa-fw"></i> Log Out</a>
                         </li>

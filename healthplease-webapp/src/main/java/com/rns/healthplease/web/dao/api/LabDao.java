@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import com.rns.healthplease.web.dao.domain.Appointments;
 import com.rns.healthplease.web.dao.domain.LabActiveDaysStatus;
 import com.rns.healthplease.web.dao.domain.LabBlockedSlots;
 import com.rns.healthplease.web.dao.domain.Labs;
@@ -31,4 +32,6 @@ public interface LabDao {
 	Short getMinTestLabs(Integer testId, Session session);
 	
 	ReportConfig getReportConfig(Integer id, Session session);
+	
+	List<Appointments> getAllAppointmentsByUsers(Integer labId, Session session);
 }

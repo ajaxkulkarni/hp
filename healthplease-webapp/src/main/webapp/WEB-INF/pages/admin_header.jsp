@@ -36,7 +36,7 @@
 							class="glyphicon glyphicon-chevron-right"></span> Slots</a></li>
 					<li class="${activeList[9]}"><a href=""><span
 							class="glyphicon glyphicon-chevron-right"></span> Fix Appointment</a></li>
-					<li class="${activeList[10]}"><a href=""><span
+					<li class="${activeList[10]}"><a href="<%=Constants.ADMIN_ALL_USERS_GET_URL%>"><span
 							class="glyphicon glyphicon-chevron-right"></span> Users</a></li>
 					<li class="${activeList[11]}"><a href=""><span
 							class="glyphicon glyphicon-chevron-right"></span> Reports</a></li>

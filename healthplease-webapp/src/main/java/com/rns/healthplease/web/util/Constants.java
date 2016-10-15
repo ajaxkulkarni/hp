@@ -18,7 +18,7 @@ public interface Constants {
 	// IMPORTANT : Production Environment Credentials below! Handle with care!
 
 	
-	/*String ROOT_URL = "http://www.healthplease.in";
+	/*String ROOT_URL = "https://www.healthplease.in";
 	String PAY_U_URL = "https://secure.payu.in/_payment";
 	String MERCHANT_KEY = "FRQ4pz";
 	String MERCHANT_SALT = "gH3FYsHU";
@@ -40,6 +40,7 @@ public interface Constants {
 	char YES = 'Y';
 	String DATE_FORMAT = "yyyy-MM-dd";
 	String DATE_FORMAT_2 = "dd-MM-yyyy";
+	String DATE_FORMAT_3 = "dd/MM/yyyy";
 	String GENDER_FEMALE = "Female";
 	String GENDER_MALE = "Male";
 	String RESPONSE_OK = "OK";
@@ -254,6 +255,10 @@ public interface Constants {
 	String LAB_EDIT_TEST_GET_URL = "labEditTest.htm";
 	String LAB_EDIT_LABTEST_POST_URL = "labEditLabtest";
 	String LAB_DELETE_LAB_TEST_POST_URL = "labDeleteLabTest";
+	String ADMIN_ALL_USERS_GET_URL = "adminAllUsers.htm";
+	String ADMIN_USERS_PAGE = "admin_users";
+	String LAB_USERS_PAGE = "lab_users";
+	String LAB_USERS_GET_URL = "labUsers.htm";
 	
 	
 	String MAIL_TYPE_ACTIVATION = "activationMail";

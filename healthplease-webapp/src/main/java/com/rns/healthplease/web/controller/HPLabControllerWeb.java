@@ -589,6 +589,14 @@ public class HPLabControllerWeb implements Constants {
 		manager.setResult(adminBo.deleteLabTest(test,manager.getUser().getLab()));
 		return new RedirectView(LAB_TESTS_GET_URL);
 	}
+	
+	@RequestMapping(value = "/" + LAB_USERS_GET_URL, method = RequestMethod.GET)
+	public String initAllUsers(ModelMap model) {
+		model.addAttribute(MODEL_USERS, labBo.getAllUsers(manager.getUser().getLab()));
+		model.addAttribute(MODEL_USER, manager.getUser());
+		manager.setResult(null);
+		return LAB_USERS_PAGE;
+	}
 
 	@RequestMapping(value = "/" + GET_LAB_SIGNATURE_GET_URL, method = RequestMethod.GET)
 	public void getReport(int labId, HttpServletResponse response, ModelMap model) {

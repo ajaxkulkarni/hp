@@ -52,7 +52,16 @@ public class CommonUtils implements Constants {
 		if(StringUtils.isEmpty(date)) {
 			return null;
 		}
-		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		Date parsed = parse(date, DATE_FORMAT);
+		if(parsed != null) {
+			return parsed;
+		}
+		parsed = parse(date, DATE_FORMAT_3);
+		return parsed;
+	}
+
+	private static Date parse(String date, String dateFormat) {
+		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 		try {
 			return sdf.parse(date);
 		} catch (ParseException e) {
