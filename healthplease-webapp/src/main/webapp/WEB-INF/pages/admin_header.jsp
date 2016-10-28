@@ -18,6 +18,14 @@
 				<ul class="nav nav-pills nav-stacked classCustomAMenu">
 					<li class="${activeList[0]}"><a href="<%=Constants.ADMIN_HOME_GET_URL%>"><span
 							class="glyphicon glyphicon-chevron-right"></span> Controller</a></li>
+					<li class="${activeList[1]}"><a href=""><span
+							class="glyphicon glyphicon-chevron-right"></span> All</a></li>
+					<li class="${activeList[1]}"><a href=""><span
+							class="glyphicon glyphicon-chevron-right"></span>Doctor Visit</a></li>
+					<li class="${activeList[1]}"><a href=""><span
+							class="glyphicon glyphicon-chevron-right"></span>Lab Visit</a></li>
+					<li class="${activeList[1]}"><a href=""><span
+							class="glyphicon glyphicon-chevron-right"></span>Home Visit</a></li>	
 					<li class="${activeList[1]}"><a href="<%=Constants.ADMIN_CATEGORIES_GET_URL%>"><span
 							class="glyphicon glyphicon-chevron-right"></span> Test Category</a></li>
 					<li class="${activeList[2]}"><a href="<%=Constants.ADMIN_TESTS_GET_URL%>" class="active2"><span

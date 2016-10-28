@@ -184,8 +184,23 @@
                         <li class="sidebar-search">
                             <!-- /input-group -->
                         </li>
-                                                <li>
+                         <li>
                             <a class="active" href="<%=Constants.LAB_HOME_URL_GET%>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                             <ul class="nav nav-second-level ">
+                                <li>
+                                    <a class="" href="">All</a>
+                                </li>
+                                 <li>
+                                    <a class="" href="">Doctor Visit</a>
+                                </li>
+                                 <li>
+                                    <a class="" href="">Lab Visit</a>
+                                </li>
+                                 <li>
+                                    <a class="" href="">Home Visit</a>
+                                </li>
+                                
+                            </ul>
                         </li>
                         <li>
                             <a class="" href="<%=Constants.BOOK_APPOINTMENT_LAB_GET_URL%>"><i class="fa fa-calendar fa-fw"></i> Book an Appointment</a>

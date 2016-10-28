@@ -279,6 +279,8 @@
                                                 </th>
                                                 <th>Appointment<br/> Time
                                                 </th>
+                                                 <th>Appointment<br/>Type
+                                                </th>
                                                 <th>Test Name
                                                 </th>
                                                 <th>Test Charge

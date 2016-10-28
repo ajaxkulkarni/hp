@@ -332,6 +332,10 @@
                                                                         <h6 class="reason">Payment Type</h6>
                                                                         <p class="no-m">${appointment.payment.type}</p>
                                                                     </div> 
+                                                                     <div class="col-md-4 col-xs-4">
+                                                                        <h6 class="reason">Appointment Type</h6>
+                                                                        <p class="no-m"></p>
+                                                                    </div>
                                                                     <c:if test="${appointment.status.id == 1}">
                                                                     <div class="col-md-12 col-xs-12 m-t-10">
                                                                         <button style="text-transform:capitalize;" onclick="onUpload(${appointment.id})" class="btn btn-sm btn-default">Upload Report</button>
