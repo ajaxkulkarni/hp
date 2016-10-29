@@ -9,8 +9,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -201,11 +204,14 @@ public class UserBoImpl implements UserBo, Constants {
 		}
 		for (Appointments appointments : labs.getAppointments()) {
 			Appointment appointment = DataConverters.getAppointment(session, appointmentDao, appointments);
-			user.getAppointments().add(appointment);
-			CommonUtils.setAppointments(user, appointment);
+			if(CommonUtils.checkAppType(appointment,user.getAppType())) {
+				user.getAppointments().add(appointment);
+				CommonUtils.setAppointments(user, appointment);
+			}
 		}
 		session.close();
 	}
+
 
 	public String populateUserDetails(User user) {
 		if (user == null || StringUtils.isEmpty(user.getEmail())) {
@@ -339,6 +345,31 @@ public class UserBoImpl implements UserBo, Constants {
 			}
 		}
 		return filteredTestLabs;
+	}
+	
+	public List<Lab> getAvailableLabsForLabApp(Appointment appointment) {
+		if(appointment == null || CollectionUtils.isEmpty(appointment.getTests())) {
+			return null;
+		}
+		Session session = this.sessionFactory.openSession();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		List<Lab> labs = new ArrayList<Lab>();
+		Set<Lab> labSet = new HashSet<Lab>();
+		appointment.setHomeCollection(false);
+		for(LabTest test: appointment.getTests()) {
+			Tests tests = appointmentDao.getTestById(test.getId(), session);
+			for(TestLabs testLabs: tests.getTestLabs()) {
+				Lab lab = DataConverters.getLab(testLabs.getLab());
+				if(lab == null) {
+					continue;
+				}
+				CommonUtils.calculatePrice(lab, appointment, appointmentDao, session);
+				labSet.add(lab);
+			}
+		}
+		session.close();
+		labs = new ArrayList<Lab>(labSet);
+		return labs;
 	}
 
 	public List<Slot> getAvailableSlots(Appointment appointment) {

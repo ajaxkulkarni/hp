@@ -53,10 +53,14 @@ public interface Constants {
 	String CORP_PACKAGE = "2";
 	String CORP_PARTNER = "3";
 	String LAB_PARTNER = "4";
-
+	String APP_TYPE_HOME = "Home";
+	String APP_TYPE_LAB = "Lab";
+	String APP_TYPE_DOCTOR = "Doc";
+	
 	String MODEL_APPOINTMENT = "appointment";
 	String MODEL_LOCATIONS = "locations";
 	String MODEL_TESTS = "tests";
+	String MODEL_DOC_APP = "docApps";
 	String MODEL_RESULT = "result";
 	String MODEL_USER = "user";
 	String MODEL_APPOINTMENTS = "appointments";

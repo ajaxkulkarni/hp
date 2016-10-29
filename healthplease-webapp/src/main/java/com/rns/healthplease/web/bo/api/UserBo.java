@@ -26,6 +26,8 @@ public interface UserBo {
 	
 	List<Lab> getAvailableLabs(Appointment appointment);
 	
+	List<Lab> getAvailableLabsForLabApp(Appointment appointment);
+	
 	List<Date> getBlockedDates(Appointment appointment);
 	
 	List<Slot> getAvailableSlots(Appointment appointment);

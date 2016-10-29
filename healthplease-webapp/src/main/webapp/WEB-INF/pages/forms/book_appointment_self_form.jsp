@@ -208,7 +208,6 @@ function getDates() {
 <tr><td>  -->
 			<form method='post' id="formBookAppYour" class="classOSCAForm"
 				action="<%=Constants.BOOK_APPOINTMENT_POST_URL%>">
-
 				<!-- <input type="hidden" name="form_name" id="id_form_name"  value="addappointment" /> -->
 				<div id="wizard" class="swMain classwizard">
 					<ul>
@@ -277,11 +276,13 @@ function getDates() {
 													type="radio" name="user.gender" value="F">Female</label>
 											</div>
 									</tr>
+									<c:if test="${appointment.type != 'Doc' }">
 									<tr>
 										<td>Doctor Name*</td>
 										<td><input type='text' name='doctorName' id='idDocName'
 											class='form-control' value="" required></td>
 									</tr>
+									</c:if>
 									<tr id="idErrDocName">
 										<td></td>
 									</tr>
@@ -306,6 +307,8 @@ function getDates() {
 													<textarea id="add_street" class="input-medium form-control"
 														placeholder="Street" name="pu_add_street" required=""
 														readonly="">${appointment.user.address.street}</textarea>
+														
+													
 												</div>
 											</div>
 										</td>
@@ -400,9 +403,19 @@ function getDates() {
 											<div class="control-group">
 												<!--<label class="control-label" for="add_street">Street</label>-->
 												<div class="controls">
-													<textarea id="id_pu_add_street" name="address.street"
+												<c:choose>
+													<c:when test="${appointment.type == 'Lab' || appointment.type == 'Doc'}">
+														<textarea id="id_pu_add_street" name="address.street"
+														class="input-medium form-control" placeholder="Street"
+														maxlength="160"></textarea>
+													</c:when>
+													<c:otherwise>
+														<textarea id="id_pu_add_street" name="address.street"
 														class="input-medium form-control" placeholder="Street"
 														required="" maxlength="160"></textarea>
+													</c:otherwise>
+												</c:choose>
+													
 												</div>
 											</div>
 										</td>
@@ -411,11 +424,7 @@ function getDates() {
 										<td>
 											<!-- Text input-->
 											<div class="control-group">
-												<!--<label class="control-label" for="add_area">Area</label>-->
 												<div class="controls">
-													<%-- <select id="id_pu_add_area" name="address.area" class="form-control classLocationSelect" style="width:100%;" disabled="">                            
-                                <option value='8' selected>${appointment.user.address.area}</option>
-                                </select> --%>
 													<input id="id_pu_add_area" name="address.area"
 														placeholder="area" class="input-medium form-control"
 														value="${appointment.location.name}" type="text"
@@ -445,9 +454,19 @@ function getDates() {
 											<div class="control-group">
 												<!--<label class="control-label" for="area_city">City</label>-->
 												<div class="controls">
-													<input id="id_pu_add_city" name="address.city"
+												<c:choose>
+													<c:when test="${appointment.type == 'Lab' || appointment.type == 'Doc'}">
+														<input id="id_pu_add_city" name="address.city"
+														placeholder="City" class="input-medium form-control"
+														value="Pune" type="text" readonly="">
+													</c:when>
+													<c:otherwise>
+														<input id="id_pu_add_city" name="address.city"
 														placeholder="City" class="input-medium form-control"
 														required="" value="Pune" type="text" readonly="">
+													</c:otherwise>
+												</c:choose>
+													
 												</div>
 											</div>
 										</td>
@@ -459,10 +478,22 @@ function getDates() {
 											<div class="control-group">
 												<!--<label class="control-label" for="area_zipcode">Pincode</label>-->
 												<div class="controls">
-													<input id="id_pu_add_zipcode" name="address.zipCode"
+												<c:choose>
+													<c:when test="${appointment.type == 'Lab' || appointment.type == 'Doc'}">
+														<input id="id_pu_add_zipcode" name="address.zipCode"
+														placeholder="Pincode"
+														class="input-medium form-control numeric" value=""
+														type="text" minlength="6" minlength="6">
+													</c:when>
+													<c:otherwise>
+														<input id="id_pu_add_zipcode" name="address.zipCode"
 														placeholder="Pincode"
 														class="input-medium form-control numeric" value=""
 														type="text" minlength="6" minlength="6" required="">
+													</c:otherwise>
+												</c:choose>
+												
+													
 
 												</div>
 											</div>

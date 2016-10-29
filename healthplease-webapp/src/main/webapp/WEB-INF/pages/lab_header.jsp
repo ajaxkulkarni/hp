@@ -188,16 +188,16 @@
                             <a class="active" href="<%=Constants.LAB_HOME_URL_GET%>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                              <ul class="nav nav-second-level ">
                                 <li>
-                                    <a class="" href="">All</a>
+                                    <a class="" href="<%=Constants.LAB_HOME_URL_GET%>">All</a>
                                 </li>
                                  <li>
-                                    <a class="" href="">Doctor Visit</a>
+                                    <a class="" href="<%=Constants.LAB_HOME_URL_GET%>?appType=Doc">Doctor Visit</a>
                                 </li>
                                  <li>
-                                    <a class="" href="">Lab Visit</a>
+                                    <a class="" href="<%=Constants.LAB_HOME_URL_GET%>?appType=Lab">Lab Visit</a>
                                 </li>
                                  <li>
-                                    <a class="" href="">Home Visit</a>
+                                    <a class="" href="<%=Constants.LAB_HOME_URL_GET%>?appType=Home">Home Visit</a>
                                 </li>
                                 
                             </ul>

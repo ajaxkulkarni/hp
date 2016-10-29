@@ -155,8 +155,12 @@
             		<c:if test="${test.testDisplayType == 'C' }">
             			<option value="C" selected>Corporate</option>
             		</c:if>
+            		<c:if test="${test.testDisplayType == 'D' }">
+            			<option value="D" selected>Doctors App</option>
+            		</c:if>
             		<option value="Y">Normal</option>
             		<option value="C">Corporate</option>
+            		<option value="D">Doctors App</option>
             	</select>
             </td>
         </tr>

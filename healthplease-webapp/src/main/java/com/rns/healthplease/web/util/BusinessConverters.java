@@ -156,7 +156,7 @@ public class BusinessConverters {
 	}
 
 	public static Locations getLocation(LabLocation location) {
-		if (location == null) {
+		if (location == null || location.getId() == null) {
 			return null;
 		}
 		Locations locations = new Locations();
@@ -248,7 +248,11 @@ public class BusinessConverters {
 		Locations location = BusinessConverters.getLocation(appointment.getLocation());
 		if (location != null) {
 			appointments.setLocations(location);
-		}
+		} /*else {
+			Locations locations = new Locations();
+			locations.setId(0);
+			appointments.setLocations(locations);
+		}*/
 		appointments.setMobileNo(appointment.getUser().getPhone());
 		appointments.setName(appointment.getUser().getFirstName());
 		appointments.setAge(appointment.getUser().getAge());
@@ -269,6 +273,7 @@ public class BusinessConverters {
 		if (appointment.getPrintRequired() != null) {
 			appointments.setIsRequirePrint(appointment.getPrintRequired());
 		}
+		appointments.setType(appointment.getType());
 		// TODO: Why are these fields not nullable??
 		appointments.setCancelledAuthority("");
 		appointments.setCancelledDate(new Date());

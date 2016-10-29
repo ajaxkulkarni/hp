@@ -63,6 +63,7 @@ public class Appointments implements java.io.Serializable {
 	private String cancelledAuthority;
 	private String bookedBy;
 	private String summary;
+	private String type;
 	private Set<AppointmentTests> tests = new HashSet<AppointmentTests>(0);
 
 	public Appointments() {
@@ -368,5 +369,14 @@ public class Appointments implements java.io.Serializable {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	@Column(name = "type")
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

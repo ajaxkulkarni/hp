@@ -231,8 +231,8 @@ function getDatesOther() {
                         
                       <td>                        
                         <div class="control-group">
-                          <div class="controls">                     
-                              <textarea id="p_add_street"  class="input-medium form-control" placeholder="Street"  required="" readonly="">${user.address.street}</textarea>
+                          <div class="controls"> 
+								<textarea id="p_add_street"  class="input-medium form-control" placeholder="Street"  required="" readonly="">${user.address.street}</textarea>
                           </div>
                         </div>
                       </td>
@@ -309,9 +309,16 @@ function getDatesOther() {
                               <!-- Textarea -->
                           <div class="control-group">
                             <!--<label class="control-label" for="add_street">Street</label>-->
-                            <div class="controls">                     
-                                <textarea id="id_pick_add_street" maxlength="160" name="address.street" class="input-medium form-control" placeholder="Street" required=""></textarea>
-                            </div>
+                            <div class="controls">    
+                            <c:choose>
+                          		<c:when test="${appointment.type == 'Lab' || appointment.type == 'Doc'}">
+									<textarea id="id_pick_add_street" maxlength="160" name="address.street" class="input-medium form-control" placeholder="Street"></textarea>
+                            	</c:when>     
+								<c:otherwise>
+									<textarea id="id_pick_add_street" maxlength="160" name="address.street" class="input-medium form-control" placeholder="Street" required=""></textarea>
+                            	</c:otherwise>               
+                            </c:choose>                 
+                                </div>
                           </div>
                       </td>
                       <tr rowspan="2">
@@ -345,8 +352,8 @@ function getDatesOther() {
                           <div class="control-group">
                             <!--<label class="control-label" for="area_city">City</label>-->
                             <div class="controls">
-                                <input id="id_pick_add_city" name="address.city" placeholder="City" class="input-medium form-control" required=""  value="Pune" type="text" readonly="">
-                            </div>
+									<input id="id_pick_add_city" name="address.city" placeholder="City" class="input-medium form-control" required=""  value="Pune" type="text" readonly="">
+                               </div>
                           </div>
                         </td>
                       </tr>
@@ -357,8 +364,14 @@ function getDatesOther() {
                           <div class="control-group">
                             <!--<label class="control-label" for="area_zipcode">Pincode</label>-->
                             <div class="controls">
-                                <input id="id_pick_add_zipcode" name="address.zipCode" placeholder="Pincode" class="input-medium form-control numeric" minlenth="6" maxlength="6" value="" type="text" required="">
-
+                            <c:choose>
+                          		<c:when test="${appointment.type == 'Lab' || appointment.type == 'Doc'}">
+									<input id="id_pick_add_zipcode" name="address.zipCode" placeholder="Pincode" class="input-medium form-control numeric" minlenth="6" maxlength="6" value="" type="text">
+								</c:when>     
+								<c:otherwise>
+									<input id="id_pick_add_zipcode" name="address.zipCode" placeholder="Pincode" class="input-medium form-control numeric" minlenth="6" maxlength="6" value="" type="text" required="">
+								</c:otherwise>               
+                            </c:choose>       
                             </div>
                           </div>
                     </td>

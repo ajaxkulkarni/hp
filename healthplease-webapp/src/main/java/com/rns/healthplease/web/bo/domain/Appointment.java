@@ -28,6 +28,7 @@ public class Appointment {
 	private byte[] reportData;
 	private byte[] invoiceData;
 	private String remark;
+	private String type;
 	
 	public Integer getId() {
 		return id;
@@ -139,6 +140,12 @@ public class Appointment {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

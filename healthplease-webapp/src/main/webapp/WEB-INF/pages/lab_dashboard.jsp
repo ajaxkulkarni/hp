@@ -334,7 +334,19 @@
                                                                     </div> 
                                                                      <div class="col-md-4 col-xs-4">
                                                                         <h6 class="reason">Appointment Type</h6>
-                                                                        <p class="no-m"></p>
+                                                                        <p class="no-m">
+                                                                        	<c:choose>
+                                                                        		<c:when test="${appointment.type == 'Doc'}">
+                                                                        			Doc
+                                                                        		</c:when>
+                                                                        		<c:when test="${appointment.type == 'Lab' || appointment.location == null}">
+                                                                        			Lab
+                                                                        		</c:when>
+                                                                        		<c:otherwise>
+                                                                        			Home
+                                                                        		</c:otherwise>
+                                                                        	</c:choose>
+                                                                        </p>
                                                                     </div>
                                                                     <c:if test="${appointment.status.id == 1}">
                                                                     <div class="col-md-12 col-xs-12 m-t-10">

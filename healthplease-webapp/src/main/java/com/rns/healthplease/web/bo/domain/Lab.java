@@ -3,7 +3,7 @@ package com.rns.healthplease.web.bo.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lab {
+public class Lab implements Comparable {
 	
 	private Integer id;
 	private String name;
@@ -154,5 +154,39 @@ public class Lab {
 		this.logo = logo;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Lab)) {
+			return super.equals(obj);
+		}
+		Lab lab = (Lab) obj;
+		if(lab == null || lab.getId() == null || this == null || this.id == null) {
+			return super.equals(obj);
+		}
+		if(lab.getId() == this.id.intValue()) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		if(this == null || this.id == null) {
+			return super.hashCode();
+		}
+		return id;
+	}
 
+	@Override
+	public int compareTo(Object o) {
+		Lab lab = (Lab) o;
+		if(lab == null || lab.getId() == null || this.id == null) {
+			return -1;
+		}
+		if(this.id.intValue() == lab.getId().intValue()) {
+			return 0;
+		}
+		return -1;
+	}
+	
 }

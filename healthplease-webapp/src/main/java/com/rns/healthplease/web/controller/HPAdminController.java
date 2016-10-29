@@ -113,7 +113,8 @@ public class HPAdminController implements Constants {
 	}
 
 	@RequestMapping(value = "/" + ADMIN_HOME_GET_URL, method = RequestMethod.GET)
-	public String initAdminHome(ModelMap model) {
+	public String initAdminHome(ModelMap model, String appType) {
+		manager.getUser().setAppType(appType);
 		initHome(model);
 		model.addAttribute(MODEL_APPOINTMENTS, manager.getUser().getTodaysAppointments());
 		return ADMIN_DASHBOARD_PAGE;

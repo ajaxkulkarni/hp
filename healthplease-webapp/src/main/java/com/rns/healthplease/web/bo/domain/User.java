@@ -29,6 +29,7 @@ public class User {
 	private Lab lab;
 	private String activationCode;
 	private String registeredEmail;
+	private String appType;
 
 	public String getEmail() {
 		return email;
@@ -224,6 +225,14 @@ public class User {
 
 	public void setOldPassword(String oldPassword) {
 		this.oldPassword = oldPassword;
+	}
+
+	public String getAppType() {
+		return appType;
+	}
+
+	public void setAppType(String appType) {
+		this.appType = appType;
 	}
 
 

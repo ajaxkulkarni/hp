@@ -558,6 +558,26 @@ public class CommonUtils implements Constants {
 		return false;
 	}
 	
+	public static boolean checkAppType(Appointment appointment, String appType) {
+		if(StringUtils.isEmpty(appType)) {
+			return true;
+		}
+		if(StringUtils.equals(appType, appointment.getType())) {
+			return true;
+		}
+		if(APP_TYPE_HOME.equals(appType)) {
+			if(StringUtils.isEmpty(appointment.getType()) && appointment.getLocation() != null) {
+				return true;
+			}
+		}
+		if(APP_TYPE_LAB.equals(appType)) {
+			if(StringUtils.isEmpty(appointment.getType()) && appointment.getLocation() == null) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/*public static void main(String[] args) {
 		//System.out.println(getEncryptedPassword("123456³!õ"));
 		System.out.println(StringUtils.join("123456","").length());

@@ -226,6 +226,7 @@ public class DataConverters {
 		appointment.setStatus(DataConverters.getStatus(appointments.getStatus()));
 		appointment.setPayment(DataConverters.getPayment(appointmentDao.getPaymentStatusByAppointmentId(appointments.getId(), session)));
 		appointment.setPrintRequired(appointments.getIsRequirePrint());
+		appointment.setType(appointments.getType());
 		if(appointment.getAddress() != null) {
 			appointment.setHomeCollection(true);
 		}

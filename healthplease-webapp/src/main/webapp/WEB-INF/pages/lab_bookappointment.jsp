@@ -112,6 +112,7 @@
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper" style="border:">
              <input type="hidden" name="lab.id" id="idLabs" value="${user.lab.id}"> 
              <input type="hidden" name="homeCollection" id="homeCollection" value="true"> 
+             <input type="hidden" name="type" id="appType" value="Home"> 
              <select id="idTest" name="testIds" class="form-control selectpicker js-tests" multiple="multiple" required="required" onchange="calculateCost()"> 
               	<optgroup label="Test Packages" style="margin-left: 10px">
              	<c:forEach items="${tests}" var="test">
@@ -675,6 +676,7 @@ function hideAddress() {
 
 	$("#addressFields").hide();
 	$("#homeCollection").val('false');
+	$("#appType").val('Lab');
 	$("#idAppointmentDate").val("");
 	$("#idLocation option:selected").removeAttr("selected");
 	$('#select2-idLocation-container').html("Select Your Location")
@@ -686,6 +688,7 @@ function showAddress() {
 	
 	$("#addressFields").show();
 	$("#homeCollection").val('true');
+	$("#appType").val('Home');
 	$("#idAppointmentDate").val("");
 	$("#idLocation option:selected").removeAttr("selected");
 	$('#select2-idLocation-container').html("Select Your Location")

@@ -109,15 +109,9 @@ public class HPLabControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/" + LAB_HOME_URL_GET, method = RequestMethod.GET)
-	public String initHomePage(ModelMap model, String appointmentsTitle) {
+	public String initHomePage(ModelMap model, String appointmentsTitle, String appType) {
+		manager.getUser().setAppType(appType);
 		initHome(model);
-		/*
-		 * if (StringUtils.isNotEmpty(appointmentsTitle)) {
-		 * model.addAttribute(MODEL_HEADER, appointmentsTitle); } else {
-		 * //initHome(model);
-		 * 
-		 * }
-		 */
 		model.addAttribute(MODEL_HEADER, TODAY_HEADER);
 		model.addAttribute(MODEL_APPOINTMENTS, manager.getUser().getTodaysAppointments());
 		return LAB_DASHBOARD_PAGE;

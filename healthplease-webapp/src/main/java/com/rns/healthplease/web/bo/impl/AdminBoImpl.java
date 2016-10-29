@@ -91,7 +91,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 		user.setTodaysAppointments(new ArrayList<Appointment>());
 		for (Appointments appointments : appointmentsList) {
 			Appointment appointment = DataConverters.getAppointment(session, appointmentDao, appointments);
-			if (appointment.getLab() == null) {
+			if (appointment.getLab() == null || !CommonUtils.checkAppType(appointment, user.getAppType())) {
 				continue;
 			}
 			CommonUtils.calculatePrice(appointment.getLab(), appointment, appointmentDao, session);

@@ -45,7 +45,6 @@ import com.rns.healthplease.web.util.PaymentUtils;
 @Controller
 public class HPCustomerControllerWeb implements Constants {
 
-
 	private UserBo userBo;
 	
 	private LabBo LabBo;
@@ -91,6 +90,7 @@ public class HPCustomerControllerWeb implements Constants {
 	private void initializeParameters(ModelMap model) {
 		manager.setCurrentAppointment(null);
 		model.addAttribute(MODEL_TESTS, userBo.getAvailableTests("Y"));
+		model.addAttribute(MODEL_DOC_APP, userBo.getAvailableTests("D"));
 		model.addAttribute(MODEL_LOCATIONS, userBo.getAllLocations());
 		model.addAttribute(MODEL_USER, manager.getUser());
 		model.addAttribute(MODEL_RESULT, manager.getResult());
@@ -104,16 +104,25 @@ public class HPCustomerControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/getLabs", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody String getLabs(String testIds, Integer locationId, String homeCollection) {
+	public @ResponseBody String getLabs(String testIds, Integer locationId, String type) {
 		System.out.println("Getting labs..");
 		Appointment appointment = manager.getCurrentAppointment();
 		List<LabTest> tests = CommonUtils.prepareTests(testIds);
 		appointment.setTests(tests);
-		appointment.setHomeCollection(CommonUtils.getBoolean(homeCollection));
+		appointment.setType(type);
+		if(APP_TYPE_HOME.equals(type)) {
+			appointment.setHomeCollection(true);
+		}
 		LabLocation location = new LabLocation();
 		location.setId(locationId);
 		appointment.setLocation(location);
-		return new Gson().toJson(userBo.getAvailableLabs(appointment));
+		List<Lab> availableLabs = null;
+		if(locationId != null && "Y".equals(type)) {
+			availableLabs = userBo.getAvailableLabs(appointment);
+		} else {
+			availableLabs = userBo.getAvailableLabsForLabApp(appointment);
+		}
+		return new Gson().toJson(availableLabs);
 	}
 
 	@RequestMapping(value = "/getDates", method = RequestMethod.POST, produces = "application/json")
