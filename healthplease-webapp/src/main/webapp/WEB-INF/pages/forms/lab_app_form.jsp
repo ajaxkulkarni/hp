@@ -49,7 +49,7 @@
 							<!-- <label class=" control-label" for="selectbasic">Test</label> -->
 							<div class="ui-widget">
 								<input type="hidden" value="<%=Constants.APP_TYPE_HOME%>" name="type"> 
-								<select id="idLbTest" name="test" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLbLabs('N')">
+								<select id="idLbTest" name="test" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLbLabs('N')">
 									<optgroup label="Test Packages" style="margin-left: 10px">
 										<c:forEach items="${tests}" var="test">
 											<c:if test="${test.testPackage}">
@@ -111,7 +111,7 @@
 									<label class=" control-label" for="appointmentTime">Appointment
 										Time</label>
 									<div id="slots" class="ui-widget">
-										<select id="idLbAppTime" name="slot.id"
+										<select id="idLbAppTime" name="slot.id" style="width:100%"
 											class="form-control js-event-log js-slots"
 											onchange="setLbData()">
 											<option value='select' disabled selected>Select time

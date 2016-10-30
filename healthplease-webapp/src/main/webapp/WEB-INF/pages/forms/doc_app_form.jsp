@@ -49,7 +49,7 @@
 							<!-- <label class=" control-label" for="selectbasic">Test</label> -->
 							<div class="ui-widget">
 								<input type="hidden" value="<%=Constants.APP_TYPE_DOCTOR%>" name="type"> 
-								<select id="idDcTest" name="test" class="form-control selectpicker js-tests" multiple="multiple" onchange="getDcLabs('N')">
+								<select id="idDcTest" name="test" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getDcLabs('N')">
 									<optgroup label="Test Packages" style="margin-left: 10px">
 										<c:forEach items="${docApps}" var="test">
 											<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
@@ -89,7 +89,7 @@
 									<label class=" control-label" for="appointmentTime">Appointment
 										Time</label>
 									<div id="slots" class="ui-widget">
-										<select id="idDcAppTime" name="slot.id"
+										<select id="idDcAppTime" name="slot.id" style="width:100%"
 											class="form-control js-event-log js-slots"
 											onchange="setDcData()">
 											<option value='select' disabled selected>Select time

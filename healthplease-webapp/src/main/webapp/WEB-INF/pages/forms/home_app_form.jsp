@@ -48,9 +48,9 @@
 							<!-- <label class=" control-label" for="selectbasic">Test</label> -->
 							<div class="ui-widget">
 								<input type="hidden" value="<%=Constants.APP_TYPE_HOME%>"
-									name="type"> <select id="idTest" name="test"
+									name="type" > <select id="idTest" name="test" style="width:100%"
 									class="form-control selectpicker js-tests" multiple="multiple">
-									<optgroup label="Test Packages" style="margin-left: 10px">
+									<optgroup label="Test Packages" style="margin-left: 10px;">
 										<c:forEach items="${tests}" var="test">
 											<c:if test="${test.testPackage}">
 												<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
@@ -71,7 +71,7 @@
 						<div class="form-group">
 							<!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
 							<div class="ui-widget">
-								<select id="idLocation" name="location"
+								<select id="idLocation" name="location" style="width:100%"
 									class="form-control locations" onchange="getLabs('Y')">
 									<option value="">Select your location</option>
 									<c:forEach items="${locations}" var="loc">
@@ -85,7 +85,7 @@
 						<div class="form-group">
 							<!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
 							<div class="ui-widget">
-								<select id="idLabs" name="labs" class="form-control labs"
+								<select id="idLabs" name="labs" class="form-control labs" style="width:100%"
 									onchange="getDates()">
 									<option value='select' disabled>Please select lab</option>
 								</select>
@@ -111,7 +111,7 @@
 									<label class=" control-label" for="appointmentTime">Appointment
 										Time</label>
 									<div id="slots" class="ui-widget">
-										<select id="idAppTime" name="slot.id"
+										<select id="idAppTime" name="slot.id" style="width:100%	"
 											class="form-control js-event-log js-slots"
 											onchange="setData()">
 											<option value='select' disabled selected>Select time

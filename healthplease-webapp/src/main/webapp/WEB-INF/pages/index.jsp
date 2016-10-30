@@ -86,51 +86,7 @@
       Reset Location on update in test
       */
         
-    /**
-* to set appointment from user scrren
- */        
-    /* function onDateChage(){
-    	alert("Here!");
-               $( "#idAppointmentDate" ).datepicker( "option", "dateFormat", "mm/dd/yy" );
-               var tempval = generateDate( $("#idAppointmentDate").val() );
-               $('#dbdate').val( tempval );
-               $( "#idAppointmentDate" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
 
-    };     */
-
-    /* $("#idBookAppointmentOnLogin").on( "click", function(){
-
-          var sTestName = $("#idTest").val();
-          var sLocationName = $("#idLocation").val();
-          if(sTestName == "select"){
-              $("#idTestErr").fadeIn(1500);
-              $("#idTestErr").html("<label style='color:red;'>Please select your test</label>")
-              $("#idTestErr").fadeOut(1500);
-              return false;
-          }
-           if(sLocationName == "select"){
-              $("#idLocationErr").fadeIn(1500);
-              $("#idLocationErr").html("<label style='color:red;'>Please select location of test</label>")
-              $("#idLocationErr").fadeOut(1500);
-              return false;
-          }
-
-          appointmentDate = $("#idAppointmentDate").val();
-          if(appointmentDate == ""){
-            $("#idAppDateErr").fadeIn(1500);
-              $("#idAppDateErr").html("<label style='color:red;'>Please select time slot</label>")
-              $("#idAppDateErr").fadeOut(1500);
-             return false; 
-          }
-
-          var appTime  = $("#idAppTime").val();
-          var appDetails = "";
-          //window.location.href="confirmAppointment.php?testName="+sTestName+"&locName="+sLocationName+"&appDate="+appointmentDate+"&appTime="+appTime+"&dbdate="+$('#dbdate').val()+"&lab="+$('#idLabs').val();
-
-    
-    }); */
-    
-    
 
          /* On key press remove error alert */
     $("#username").keypress(function(){
@@ -194,7 +150,7 @@ $(window).load(function() {
 <!-- Package slider script end-->
 
 
-        <div class="classSliderHolder">
+        <div class="classSliderHolder" style="padding-top:50px">
             <div class="container">
 			<div class="row" id="appChoice">
 				<div class="collap_img_div">
@@ -215,7 +171,7 @@ $(window).load(function() {
 								style="height: 60%; width: 60%; margin-left: 20%"
 								src="<c:url value="/resources/images/home_lab.png"/>"
 								id="collap_img2" onclick="showLabApp()">
-							<h3>In Lab Appointment</h3>
+							<h3 style="margin-left:70px">In Lab Appointment</h3>
 						</div>
 					</div>
 
@@ -225,7 +181,7 @@ $(window).load(function() {
 								style="height: 60%; width: 60%; margin-left: 20%"
 								src="<c:url value="/resources/images/home_home.png"/>"
 								id="collap_img3" onclick="showHomeApp()">
-							<h3>
+							<h3 style="margin-left:90px">
 								Home Collection
 							</h3>
 						</div>
