@@ -94,7 +94,7 @@ public class LabDaoImpl implements LabDao {
 
 	@Override
 	public List<Appointments> getAllAppointmentsByUsers(Integer labId, Session session) {
-		Query createQuery = session.createQuery("from Appointments where lab.id=:labId group by user");
+		Query createQuery = session.createQuery("from Appointments where lab.id=:labId");
 		createQuery.setInteger("labId", labId);
 		return createQuery.list();
 	}

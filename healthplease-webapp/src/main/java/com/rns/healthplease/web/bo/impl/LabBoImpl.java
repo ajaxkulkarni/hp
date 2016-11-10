@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -738,7 +740,7 @@ public class LabBoImpl implements LabBo, Constants {
 			session.close();
 			return null;
 		}
-		List<User> users = new ArrayList<User>();
+		Set<User> users = new HashSet<User>();
 		for (Appointments app : appointments) {
 			User user = new User();
 			if(app.getUser() == null) {
@@ -748,7 +750,10 @@ public class LabBoImpl implements LabBo, Constants {
 			users.add(user);
 		}
 		session.close();
-		return users;
+		if(CollectionUtils.isEmpty(users)) {
+			return null;
+		}
+		return new ArrayList<User>(users);
 	}
 
 }

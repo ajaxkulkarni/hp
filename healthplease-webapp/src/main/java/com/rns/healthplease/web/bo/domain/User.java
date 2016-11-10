@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class User {
+public class User implements Comparable {
 
 	private Integer id;
 	private String email;
@@ -233,6 +233,41 @@ public class User {
 
 	public void setAppType(String appType) {
 		this.appType = appType;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof User)) {
+			return super.equals(obj);
+		}
+		User user = (User) obj;
+		if(user == null || user.getId() == null || this == null || this.id == null) {
+			return super.equals(obj);
+		}
+		if(user.getId() == this.id.intValue()) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		if(this == null || this.id == null) {
+			return super.hashCode();
+		}
+		return id;
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		User user = (User) o;
+		if(user == null || user.getId() == null || this.id == null) {
+			return -1;
+		}
+		if(this.id.intValue() == user.getId().intValue()) {
+			return 0;
+		}
+		return -1;
 	}
 
 
