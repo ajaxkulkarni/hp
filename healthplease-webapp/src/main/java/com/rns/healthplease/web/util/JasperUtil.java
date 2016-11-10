@@ -183,7 +183,7 @@ public class JasperUtil {
 		}
 		parameters.put("total", getTotalPrice(appointment));
 		parameters.put("discount", appointment.getPayment().getDiscount() != null ? appointment.getPayment().getDiscount().toString() : "0");
-		parameters.put("price", appointment.getLab().getPrice());
+		parameters.put("price", appointment.getPayment());
 		parameters.put("phone", appointment.getUser().getPhone());
 		parameters.put("address", appointment.getUser().getAddress().getArea());
 		addSerialNumbers(appointment.getTests());
@@ -195,9 +195,9 @@ public class JasperUtil {
 
 	private static Integer getTotalPrice(Appointment appointment) {
 		if(appointment.getPayment().getDiscount() == null) {
-			return appointment.getLab().getPrice();
+			return appointment.getPayment().getAmount();
 		}
-		return appointment.getLab().getPrice() + appointment.getPayment().getDiscount();
+		return appointment.getPayment().getAmount() + appointment.getPayment().getDiscount();
 	}
 
 	private static void addSerialNumbers(List<LabTest> tests) {

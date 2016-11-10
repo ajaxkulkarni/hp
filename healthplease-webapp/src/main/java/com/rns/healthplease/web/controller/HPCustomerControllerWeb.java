@@ -220,8 +220,9 @@ public class HPCustomerControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/" + CHANGE_PASSWORD_URL_POST, method = RequestMethod.POST)
-	public RedirectView changePassword(ModelMap model, String password) {
+	public RedirectView changePassword(ModelMap model, String password, String oldPassword) {
 		manager.getUser().setPassword(password);
+		manager.getUser().setOldPassword(oldPassword);
 		String result = userBo.changePassword(manager.getUser());
 		if(RESPONSE_OK.equals(result)) {
 			return new RedirectView(HOME_GET_URL);
@@ -231,8 +232,9 @@ public class HPCustomerControllerWeb implements Constants {
 	}
 	
 	@RequestMapping(value = "/" + CHANGE_PASSWORD_SETTINGS_URL_POST, method = RequestMethod.POST)
-	public RedirectView changePasswordSettings(ModelMap model, String password) {
+	public RedirectView changePasswordSettings(ModelMap model, String password, String oldPassword) {
 		manager.getUser().setPassword(password);
+		manager.getUser().setOldPassword(oldPassword);
 		String result = userBo.changePassword(manager.getUser());
 		manager.setResult(result);
 		return new RedirectView(USER_HOME_GET_URL);

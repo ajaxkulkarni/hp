@@ -32,7 +32,7 @@
 					<label class="control-label" for="age">Current Password</label> <input
 						type='password' id='c_pwd'
 						class='form-control classProfileCustomControl'
-						placeholder="Current password" value="" name="oldPassword" data="">
+						placeholder="Current password" value="" name="oldPassword">
 				</div>
 			</div>
 			<div class="row">

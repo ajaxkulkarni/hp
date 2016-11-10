@@ -490,7 +490,7 @@ $( document ).ready(function() {
 });
 
 function onTabChange() {
-	alert("Changed!");
+	//alert("Changed!");
 	$("#tabType").val("Changed!");
 }
 
