@@ -181,9 +181,10 @@ public class JasperUtil {
 			parameters.put("designation", reportConfig.getInvoiceDesignation());
 			parameters.put("imagePath", reportConfig.getInvoiceSignaturePath());
 		}
-		parameters.put("total", getTotalPrice(appointment));
+		Integer totalPrice = getTotalPrice(appointment);
+		parameters.put("total", totalPrice != null ? totalPrice : "0");
 		parameters.put("discount", appointment.getPayment().getDiscount() != null ? appointment.getPayment().getDiscount().toString() : "0");
-		parameters.put("price", appointment.getPayment());
+		parameters.put("price", appointment.getPayment().getAmount() != null ? appointment.getPayment().getAmount().toString() : "0");
 		parameters.put("phone", appointment.getUser().getPhone());
 		parameters.put("address", appointment.getUser().getAddress().getArea());
 		addSerialNumbers(appointment.getTests());
@@ -194,7 +195,7 @@ public class JasperUtil {
 	}
 
 	private static Integer getTotalPrice(Appointment appointment) {
-		if(appointment.getPayment().getDiscount() == null) {
+		if(appointment.getPayment().getDiscount() == null || appointment.getPayment().getAmount() == null) {
 			return appointment.getPayment().getAmount();
 		}
 		return appointment.getPayment().getAmount() + appointment.getPayment().getDiscount();
