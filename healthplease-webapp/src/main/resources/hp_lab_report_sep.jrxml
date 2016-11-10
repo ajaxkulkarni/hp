@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-10-10T17:37:49 -->
+<!-- 2016-11-11T01:33:40 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -29,6 +29,7 @@
 	<parameter name="separatePage" class="java.lang.String"/>
 	<field name="parameters" class="java.util.List"/>
 	<field name="name" class="java.lang.String"/>
+	<field name="remark" class="java.lang.String"/>
 	<group name="separate" isStartNewPage="true">
 		<groupExpression><![CDATA[$F{name}]]></groupExpression>
 	</group>
@@ -128,11 +129,11 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="66" splitType="Stretch">
+		<band height="86" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<subreport>
-				<reportElement x="1" y="18" width="555" height="20" uuid="8cd85150-b315-4f57-bb63-5356cb7a1099"/>
+				<reportElement x="1" y="58" width="555" height="20" uuid="8cd85150-b315-4f57-bb63-5356cb7a1099"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<subreportParameter name="testValues"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{parameters})]]></dataSourceExpression>
@@ -145,6 +146,14 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="58" y="26" width="491" height="14" isPrintWhenDetailOverflows="true" uuid="b48daf3a-dcf2-42ba-ae79-dd98b121251a"/>
+				<textFieldExpression><![CDATA[$F{remark}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="26" width="100" height="14" uuid="b4412ee7-21e4-45e6-b406-e95a2ee6a20a"/>
+				<text><![CDATA[Remark:]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
