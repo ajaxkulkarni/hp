@@ -151,7 +151,11 @@
 		</div>
 	</div>
 
-
+<style>
+.select2-search__field{
+width: 200px !important;
+}
+</style>
 <!--  Package Slider script start-->
 <script type="text/javascript">
 

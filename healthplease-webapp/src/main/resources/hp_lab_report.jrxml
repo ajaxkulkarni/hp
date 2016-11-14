@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-11-11T01:33:44 -->
+<!-- 2016-11-12T16:07:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -104,19 +104,21 @@
 				<textFieldExpression><![CDATA[$P{labName}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="16" y="13" width="113" height="90" uuid="8b35d50b-29bb-49db-9afe-b7d5897a74c5">
+				<reportElement x="28" y="23" width="100" height="50" uuid="8b35d50b-29bb-49db-9afe-b7d5897a74c5">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<imageExpression><![CDATA[$P{logopath}]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="169" y="73" width="370" height="20" uuid="acdc6b51-0271-4978-b45d-b3af01681203">
+				<reportElement x="169" y="62" width="370" height="20" uuid="acdc6b51-0271-4978-b45d-b3af01681203">
 					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<textFieldExpression><![CDATA[$P{labAddress}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="1" y="10" width="552" height="100" forecolor="#000000" uuid="0b84bcb9-0336-4194-9735-47be5034f8d9">
+				<reportElement mode="Transparent" x="1" y="-5" width="552" height="100" forecolor="#000000" uuid="0b84bcb9-0336-4194-9735-47be5034f8d9">
 					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
 				</reportElement>
 			</rectangle>
@@ -126,7 +128,7 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="76" splitType="Stretch">
+		<band height="88" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<subreport>
@@ -157,27 +159,28 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="218" splitType="Stretch">
+		<band height="147" splitType="Stretch">
 			<rectangle>
-				<reportElement x="1" y="193" width="552" height="8" forecolor="#3399FF" backcolor="#3399FF" uuid="e90aa4b4-ae1d-4bb0-86da-eeaa8acf86af">
+				<reportElement x="1" y="128" width="552" height="8" forecolor="#3399FF" backcolor="#3399FF" uuid="e90aa4b4-ae1d-4bb0-86da-eeaa8acf86af">
 					<printWhenExpression><![CDATA[$P{printFooter}.equals("y")]]></printWhenExpression>
 				</reportElement>
 			</rectangle>
 			<textField>
-				<reportElement x="410" y="122" width="100" height="20" uuid="dc25118e-111e-48bc-baef-b9cfafd7053f">
+				<reportElement x="410" y="74" width="100" height="20" uuid="dc25118e-111e-48bc-baef-b9cfafd7053f">
 					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{pathName}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="410" y="10" width="100" height="100" uuid="5814f574-7252-4fbd-ae11-d812a4e1d14b">
+				<reportElement x="410" y="17" width="100" height="50" uuid="5814f574-7252-4fbd-ae11-d812a4e1d14b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<imageExpression><![CDATA[$P{imagePath}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="410" y="152" width="100" height="20" uuid="d14c6d0c-62b0-47ca-bef7-d96844669b32">
+				<reportElement x="411" y="92" width="100" height="20" uuid="d14c6d0c-62b0-47ca-bef7-d96844669b32">
 					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center"/>

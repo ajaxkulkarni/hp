@@ -95,10 +95,10 @@
                 rules: {   
                     password: {
                         required: true,
-                        minlength: 5
+                        minlength: 6
                     },
                     password_again : {
-                    minlength : 5,
+                    minlength : 6,
                     equalTo : "#idPassword"
                 }
                    
@@ -106,9 +106,9 @@
                 messages: {
                     password: {
                         required: "Please provide a password",
-                        minlength: "Your password must be at least 5 characters long"
+                        minlength: "Your password must be at least 6 characters long"
                     },
-                    password_again :"Please enter same password"
+                    password_again :"Password and confirm Password doesn't match"
                     
 
                 },

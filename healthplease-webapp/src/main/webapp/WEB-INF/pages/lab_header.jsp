@@ -57,7 +57,7 @@
      
      margin:auto;
 /*         margin-left: 0px; */
-        width: 190px;
+        width: 200px;
     /*     padding: 3px 10px; */
     border: 1px #f80 solid;
       /*   box-shadow: 1px -2px 0px #F80, -1px -2px 0px #F80; */
@@ -93,11 +93,11 @@
 
 </head>
 <body>
-<div class="row" style="height:120px;">
+<div class="row" style="height:110px;">
 	<div class="col-md-4">
 	  <a class="navbar-brand" href="http://www.healthplease.in/"><img src="<c:url value="/resources/images/LOGO-2.png"/>" class="classLogoImg"/></a>
 	</div>
-	<div class="col-md-4" >
+	<div class="col-md-4" style="padding-left:150px;">
 	  <img src="getLabLogo?logoPath=${user.lab.logo}" class="classLogoImg" />
 	</div>
 	<div class="col-md-4">

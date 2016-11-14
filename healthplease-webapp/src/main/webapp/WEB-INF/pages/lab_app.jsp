@@ -59,7 +59,7 @@
     float: left;
     width: 100%;
     clear: both;
-    font-size: 19px;
+    font-size: 16px;
     color:#fff;
   /*   color: rgba(255, 255, 255, 0.87); */
          font-family: 'Roboto', sans-serif;
@@ -259,6 +259,11 @@ body{
 }
 .classW12{
 	width: 95%;
+	style:"font-size:10px;"
+}
+.classW12.li{
+	
+	style:"font-size:10px;"
 }
 .classCTAHolder{
 	position: fixed;
@@ -479,10 +484,10 @@ body{
                 </div>
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 classWColor">
                               
-							<h3 class="" style="color:#000">
-								<p>HealthPlease.in is proud to introduce a Cloud Based App for </br>Labs that helps them manage their In Centre and Home Visit</br> appointments, Test Reporting and Finances more efficiently</br> and conveniently.</p>
+							<h3 class="" style="color:#000;font-size:22px;">
+								<p>HealthPlease.in is proud to introduce a Cloud Based App for Labs </br>that helps them manage their In Centre and Home Visit appointments,</br> Test Reporting and Finances more efficiently and conveniently.</p>
 							</h3>
-							<ul class="classPoint">
+							<ul class="classPoint" >
 								<li class="classW12">
 									<span class="classPtSpan"><i class="fa fa-circle" aria-hidden="true"></i> Online Presence</span>
 									<ol class="classInnerPoint">

@@ -71,10 +71,7 @@
             <div class="form-group">
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 control"> 
                       Already have an account
-                  <a class="btn btn-info btn-xs loginid" id="" href="#"  data-keyboard="false" data-backdrop="false">
-                  <!-- <a class="btn btn-info btn-xs" id="loginid" href="#idLoginModal" data-toggle="modal" data-keyboard="false" data-target="#idLoginModal"> -->
-                      Login
-                  </a>
+                 <a  href="#idLoginModal" class="dropdown-toggle" data-toggle="modal"  data-keyboard="false" data-backdrop="false" data-target="#idLoginModal" ><i class="fa fa-sign-in"></i> Login </a>
                  
               </div>
             </div>    

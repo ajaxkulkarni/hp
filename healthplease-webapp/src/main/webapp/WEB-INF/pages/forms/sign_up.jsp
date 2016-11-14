@@ -88,11 +88,11 @@ height:80px;
     
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label class=" control-label" for="selectbasic">Password *</label>
-                  <input type='password' name="password" id='idPassword' class='form-control classCustomControl' placeholder="Password" title="Please enter your password !" required="required" >
+                  <input type='password' name="password" id='idPassword' class='form-control classCustomControl' placeholder="Password" title="Password must be atleast 6 characters long" required="required" >
                 </div>
                 <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label class=" control-label" for="selectbasic">Confirm Password *</label>
-                  <input type='password' name="password_again" id='password_again' class='form-control classCustomControl' placeholder="Confirm Password" title="Please enter password again field !" required="required">
+                  <input type='password' name="password_again" id='password_again' class='form-control classCustomControl' placeholder="Confirm Password" title="Password and confirm Password doesn't match" required="required">
                 </div>
                 <div class="form-group col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <label class="control-label" for="add_street">Address *</label>
