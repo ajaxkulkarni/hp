@@ -49,7 +49,7 @@
 							<!-- <label class=" control-label" for="selectbasic">Test</label> -->
 							<div class="ui-widget">
 								<input type="hidden" value="<%=Constants.APP_TYPE_HOME%>" name="type"> 
-								<select id="idLbTest" name="test" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLbLabs('N')">
+								<select id="idLbTest" data-placeholder="Please select your test/s" name="test" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLbLabs('N')">
 									<optgroup label="Test Packages" style="margin-left: 10px">
 										<c:forEach items="${tests}" var="test">
 											<c:if test="${test.testPackage}">
@@ -68,26 +68,12 @@
 							<div class="" id="idLbTestErr"></div>
 						</div>
 
-						<%-- <div class="form-group">
-							<!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
-							<div class="ui-widget">
-								<select id="idLocation" name="location"
-									class="form-control locations" onchange="getLabs('Y')">
-									<option value="">Select your location</option>
-									<c:forEach items="${locations}" var="loc">
-										<option value="${loc.id}">&nbsp;&nbsp;${loc.name}</option>
-									</c:forEach>
-								</select>
-							</div>
-							<div class="" id="idLocationErr"></div>
-						</div> --%>
-
 						<div class="form-group">
 							<!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
 							<div class="ui-widget">
-								<select id="idLbLabs" name="labs" class="form-control labs"
-									onchange="getLbDates()">
-									<option value='select' disabled>Please select lab</option>
+								<select placeholder="" id="idLbLabs" name="labs" class="form-control labs"
+									onchange="getLbDates()" >
+									<option value='select' >Please select lab</option>
 								</select>
 							</div>
 							<div class="" id="idLbLocationErr"></div>
@@ -237,7 +223,8 @@
 	
 	function reset() {
 		//$('#idLocation').removeAttr("selected");
-        $('#select2-idLocation-container').html("Select Your Location");
+       /*  $('#idLbTest').html("Select Your Location"); */
+      
 	}
 	
 	 $('#idLbTest').change(function(){
@@ -246,6 +233,13 @@
 	 
 	 $(document).ready(function() {
 	   $(".js-tests").select2();
+
+	   $('#idLbTest').select2({
+		    minimumResultsForSearch: -1,
+		    placeholder: function(){
+		        $(this).data('placeholder');
+		    }
+		});
 	 });
 	 
 	 $(function() {
