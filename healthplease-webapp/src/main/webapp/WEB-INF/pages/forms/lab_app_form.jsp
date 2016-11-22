@@ -11,7 +11,7 @@
 
 
 	<div class="row" id="labApp">
-		<button type="button" class="close" id="collap_close_btn1">
+		<button type="button" class="close" id="collap_close_btn1" onclick="hideLabApp()">
 			<span aria-hidden="true">Close</span>
 		</button>
 		<div
@@ -262,8 +262,6 @@
 	        		return [checkIfLbDateAvailable(jQuery.datepicker.formatDate('yy-mm-dd', date))];
 	        	}});
 	      });
-	 
-	 
 	 function checkIfLbDateAvailable(date) {
 		 	var dates = $("#lbdbdate").val();
 		 	var res = dates.split('*');

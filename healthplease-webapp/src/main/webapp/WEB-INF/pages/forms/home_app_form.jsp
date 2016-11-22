@@ -10,7 +10,7 @@
 
 
 	<div class="row" id="homeApp">
-		<button type="button" class="close" id="collap_close_btn1">
+		<button type="button" class="close" id="collap_close_btn1" onclick="hideHomeApp()">
 			<span aria-hidden="true">Close</span>
 		</button>
 		<div
@@ -21,7 +21,6 @@
 					<div class="text-left">
 						<img src="<c:url value="/resources/images/steps/3-steps.png"/>"
 							width="95%" class="classStepImg" />
-
 					</div>
 					<div class="classBColor">
 						Request Sample Collection Now&nbsp;&nbsp;&nbsp;<span
@@ -41,7 +40,7 @@
 
 						<!-- Form Name -->
 						<legend>
-							<i class="fa fa-calendar"></i> Request Collection
+							<i class="fa fa-home"></i> Request Collection
 						</legend>
 						<!-- Select Basic -->
 						<div class="form-group">
