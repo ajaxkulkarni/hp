@@ -49,7 +49,7 @@
 							<!-- <label class=" control-label" for="selectbasic">Test</label> -->
 							<div class="ui-widget">
 								<input type="hidden" value="<%=Constants.APP_TYPE_HOME%>" name="type"> 
-								<select id="idLbTest" data-placeholder="Please select your test/s" name="test" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLbLabs('N')">
+								<select id="idLbTest" data-placeholder="  Please select your test/s" name="test" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLbLabs('N')">
 									<optgroup label="Test Packages" style="margin-left: 10px">
 										<c:forEach items="${tests}" var="test">
 											<c:if test="${test.testPackage}">
@@ -73,7 +73,7 @@
 							<div class="ui-widget">
 								<select placeholder="" id="idLbLabs" name="labs" class="form-control labs"
 									onchange="getLbDates()" >
-									<option value='select' >Please select lab</option>
+									<option value='select'>Please select lab</option>
 								</select>
 							</div>
 							<div class="" id="idLbLocationErr"></div>

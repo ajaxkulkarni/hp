@@ -41,10 +41,16 @@
         </div>
     </div>
 </div>
- 
+ <style>
+ #collap_img2{
+		cursor:pointer;
+ }
+#collap_img3{
+		cursor:pointer;
+ }
+ </style>
 <script type="text/javascript">
 
-	
 	function hideAll() {
 		$("#homeApp").hide();
 		$("#labApp").hide();
@@ -157,20 +163,10 @@ $(window).load(function() {
             <div class="container">
 			<div class="row" id="appChoice">
 				<div class="collap_img_div">
-					<%-- <div class="col-sm-4">
-						<div class="card1">
-							<img class="img-responsive"
-								style="height: 60%; width: 60%; margin-left: 20%"
-								src="<c:url value="/resources/images/home_doc.png"/>"
-								id="collap_img1" onclick="showDocApp()">
-							<h3>Doctor/In clinic Appointment</h3>
-						</div>
-
-					</div> --%>
 					<div class="col-sm-2"></div>
 					<div class="col-sm-4">
 						<div class="card1" style="border-right: 0.5px solid black">
-							<img class="img-responsive"
+							<img class="img-responsive"  
 								style="height: 60%; width: 60%; margin-left: 20%"
 								src="<c:url value="/resources/images/home_lab.png"/>"
 								id="collap_img2" onclick="showLabApp()">
