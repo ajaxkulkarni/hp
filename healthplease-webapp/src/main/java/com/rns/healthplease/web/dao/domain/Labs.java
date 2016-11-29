@@ -225,6 +225,7 @@ public class Labs implements java.io.Serializable {
 
 	@OneToMany(mappedBy = "lab")
 	@NotFound(action = NotFoundAction.IGNORE)
+	@OrderBy("id ASC")
 	public Set<TestLabs> getTestLabs() {
 		return testLabs;
 	}

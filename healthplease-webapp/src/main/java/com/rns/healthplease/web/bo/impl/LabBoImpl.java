@@ -748,6 +748,15 @@ public class LabBoImpl implements LabBo, Constants {
 			}
 			DataConverters.getUser(app.getUser(), user);
 			users.add(user);
+			if(!StringUtils.equals(app.getEmail(), user.getEmail())) {
+				User otherUser = new User();
+				otherUser.setEmail(app.getEmail());
+				otherUser.setFirstName(app.getName());
+				otherUser.setPhone(app.getMobileNo());
+				otherUser.setAddress(DataConverters.getAppointmentAddress(new AppointmentDaoImpl().getAddressByAppointmentId(app.getId(), session)));
+				otherUser.setGender(app.getGender());
+				users.add(otherUser);
+			}
 		}
 		session.close();
 		if(CollectionUtils.isEmpty(users)) {

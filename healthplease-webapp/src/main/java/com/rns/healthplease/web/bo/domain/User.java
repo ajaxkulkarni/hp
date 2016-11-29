@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class User implements Comparable {
 
 	private Integer id;
@@ -241,12 +243,15 @@ public class User implements Comparable {
 			return super.equals(obj);
 		}
 		User user = (User) obj;
-		if(user == null || user.getId() == null || this == null || this.id == null) {
+		if(user == null || user.getEmail() == null || this == null || this.email == null) {
 			return super.equals(obj);
 		}
-		if(user.getId() == this.id.intValue()) {
+		if(StringUtils.equals(user.getEmail() ,this.email))	{	
 			return true;
 		}
+		/*if(user.getId() == this.id.intValue()) {
+			return true;
+		}*/
 		return false;
 	}
 	
@@ -261,10 +266,10 @@ public class User implements Comparable {
 	@Override
 	public int compareTo(Object o) {
 		User user = (User) o;
-		if(user == null || user.getId() == null || this.id == null) {
+		if(user == null || user.getEmail() == null || this.email == null) {
 			return -1;
 		}
-		if(this.id.intValue() == user.getId().intValue()) {
+		if(StringUtils.equals(this.email ,user.getEmail())) {
 			return 0;
 		}
 		return -1;
