@@ -117,7 +117,7 @@ public class HPCustomerControllerWeb implements Constants {
 		location.setId(locationId);
 		appointment.setLocation(location);
 		List<Lab> availableLabs = null;
-		if(locationId != null && "Y".equals(type)) {
+		if(locationId != null && APP_TYPE_HOME.equals(type)) {
 			availableLabs = userBo.getAvailableLabs(appointment);
 		} else {
 			availableLabs = userBo.getAvailableLabsForLabApp(appointment);
