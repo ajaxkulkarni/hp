@@ -75,15 +75,6 @@
 			<div class="row" style="margin:20px"">
 			 
 			<div class="col-md-8">
-			<!-- <span>Choose file</span></br>
-			<div class="fileinput fileinput-new"
-				data-provides="fileinput">
-				<span class="btn btn-default btn-file"><input type="file" name="signatureFile" /></span>
-			</div> -->
-			<!-- <div class="checkbox">
-				<label><input type="checkbox" value="">Include
-					Signature</label>
-			</div> -->
 			<div class="">
 				<input name="name" style="margin-top:20px" value="${user.lab.reportConfig.name}" placeholder="Doctor Name" class="form-control input-md" type="text">      
 			</div>
@@ -100,40 +91,7 @@
 			</div>
 			
 	<!-- invoice setting%%%%%%%%%%%%%%%%%%%%%%%%%%5 -->		
-<%-- 			<div id="header_footer" style="margin-top:10px">
-			<div class="panel panel-default">
-			<div class="panel-heading">Invoice Settings</div>
-			<input type="hidden" name="signaturePath" value="${user.lab.reportConfig.signaturePath}">
-			<div class="row" style="margin:20px">
-			<div class="col-md-4">
-				<c:if test="${user.lab.reportConfig.isHeader == 'y'}">
-					<input type="checkbox" name="isHeader" value="y" checked> Include Header
-				</c:if>
-				<c:if test="${user.lab.reportConfig.isHeader != 'y'}">
-					<input type="checkbox" name="isHeader" value="y"> Include Header
-				</c:if>
-           </div> 
-           
-           	<div class="col-md-4">
-				<c:if test="${user.lab.reportConfig.isFooter == 'y'}">
-					<input type="checkbox" name="isFooter" value="y" checked> Include Footer
-				</c:if>
-				<c:if test="${user.lab.reportConfig.isFooter != 'y'}">
-					<input type="checkbox" name="isFooter" value="y"> Include Footer
-				</c:if>
-           </div> 
-           
-           <div class="col-md-4">
-				<c:if test="${user.lab.reportConfig.isSignature == 'y'}">
-					<input type="checkbox" name="isSignature" value="y" checked> Include Signature
-				</c:if>
-				<c:if test="${user.lab.reportConfig.isSignature != 'y'}">
-					<input type="checkbox" name="isSignature" value="y"> Include Signature
-				</c:if>
-           </div> 
-		</div>	
-		</div>
-		</div> --%>
+
 		<!-- **** Code added for prepare report div **** -->		
 			
 			<div id="prepare_report_div">
@@ -147,29 +105,32 @@
 							<div class="panel-heading">Select tests which you want to
 								prepare</div>
 							<!-- .panel-heading -->
-							<%-- <form action="<%=Constants.GENERATE_REPORT_POST_URL%>" method="post" id="report_form" onsubmit="return validate()">
-							 --%><div class="panel-body">
-									<div class="panel-group" id="accordion">
+					<!--		 <form action="<%=Constants.GENERATE_REPORT_POST_URL%>" method="post" id="report_form" onsubmit="return validate()">  -->
+							 <div class="panel-body">
+									<div class="panel-group" id="accordion" >
 									<input type="hidden" id="is_send_mail" name="printRequired" value="N">
 									<input type="hidden" id="appointment_id" name="id" value="${appointment.id}">
+									
 									<c:forEach items="${appointment.tests}" var="test" varStatus="t">
 										<c:if test="${fn:length(test.childTests) == 0 || fn:length(test.parameters) > 0 }">
+										
 											<%@include file="forms/test_parameters_form.jsp" %>
+										
 										</c:if>
 										<c:if test="${fn:length(test.childTests) > 0 && fn:length(test.parameters) == 0 }">
 											<h3>${test.name}</h3>
 											<c:forEach items="${appointment.tests}" var="test" varStatus="t">
-												
-												<%@include file="forms/test_parameters_form.jsp" %>
+												<%@include file="forms/test_parameters_form.jsp" %>												
 											</c:forEach>
 										</c:if>
 									</c:forEach>
+									</div>
 								</div>
 								<button type="button" class="btn btn-primary" onclick="sendReport()">Send</button>
 								<button type="button" class="btn btn-primary" onclick="exportReport()">Export</button>
 								<button type="button" class="btn btn-primary" onclick="saveReport()">Save</button>
 								</div>
-							</form>
+							<%--  </form>  --%>
 							<!-- .panel-body -->
 						</div>
 						<!-- /.panel -->
