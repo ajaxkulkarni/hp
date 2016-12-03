@@ -312,6 +312,9 @@ public class AdminBoImpl implements AdminBo, Constants {
 	}
 
 	private void setLabUsers(Lab lab, Session session) {
+		if(lab==null||lab.getId()==null){
+			return;
+		}
 		List<Users> oldUsers = new UserDaoImpl().getUsersForLab(lab.getId(), session);
 		if (CollectionUtils.isNotEmpty(oldUsers)) {
 			for (Users users : oldUsers) {

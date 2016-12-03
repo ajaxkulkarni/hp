@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-10-12T22:25:52 -->
+<!-- 2016-12-01T09:24:44 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_report_params" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" uuid="7df0b4c9-a9f5-4694-990d-0bf775f2b11c">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
@@ -90,7 +90,7 @@
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="281" y="1" width="100" height="14" uuid="7491ca9a-63a3-4ba0-b0f2-71feb90c192d"/>
+				<reportElement x="279" y="1" width="100" height="14" uuid="7491ca9a-63a3-4ba0-b0f2-71feb90c192d"/>
 				<textFieldExpression><![CDATA[$F{normalValue}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">

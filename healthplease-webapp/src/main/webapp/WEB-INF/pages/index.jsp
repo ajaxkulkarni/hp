@@ -8,9 +8,6 @@
 <html lang="en">
 
 <head>
-<link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
-<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
-<link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
     <meta charset="utf-8">
           <title>Book online Pathology & Diagnostic Tests in Pune | HealthPlease.in</title>
     <meta name="keywords" content="Book Online Path Test, Book online diagnostic test, Blood Sugar test">
@@ -35,67 +32,90 @@
                                    </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                   
+                    <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
- <style>
- #collap_img2{
-		cursor:pointer;
- }
-#collap_img3{
-		cursor:pointer;
- }
- </style>
+ 
 <script type="text/javascript">
 
-	function hideAll() {
-		$("#homeApp").hide();
-		$("#labApp").hide();
-		$("#docApp").hide();
-		$("#appChoice").show();
-	}
-	
-	function showHomeApp() {
-		$("#homeApp").show();
-		$("#appChoice").hide();
-	}
-	
-	function hideHomeApp() {
-		$("#homeApp").hide();
-		$("#appChoice").show();
-	}
-	
-	function showLabApp() {
-		$("#labApp").show();
-		$("#appChoice").hide();
-	}
-	
-	function hideLabApp() {
-		$("#labApp").hide();
-		$("#appChoice").show();
-	}
-	
-	function showDocApp() {
-		$("#docApp").show();
-		$("#appChoice").hide();
-	}
-	
-	function hideDocApp() {
-		$("#docApp").hide();
-		$("#appChoice").show();
+	function reset() {
+		//$('#idLocation').removeAttr("selected");
+        $('#select2-idLocation-container').html("Select Your Location");
 	}
 
     $(document).ready(function(){
 
-		hideAll();
+
       /*
       Reset Location on update in test
       */
-        
+      $('#idTest').change(function(){
+        reset();
+      });
 
+
+        
+    /**
+* to set appointment from user scrren
+ */        
+    /* function onDateChage(){
+    	alert("Here!");
+               $( "#idAppointmentDate" ).datepicker( "option", "dateFormat", "mm/dd/yy" );
+               var tempval = generateDate( $("#idAppointmentDate").val() );
+               $('#dbdate').val( tempval );
+               $( "#idAppointmentDate" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+
+    };     */
+
+    $("#idBookAppointmentOnLogin").on( "click", function(){
+
+          var sTestName = $("#idTest").val();
+          var sLocationName = $("#idLocation").val();
+          if(sTestName == "select"){
+              $("#idTestErr").fadeIn(1500);
+              $("#idTestErr").html("<label style='color:red;'>Please select your test</label>")
+              $("#idTestErr").fadeOut(1500);
+              return false;
+          }
+           if(sLocationName == "select"){
+              $("#idLocationErr").fadeIn(1500);
+              $("#idLocationErr").html("<label style='color:red;'>Please select location of test</label>")
+              $("#idLocationErr").fadeOut(1500);
+              return false;
+          }
+
+          appointmentDate = $("#idAppointmentDate").val();
+          if(appointmentDate == ""){
+            $("#idAppDateErr").fadeIn(1500);
+              $("#idAppDateErr").html("<label style='color:red;'>Please select time slot</label>")
+              $("#idAppDateErr").fadeOut(1500);
+             return false; 
+          }
+
+          var appTime  = $("#idAppTime").val();
+          var appDetails = "";
+          //window.location.href="confirmAppointment.php?testName="+sTestName+"&locName="+sLocationName+"&appDate="+appointmentDate+"&appTime="+appTime+"&dbdate="+$('#dbdate').val()+"&lab="+$('#idLabs').val();
+
+    
+    });
+    
+    $(function() {
+    	var minDay = '0';
+    	if($("#user_group").val() != '2') {
+    		minDay = '+1';
+    	}
+        $( "#idAppointmentDate").datepicker({
+        	changeMonth: true,
+        	minDate: minDay,
+        	maxDate:"+2M",
+        	dateFormat:"yy-mm-dd",
+        	beforeShowDay: function(date) {
+        		return [checkIfDateAvailable(jQuery.datepicker.formatDate('yy-mm-dd', date))];
+        	}});
+      });
 
          /* On key press remove error alert */
     $("#username").keypress(function(){
@@ -111,7 +131,20 @@
             return tempDate[2] + '-' + tempDate[0] + '-' + tempDate[1];
  }
 
- 
+ function checkIfDateAvailable(date) {
+	 	var dates = $("#dbdate").val();
+	 	var res = dates.split('*');
+	 	var i = 0;
+	 	for(i=0;i<res.length;i++) {
+	 		if(res[i] == null || res[i] == '') {
+	 			continue;
+	 		}
+	 		if(res[i] == date) {
+	 			return false;
+	 		}
+	 	}
+		return true;	 
+	 }
 	 
  function submitForm() {
 	 $("#login_form").submit();
@@ -120,6 +153,90 @@
        
 </script>
 
+
+<!--  Package Slider script start-->
+<script type="text/javascript">
+
+	function setData() {
+		$("#idSlot").val($("#idAppTime").val());
+		$("#register_link").attr("href", "signup.htm?slotId=" + $("#idAppTime").val());
+	}
+	
+	function getSlots() {
+		$('#select2-idAppTime-container').html("Please select timing");
+		if($("#idLabs").val() == null || $("#idAppointmentDate").val() == null){
+			return;
+		}
+		$.ajax({
+	       	type : "POST",
+	           url : 'getSlots',
+	           dataType: 'json',
+	           data: "labId="+ $("#idLabs").val() + "&date="+ $("#idAppointmentDate").val() + "&homeCollection=true",
+	           success : function(slots) {
+	        	   var i = 0;
+	        	   var appendString = "<option value='select'>Please select timing</option>";
+	        	   for(i = 0;i<slots.length;i++) {
+	        		   appendString = appendString + "<option value='" + slots[i].id +"'>&nbsp;&nbsp;" + slots[i].startTime + " - " + slots[i].endTime + "</option>"
+	        	   }
+	        	   $("#idAppTime").html(appendString);
+	           },
+	           error: function(e){
+	           	alert("Error: " + e);
+	       	}
+	       }); 
+	}
+	
+	function getLabs(homeCollection) {
+		$('#select2-idLabs-container').html("Please select lab");
+		if($("#idTest").val() == null || $("#idLocation").val() == null) {
+			return;
+		}
+		$.ajax({
+	       	type : "POST",
+	           url : 'getLabs',
+	           dataType: 'json',
+	           data: "testIds="+ $("#idTest").val() + "&locationId=" + $("#idLocation").val() + "&homeCollection=" +homeCollection,
+	           success : function(labs) {
+	        	   var i = 0;
+	        	   var appendString = "<option value='select'>Please select lab</option>";
+	        	   for(i = 0;i<labs.length;i++) {
+	        		   appendString = appendString + "<option value='" + labs[i].id +"'>&nbsp;&nbsp;" + labs[i].name +" | Fees Rs. " + labs[i].price +"</option>"
+	        	   }
+	        	   $("#idLabs").html(appendString);
+	           },
+	           error: function(e){
+	           	alert("Error: " + e);
+	       	}
+	       });  
+	}
+	
+	function getDates() {
+		if($("#idTest").val() == null || $("#idLocation").val() == null || $("#idLabs").val() == null) {
+			return;
+		}
+		 $.ajax({
+		       	type : "POST",
+		           url : 'getDates',
+		           dataType: 'json',
+		           data: "labId="+ $("#idLabs").val(),
+		           success : function(dates) {
+		        	   if(dates == null || dates.length == 0) {
+		        		   return;
+		        	   }
+		        	   var appendString = "";
+		        	   for(i = 0;i<dates.length;i++) {
+		        		   appendString = appendString + dates[i] + "*";
+		        	   }
+		        	   $("#dbdate").val(appendString);
+		           },
+		           error: function(e){
+		           	alert("Error: " + e);
+		       	}
+		       }); 
+		 
+	 }
+
+</script>
 
 <script src="<c:url value="/resources/js/external/package-slider/jquery.flexisel.js"/>"></script>
 <script type="text/javascript">
@@ -159,47 +276,121 @@ $(window).load(function() {
 <!-- Package slider script end-->
 
 
-        <div class="classSliderHolder" style="padding-top:50px">
-            <div class="container">
-			<div class="row" id="appChoice">
-				<div class="collap_img_div">
-					<div class="col-sm-2"></div>
-					<div class="col-sm-4">
-						<div class="card1" style="border-right: 0.5px solid black">
-							<img class="img-responsive"  
-								style="height: 60%; width: 60%; margin-left: 20%"
-								src="<c:url value="/resources/images/home_lab.png"/>"
-								id="collap_img2" onclick="showLabApp()">
-							<h3 style="margin-left:70px">In Lab Appointment</h3>
-						</div>
-					</div>
+        <div class="classSliderHolder">
+            <div class="container">  
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
+                      <div class="classHAbtTextWrapper">                         
+                        <div class="classOSCFont classFrontText">
+                          <!-- Your Convenience, Our Priority...<br/> -->
+                          <div class="text-left"><img src="<c:url value="/resources/images/steps/3-steps.png"/>" width="95%" class="classStepImg" /></div>
+                            <div class="classBColor">Request Sample Collection Now&nbsp;&nbsp;&nbsp;<span class="hvr-buzz-out"><i class="fa fa-hand-o-right "></i></span></div>
+                        </div>
+                       
+                      </div>                     
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 classNoPadding">
+                        <!-- Form Div Start-->
+                        <div class="auth">
+                            <div id="big-form" class="well auth-box">
+                            
+                                <fieldset>
 
-					<div class="col-sm-4">
-						<div class="card1">
-							<img class="img-responsive"
-								style="height: 60%; width: 60%; margin-left: 20%"
-								src="<c:url value="/resources/images/home_home.png"/>"
-								id="collap_img3" onclick="showHomeApp()">
-							<h3 style="margin-left:90px">
-								Home Collection
-							</h3>
-						</div>
-					</div>
-					<div class="col-sm-2"></div>
-				</div>
-			</div>	
-			
-			
-			<%@include file="forms/home_app_form.jsp" %>
-				
-				<!-- Lab Appointment -->
-			<%@include file="forms/lab_app_form.jsp" %>
-			
-			<%@include file="forms/doc_app_form.jsp" %>
-			
-				
-			</div>
-		</div>
+                                  <!-- Form Name -->
+                                  <legend><i class="fa fa-calendar"></i> Request Collection</legend>
+                                  <!-- Select Basic -->
+                                    <div class="form-group">
+                                      <!-- <label class=" control-label" for="selectbasic">Test</label> -->
+                                      <div class="ui-widget">
+                                        <select id="idTest" name="test" class="form-control selectpicker js-tests" multiple="multiple">
+                                          <optgroup label="Test Packages" style="margin-left: 10px">
+                                          <c:forEach items="${tests}" var="test">
+                                          		<c:if test="${test.testPackage}">
+                                          		<option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
+                                          		</c:if>
+                                           </c:forEach>
+                                           <optgroup label="Regular Test" style="margin-left: 10px">
+                                           <c:forEach items="${tests}" var="test">
+                                           <c:if test="${!test.testPackage}">
+                                           <option value="${test.id}">&nbsp;&nbsp;${test.name}</option>
+                                           </c:if>
+                                           </c:forEach>
+                                           </optgroup>
+                                         </select>
+                                      </div>
+                                      <div class="" id="idTestErr"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
+                                        <div class="ui-widget">
+                                            <select id="idLocation" name="location" class="form-control locations" onchange="getLabs('Y')">
+                                              <option value="">Select your location</option>
+                                              <c:forEach items="${locations}" var="loc">
+                                              	 <option value="${loc.id}">&nbsp;&nbsp;${loc.name}</option>
+                                              </c:forEach>
+                                            </select>
+                                        </div>
+                                      <div class="" id="idLocationErr"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
+                                      <div class="ui-widget">
+                                        <select id="idLabs" name="labs" class="form-control labs" onchange="getDates()" >
+                                          <option value='select' disabled>Please select lab</option>
+                                        </select>
+                                      </div>
+                                      <div class="" id="idLocationErr"></div>
+                                    </div>
+									<form method='post' id="on_form_appointment" action="login" autocomplete="off">
+                                  <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class=" control-label" for="appointmentDate">Appointment Date</label>  
+                                            <div class="">
+                                              <input id="idAppointmentDate" name="appointmentDate" placeholder="yyyy-mm-dd" class="form-control input-md slots datepicker-app" type="text" onchange="getSlots()">
+                                              <input type="hidden" name="dbdate" id="dbdate" value="">
+                                            </div>
+                                            <div class="" id="idAppDateErr"></div>
+                                        </div> 
+                                        <div class="form-group col-md-6">
+                                          <label class=" control-label" for="appointmentTime">Appointment Time</label>
+                                          <div id="slots" class="ui-widget">
+                                            <select id="idAppTime" name="slot.id" class="form-control js-event-log js-slots" onchange="setData()">
+                                              <option value='select' disabled selected>Select time slot</option>
+                                            </select>
+                                            <!--<input id="idAppTime" name="appointmentTime" placeholder="" class="form-control input-md" type="text" value="Between 7:00 am to 12:00pm" readonly/>-->
+                                          </div>
+                                        </div>
+                                        
+                                    </div>
+                                                                  
+                                 
+                                  <div class="form-group">
+                                    <div class="">
+                                    	<c:if test="${user.firstName == null }">
+                                       		<a href="#idLoginModal" data-toggle="modal" data-keyboard="false" data-target="#idLoginModal">
+                                       		<input type="submit" id="idBookAppointment" name="bookAppointment" value="Book Appointment" class="classAptBtn btn btn-success"/>
+                                       		</a>
+                                       </c:if>
+                                       <c:if test="${user.firstName != null }">
+                                       		<a href="">
+                                       		<input type="submit" id="idBookAppointment" name="bookAppointment" value="Book Appointment" class="classAptBtn btn btn-success"/>
+                                       		</a>
+                                       </c:if>
+                                    </div>
+                                  </div>
+								</form>
+                                </fieldset>
+                            </div>
+                            <div class="clearfix"></div>
+                            <input type="hidden" value="${user.group.id}" id="user_group">
+                        </div>
+                        <!-- Form Div End-->
+                    </div>
+                </div>    
+              </div>
+            </div>
 
 
 
