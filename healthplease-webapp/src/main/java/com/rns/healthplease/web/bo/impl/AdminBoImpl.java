@@ -367,7 +367,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 			locations = new AppointmentDaoImpl().getLocationsById(location.getId(), session);
 		}
 		if (locations == null) {
-			locations = BusinessConverters.getLocation(location);
+			locations = new Locations();
 		}
 		if (StringUtils.isNotEmpty(location.getName())) {
 			locations.setLocationName(location.getName());

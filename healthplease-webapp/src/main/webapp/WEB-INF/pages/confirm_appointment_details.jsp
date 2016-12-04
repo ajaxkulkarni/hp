@@ -5,6 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -196,7 +197,11 @@ $(document).ready(function() {
                                     <strong>${appointment.user.firstName} ${appointment.user.lastName}</strong>
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
-                                            ${appointment.address.street}  , ${appointment.address.area},<br/> ${appointment.address.landmark}, ${appointment.address.zipCode}                                       </div>
+                                            ${appointment.address.street}  , ${appointment.address.area},<br/> 
+                                            <c:if test="${appointment.address.landmark != null && fn:length(appointment.address.landmark) > 0}">
+                                            	${appointment.address.landmark},
+                                            </c:if>  
+                                            ${appointment.address.zipCode}                                       </div>
                                     </div>
                                     <abbr title="Phone">C:</abbr> ${appointment.user.phone}      
                                     <p> ${appointment.user.email}</p>

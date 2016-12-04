@@ -392,15 +392,15 @@ public class BusinessConverters {
 	}
 
 	public static String getReportName(Appointment appointment) {
-		if (appointment.getReport() != null) {
+		/*if (appointment.getReport() != null) {
 			return StringUtils.appendIfMissing(appointment.getReport().getName(), ".pdf");
-		}
+		}*/
 		return prepareReportName(appointment) + ".pdf";
 	}
 
 	private static String prepareReportName(Appointment appointment) {
 		StringBuilder builder = new StringBuilder();
-		if (appointment.getUser() == null) {
+		if (appointment.getUser() != null) {
 			builder.append(CommonUtils.getStringValue(appointment.getUser().getFirstName())).append("_");
 		}
 		if(CollectionUtils.isNotEmpty(appointment.getTests())) {

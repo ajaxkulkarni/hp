@@ -108,7 +108,12 @@ public class JasperUtil {
 			parameters.put("printSign", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsSignature())));
 			parameters.put("pathName", reportConfig.getName());
 			parameters.put("designation", reportConfig.getDesignation());
-			parameters.put("imagePath", reportConfig.getSignaturePath());
+			if(StringUtils.isNotBlank(reportConfig.getSignaturePath())) {
+				parameters.put("imagePath", reportConfig.getSignaturePath());
+			} else {
+				parameters.put("printSign", "n");
+			}
+			
 			//parameters.put("separatePage", reportConfig.getIsSeparatePage());
 		}
 		//parameters.put("isbold", "");
