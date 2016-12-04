@@ -13,11 +13,16 @@
 <meta name="author" content="">
 
 <title>Change password</title>
+ <link rel="icon" type="image/png"  href="<c:url value="/resources/images/favicon/favicon-32x32.png"/>">
+<link rel="icon" type="image/png"  href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
+<link rel="icon" type="image/png"  href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>"> 
+   
+</head>
+
 <body>
 
-
-	<%@include file="user_header.jsp"%>
-
+ <%@include file="user_header_dummy.jsp"%> 
+	
 	<div class="classTopHeading">
 		<div class="container">
 			<div class="col-lg-12 col-md-12 col-sm-12">
@@ -26,7 +31,7 @@
 			<%@include file="forms/change_password_form.jsp" %>
 			</div>
 		</div>
-	<%@include file="user_footer.jsp"%>
+	<%@include file="user_footer_dummy.jsp"%>
 
 </body>
 </html>
