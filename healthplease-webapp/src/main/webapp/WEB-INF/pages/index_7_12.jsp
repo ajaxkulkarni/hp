@@ -9,9 +9,9 @@
 
 <head>
     <meta charset="utf-8">
-          <title>Book online Pathology & Diagnostic Tests in Pune | HealthPlease.in</title>
-    <meta name="keywords" content="Book Online Path Test, Book online diagnostic test, Blood Sugar test">
-    <meta name="description" content="Book your online Pathology Lab test and test packages and have sample picked from home. Online Payment option and save reports for future reference.">
+         <title>Best Online Pathology & Diagnostics Center in Pune - HealthPlease</title>
+    <meta name="keywords" content="Book Online Patholog Test, Book Online Pathology Test Pune, Online pathology services in Pune, Book online diagnostic test">
+    <meta name="description" content="You can now book online pathology test & diagnostic services with ease and comfort. No traveling to labs, our experts will provide end-to-end service at your doorstep.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
