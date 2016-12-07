@@ -19,7 +19,7 @@
 				<div class="classOSCFont classFrontText">
 					<!-- Your Convenience, Our Priority...<br/> -->
 					<div class="text-left">
-						<img src="<c:url value="/resources/images/steps/3-steps.png"/>"
+						<img src="<c:url value="/resources/images/steps/home.jpg"/>"
 							width="95%" class="classStepImg" />
 					</div>
 					<div class="classBColor">

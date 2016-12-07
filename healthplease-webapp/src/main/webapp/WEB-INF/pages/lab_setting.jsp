@@ -101,7 +101,7 @@
 												<span>Choose file</span></br>
 												<div class="fileinput fileinput-new"
 													data-provides="fileinput">
-													<span class="btn btn-default btn-file"><input type="file" name="reportConfig.signatureFile" /></span>
+													<span class="btn btn-default btn-sm"><input type="file" name="reportConfig.signatureFile" /></span>
 												</div>
 												<!-- <div class="checkbox">
 													<label><input type="checkbox" value="">Include
@@ -133,7 +133,7 @@
 												<span>Choose file</span></br>
 												<div class="fileinput fileinput-new"
 													data-provides="fileinput">
-													<span class="btn btn-default btn-file"><input type="file" name="reportConfig.invoiceSignatureFile" /></span>
+													<span class="btn btn-default btn-sm"><input type="file" name="reportConfig.invoiceSignatureFile" /></span>
 												</div>
 												<!-- <div class="checkbox">
 													<label><input type="checkbox" value="">Include
@@ -180,7 +180,7 @@
 												<span>Choose file</span></br>
 												<div class="fileinput fileinput-new"
 													data-provides="fileinput">
-													<span class="btn btn-default btn-file"><input
+													<span class="btn btn-default btn-sm"><input
 														type="file" name="logoFile" /></span>
 													<input type="hidden" name="id" value="${user.lab.id}">
 												</div>

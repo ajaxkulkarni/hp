@@ -46,7 +46,7 @@
 											<c:if test="${testParameter.type == 'D' }">
 												<textarea
 													name="tests[${t.index}].parameters[${p.index}].actualValue"
-													rows="3" cols="22" readonly="readonly">${testParameter.actualValue}</textarea>
+													rows="1" cols="22" readonly="readonly">${testParameter.actualValue}</textarea>
 											</c:if>
 											<c:if test="${testParameter.type != 'D' }">
 												<input type="text"
@@ -58,7 +58,7 @@
 											<c:if test="${testParameter.type == 'D' }">
 												<textarea
 													name="tests[${t.index}].parameters[${p.index}].actualValue"
-													rows="3" cols="22" maxlength="250">${testParameter.actualValue}</textarea>
+													rows="1" cols="22" maxlength="250">${testParameter.actualValue}</textarea>
 											</c:if>
 											<c:if test="${testParameter.type != 'D' }">
 												<input type="text"

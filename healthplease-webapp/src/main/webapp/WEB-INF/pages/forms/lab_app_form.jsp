@@ -20,12 +20,12 @@
 				<div class="classOSCFont classFrontText">
 					<!-- Your Convenience, Our Priority...<br/> -->
 					<div class="text-left">
-						<img src="<c:url value="/resources/images/steps/3-steps.png"/>"
+						<img src="<c:url value="/resources/images/steps/lab.jpg"/>"
 							width="95%" class="classStepImg" />
 
 					</div>
 					<div class="classBColor">
-						Request Sample Collection Now&nbsp;&nbsp;&nbsp;<span
+						Book Lab Appointment Now&nbsp;&nbsp;&nbsp;<span
 							class="hvr-buzz-out"><i class="fa fa-hand-o-right "></i></span>
 					</div>
 				</div>
@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<div
-			class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 classNoPadding">
+			class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 classNoPadding" style="padding-top:30px;">
 			<!-- Form Div Start-->
 			<div class="auth">
 				<div id="big-form" class="well auth-box">
