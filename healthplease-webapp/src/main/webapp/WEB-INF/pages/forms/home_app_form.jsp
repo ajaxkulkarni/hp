@@ -11,21 +11,21 @@
 
 	<div class="row" id="homeApp">
 		<button type="button" class="close" id="collap_close_btn1" onclick="hideHomeApp()">
-			<span aria-hidden="true">Close</span>
+			<span aria-hidden="true">Back</span>
 		</button>
 		<div
 			class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
 			<div class="classHAbtTextWrapper">
 				<div class="classOSCFont classFrontText">
 					<!-- Your Convenience, Our Priority...<br/> -->
-					<div class="text-left">
+					<div class="text-left" style="">
 						<img src="<c:url value="/resources/images/steps/home.jpg"/>"
 							width="95%" class="classStepImg" />
 					</div>
-					<div class="classBColor">
+					<!-- <div class="classBColor">
 						Request Sample Collection Now&nbsp;&nbsp;&nbsp;<span
 							class="hvr-buzz-out"><i class="fa fa-hand-o-right "></i></span>
-					</div>
+					</div> -->
 				</div>
 
 			</div>
@@ -152,7 +152,7 @@
 
 <style>
 .select2-search__field{
-width: 200px !important;
+ width: 190px !important; 
 }
 </style>
 <!--  Package Slider script start-->

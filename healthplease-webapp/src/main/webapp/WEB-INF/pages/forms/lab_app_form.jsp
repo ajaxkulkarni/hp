@@ -12,22 +12,22 @@
 
 	<div class="row" id="labApp">
 		<button type="button" class="close" id="collap_close_btn1" onclick="hideLabApp()">
-			<span aria-hidden="true">Close</span>
+			<span aria-hidden="true">Back</span>
 		</button>
 		<div
 			class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
 			<div class="classHAbtTextWrapper">
 				<div class="classOSCFont classFrontText">
 					<!-- Your Convenience, Our Priority...<br/> -->
-					<div class="text-left">
+					<div class="text-left" >
 						<img src="<c:url value="/resources/images/steps/lab.jpg"/>"
 							width="95%" class="classStepImg" />
 
 					</div>
-					<div class="classBColor">
+					<!-- <div class="classBColor">
 						Book Lab Appointment Now&nbsp;&nbsp;&nbsp;<span
 							class="hvr-buzz-out"><i class="fa fa-hand-o-right "></i></span>
-					</div>
+					</div> -->
 				</div>
 
 			</div>
@@ -49,7 +49,7 @@
 							<!-- <label class=" control-label" for="selectbasic">Test</label> -->
 							<div class="ui-widget">
 								<input type="hidden" value="<%=Constants.APP_TYPE_HOME%>" name="type"> 
-								<select id="idLbTest" data-placeholder="  Please select your test/s" name="test" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLbLabs('N')">
+								<select id="idLbTest" data-placeholder="Please select your test/s" name="test" style="width:100%" class="form-control selectpicker js-tests" multiple="multiple" onchange="getLbLabs('N')">
 									<optgroup label="Test Packages" style="margin-left: 10px">
 										<c:forEach items="${tests}" var="test">
 											<c:if test="${test.testPackage}">

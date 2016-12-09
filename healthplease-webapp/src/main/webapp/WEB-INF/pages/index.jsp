@@ -32,7 +32,7 @@
                     <h4 class="modal-title" id="modal_head"></h4>
                 </div>
                 <div class="modal-body" id="modal_body">
-                                   </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                    
@@ -47,6 +47,9 @@
  }
 #collap_img3{
 		cursor:pointer;
+ }
+ #homeApp,#labApp,#docApp{
+ display:none;
  }
  </style>
 <script type="text/javascript">
