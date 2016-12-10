@@ -195,14 +195,17 @@ $(document).ready(function() {
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                 <address>
                                     <strong>${appointment.user.firstName} ${appointment.user.lastName}</strong>
+                                    <c:if test="${appointment.type == 'Home' }">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
                                             ${appointment.address.street}  , ${appointment.address.area},<br/> 
                                             <c:if test="${appointment.address.landmark != null && fn:length(appointment.address.landmark) > 0}">
                                             	${appointment.address.landmark},
                                             </c:if>  
-                                            ${appointment.address.zipCode}                                       </div>
+                                            ${appointment.address.zipCode}                                       
+                                        </div>
                                     </div>
+                                    </c:if>
                                     <abbr title="Phone">C:</abbr> ${appointment.user.phone}      
                                     <p> ${appointment.user.email}</p>
                                     </address>
@@ -216,7 +219,9 @@ $(document).ready(function() {
                                     <span><span style="color:#aaa;">Date : </span><fmt:formatDate pattern="yyyy-MM-dd" value="${appointment.date}"/></span><br/>
                                     <span><span style="color:#aaa;">Time : </span>
                                        ${appointment.slot.startTime} - ${appointment.slot.endTime}                                   
-                                    </span>
+                                    </span><br/>
+                                    <span><span style="color:#aaa;">Type :</span> ${appointment.type}<br/>
+                                    
                                 </p>
                                 
                             </div>

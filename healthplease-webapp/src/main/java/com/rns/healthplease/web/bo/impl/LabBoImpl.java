@@ -426,6 +426,7 @@ public class LabBoImpl implements LabBo, Constants {
 						prepareFileLocation(test, documentPath, appointment, session);
 					} else {
 						test.setReportSent("Y");
+						//test.setReportDate(new Date());
 					}
 					break;
 				}

@@ -5,13 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -19,6 +17,9 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.rns.healthplease.web.bo.domain.Appointment;
 import com.rns.healthplease.web.bo.domain.LabTest;
@@ -101,6 +102,11 @@ public class JasperUtil {
 		parameters.put("printSign", "y");
 		parameters.put("remark", appointment.getRemark());
 		parameters.put("logopath", appointment.getLab().getLogo());
+		parameters.put("reportTime", new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date()));
+		parameters.put("accountHolder", "");
+		if(appointment.getAccountHolder() != null) {
+			parameters.put("accountHolder", appointment.getAccountHolder().getEmail());
+		}
 		ReportConfigurations reportConfig = appointment.getLab().getReportConfig();
 		if(reportConfig != null) {
 			parameters.put("printRequired", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsHeader())));

@@ -215,6 +215,7 @@ public class DataConverters {
 		User user = new User();
 		getUser(appointments.getUser(), user);
 		appointment.setUser(user);
+		appointment.setAccountHolder(user);
 		appointment.getUser().setFirstName(appointments.getName());
 		appointment.getUser().setEmail(appointments.getEmail());
 		appointment.getUser().setPhone(appointments.getMobileNo());

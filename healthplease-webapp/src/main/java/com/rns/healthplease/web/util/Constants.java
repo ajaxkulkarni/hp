@@ -263,6 +263,9 @@ public interface Constants {
 	String ADMIN_USERS_PAGE = "admin_users";
 	String LAB_USERS_PAGE = "lab_users";
 	String LAB_USERS_GET_URL = "labUsers.htm";
+	String LAB_EDIT_APPOINTMENT_PAGE = "lab_edit_appointment";
+	String LAB_EDIT_APPOINTMENT_GET_URL = "labEditAppointment.htm";
+	String LAB_EDIT_APPOINTMENT_POST_URL = "labEditAppointment";
 	
 	
 	String MAIL_TYPE_ACTIVATION = "activationMail";

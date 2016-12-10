@@ -2,6 +2,8 @@ package com.rns.healthplease.web.dao.domain;
 
 // Generated 1 May, 2016 3:04:07 AM by Hibernate Tools 3.4.0.CR1
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,6 +34,7 @@ public class AppointmentTests implements java.io.Serializable {
 	private AppFileLocations fileLocation;
 	private String reportSent;
 	private String remark;
+	//private Date reportDate;
 
 	public AppointmentTests() {
 	}
@@ -120,5 +123,16 @@ public class AppointmentTests implements java.io.Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+
+
+	/*@Column(name = "report_date")
+	public Date getReportDate() {
+		return reportDate;
+	}
+
+
+	public void setReportDate(Date reportDate) {
+		this.reportDate = reportDate;
+	}*/
 
 }

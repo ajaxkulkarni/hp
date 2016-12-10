@@ -569,7 +569,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 		LocationWiseLabCharges charges = null;
 		if (CollectionUtils.isNotEmpty(labs.getLabses())) {
 			for (LabLocations locations : labs.getLabses()) {
-				if (location.getId() == locations.getLocations().getId()) {
+				if (locations.getLocations() != null && location.getId() == locations.getLocations().getId()) {
 					labLocations = locations;
 					break;
 				}
@@ -620,7 +620,7 @@ public class AdminBoImpl implements AdminBo, Constants {
 		}
 		LabLocations labLocations = null;
 		for (LabLocations locations : labs.getLabses()) {
-			if (location.getId() == locations.getLocations().getId()) {
+			if (locations.getLocations() != null && location.getId() == locations.getLocations().getId()) {
 				labLocations = locations;
 				break;
 			}

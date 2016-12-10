@@ -319,6 +319,7 @@
                                                 <td width="50px">${appointment.id}</td>
                                                 <td width="50px">${appointment.date}</td>
                                                 <td width="50px">${appointment.slot.startTime} - ${appointment.slot.endTime}</td>
+                                                <td width="50px">${appointment.type}</td>
                                                 <td width="0px">
                                                 <c:forEach items="${appointment.tests}" var="test">
                                                 	${test.name} ,

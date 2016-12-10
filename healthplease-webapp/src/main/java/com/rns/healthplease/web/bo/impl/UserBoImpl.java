@@ -864,6 +864,9 @@ public class UserBoImpl implements UserBo, Constants {
 		if(appointment.getLab().getPrice() != null) {
 			payment.setPaymentAmount(appointment.getLab().getPrice());
 		}
+		if(appointment.getPayment() != null) {
+			payment.setDiscount(appointment.getPayment().getDiscount());
+		}
 		BusinessConverters.getAppointmentAddresses(appointment.getAddress(), appoinAddresses);
 		tx.commit();
 		session.close();

@@ -29,6 +29,7 @@ public class Appointment {
 	private byte[] invoiceData;
 	private String remark;
 	private String type;
+	private User accountHolder;
 	
 	public Integer getId() {
 		return id;
@@ -146,6 +147,12 @@ public class Appointment {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public User getAccountHolder() {
+		return accountHolder;
+	}
+	public void setAccountHolder(User accountHolder) {
+		this.accountHolder = accountHolder;
 	}
 	
 }

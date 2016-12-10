@@ -207,6 +207,49 @@ public class HPLabControllerWeb implements Constants {
 		manager.setResult(result);
 		return new RedirectView(BOOK_APPOINTMENT_LAB_GET_URL);
 	}
+	
+	
+	@RequestMapping(value = "/" + LAB_EDIT_APPOINTMENT_GET_URL, method = RequestMethod.GET)
+	public String initEditAppointment(ModelMap model, Integer id) {
+		Lab lab = manager.getUser().getLab();
+		model.addAttribute(MODEL_TESTS, labBo.getAvailableLabTests(lab));
+		model.addAttribute(MODEL_LOCATIONS, labBo.getAvailableLabLocations(lab));
+		Appointment appointment = new Appointment();
+		appointment.setLab(lab);
+		List<Date> blockedDates = userBo.getBlockedDates(appointment);
+		model.addAttribute(MODEL_DATES, CommonUtils.getDatesAsString(blockedDates));
+		model.addAttribute(MODEL_USER, manager.getUser());
+		HPCalendar calendar = CommonUtils.getCalendar(manager.getHpCalendar().getMonth(), manager.getHpCalendar().getYear(), blockedDates);
+		calendar.setMonth(manager.getHpCalendar().getMonth());
+		calendar.setYear(manager.getHpCalendar().getYear());
+		model.addAttribute(MODEL_CALENDAR, calendar);
+		model.addAttribute(MODEL_LAB_VIEW, BOOK_APPOINTMENT_LAB_GET_URL);
+		model.addAttribute(MODEL_RESULT, manager.getResult());
+		manager.setResult(null);
+		Appointment currentAppointment = new Appointment();
+		currentAppointment.setId(id);
+		model.addAttribute(MODEL_APPOINTMENT, labBo.getAppointment(currentAppointment));
+		return LAB_EDIT_APPOINTMENT_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + LAB_EDIT_APPOINTMENT_POST_URL, method = RequestMethod.POST)
+	public RedirectView editAppointment(ModelMap model, Appointment appointment, String testIds, String appDate) {
+		appointment.setTests(CommonUtils.prepareTests(testIds));
+		appointment.setDate(CommonUtils.convertDate(appDate));
+		userBo.populateAppointment(appointment);
+		if (appointment.getPayment() == null) {
+			appointment.setPayment(new Payment());
+			appointment.getPayment().setAmount(appointment.getLab().getPrice());
+		} else {
+			appointment.getPayment().setAmount(appointment.getLab().getPrice());
+		}
+		appointment.getPayment().setDate(new Date());
+		appointment.getPayment().setStatus(PaymentStatus.SUCCESS);
+		appointment.getPayment().setType(PaymentType.cod);
+		String result = userBo.editAppointment(appointment);
+		manager.setResult(result);
+		return new RedirectView(LAB_HOME_URL_GET);
+	}
 
 	@RequestMapping(value = "/" + NEXT_MONTH_GET_URL, method = RequestMethod.GET)
 	public RedirectView nextMonth(ModelMap model, String view) {

@@ -116,6 +116,9 @@ public class ExcelUtil {
 		header.createCell(14).setCellValue("Status");
 		header.getCell(14).setCellStyle(style);
 		
+		header.createCell(15).setCellValue("Account Holder");
+		header.getCell(15).setCellStyle(style);
+		
 
 		int rowCount = 1;
 
@@ -146,6 +149,10 @@ public class ExcelUtil {
 				aRow.createCell(9).setCellValue(appointment.getUser().getPhone());
 				aRow.createCell(11).setCellValue(appointment.getUser().getGender());
 				aRow.createCell(12).setCellValue(appointment.getUser().getEmail());
+			}
+			if (appointment.getAccountHolder() != null) {
+				aRow.createCell(15).setCellValue(appointment.getUser().getEmail());
+				
 			}
 			if (appointment.getAddress() != null) {
 				aRow.createCell(10).setCellValue(appointment.getAddress().toString());
