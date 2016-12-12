@@ -148,16 +148,18 @@
              </select>
               <div class="" id="idTestErr"></div>
           </div>
-
+		  
           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper">
             <select id="idLocation" name="location.id" class="form-control locations" required="required">
               	<option value="">Select Patient Location</option>
-              	<option value="${appointment.location.id}" selected>&nbsp;&nbsp;${appointment.location.name}</option>
-              	<%-- <c:forEach items="${locations}" var="loc">
+              	<c:if test="${appointment.location != null && appointment.location.id >0}">
+              		<option value="${appointment.location.id}" selected>&nbsp;&nbsp;${appointment.location.name}</option>
+              	</c:if>
+              	<c:forEach items="${locations}" var="loc">
               		<c:if test="${appointment.location.id != loc.id}">
-              			<option value="${loc.id}">&nbsp;&nbsp;${loc.id}</option>
+              			<option value="${loc.id}">&nbsp;&nbsp;${loc.name}</option>
               		</c:if>
-                </c:forEach> --%>
+                </c:forEach>
              </select>
              <div class="">
                 	<h6>Pick Up Charge : Rs. <span id="idpickCharge"></span></h6>
@@ -582,7 +584,7 @@ $(document).ready(function(){
 
 function getPickUpCharge(location) {
 	//alert(location);
-	if($("#appType").val() == 'Lab') {
+	if($("#appType").val() == 'Lab' || location == null || location.length == 0) {
 		return;
 	}
 	$.ajax({
