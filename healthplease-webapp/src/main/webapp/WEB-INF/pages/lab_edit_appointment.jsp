@@ -292,11 +292,11 @@
             </div>
 			</div>
 			<div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
-				<c:if test="${appointment.printRequired == 'Y' }">
+				<c:if test="${appointment.printRequired == 1 }">
 					<input id="id_report_checkbox" name="printRequired" class="" style="width: 20px; height: 20px;" value="Y" type="checkbox" checked> 
 					Need printed report
 				</c:if>
-				<c:if test="${appointment.printRequired != 'Y' }">
+				<c:if test="${appointment.printRequired != 1 }">
 					<input id="id_report_checkbox" name="printRequired" class="" style="width: 20px; height: 20px;" value="Y" type="checkbox"> 
 					Need printed report
 				</c:if>

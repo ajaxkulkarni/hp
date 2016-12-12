@@ -148,12 +148,14 @@ Float Form Controls code start
     .float-label-control ::-moz-placeholder { color: #ddd; }
     .float-label-control :-ms-input-placeholder { color: #ddd; }
     .float-label-control input:-webkit-autofill,
-    .float-label-control textarea:-webkit-autofill { background-color: transparent !important; -webkit-box-shadow: 0 0 0px 1000px #04568E inset !important; -moz-box-shadow: 0 0 0px 1000px #04568E inset !important; box-shadow: 0 0 0px 1000px #04568E inset !important; }
-    input:-webkit-autofill {
-    	-webkit-box-shadow: 0 0 0px 1000px #04568E inset !important;
-    	-webkit-text-fill-color: #fff !important;
+    .float-label-control textarea:-webkit-autofill { 
+     background-color: transparent !important; 
+      -webkit-box-shadow: 0 0 0px 1000px #00000 inset !important; -moz-box-shadow: 0 0 0px 1000px #fff inset !important; box-shadow: 0 0 0px 1000px #fff inset !important; } 
+    /* input:-webkit-autofill {
+    	-webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+    	-webkit-text-fill-color: #000 !important;
 	}
-    .float-label-control input, .float-label-control textarea, .float-label-control label { font-size: 16px; box-shadow: none; -webkit-box-shadow: none; }
+ */    .float-label-control input, .float-label-control textarea, .float-label-control label { font-size: 16px; box-shadow: none; -webkit-box-shadow: none; }
         .float-label-control input:focus,
         .float-label-control textarea:focus { box-shadow: none; -webkit-box-shadow: none; border-bottom-width: 2px; padding-bottom: 0; }
         .float-label-control textarea:focus { padding-bottom: 4px; }
@@ -260,9 +262,10 @@ body{
 .classW12{
 	width: 95%;
 	style:"font-size:10px;"
+	  
 }
 .classW12.li{
-	
+	  
 	style:"font-size:10px;"
 }
 .classCTAHolder{
