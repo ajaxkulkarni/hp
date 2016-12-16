@@ -120,6 +120,7 @@
 				</c:forEach>
               	<optgroup label="Test Packages" style="margin-left: 10px">
              	<c:forEach items="${tests}" var="test">
+             		<c:set var="testFound" value="false"></c:set>
              		<c:forEach items="${appointment.tests}" var="appTest">
              			<c:if test="${test.id == appTest.id}">
              				<c:set var="testFound" value="true"></c:set>
@@ -133,16 +134,17 @@
                </c:forEach>
                <optgroup label="Regular Test" style="margin-left: 10px">
                <c:forEach items="${tests}" var="test">
-               	<c:if test="${!test.testPackage}">
+               		<c:set var="testFound" value="false"></c:set>
                		<c:forEach items="${appointment.tests}" var="appTest">
              			<c:if test="${test.id == appTest.id}">
              				<c:set var="testFound" value="true"></c:set>
              			</c:if>
              		</c:forEach>
-             		<c:if test="${testFound != true}">
-                		<option value="${test.id}">&nbsp;&nbsp;${test.name} | Rs. ${test.price}</option>
-                	</c:if>
-               </c:if>
+                	<c:if test="${!test.testPackage}">
+                		<c:if test="${testFound != true}">
+                      	<option value="${test.id}">&nbsp;&nbsp;${test.name} | Rs. ${test.price}</option>
+                      </c:if>
+                    </c:if>
                </c:forEach>
                </optgroup>
              </select>
