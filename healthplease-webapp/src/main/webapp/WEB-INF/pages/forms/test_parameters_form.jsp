@@ -24,7 +24,12 @@
 			</div>
 			<input type="hidden" name="tests[${t.index}].id" value="${test.id}" />
 			<div id="${test.id}" class="panel-collapse collapse" >
-			<input name="tests[${t.index}].remark" style="margin-top:10px;margin-bottom:10px" value="${test.remark}" placeholder="Remark" class="form-control input-md" type="text">  
+			<c:if test="${test.remark != null}">
+				<input name="tests[${t.index}].remark" style="margin-top:10px;margin-bottom:10px" value="${test.remark}" placeholder="Remark" class="form-control input-md" type="text">  
+			</c:if>
+			<c:if test="${test.remark == null}">
+				<input name="tests[${t.index}].remark" style="margin-top:10px;margin-bottom:10px" value="${test.comment}" placeholder="Remark" class="form-control input-md" type="text">  
+			</c:if>
 				 <div class="container panel-body table-responsive"style="border:"> 
 					<div clss="row">
 					<div class="col-md-12">			

@@ -175,6 +175,7 @@ public class DataConverters {
 			labTest.setCategory(test.getTestCategory().getCategoryName());
 		}
 		labTest.setTestDisplayType(test.getTestSingleShow());
+		labTest.setComment(test.getRemark());
 		return labTest;
 
 	}

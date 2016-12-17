@@ -18,6 +18,8 @@ public class ReportConfigurations {
 	private String isInvoiceSignature;
 	private String isSeparatePage;
 	private MultipartFile invoiceSignatureFile;
+	private String isDesignation;
+	private String isTime;
 	
 	public String getInvoiceDesignation() {
 		return invoiceDesignation;
@@ -102,6 +104,18 @@ public class ReportConfigurations {
 	}
 	public void setInvoiceSignatureFile(MultipartFile invoiceSignatureFile) {
 		this.invoiceSignatureFile = invoiceSignatureFile;
+	}
+	public String getIsDesignation() {
+		return isDesignation;
+	}
+	public void setIsDesignation(String isDesignation) {
+		this.isDesignation = isDesignation;
+	}
+	public String getIsTime() {
+		return isTime;
+	}
+	public void setIsTime(String isTime) {
+		this.isTime = isTime;
 	}
 	
 

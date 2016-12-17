@@ -26,6 +26,7 @@ public class LabTest {
 	private String fileLocation;
 	private MultipartFile report;
 	private String remark;
+	private String comment;
 	
 	public Integer getPrice() {
 		return price;
@@ -144,6 +145,12 @@ public class LabTest {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 

@@ -357,6 +357,14 @@
 														<i class="glyphicon glyphicon-remove"></i>
 													</a>
 													</c:if>
+													<c:if test="${appointment.status.id == 5}">
+                                                    	<a id="process_app" href="<%=Constants.ADMIN_CONFIRM_APPOINTMENT_GET_URL%>?id=${appointment.id}" class="btn btn-success btn-mini">
+														<i class="glyphicon glyphicon-ok"></i>
+														</a>
+														<a class="btn btn-danger btn-mini" onclick="onCancel('${appointment.id}','${appointment.lab.id}')">
+														<i class="glyphicon glyphicon-remove"></i>
+														</a>
+													</c:if>
                                                 </td>
                                       </tr>
                                      </c:forEach>

@@ -367,11 +367,11 @@ public class CommonUtils implements Constants {
 		if (appointment.getStatus() == null) {
 			return;
 		}
-		if (appointment.getStatus().getId() == 1) {
+		if (appointment.getStatus().getId() == 1 || appointment.getStatus().getId()== 5) {
 			user.getPendingAppointments().add(appointment);
 		} else if (appointment.getStatus().getId() == 2) {
 			user.getCancelledAppointments().add(appointment);
-		}
+		} 
 		if (DateUtils.isSameDay(appointment.getDate(), new Date())) {
 			user.getTodaysAppointments().add(appointment);
 		}

@@ -618,6 +618,30 @@ public class LabBoImpl implements LabBo, Constants {
 		return currentAppointment;
 	}
 	
+	public String confirmAppointment(Appointment appointment) {
+		if (appointment == null) {
+			return ERROR_INVALID_APPOINTMENT_DETAILS;
+		}
+		Session session = this.sessionFactory.openSession();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		Appointments appointments = appointmentDao.getAppointmentById(appointment.getId(), session);
+		if (appointments == null) {
+			session.close();
+			return ERROR_INVALID_APPOINTMENT_DETAILS;
+		}
+		Transaction tx = session.beginTransaction();
+		com.rns.healthplease.web.dao.domain.AppointmentStatus status = new com.rns.healthplease.web.dao.domain.AppointmentStatus();
+		status.setId(1);
+		appointments.setStatus(status);
+		Appointment currentAppointment = DataConverters.getAppointment(session, appointmentDao, appointments);
+		CommonUtils.calculatePrice(currentAppointment.getLab(), currentAppointment, appointmentDao, session);
+		MailUtil mailer = new MailUtil(currentAppointment, MAIL_TYPE_CONFIRM_APP_USER);
+		threadPoolTaskExecutor.execute(mailer);
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
+	}
+	
 	@Override
 	public ReportConfigurations getReportConfigurations(Lab lab) {
 		if(lab == null || lab.getId() == null) {
@@ -764,6 +788,31 @@ public class LabBoImpl implements LabBo, Constants {
 			return null;
 		}
 		return new ArrayList<User>(users);
+	}
+
+	@Override
+	public String completeAppointment(Appointment appointment) {
+		if (appointment == null) {
+			return ERROR_INVALID_APPOINTMENT_DETAILS;
+		}
+		Session session = this.sessionFactory.openSession();
+		AppointmentDao appointmentDao = new AppointmentDaoImpl();
+		Appointments appointments = appointmentDao.getAppointmentById(appointment.getId(), session);
+		if (appointments == null) {
+			session.close();
+			return ERROR_INVALID_APPOINTMENT_DETAILS;
+		}
+		Transaction tx = session.beginTransaction();
+		com.rns.healthplease.web.dao.domain.AppointmentStatus status = new com.rns.healthplease.web.dao.domain.AppointmentStatus();
+		status.setId(3);
+		appointments.setStatus(status);
+		//Appointment currentAppointment = DataConverters.getAppointment(session, appointmentDao, appointments);
+		//CommonUtils.calculatePrice(currentAppointment.getLab(), currentAppointment, appointmentDao, session);
+		//MailUtil mailer = new MailUtil(currentAppointment, MAIL_TYPE_CONFIRM_APP_USER);
+		//threadPoolTaskExecutor.execute(mailer);
+		tx.commit();
+		session.close();
+		return RESPONSE_OK;
 	}
 
 }

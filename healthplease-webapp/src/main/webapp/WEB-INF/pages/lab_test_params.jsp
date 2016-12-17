@@ -66,10 +66,10 @@
 				</c:if>
            </div> 
            <div class="col-md-4">
-				<input type="checkbox" name="" value="y"> Include Designation
+				<input type="checkbox" name="isDesignation" value="y"> Include Designation
            </div> 
             <div class="col-md-4">
-				<input type="checkbox" name="" value="y"> Include Time 
+				<input type="checkbox" name="isTime" value="y"> Include Time 
            </div> 
               <div class="col-md-4">
 				<input type="checkbox" name="isSeparatePage" value="y"> Each Test on separate page

@@ -1,12 +1,10 @@
 package com.rns.healthplease.web.controller;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,12 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -173,6 +169,14 @@ public class HPAdminController implements Constants {
 		appointment.setUser(manager.getUser());
 		userBo.cancelAppointment(appointment);
 		return new RedirectView(ADMIN_HOME_CANCELLED_URL_GET);
+	}
+	
+	@RequestMapping(value = "/" + ADMIN_CONFIRM_APPOINTMENT_GET_URL, method = RequestMethod.GET)
+	public RedirectView confirmAppointment(ModelMap model, Integer id) {
+		Appointment appointment = new Appointment();
+		appointment.setId(id);
+		labBo.confirmAppointment(appointment);
+		return new RedirectView(ADMIN_HOME_PENDING_APPS_URL_GET);
 	}
 
 	@RequestMapping(value = "/" + ADMIN_UPLOAD_REPORT_POST_URL, method = RequestMethod.POST)

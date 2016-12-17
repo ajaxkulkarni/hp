@@ -39,6 +39,8 @@ public interface LabBo {
 	String updateTestResults(Appointment appointment);
 	
 	Appointment getAppointment(Appointment appointment);
+	
+	String confirmAppointment(Appointment appointment);
 
 	String getLocationCharges(Lab lab, LabLocation location, List<LabTest> tests);
 	
@@ -51,4 +53,6 @@ public interface LabBo {
 	String uploadLogo(Lab lab,MultipartFile file);
 
 	List<User> getAllUsers(Lab lab);
+
+	String completeAppointment(Appointment appointment);
 }

@@ -112,8 +112,12 @@ public class JasperUtil {
 			parameters.put("printRequired", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsHeader())));
 			parameters.put("printFooter", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsFooter())));
 			parameters.put("printSign", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsSignature())));
+			parameters.put("printDesignation", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsDesignation())));
+			parameters.put("printTime", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsTime())));
+			
 			parameters.put("pathName", reportConfig.getName());
 			parameters.put("designation", reportConfig.getDesignation());
+			
 			if(StringUtils.isNotBlank(reportConfig.getSignaturePath())) {
 				parameters.put("imagePath", reportConfig.getSignaturePath());
 			} else {

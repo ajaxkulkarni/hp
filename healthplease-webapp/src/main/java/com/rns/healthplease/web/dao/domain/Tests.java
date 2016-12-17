@@ -47,6 +47,7 @@ public class Tests implements java.io.Serializable {
 	private short updatedBy;
 	private Date updatedDate;
 	private int isDeleted;
+	private String remark;
 	private Set<TestLabs> testLabs = new HashSet<TestLabs>(0);
 	private Set<AppointmentTests> appointmentTests = new HashSet<AppointmentTests>(0);
 	private Set<TestFactorsMap> testFactors = new HashSet<TestFactorsMap>(0);
@@ -252,6 +253,16 @@ public class Tests implements java.io.Serializable {
 
 	public void setTestFactors(Set<TestFactorsMap> testFactors) {
 		this.testFactors = testFactors;
+	}
+
+
+	public String getRemark() {
+		return remark;
+	}
+
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

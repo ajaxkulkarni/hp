@@ -458,7 +458,7 @@ public class UserBoImpl implements UserBo, Constants {
 				|| appointment.getSlot() == null || appointment.getUser() == null || appointment.getLocation() == null) {
 			return ERROR_INVALID_APPOINTMENT_DETAILS;
 		}
-		appointment.setStatus(new AppointmentStatus(1));
+		appointment.setStatus(new AppointmentStatus(5));
 		AppointmentDao appointmentDao = new AppointmentDaoImpl();
 		Session session = this.sessionFactory.openSession();
 		Appointments appointments = BusinessConverters.getAppointments(appointment);
@@ -482,7 +482,7 @@ public class UserBoImpl implements UserBo, Constants {
 				|| appointment.getSlot() == null || appointment.getUser() == null || appointment.getLocation() == null) {
 			return ERROR_INVALID_APPOINTMENT_DETAILS;
 		}
-		appointment.setStatus(new AppointmentStatus(1));
+		appointment.setStatus(new AppointmentStatus(5));
 		AppointmentDao appointmentDao = new AppointmentDaoImpl();
 		// UserDao userDao = new UserDaoImpl();
 		Session session = this.sessionFactory.openSession();

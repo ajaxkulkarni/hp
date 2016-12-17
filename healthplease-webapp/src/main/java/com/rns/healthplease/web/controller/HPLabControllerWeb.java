@@ -354,6 +354,22 @@ public class HPLabControllerWeb implements Constants {
 		userBo.cancelAppointment(appointment);
 		return new RedirectView(LAB_HOME_CANCELLED_URL_GET);
 	}
+	
+	@RequestMapping(value = "/" + LAB_CONFIRM_APPOINTMENT_GET_URL, method = RequestMethod.GET)
+	public RedirectView confirmAppointment(ModelMap model, Integer id) {
+		Appointment appointment = new Appointment();
+		appointment.setId(id);
+		labBo.confirmAppointment(appointment);
+		return new RedirectView(LAB_HOME_PENDING_APPS_URL_GET);
+	}
+	
+	@RequestMapping(value = "/" + LAB_COMPLETE_APPOINTMENT_GET_URL, method = RequestMethod.GET)
+	public RedirectView completeAppointment(ModelMap model, Integer id) {
+		Appointment appointment = new Appointment();
+		appointment.setId(id);
+		labBo.completeAppointment(appointment);
+		return new RedirectView(LAB_HOME_TOTAL_URL_GET);
+	}
 
 	@RequestMapping(value = "/" + "getLocationCharge", method = RequestMethod.POST)
 	public @ResponseBody String getLocationCharges(ModelMap model, int locId, String testIds) {

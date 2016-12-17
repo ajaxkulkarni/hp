@@ -266,11 +266,14 @@ public interface Constants {
 	String LAB_EDIT_APPOINTMENT_PAGE = "lab_edit_appointment";
 	String LAB_EDIT_APPOINTMENT_GET_URL = "labEditAppointment.htm";
 	String LAB_EDIT_APPOINTMENT_POST_URL = "labEditAppointment";
-	
+	String ADMIN_CONFIRM_APPOINTMENT_GET_URL = "adminConfirmAppointment.htm";
+	String LAB_CONFIRM_APPOINTMENT_GET_URL = "labConfirmAppointment.htm";
+	String LAB_COMPLETE_APPOINTMENT_GET_URL = "labCompleteAppointment.htm";
 	
 	String MAIL_TYPE_ACTIVATION = "activationMail";
 	String MAIL_TYPE_REPORT_UPLOAD = "reportUpload";
 	String MAIL_TYPE_BOOK_APP_USER = "bookAppointmentUser";
+	String MAIL_TYPE_CONFIRM_APP_USER = "confirmAppointmentUser";
 	String MAIL_TYPE_BOOK_APP_LAB = "bookAppointmentLab";
 	String MAIL_TYPE_REGISTRATION = "registrationMail";
 	String MAIL_TYPE_CANCEL_APP = "cancelAppointment";

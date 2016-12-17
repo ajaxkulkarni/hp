@@ -343,6 +343,7 @@ public class BusinessConverters {
 		if (StringUtils.isNotEmpty(test.getTestDisplayType())) {
 			tests.setTestSingleShow(test.getTestDisplayType());
 		}
+		tests.setRemark(test.getComment());
 	}
 
 	public static LabActiveDaysStatus getLabActiveDaysStatus(Labs labs, Date date) {

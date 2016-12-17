@@ -192,7 +192,7 @@ public class MailUtil implements Constants, Runnable {
 			} else {
 				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(appointment.getUser().getEmail()));
 			}
-			if(MAIL_TYPE_BOOK_APP_LAB.equals(type) || MAIL_TYPE_BOOK_APP_USER.equals(type)) {
+			if(MAIL_TYPE_BOOK_APP_LAB.equals(type) || MAIL_TYPE_BOOK_APP_USER.equals(type) || MAIL_TYPE_CONFIRM_APP_USER.equals(type)) {
 				String appointmentType = "Lab Visit";
 				if(appointment.isHomeCollection()) {
 					appointmentType = "Home Visit";
@@ -275,7 +275,8 @@ public class MailUtil implements Constants, Runnable {
 		{
 			put(MAIL_TYPE_ACTIVATION, "activation_mail.html");
 			put(MAIL_TYPE_REPORT_UPLOAD, "report_uploaded.html");
-			put(MAIL_TYPE_BOOK_APP_USER, "book_appointment.html");
+			put(MAIL_TYPE_BOOK_APP_USER, "pre_book_appointment.html");
+			put(MAIL_TYPE_CONFIRM_APP_USER, "book_appointment.html");
 			put(MAIL_TYPE_BOOK_APP_LAB, "appointment_booked.html");
 			put(MAIL_TYPE_REGISTRATION, "after_validate_account.html");
 			put(MAIL_TYPE_CANCEL_APP, "cancel_appointment.html");
@@ -298,7 +299,8 @@ public class MailUtil implements Constants, Runnable {
 		{
 			put(MAIL_TYPE_ACTIVATION, "Account activation");
 			put(MAIL_TYPE_REPORT_UPLOAD, "Delivery: Your test report from {labName}");
-			put(MAIL_TYPE_BOOK_APP_USER, "Congratulations! Your {appointmentType} appointment is booked successfully!");
+			put(MAIL_TYPE_BOOK_APP_USER, "Your {appointmentType} appointment is pending approval");
+			put(MAIL_TYPE_CONFIRM_APP_USER, "Congratulations! Your {appointmentType} appointment is booked successfully!");
 			put(MAIL_TYPE_BOOK_APP_LAB, "New {appointmentType} Appointment booked for {labName}");
 			put(MAIL_TYPE_REGISTRATION, "Thank you for choosing Health Please");
 			put(MAIL_TYPE_CANCEL_APP, "Your Appointment has been cancelled!");

@@ -353,9 +353,15 @@
                                                                         <button style="text-transform:capitalize;" onclick="onUpload(${appointment.id})" class="btn btn-sm btn-default">Upload Report</button>
                                                                         <a href="<%=Constants.LAB_PREPARE_REPORT_GET_URL %>?appointmentId=${appointment.id}"  ><button style="text-transform:capitalize;" class="btn btn-sm btn-default">Prepare Report</button></a>
                                                                         <a href="<%=Constants.LAB_EDIT_APPOINTMENT_GET_URL %>?id=${appointment.id}"  ><button style="text-transform:capitalize;" class="btn btn-sm btn-default">Edit</button></a>
-                                                                        <a href=" "  ><button style="text-transform:capitalize;margin-top:10px" class="btn btn-sm btn-default">Complete</button></a>
+                                                                        <a href="<%=Constants.LAB_COMPLETE_APPOINTMENT_GET_URL %>?id=${appointment.id}"  ><button style="text-transform:capitalize;margin-top:10px" class="btn btn-sm btn-default">Complete</button></a>
                                                                         <button style="text-transform:capitalize;margin-top:10px" onclick="onCancel(${appointment.id})" class="btn btn-sm">Cancel</button>
                                                                     </div>
+                                                                    </c:if>
+                                                                    <c:if test="${appointment.status.id == 5}">
+                                                                    	<div class="col-md-12 col-xs-12 m-t-10">
+                                                                        	<a href="<%=Constants.LAB_CONFIRM_APPOINTMENT_GET_URL %>?id=${appointment.id}"  ><button style="text-transform:capitalize;" class="btn btn-sm btn-default">Approve</button></a>
+                                                                        	<button style="text-transform:capitalize;margin-top:10px" onclick="onCancel(${appointment.id})" class="btn btn-sm">Cancel</button>
+                                                                    	</div>
                                                                     </c:if>
                                                                     <c:if test="${appointment.status.id == 3}">
                                                                     <div class="col-md-12 col-xs-12 m-t-10">
@@ -403,6 +409,9 @@
                                                         	</c:if>
                                                         	<c:if test="${appointment.status.id == 4}">
                                                         		<span class="label label-warning"><i class="fa fa-cog p-r-5"></i> In-Process</span>
+                                                        	</c:if>
+                                                        	<c:if test="${appointment.status.id == 5}">
+                                                        		<span class="label label-warning"><i class="fa fa-cog p-r-5"></i> Approval</span>
                                                         	</c:if>
                                                         </td>
                                                     </tr>

@@ -372,7 +372,7 @@ $(document).ready(function() {
 
                         <div class="row">
                         	<c:if test="${result == 'OK' }">
-                            	<div class="alert alert-success margin-top10"><strong>Congratulations, Your Appointment is booked! Our convenience team will reach on the requested date.</strong></div>
+                            	<div class="alert alert-success margin-top10"><strong>Your Appointment is pending approval and you will be intimated once it's confirmed. Thank You!</strong></div>
                             </c:if>
                             <div class="col-md-12 alert alert-info" style="margin-left: 10px;margin-top:50px;">
                                 At Healthplease your convenience is our priority. We will not only make sure that you get the services right but we will provide them with great comfort.<br/>

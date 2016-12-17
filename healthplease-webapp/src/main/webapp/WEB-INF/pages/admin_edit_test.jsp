@@ -152,6 +152,10 @@
             <td><textarea name='longDescription' id='test_long_desc' class='form-control' >${test.longDescription}</textarea></td>
         </tr>
         <tr>
+            <td>Remark</td>
+            <td><textarea name='comment' id='test_long_desc' class='form-control' >${test.comment}</textarea></td>
+        </tr>
+        <tr>
             <td>Display Type</td>
             <td>
             	<select name="testDisplayType">
