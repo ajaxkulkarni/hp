@@ -65,10 +65,15 @@
 					<input type="checkbox" name="isSignature" value="y"> Include Signature
 				</c:if>
            </div> 
-         <div class="col-md-4">
+           <div class="col-md-4">
+				<input type="checkbox" name="" value="y"> Include Designation
+           </div> 
+            <div class="col-md-4">
+				<input type="checkbox" name="" value="y"> Include Time 
+           </div> 
+              <div class="col-md-4">
 				<input type="checkbox" name="isSeparatePage" value="y"> Each Test on separate page
            </div> 
-           
 			</div>
 			
 			

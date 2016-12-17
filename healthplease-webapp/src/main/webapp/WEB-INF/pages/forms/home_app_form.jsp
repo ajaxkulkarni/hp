@@ -6,6 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<style>
+.select2-search__field{
+ width: 100% !important; 
+}
+</style>
 <body>
 
 
@@ -150,11 +155,7 @@
 		</div>
 	</div>
 
-<style>
-.select2-search__field{
- width: 190px !important; 
-}
-</style>
+
 <!--  Package Slider script start-->
 <script type="text/javascript">
 
@@ -240,8 +241,7 @@
 	function reset() {
 		//$('#idLocation').removeAttr("selected");
         $('#select2-idLocation-container').html("Select Your Location");
-	}
-	
+	}	
 	 $('#idTest').change(function(){
         reset();
       });
@@ -279,7 +279,5 @@
 	 
 
 </script>
-
-
 </body>
 </html>

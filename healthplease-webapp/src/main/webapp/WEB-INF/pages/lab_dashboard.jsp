@@ -353,7 +353,8 @@
                                                                         <button style="text-transform:capitalize;" onclick="onUpload(${appointment.id})" class="btn btn-sm btn-default">Upload Report</button>
                                                                         <a href="<%=Constants.LAB_PREPARE_REPORT_GET_URL %>?appointmentId=${appointment.id}"  ><button style="text-transform:capitalize;" class="btn btn-sm btn-default">Prepare Report</button></a>
                                                                         <a href="<%=Constants.LAB_EDIT_APPOINTMENT_GET_URL %>?id=${appointment.id}"  ><button style="text-transform:capitalize;" class="btn btn-sm btn-default">Edit</button></a>
-                                                                        <button style="text-transform:capitalize;" onclick="onCancel(${appointment.id})" class="btn btn-sm">Cancel</button>
+                                                                        <a href=" "  ><button style="text-transform:capitalize;margin-top:10px" class="btn btn-sm btn-default">Complete</button></a>
+                                                                        <button style="text-transform:capitalize;margin-top:10px" onclick="onCancel(${appointment.id})" class="btn btn-sm">Cancel</button>
                                                                     </div>
                                                                     </c:if>
                                                                     <c:if test="${appointment.status.id == 3}">

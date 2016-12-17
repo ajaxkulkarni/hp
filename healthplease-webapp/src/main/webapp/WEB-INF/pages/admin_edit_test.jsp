@@ -116,7 +116,10 @@
             <td>Abbreviation</td>
             <td><input type='text' name='abbrevation' id='test_abvr' class='form-control' value="${test.abbrevation}"></td>
         </tr>
-        
+         <tr>
+            <td>Test Remark</td>
+            <td><textarea name='longDescription' id='test_remark' class='form-control' ></textarea></td>
+        </tr>
         <tr>
             <td>Report Delivery Days</td>
             <td><input type='number' name='deliveryDays' id='test_days' class='form-control' value="${test.deliveryDays}" required></td>
