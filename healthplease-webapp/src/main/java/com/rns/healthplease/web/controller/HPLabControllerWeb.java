@@ -599,6 +599,7 @@ public class HPLabControllerWeb implements Constants {
 					param.setRemark(parameter.getRemark());
 					param.setNormalValue(parameter.getNormalValue());
 					param.setUnit(parameter.getUnit());
+					param.setIsBold(parameter.getIsBold());
 					params.add(param);
 				}
 			}

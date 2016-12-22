@@ -64,6 +64,11 @@
 										<div class="panel panel-default" style="margin-top: 5%">
 											<div class="panel-heading">Header</div>
 											<div class="panel-body">
+												<span>Choose file</span></br>
+												<div class="fileinput fileinput-new"
+													data-provides="fileinput">
+													<span class="btn btn-default btn-sm"><input type="file" name="reportConfig.headerFile" /></span>
+												</div>
 												<div class="checkbox">
 													<label>
 														<c:if test="${user.lab.reportConfig.isHeader == 'y'}">
@@ -80,6 +85,11 @@
 										<div class="panel panel-default">
 											<div class="panel-heading">Footer</div>
 											<div class="panel-body">
+												<span>Choose file</span></br>
+												<div class="fileinput fileinput-new"
+													data-provides="fileinput">
+													<span class="btn btn-default btn-sm"><input type="file" name="reportConfig.footerFile" /></span>
+												</div>
 												<div class="checkbox">
 													<label>
 														<c:if test="${user.lab.reportConfig.isFooter == 'y'}">
@@ -155,6 +165,25 @@
               									<div class="">
                 									<input name="reportConfig.invoiceDesignation" style="margin-top:20px" value="${user.lab.reportConfig.invoiceDesignation}" placeholder="Designation" class="form-control input-md" type="text">      
               									</div>
+											</div>
+										</div>
+										
+										
+										
+										<div class="panel panel-default">
+											<div class="panel-heading">Color parameters</div>
+											<div class="panel-body">
+												<div class="checkbox">
+													<label>
+														<c:if test="${user.lab.reportConfig.isColor == 'y'}">
+															<input type="checkbox" name="reportConfig.isColor" value="y" checked>Colored
+														</c:if>
+														<c:if test="${user.lab.reportConfig.isColor != 'y'}">
+															<input type="checkbox" name="reportConfig.isColor" value="y">Colored
+														</c:if>
+													</label>
+												</div>
+												
 											</div>
 										</div>
 										

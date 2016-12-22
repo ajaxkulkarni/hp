@@ -104,29 +104,31 @@ public class JasperUtil {
 		parameters.put("logopath", appointment.getLab().getLogo());
 		parameters.put("reportTime", new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(new Date()));
 		parameters.put("accountHolder", "");
-		if(appointment.getAccountHolder() != null) {
+		if (appointment.getAccountHolder() != null) {
 			parameters.put("accountHolder", appointment.getAccountHolder().getEmail());
 		}
 		ReportConfigurations reportConfig = appointment.getLab().getReportConfig();
-		if(reportConfig != null) {
+		if (reportConfig != null) {
 			parameters.put("printRequired", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsHeader())));
 			parameters.put("printFooter", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsFooter())));
 			parameters.put("printSign", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsSignature())));
 			parameters.put("printDesignation", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsDesignation())));
 			parameters.put("printTime", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsTime())));
-			
+			parameters.put("printColor", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsColor())));
 			parameters.put("pathName", reportConfig.getName());
 			parameters.put("designation", reportConfig.getDesignation());
-			
-			if(StringUtils.isNotBlank(reportConfig.getSignaturePath())) {
+			parameters.put("headerLogo", reportConfig.getHeader());
+			parameters.put("footerLogo", reportConfig.getFooter());
+
+			if (StringUtils.isNotBlank(reportConfig.getSignaturePath())) {
 				parameters.put("imagePath", reportConfig.getSignaturePath());
 			} else {
 				parameters.put("printSign", "n");
 			}
-			
-			//parameters.put("separatePage", reportConfig.getIsSeparatePage());
+
+			// parameters.put("separatePage", reportConfig.getIsSeparatePage());
 		}
-		//parameters.put("isbold", "");
+		// parameters.put("isbold", "");
 		analyzeTestParameters(appointment.getTests());
 		JRBeanCollectionDataSource testSource = new JRBeanCollectionDataSource(appointment.getTests());
 		String reportName = LAB_REPORT_TEMPLATE;
@@ -134,31 +136,34 @@ public class JasperUtil {
 				&& StringUtils.equalsIgnoreCase("D", appointment.getTests().get(0).getParameters().get(0).getType())) {
 			reportName = LAB_REPORT_TEMPLATE_DESC;
 		}
-		if(StringUtils.equals("y", reportConfig.getIsSeparatePage())) {
+		if (StringUtils.equals("y", reportConfig.getIsSeparatePage())) {
 			reportName = LAB_REPORT_TEMPLATE_SEP;
 		}
 		appointment.setReportData(generateReport(parameters, testSource, reportName));
 	}
 
 	private static void analyzeTestParameters(List<LabTest> tests) {
-		if(CollectionUtils.isEmpty(tests)) {
+		if (CollectionUtils.isEmpty(tests)) {
 			return;
 		}
-		for(LabTest test: tests) {
-			if(CollectionUtils.isNotEmpty(test.getParameters())) {
-				for(TestParameter parameter: test.getParameters()) {
-					if(parameter.getActualValue() == null) {
+		for (LabTest test : tests) {
+			if (CollectionUtils.isNotEmpty(test.getParameters())) {
+				for (TestParameter parameter : test.getParameters()) {
+					if (StringUtils.equals("y", parameter.getIsBold())) {
+						continue;
+					}
+					if (parameter.getActualValue() == null) {
 						continue;
 					}
 					parameter.setIsBold("");
 					String[] values = StringUtils.split(parameter.getNormalValue(), "-");
-					if(values == null || values.length < 2) {
+					if (values == null || values.length < 2) {
 						continue;
 					}
 					double min = new Double(StringUtils.trimToEmpty(values[0]));
 					double max = new Double(StringUtils.trimToEmpty(values[1]));
 					double value = new Double(parameter.getActualValue());
-					if(value < min || value > max) {
+					if (value < min || value > max) {
 						parameter.setIsBold("y");
 					}
 				}
@@ -183,12 +188,12 @@ public class JasperUtil {
 			parameters.put("invoiceId", appointment.getPayment().getPaymentId());
 		}
 		parameters.put("pickupCharges", 0);
-		if (appointment.getLab().getPickUpCharge()!= null) {
+		if (appointment.getLab().getPickUpCharge() != null) {
 			parameters.put("pickupCharges", appointment.getLab().getPickUpCharge());
-		} 
+		}
 		parameters.put("printRequired", "y");
 		ReportConfigurations reportConfig = appointment.getLab().getReportConfig();
-		if(reportConfig != null) {
+		if (reportConfig != null) {
 			parameters.put("printRequired", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsHeader())));
 			parameters.put("printFooter", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsFooter())));
 			parameters.put("printSign", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsInvoiceSignature())));
@@ -209,7 +214,7 @@ public class JasperUtil {
 	}
 
 	private static Integer getTotalPrice(Appointment appointment) {
-		if(appointment.getPayment().getDiscount() == null || appointment.getPayment().getAmount() == null) {
+		if (appointment.getPayment().getDiscount() == null || appointment.getPayment().getAmount() == null) {
 			return appointment.getPayment().getAmount();
 		}
 		return appointment.getPayment().getAmount() + appointment.getPayment().getDiscount();

@@ -260,7 +260,7 @@ public class DataConverters {
 		return labTests;
 	}
 
-	public static List<TestParameter> getTestParameters(Set<TestFactorsMap> testFactors, Appointments appointments, Session session) {
+	public static List<TestParameter> getTestParameters(List<TestFactorsMap> testFactors, Appointments appointments, Session session) {
 		if (CollectionUtils.isEmpty(testFactors)) {
 			return null;
 		}
@@ -283,6 +283,7 @@ public class DataConverters {
 						parameter.setUnit(results.getUnit());
 					}
 					parameter.setRemark(results.getRemarks());
+					parameter.setIsBold(results.getIsBold());
 				}
 				if(appointments.getAge() != null && appointments.getAge().intValue() <= 10) {
 					if(StringUtils.isNotEmpty(parameter.getNormalValueChild())) {
@@ -297,6 +298,7 @@ public class DataConverters {
 						parameter.setNormalValue(parameter.getNormalValueFemale());
 					}
 				}
+
 			}
 			parameters.add(parameter);
 		}
@@ -372,7 +374,9 @@ public class DataConverters {
 		reportConfigurations.setInvoiceDesignation(reportConfig.getInvoiceDesignation());
 		reportConfigurations.setInvoiceSignaturePath(reportConfig.getInvoiceSignatureFileLocation());
 		reportConfigurations.setIsInvoiceSignature(reportConfig.getInvoiceSignatureRequired());
-		
+		reportConfigurations.setIsColor(reportConfig.getIsColor());
+		reportConfigurations.setHeader(reportConfig.getLogoHeader());
+		reportConfigurations.setFooter(reportConfig.getLogoFooter());
 		return reportConfigurations;
 	}
 

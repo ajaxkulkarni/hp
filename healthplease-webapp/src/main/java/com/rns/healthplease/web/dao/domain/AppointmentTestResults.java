@@ -26,7 +26,8 @@ public class AppointmentTestResults {
 	private String remarks;
 	private String normalValue;
 	private String unit;
-
+	private String isBold;
+	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -101,6 +102,15 @@ public class AppointmentTestResults {
 
 	public void setUnit(String unit) {
 		this.unit = unit;
+	}
+
+	@Column(name = "is_bold")
+	public String getIsBold() {
+		return isBold;
+	}
+
+	public void setIsBold(String isBold) {
+		this.isBold = isBold;
 	}
 
 }

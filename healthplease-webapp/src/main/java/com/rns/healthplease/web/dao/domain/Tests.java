@@ -4,8 +4,11 @@ package com.rns.healthplease.web.dao.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,9 +19,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -50,7 +53,7 @@ public class Tests implements java.io.Serializable {
 	private String remark;
 	private Set<TestLabs> testLabs = new HashSet<TestLabs>(0);
 	private Set<AppointmentTests> appointmentTests = new HashSet<AppointmentTests>(0);
-	private Set<TestFactorsMap> testFactors = new HashSet<TestFactorsMap>(0);
+	private List<TestFactorsMap> testFactors = new ArrayList/*<TestFactorsMap>*/(0);
 
 	public Tests() {
 	}
@@ -245,13 +248,19 @@ public class Tests implements java.io.Serializable {
 
 
 	@OneToMany(mappedBy = "test")
-	@OrderBy(value = "id ASC")
-	public Set<TestFactorsMap> getTestFactors() {
+	//@OrderBy(value = "testFactors ASC")
+	//@OrderColumn(name = "testFactors.sequence")
+	public List<TestFactorsMap> getTestFactors() {
+		if(CollectionUtils.isNotEmpty(testFactors)) {
+			List list = new ArrayList(testFactors);
+			Collections.sort(list);
+			return list;
+		}
 		return testFactors;
 	}
 
 
-	public void setTestFactors(Set<TestFactorsMap> testFactors) {
+	public void setTestFactors(List<TestFactorsMap> testFactors) {
 		this.testFactors = testFactors;
 	}
 

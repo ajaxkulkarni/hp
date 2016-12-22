@@ -455,6 +455,7 @@ public class BusinessConverters {
 				if(StringUtils.isNotBlank(result.getUnit())) {
 					existingResult.setUnit(result.getUnit());
 				}
+				existingResult.setIsBold(result.getIsBold());
 				results.add(existingResult);
 				continue;
 			}
@@ -477,6 +478,9 @@ public class BusinessConverters {
 		}
 		if(StringUtils.isNotBlank(parameter.getUnit())) {
 			result.setUnit(parameter.getUnit());
+		}
+		if(StringUtils.isNotBlank(parameter.getIsBold())) {
+			result.setIsBold(parameter.getIsBold());
 		}
 		return result;
 	}
@@ -548,7 +552,13 @@ public class BusinessConverters {
 		if(StringUtils.isNotEmpty(reportConfigurations.getIsInvoiceSignature())) {
 			reportConfig.setInvoiceSignatureRequired(reportConfigurations.getIsInvoiceSignature());
 		}
-		
+		/*if(StringUtils.isNotEmpty(reportConfigurations.getHeader())) {
+			reportConfig.setLogoHeader(reportConfigurations.getHeader());
+		}
+		if(StringUtils.isNotEmpty(reportConfigurations.getFooter())) {
+			reportConfig.setLogoFooter(reportConfigurations.getFooter());
+		}*/
+		reportConfig.setIsColor(reportConfigurations.getIsColor());
 		if(lab.getId() != null) {
 			reportConfig.setLabId(lab.getId());
 		}

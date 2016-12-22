@@ -29,7 +29,10 @@ public class ReportConfig implements java.io.Serializable {
 	private String invoiceDesignation;
 	private String invoiceSignatureFileLocation;
 	private String invoiceSignatureRequired;
-
+	private String isColor;
+	private String logoHeader;
+	private String logoFooter;
+	
 	@Column(name = "invoice_name")
 	public String getInvoiceName() {
 		return invoiceName;
@@ -155,6 +158,37 @@ public class ReportConfig implements java.io.Serializable {
 
 	public void setSignatureRequired(String signatureRequired) {
 		this.signatureRequired = signatureRequired;
+	}
+
+
+	@Column(name = "is_color")
+	public String getIsColor() {
+		return isColor;
+	}
+
+
+	public void setIsColor(String isColor) {
+		this.isColor = isColor;
+	}
+
+	@Column(name = "logo_header")
+	public String getLogoHeader() {
+		return logoHeader;
+	}
+
+
+	public void setLogoHeader(String logoHeader) {
+		this.logoHeader = logoHeader;
+	}
+
+	@Column(name = "logo_footer")
+	public String getLogoFooter() {
+		return logoFooter;
+	}
+
+
+	public void setLogoFooter(String logoFooter) {
+		this.logoFooter = logoFooter;
 	}
 
 }

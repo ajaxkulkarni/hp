@@ -6,11 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OrderBy;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "test_factors")
-public class TestFactors implements java.io.Serializable {
+public class TestFactors implements java.io.Serializable, Comparable<TestFactors> {
 	
 	private Integer id;
 	private String name;
@@ -19,6 +21,7 @@ public class TestFactors implements java.io.Serializable {
 	private String normalVal;
 	private String factorType;
 	private String genderValues;
+	private Integer sequence;
 	
 	@Column(name = "gender_values")
 	public String getGenderValues() {
@@ -78,6 +81,27 @@ public class TestFactors implements java.io.Serializable {
 	}
 	public void setFactorType(String factorType) {
 		this.factorType = factorType;
+	}
+
+	@Column(name = "order")
+	@OrderColumn
+	public Integer getSequence() {
+		return sequence;
+	}
+	
+	public void setSequence(Integer sequence) {
+		this.sequence = sequence;
+	}
+
+	@Override
+	public int compareTo(TestFactors o) {
+		if(o.getSequence() == null) {
+			return -1;
+		}
+		if(this.sequence == null) {
+			return 1;
+		}
+		return this.sequence - o.getSequence();
 	}
 
 }

@@ -17,6 +17,7 @@ public class TestParameter {
 	private List<String> methods;
 	private String mapped;
 	private String isBold;
+	private Integer sequence;
 	
 	public Integer getId() {
 		return id;
@@ -95,6 +96,12 @@ public class TestParameter {
 	}
 	public void setIsBold(String isBold) {
 		this.isBold = isBold;
+	}
+	public Integer getOrder() {
+		return sequence;
+	}
+	public void setOrder(Integer order) {
+		this.sequence = order;
 	}
 	
 }

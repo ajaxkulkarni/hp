@@ -41,6 +41,7 @@
 							<th>Units</th>
 							<th>Normal Values</th>
 							<th>Remarks</th>
+							<th>Is bold</th>
 						</thead>
 						<tbody>
 							<c:forEach items="${test.parameters}" var="testParameter" varStatus="p">
@@ -84,7 +85,16 @@
 											<input type="text"
 												name="tests[${t.index}].parameters[${p.index}].remark"
 												value="${testParameter.remark}" />
-										</c:if></td>
+										</c:if>
+									</td>
+									<td>
+										<c:if test="${testParameter.type == 'D' && testParameter.isBold == 'y'}">
+											<input type="checkbox" name="tests[${t.index}].parameters[${p.index}].isBold" value="y" checked>Is Bold
+										</c:if>
+										<c:if test="${testParameter.type == 'D' && testParameter.isBold != 'y'}">
+											<input type="checkbox" name="tests[${t.index}].parameters[${p.index}].isBold" value="y">Is Bold
+										</c:if>
+										</td>
 								</tr>
 							</c:forEach>
 						</tbody>

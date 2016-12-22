@@ -668,6 +668,8 @@ public class LabBoImpl implements LabBo, Constants {
 		BusinessConverters.getReportConfig(lab.getReportConfig(), lab, config);
 		config.setSignatureFileLocation(storeSignature(lab, lab.getReportConfig().getSignatureFile()));
 		config.setInvoiceSignatureFileLocation(storeSignature(lab, lab.getReportConfig().getInvoiceSignatureFile()));
+		config.setLogoHeader(storeSignature(lab, lab.getReportConfig().getHeaderFile()));
+		config.setLogoFooter(storeSignature(lab, lab.getReportConfig().getFooterFile()));
 		if(config.getId() == null) {
 			session.persist(config);
 		}

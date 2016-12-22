@@ -23,7 +23,7 @@ import org.hibernate.annotations.NotFoundAction;
  */
 @Entity
 @Table(name = "test_factors_map")
-public class TestFactorsMap implements java.io.Serializable {
+public class TestFactorsMap implements java.io.Serializable, Comparable<TestFactorsMap> {
 
 	private Integer id;
 	private Tests test;
@@ -56,13 +56,24 @@ public class TestFactorsMap implements java.io.Serializable {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "factors_id")
-	@OrderBy(value = "id ASC")
+	@OrderBy(value = "sequence ASC")
 	public TestFactors getTestFactors() {
 		return testFactors;
 	}
 
 	public void setTestFactors(TestFactors testFactors) {
 		this.testFactors = testFactors;
+	}
+	
+	@Override
+	public int compareTo(TestFactorsMap o) {
+		if(o.getTestFactors() == null || o.getTestFactors().getSequence() == null) {
+			return -1;
+		}
+		if(this.getTestFactors() == null || this.getTestFactors().getSequence() == null) {
+			return 1;
+		}
+		return this.getTestFactors().getSequence() - o.getTestFactors().getSequence();
 	}
 
 }

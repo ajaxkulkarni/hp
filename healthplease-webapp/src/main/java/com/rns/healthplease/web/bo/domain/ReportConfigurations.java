@@ -20,6 +20,11 @@ public class ReportConfigurations {
 	private MultipartFile invoiceSignatureFile;
 	private String isDesignation;
 	private String isTime;
+	private String isColor;
+	private MultipartFile headerFile;
+	private MultipartFile footerFile;
+	private String header;
+	private String footer;
 	
 	public String getInvoiceDesignation() {
 		return invoiceDesignation;
@@ -116,6 +121,36 @@ public class ReportConfigurations {
 	}
 	public void setIsTime(String isTime) {
 		this.isTime = isTime;
+	}
+	public String getIsColor() {
+		return isColor;
+	}
+	public void setIsColor(String isColor) {
+		this.isColor = isColor;
+	}
+	public String getHeader() {
+		return header;
+	}
+	public void setHeader(String header) {
+		this.header = header;
+	}
+	public String getFooter() {
+		return footer;
+	}
+	public void setFooter(String footer) {
+		this.footer = footer;
+	}
+	public MultipartFile getHeaderFile() {
+		return headerFile;
+	}
+	public void setHeaderFile(MultipartFile headerFile) {
+		this.headerFile = headerFile;
+	}
+	public MultipartFile getFooterFile() {
+		return footerFile;
+	}
+	public void setFooterFile(MultipartFile footerFile) {
+		this.footerFile = footerFile;
 	}
 	
 

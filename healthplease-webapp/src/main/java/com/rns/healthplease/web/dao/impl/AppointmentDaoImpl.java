@@ -287,7 +287,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	
 	@Override
 	public List<TestFactors> getAllTestFactors(Session session) {
-		Query createQuery = session.createQuery("from TestFactors");
+		Query createQuery = session.createQuery("from TestFactors order by sequence");
 		return createQuery.list();
 	}
 	
