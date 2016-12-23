@@ -97,7 +97,7 @@
 	<div class="col-md-3">
 	  <a class="navbar-brand" href="http://www.healthplease.in/"><img src="<c:url value="/resources/images/LOGO-2.png"/>" class="classLogoImg"/></a>
 	</div>
-	<div class="col-md-6" >
+	<div class="col-md-6" style="border:;padding-left:200px"  >
 	  <img src="getLabLogo?logoPath=${user.lab.logo}"  />
 	</div>
 	<div class="col-md-3">

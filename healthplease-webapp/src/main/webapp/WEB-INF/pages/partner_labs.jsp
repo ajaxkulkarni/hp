@@ -35,7 +35,8 @@
                 <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="row r-classAboutHighLightBox ">
                     	<c:forEach items="${labs}" var="lab">
-                       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 classHLBox " style="background:#F0FAFF;padding:40px;min-height:275px;margin-bottom:0px;">
+                       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 classHLBox " style="background:#F0FAFF;padding:40px;height:300px;margin-bottom:0px;">
+                            <img src="<c:url value="/resources/images/home_home.png"/>" style="height:100px;width:200px;" />
                             <h3><i class="fa fa-building"></i> ${lab.name}</h3>
                             <p><i class="fa fa-map-marker"></i> ${lab.address}</p>
                        </div>
