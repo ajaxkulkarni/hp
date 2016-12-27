@@ -213,10 +213,10 @@ public class DataConverters {
 		appointment.setLocation(DataConverters.getLocation(appointments.getLocations()));
 		appointment.setSlot(DataConverters.getSlot(appointments.getSlots()));
 		appointment.setAddress(DataConverters.getAppointmentAddress(appointmentDao.getAddressByAppointmentId(appointment.getId(), session)));
-		User user = new User();
-		getUser(appointments.getUser(), user);
-		appointment.setUser(user);
-		appointment.setAccountHolder(user);
+		User accountHolder = new User();
+		getUser(appointments.getUser(), accountHolder);
+		appointment.setAccountHolder(accountHolder);
+		appointment.setUser(new User());
 		appointment.getUser().setFirstName(appointments.getName());
 		appointment.getUser().setEmail(appointments.getEmail());
 		appointment.getUser().setPhone(appointments.getMobileNo());

@@ -166,7 +166,7 @@
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper">
               <label class=" control-label" for="appointmentPName">Patient's Name</label>  
               <div class="">
-                <input id="idAppointmentPName" pattern="[A-Za-z]+" name="user.firstName" placeholder="Name" title="Enter a valid Name" class="form-control input-md" type="text" required="required">      
+                <input id="idAppointmentPName" pattern="[A-Za-z]+" name="user.firstName" value="${appointment.user.firstName}" placeholder="Name" title="Enter a valid Name" class="form-control input-md" type="text" required="required">      
               </div>
               <div class="" id="idAppPNameErr"></div>
             </div>
@@ -174,7 +174,7 @@
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper">
               <label class=" control-label" for="appointmentPEmail">Patient's Email</label>  
               <div class="">
-                <input id="idAppointmentPEmail" name="user.email" placeholder="Email" class="form-control input-md" type="email" required="required">      
+                <input id="idAppointmentPEmail" name="user.email" value="${appointment.user.email}" placeholder="Email" class="form-control input-md" type="email" required="required">      
               </div>
               <div class="" id="idAppPEmailErr"></div>
             </div>
@@ -182,7 +182,7 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPContact">Patient's Contact</label>  
               <div class="">
-                <input id="idAppointmentPContact" name="user.phone" placeholder="Mobile No" class="form-control input-md" type="text" required="required">      
+                <input id="idAppointmentPContact" name="user.phone" value="${appointment.user.phone}" placeholder="Mobile No" class="form-control input-md" type="text" required="required">      
               </div>
               <div class="" id="idAppPContactErr"></div>
             </div>
@@ -190,8 +190,21 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPGender">Patient's Gender</label>  
               <div class="radio">
-                  <label><input type="radio" name="user.gender" value="M" checked="checked">Male</label>
-                 <label><input type="radio" name="user.gender" value="F">Female</label>  
+                  <label>
+                  	<c:if test="${appointment.user.gender == 'F'}">
+                  		<input type="radio" name="user.gender" value="M">Male
+                  	</c:if>
+                  	<c:if test="${appointment.user.gender != 'F'}">
+                  		<input type="radio" name="user.gender" value="M" checked>Male
+                  	</c:if>
+                  </label>
+                 <label><c:if test="${appointment.user.gender != 'F'}">
+                  		<input type="radio" name="user.gender" value="F">Female
+                  	</c:if>
+                  	<c:if test="${appointment.user.gender == 'F'}">
+                  		<input type="radio" name="user.gender" value="F" checked>Female
+                  	</c:if>
+                  </label>  
              </div>   
               <div class="" id="idAppPGenderErr"></div>
             </div>
@@ -199,7 +212,7 @@
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper">
               <label class=" control-label" for="appointmentPAge">Patient's Age</label>  
               <div class="">
-                <input id="idAppointmentPAge" align="left" name="user.age" placeholder="Age" class="form-control input-md" type="text" required="required">      
+                <input id="idAppointmentPAge" align="left" name="user.age" value="${appointment.user.age}" placeholder="Age" class="form-control input-md" type="text" required="required">      
               </div>
               <div class="" id="idAppAgeErr"></div>
             </div>
@@ -216,7 +229,7 @@
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 classControlWrapper">
               <label class=" control-label" for="appointmentPAdd">Patient's Address</label>  
               <div class="">
-                <textarea id="idAppointmentPAdd" name="address.street" placeholder="Address" class="form-control input-md"></textarea>      
+                <textarea id="idAppointmentPAdd" name="address.street" placeholder="Address" class="form-control input-md">${appointment.user.address.street}</textarea>      
               </div>
               <div class="" id="idAppPAddErr"></div>
             </div>
@@ -224,7 +237,7 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPArea">Patient's Area</label>  
               <div class="">
-                <input readonly id="idAppointmentPArea" name="address.area" placeholder="Area" class="form-control input-md"  type="text" required="required"/>      
+                <input readonly id="idAppointmentPArea" name="address.area" value="${appointment.user.address.area}" placeholder="Area" class="form-control input-md"  type="text" required="required"/>      
               </div>
               <div class="" id="idAppPAreaErr"></div>
             </div>
@@ -232,7 +245,7 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPLandmark">Patient's Landmark</label>  
               <div class="">
-                <input id="idAppointmentPLandmark" name="address.landmark" placeholder="Landmark" class="form-control input-md"  type="text"/>      
+                <input id="idAppointmentPLandmark" name="address.landmark" value="${appointment.user.address.landmark}" placeholder="Landmark" class="form-control input-md"  type="text"/>      
               </div>
               <div class="" id="idAppPLandmarkErr"></div>
             </div>
@@ -248,7 +261,7 @@
             <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 classControlWrapper">
               <label class=" control-label" for="appointmentPincode">Patient's Pincode</label>  
               <div class="">
-                <input id="idappointmentPincode"  pattern="[0-9]{6}" name="address.zipCode" placeholder="Pincode" class="form-control input-md"  type="text"  />      
+                <input id="idappointmentPincode"  pattern="[0-9]{6}" name="address.zipCode" value="${appointment.user.address.zipCode}" placeholder="Pincode" class="form-control input-md"  type="text"  />      
               </div>
               <div class="" id="idAppPPincodeErr"></div>
             </div>

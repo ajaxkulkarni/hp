@@ -327,6 +327,7 @@ public class HPCustomerControllerWeb implements Constants {
 		currentAppointment.setDoctorName(appointment.getDoctorName());
 		currentAppointment.setUser(appointment.getUser());
 		currentAppointment.setPrintRequired(appointment.getPrintRequired());
+		currentAppointment.setAccountHolder(manager.getUser());
 		userBo.populateAppointment(currentAppointment);
 		calculateDiscount(currentAppointment);
 		manager.setResult(null);

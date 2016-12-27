@@ -50,6 +50,7 @@ import com.rns.healthplease.web.bo.domain.PaymentType;
 import com.rns.healthplease.web.bo.domain.ReportConfigurations;
 import com.rns.healthplease.web.bo.domain.Slot;
 import com.rns.healthplease.web.bo.domain.TestParameter;
+import com.rns.healthplease.web.bo.domain.User;
 import com.rns.healthplease.web.util.CommonUtils;
 import com.rns.healthplease.web.util.Constants;
 import com.rns.healthplease.web.util.JasperUtil;
@@ -170,11 +171,22 @@ public class HPLabControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/" + BOOK_APPOINTMENT_LAB_GET_URL, method = RequestMethod.GET)
-	public String initBookAppointment(ModelMap model) {
+	public String initBookAppointment(ModelMap model, String email) {
 		Lab lab = manager.getUser().getLab();
+		User user = null;
+		if(StringUtils.isNotBlank(email)) {
+			user = new User();
+			user.setEmail(email);
+			userBo.populateUserDetails(user);
+		}
+		
 		model.addAttribute(MODEL_TESTS, labBo.getAvailableLabTests(lab));
 		model.addAttribute(MODEL_LOCATIONS, labBo.getAvailableLabLocations(lab));
 		Appointment appointment = new Appointment();
+		if(user != null) {
+			appointment.setUser(user);
+			model.addAttribute(MODEL_APPOINTMENT, appointment);
+		}
 		appointment.setLab(lab);
 		List<Date> blockedDates = userBo.getBlockedDates(appointment);
 		model.addAttribute(MODEL_DATES, CommonUtils.getDatesAsString(blockedDates));

@@ -304,7 +304,8 @@ public class UserBoImpl implements UserBo, Constants {
 				Lab lab = DataConverters.getLab(testLab.getLab());
 				lab.setPrice(Integer.valueOf(testLab.getLabPrice()));
 				if (lab != null) {
-					CommonUtils.calculatePrice(lab, appointment, appointmentDao, session);
+					int price = CommonUtils.calculatePrice(lab, appointment, appointmentDao, session);
+					setLabDiscount(lab, price);
 					labs.add(lab);
 				}
 			}
@@ -312,6 +313,12 @@ public class UserBoImpl implements UserBo, Constants {
 
 		session.close();
 		return labs;
+	}
+
+	private void setLabDiscount(Lab lab, int price) {
+		if(price > 0 && lab.getDiscount() != null && lab.getDiscount() > 0) {
+			lab.setPrice(price -  price*lab.getDiscount()/100);
+		}
 	}
 
 	private List<TestLabs> getLabsForTests(Appointment appointment, Session session, AppointmentDao appointmentDao, LabLocations labLocation) {
@@ -363,7 +370,8 @@ public class UserBoImpl implements UserBo, Constants {
 				if(lab == null) {
 					continue;
 				}
-				CommonUtils.calculatePrice(lab, appointment, appointmentDao, session);
+				int price = CommonUtils.calculatePrice(lab, appointment, appointmentDao, session);
+				setLabDiscount(lab, price);
 				labSet.add(lab);
 			}
 		}

@@ -38,6 +38,8 @@
 			<div class="panel panel-default">
 			<div class="panel-heading">Report Settings</div>
 			<input type="hidden" name="signaturePath" value="${user.lab.reportConfig.signaturePath}">
+			<input type="hidden" name="header" value="${user.lab.reportConfig.header}">
+			<input type="hidden" name="footer" value="${user.lab.reportConfig.footer}">
 			<div class="row" style="margin:20px">
 			<div class="col-md-4">
 				<c:if test="${user.lab.reportConfig.isHeader == 'y'}">

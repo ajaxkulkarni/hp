@@ -387,9 +387,9 @@ public class CommonUtils implements Constants {
 		return false;
 	}
 
-	public static void calculatePrice(Lab lab, Appointment appointment, AppointmentDao appointmentDao, Session session) {
+	public static Integer calculatePrice(Lab lab, Appointment appointment, AppointmentDao appointmentDao, Session session) {
 		if(lab == null || lab.getId() == null) {
-			return;
+			return 0;
 		}
 		List<LabTest> tests = new ArrayList<LabTest>();
 		Integer totalPrice = 0;
@@ -428,6 +428,7 @@ public class CommonUtils implements Constants {
 		}
 		lab.setPrice(totalPrice);
 		appointment.setTests(tests);
+		return totalPrice;
 	}
 
 	public static List<Appointment> getAppointmentsByType(HPSessionManager manager, String header) {

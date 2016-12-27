@@ -84,12 +84,7 @@
                 	<td>${user.gender}</td>
                 	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${user.dob}"/></td>
                 	<td><button type="button" class="btn btn-info btn-lg" onclick="showAppointments('${user.email}')">History</button></td>
-                	<%-- <td align="center">
-                		<a href="<%=Constants.ADMIN_EDIT_LOCATION_GET_URL%>?id=${loc.id}&name=${loc.name}" class="js-edituser"><i class="glyphicon glyphicon-edit"></i></a>
-                	</td>
-                	<td align="center">
-                		<a href="#" class="js-deleteuser" onclick="confirmDelete('${loc.name}','${loc.id}')" ><i class="glyphicon glyphicon-remove-circle"></i></a>
-                	</td> --%>
+                	<td><a href="<%=Constants.BOOK_APPOINTMENT_LAB_GET_URL%>?email=${user.email}"><button type="button" class="btn btn-info btn-lg">Book</button></a></td>
                 </tr>
                 </c:forEach>
                 </tbody></table>

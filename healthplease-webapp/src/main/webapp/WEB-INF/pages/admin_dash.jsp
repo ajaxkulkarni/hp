@@ -340,7 +340,7 @@
                                                 <td width="0px">${appointment.user.email}</td>
                                                 <td width="0px">${appointment.user.gender}</td>
                                                 <td width="0px">${appointment.doctorName}</td>
-                                                <td width="0px">${appointment.user.registeredEmail}</td>
+                                                <td width="0px">${appointment.accountHolder.email}</td>
                                                 <td width="0px">${appointment.payment.type}</td>
                                                 <td width="0px">${appointment.printRequired}</td>
                                                
