@@ -156,6 +156,7 @@ public class JasperUtil {
 						continue;
 					}
 					parameter.setIsBold("");
+					parameter.setIsColor("");
 					String[] values = StringUtils.split(parameter.getNormalValue(), "-");
 					if (values == null || values.length < 2) {
 						continue;
@@ -165,8 +166,13 @@ public class JasperUtil {
 					double value = new Double(parameter.getActualValue());
 					if (value < min || value > max) {
 						parameter.setIsBold("y");
+						parameter.setColor("#000000");
+						parameter.setIsColor(CommonUtils.getStringValue(reportConfig.getIsColor()));
+						if(StringUtils.equals("y", parameter.getIsColor())) {
+							parameter.setColor("#FF0703");
+						}
 					}
-					parameter.setIsColor(CommonUtils.getStringValue(reportConfig.getIsColor()));
+					
 				}
 			}
 		}

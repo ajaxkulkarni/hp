@@ -19,6 +19,7 @@ public class TestParameter {
 	private String isBold;
 	private String isColor;
 	private Integer sequence;
+	private String color;
 	
 	public Integer getId() {
 		return id;
@@ -109,6 +110,12 @@ public class TestParameter {
 	}
 	public void setIsColor(String isColor) {
 		this.isColor = isColor;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
 	}
 	
 }
