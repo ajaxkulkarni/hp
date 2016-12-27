@@ -129,7 +129,7 @@ public class JasperUtil {
 			// parameters.put("separatePage", reportConfig.getIsSeparatePage());
 		}
 		// parameters.put("isbold", "");
-		analyzeTestParameters(appointment.getTests());
+		analyzeTestParameters(appointment.getTests(), reportConfig);
 		JRBeanCollectionDataSource testSource = new JRBeanCollectionDataSource(appointment.getTests());
 		String reportName = LAB_REPORT_TEMPLATE;
 		if (CollectionUtils.isNotEmpty(appointment.getTests()) && CollectionUtils.isNotEmpty(appointment.getTests().get(0).getParameters())
@@ -142,7 +142,7 @@ public class JasperUtil {
 		appointment.setReportData(generateReport(parameters, testSource, reportName));
 	}
 
-	private static void analyzeTestParameters(List<LabTest> tests) {
+	private static void analyzeTestParameters(List<LabTest> tests, ReportConfigurations reportConfig) {
 		if (CollectionUtils.isEmpty(tests)) {
 			return;
 		}
@@ -166,6 +166,7 @@ public class JasperUtil {
 					if (value < min || value > max) {
 						parameter.setIsBold("y");
 					}
+					parameter.setIsColor(CommonUtils.getStringValue(reportConfig.getIsColor()));
 				}
 			}
 		}

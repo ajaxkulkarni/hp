@@ -17,6 +17,7 @@ public class TestParameter {
 	private List<String> methods;
 	private String mapped;
 	private String isBold;
+	private String isColor;
 	private Integer sequence;
 	
 	public Integer getId() {
@@ -102,6 +103,12 @@ public class TestParameter {
 	}
 	public void setOrder(Integer order) {
 		this.sequence = order;
+	}
+	public String getIsColor() {
+		return isColor;
+	}
+	public void setIsColor(String isColor) {
+		this.isColor = isColor;
 	}
 	
 }
