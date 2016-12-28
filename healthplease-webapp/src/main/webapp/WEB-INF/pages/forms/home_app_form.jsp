@@ -14,9 +14,9 @@
 <body>
 
 
-	<div class="row" id="homeApp">
+	<div class="row" id="homeApp" style="border:;margin-top:-25px">
 		<button type="button" class="close" id="collap_close_btn1" onclick="hideHomeApp()">
-			<span aria-hidden="true">Back</span>
+			<img src="<c:url value="/resources/images/back.png"/>">
 		</button>
 		<div
 			class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
@@ -35,11 +35,10 @@
 
 			</div>
 		</div>
-		<div
-			class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 classNoPadding">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 classNoPadding">
 			<!-- Form Div Start-->
 			<div class="auth">
-				<div id="big-form" class="well auth-box">
+				<div id="big-form" class="well auth-box" style="border:;margin-top:-25x">
 
 					<fieldset>
 
@@ -48,6 +47,7 @@
 							<i class="fa fa-home"></i> Request Collection
 						</legend>
 						<!-- Select Basic -->
+						
 						<div class="form-group">
 							<!-- <label class=" control-label" for="selectbasic">Test</label> -->
 							<div class="ui-widget">
@@ -70,6 +70,16 @@
 								</select>
 							</div>
 							<div class="" id="idTestErr"></div>
+						</div>
+							<div class="form-group">
+							<!-- <label class=" control-label" for="selectbasic">Your Location</label> -->
+							<div class="ui-widget">
+								<select id="" name="location" style="width:100%"
+									class="form-control locations" onchange="getLabs('Y')">
+									<option value="">Pune</option>
+								</select>
+							</div>
+							<div class="" id="idLocationErr"></div>
 						</div>
 
 						<div class="form-group">

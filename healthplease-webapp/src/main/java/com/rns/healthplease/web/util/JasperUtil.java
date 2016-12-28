@@ -115,6 +115,7 @@ public class JasperUtil {
 			parameters.put("printDesignation", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsDesignation())));
 			parameters.put("printTime", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsTime())));
 			parameters.put("printColor", CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsColor())));
+			System.out.println(CommonUtils.getStringValue(StringUtils.lowerCase(reportConfig.getIsColor())));
 			parameters.put("pathName", reportConfig.getName());
 			parameters.put("designation", reportConfig.getDesignation());
 			parameters.put("headerLogo", reportConfig.getHeader());

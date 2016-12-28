@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-12-07T00:25:57 -->
+<!-- 2016-12-17T23:18:36 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_lab_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77c25847-1fd9-493d-b55e-1f492fce0aa7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -27,6 +27,9 @@
 	<parameter name="imagePath" class="java.lang.String"/>
 	<parameter name="remark" class="java.lang.String"/>
 	<parameter name="separatePage" class="java.lang.String"/>
+	<parameter name="printDesignation" class="java.lang.String"/>
+	<parameter name="printTime" class="java.lang.String"/>
+	<parameter name="reportTime" class="java.lang.String"/>
 	<field name="parameters" class="java.util.List"/>
 	<field name="name" class="java.lang.String"/>
 	<field name="remark" class="java.lang.String"/>
@@ -119,6 +122,12 @@
 					<printWhenExpression><![CDATA[$P{printRequired}.equals("y")]]></printWhenExpression>
 				</reportElement>
 			</rectangle>
+			<textField>
+				<reportElement x="227" y="150" width="100" height="15" uuid="a9d22e6a-23a4-4978-b7a2-03ce1e1cfc5e">
+					<printWhenExpression><![CDATA[$P{printTime}.equals("y")]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{reportTime}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -166,7 +175,7 @@
 				<reportElement x="384" y="69" width="150" height="15" uuid="dc25118e-111e-48bc-baef-b9cfafd7053f">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
+					<printWhenExpression><![CDATA[$P{printDesignation}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{pathName}]]></textFieldExpression>
@@ -182,7 +191,7 @@
 				<reportElement x="384" y="86" width="150" height="15" uuid="d14c6d0c-62b0-47ca-bef7-d96844669b32">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<printWhenExpression><![CDATA[$P{printSign}.equals("y")]]></printWhenExpression>
+					<printWhenExpression><![CDATA[$P{printDesignation}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{designation}]]></textFieldExpression>

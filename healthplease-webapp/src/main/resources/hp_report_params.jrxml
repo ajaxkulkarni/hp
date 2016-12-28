@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-12-01T09:24:44 -->
+<!-- 2016-12-29T00:34:06 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hp_report_params" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" uuid="7df0b4c9-a9f5-4694-990d-0bf775f2b11c">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
@@ -17,6 +17,9 @@
 	</field>
 	<field name="isBold" class="java.lang.String">
 		<fieldDescription><![CDATA[isBold]]></fieldDescription>
+	</field>
+	<field name="isColor" class="java.lang.String">
+		<fieldDescription><![CDATA[isColor]]></fieldDescription>
 	</field>
 	<field name="name" class="java.lang.String">
 		<fieldDescription><![CDATA[name]]></fieldDescription>
@@ -81,7 +84,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="17" splitType="Stretch">
+		<band height="18" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="1" y="1" width="159" height="14" uuid="eedd334b-6765-42d6-8e19-7340e2958854">
@@ -98,7 +101,7 @@
 				<textFieldExpression><![CDATA[$F{unit}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="183" y="1" width="100" height="14" uuid="d951c733-395f-4a4d-939d-26e7a93785a6">
+				<reportElement mode="Transparent" x="183" y="1" width="92" height="14" uuid="d951c733-395f-4a4d-939d-26e7a93785a6">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$F{isBold}.equals("")]]></printWhenExpression>
 				</reportElement>
@@ -114,9 +117,19 @@
 				<textFieldExpression><![CDATA[$F{remark}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="183" y="1" width="100" height="14" uuid="29af9692-88c0-4c62-9722-68b326639ace">
+				<reportElement x="181" y="1" width="100" height="14" uuid="29af9692-88c0-4c62-9722-68b326639ace">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$F{isBold}.equals("y")]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{actualValue}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="181" y="1" width="100" height="14" forecolor="#FF0400" uuid="2ab08017-5cce-45ba-abca-647d8ddeda2d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{isColor}.equals("y")]]></printWhenExpression>
 				</reportElement>
 				<textElement>
 					<font fontName="SansSerif" isBold="true"/>

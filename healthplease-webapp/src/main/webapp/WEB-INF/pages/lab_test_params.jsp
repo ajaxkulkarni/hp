@@ -40,6 +40,7 @@
 			<input type="hidden" name="signaturePath" value="${user.lab.reportConfig.signaturePath}">
 			<input type="hidden" name="header" value="${user.lab.reportConfig.header}">
 			<input type="hidden" name="footer" value="${user.lab.reportConfig.footer}">
+			<input type="hidden" name="isColor" value="${user.lab.reportConfig.isColor}">
 			<div class="row" style="margin:20px">
 			<div class="col-md-4">
 				<c:if test="${user.lab.reportConfig.isHeader == 'y'}">

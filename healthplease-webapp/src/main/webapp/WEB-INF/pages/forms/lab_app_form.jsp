@@ -10,12 +10,11 @@
 <body>
 
 
-	<div class="row" id="labApp">
+	<div class="row" id="labApp" style="border:;margin-top:-25px">
 		<button type="button" class="close" id="collap_close_btn1" onclick="hideLabApp()">
-			<span aria-hidden="true">Back</span>
+				<img src="<c:url value="/resources/images/back.png"/>">
 		</button>
-		<div
-			class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-sm hidden-xs classNoLPadding" style="border:">
 			<div class="classHAbtTextWrapper">
 				<div class="classOSCFont classFrontText">
 					<!-- Your Convenience, Our Priority...<br/> -->
@@ -32,11 +31,10 @@
 
 			</div>
 		</div>
-		<div
-			class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 classNoPadding" style="padding-top:30px;">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 classNoPadding" style="padding-top:-25px;border:">
 			<!-- Form Div Start-->
-			<div class="auth">
-				<div id="big-form" class="well auth-box">
+			<div class="auth" >
+				<div id="big-form" class="well auth-box"style="border:;padding-top:-20px">
 
 					<fieldset>
 
