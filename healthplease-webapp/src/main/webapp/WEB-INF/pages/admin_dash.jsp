@@ -489,6 +489,14 @@
 <script src="<c:url value="/resources/js/jquery.form.min.js"/>" type="text/javascript"></script>
 <script type="text/javascript">
 
+function resetReason() {
+	 if($("#select_reason").val() == 4) {
+		 $("#cancel_reason").removeAttr("readonly");
+	 } else {
+		 $("#cancel_reason").attr("readonly", true);
+	 }
+}
+
 function getAppointment(id) {
 	 $.ajax({
 	       	type : "POST",

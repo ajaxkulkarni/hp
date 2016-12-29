@@ -692,7 +692,7 @@ public class HPLabControllerWeb implements Constants {
 	}
 
 	@RequestMapping(value = "/" + "getLabLogo", method = RequestMethod.GET)
-	public void generateReport(ModelMap model, String logoPath, HttpServletResponse response) {
+	public void getLogo(ModelMap model, String logoPath, HttpServletResponse response) {
 		if (StringUtils.isEmpty(logoPath)) {
 			return;
 		}

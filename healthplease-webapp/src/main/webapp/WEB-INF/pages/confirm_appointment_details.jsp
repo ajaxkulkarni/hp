@@ -275,7 +275,14 @@ $(document).ready(function() {
                                                 <strong><i class="fa fa-inr"></i> ${appointment.lab.testPrice}</strong>
                                             </p>
                                             <p>
-                                                <strong><i class="fa fa-inr"></i> ${appointment.lab.pickUpCharge}</strong>
+                                                <strong><i class="fa fa-inr"></i> 
+                                                	<c:if test="${appointment.lab.pickUpCharge == null }">
+                                                		0
+                                                	</c:if>
+                                                	<c:if test="${appointment.lab.pickUpCharge != null }">
+                                                		${appointment.lab.pickUpCharge}
+                                                	</c:if>
+                                                </strong>
                                             </p>
                                         </td>
                                     </tr>
