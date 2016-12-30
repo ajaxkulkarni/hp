@@ -487,9 +487,9 @@ body{
                 </div>
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 classWColor">
                               
-							<h3 class="" style="color:#000;font-size:22px;">
+							<h5 class="" style="color:#000;font-size:20px;">
 								<p>HealthPlease.in is proud to introduce a Cloud Based App for Labs </br>that helps them manage their In Centre and Home Visit appointments,</br> Test Reporting and Finances more efficiently and conveniently.</p>
-							</h3>
+							</h5>
 							<ul class="classPoint" >
 								<li class="classW12">
 									<span class="classPtSpan"><i class="fa fa-circle" aria-hidden="true"></i> Online Presence</span>

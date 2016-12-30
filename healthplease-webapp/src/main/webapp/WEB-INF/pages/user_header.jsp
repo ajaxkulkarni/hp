@@ -130,11 +130,7 @@ s0.parentNode.insertBefore(s1,s0);
                                                         <!-- /.navbar-header -->
                             <div class="collapse navbar-collapse" id="example-navbar-collapse">
                                 <ul class="nav navbar-top-links navbar-right">
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle"  href="<%=Constants.HOME_GET_URL%>">
-                                            <i class="fa fa-home fa-fw"></i> Home
-                                        </a>                    <!-- /.dropdown-messages -->
-                                    </li>
+                                    
                                     <li class="dropdown">
                                         <a class="dropdown-toggle"  href="<%=Constants.ABOUT_US_GET_URL%>">
                                             <i class="fa fa-life-ring fa-fw"></i> About Us
@@ -157,7 +153,15 @@ s0.parentNode.insertBefore(s1,s0);
                                         </a>                    <!-- /.dropdown-messages -->
                                     </li>
                                                                         <!-- /.dropdown -->
-                                    
+                                    <li class="dropdown">
+                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
+                                            <i class="fa fa-pencil-square fa-fw"></i> Blog
+                                        </a> 
+                                        <ul class="dropdown-menu" style="background-color:#a4dbf4">
+                                        	<li class="dropdown" style="margin:4px"><a href="#"> <i class="fa fa-pencil-square fa-fw"></i>Pathology Test and Importance</a></li>
+ 											<li class="dropdown"style="margin:4px"><a href="#"> <i class="fa fa-pencil-square fa-fw"></i>Blood Group and Types</a></li>                                       
+                                        </ul>
+                                    </li>
                                     <!-- /.dropdown -->
                                     <c:if test="${user.group.id == 2 || user.group.id == 4}">
                                     <li class="dropdown">
