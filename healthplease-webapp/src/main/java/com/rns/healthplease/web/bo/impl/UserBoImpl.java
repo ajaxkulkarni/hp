@@ -363,6 +363,7 @@ public class UserBoImpl implements UserBo, Constants {
 		List<Lab> labs = new ArrayList<Lab>();
 		Set<Lab> labSet = new HashSet<Lab>();
 		appointment.setHomeCollection(false);
+		List<TestLabs> testLabList = new ArrayList<TestLabs>();
 		for(LabTest test: appointment.getTests()) {
 			Tests tests = appointmentDao.getTestById(test.getId(), session);
 			for(TestLabs testLabs: tests.getTestLabs()) {
@@ -370,13 +371,25 @@ public class UserBoImpl implements UserBo, Constants {
 				if(lab == null) {
 					continue;
 				}
-				int price = CommonUtils.calculatePrice(lab, appointment, appointmentDao, session);
-				setLabDiscount(lab, price);
+				/*int price = CommonUtils.calculatePrice(lab, appointment, appointmentDao, session);
+				setLabDiscount(lab, price);*/
+				testLabList.add(testLabs);
 				labSet.add(lab);
 			}
 		}
+		List<TestLabs> tLabs = filterLabs(testLabList, appointment.getTests().size());
+		labs = new ArrayList<Lab>();
+		for(TestLabs tlaLab: tLabs) {
+			for(Lab lab: labSet) {
+				if(lab.getId().intValue() == tlaLab.getLab().getId().intValue()) {
+					int price = CommonUtils.calculatePrice(lab, appointment, appointmentDao, session);
+					setLabDiscount(lab, price);
+					labs.add(lab);
+					break;
+				}
+			}
+		}
 		session.close();
-		labs = new ArrayList<Lab>(labSet);
 		return labs;
 	}
 

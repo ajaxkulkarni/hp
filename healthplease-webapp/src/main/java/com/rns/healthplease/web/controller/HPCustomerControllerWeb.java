@@ -45,6 +45,7 @@ import com.rns.healthplease.web.util.PaymentUtils;
 @Controller
 public class HPCustomerControllerWeb implements Constants {
 
+
 	private UserBo userBo;
 	
 	private LabBo LabBo;
@@ -639,6 +640,22 @@ public class HPCustomerControllerWeb implements Constants {
 		model.addAttribute(MODEL_RESULT, manager.getResult());
 		manager.setResult(null);
 		return LAB_PARTNER_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + BLOG1_GET_URL, method = RequestMethod.GET)
+	public String initBlog1(ModelMap model) {
+		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_RESULT, manager.getResult());
+		manager.setResult(null);
+		return BLOG_1_PAGE;
+	}
+	
+	@RequestMapping(value = "/" + BLOG2_GET_URL, method = RequestMethod.GET)
+	public String initBlog2(ModelMap model) {
+		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_RESULT, manager.getResult());
+		manager.setResult(null);
+		return BLOG_2_PAGE;
 	}
 
 }
