@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
 <link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
     <meta charset="utf-8">
-            <title>Best Online Pathology & Diagnostics Center in Pune - HealthPlease</title>
+            <title>Blood Group and Types |HealthPlease.in</title>
     <meta name="keywords" content="Book Online Patholog Test, Book Online Pathology Test Pune, Online pathology services in Pune, Book online diagnostic test">
     <meta name="description" content="You can now book online pathology test & diagnostic services with ease and comfort. No traveling to labs, our experts will provide end-to-end service at your doorstep.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

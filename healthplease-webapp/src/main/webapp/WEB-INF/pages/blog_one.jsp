@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/images/favicon/favicon-96x96.png"/>">
 <link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/resources/images/favicon/favicon-16x16.png"/>">
     <meta charset="utf-8">
-            <title>Best Online Pathology & Diagnostics Center in Pune - HealthPlease</title>
+            <title>Pathology Test and Importance | HealthPlease.in</title>
     <meta name="keywords" content="Book Online Patholog Test, Book Online Pathology Test Pune, Online pathology services in Pune, Book online diagnostic test">
     <meta name="description" content="You can now book online pathology test & diagnostic services with ease and comfort. No traveling to labs, our experts will provide end-to-end service at your doorstep.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,11 +25,11 @@
 <div class="col-md-10 col-md-offset-1 col-xs-12 col-sm-12" style="margin:5%;padding:5%;box-shadow:1px 1px 15px">
 <p>Pathology tests can help your doctor understand any health issues you face.</p>
 <p><strong>What are pathology tests?</strong></p>
-<p>A pathology test is a test that examines your&nbsp;<a href="https://www.healthdirect.gov.au/blood-testing">blood</a>,&nbsp;<a href="https://www.healthdirect.gov.au/urine-tests">urine</a>, stool or samples obtained by&nbsp;<a href="https://www.healthdirect.gov.au/biopsy">biopsy</a>. Doctors use this information for diagnosis and treatment of diseases and other conditions.</p>
+<p>A pathology test is a test that examines your blood, urine, stool or samples obtained by biopsy. Doctors use this information for diagnosis and treatment of diseases and other conditions.</p>
 <p><strong>Why are pathology tests important?</strong></p>
 <p>Pathology tests help doctors and nurses prevent, diagnose, manage and monitor many conditions, including allergies, infections, chronic diseases and cancer.</p>
 <p><strong>Before your test</strong></p>
-<p>Follow any instructions given to you about the test. For some tests, you need special preparation such as&nbsp;<a href="https://www.healthdirect.gov.au/fasting-for-medical-tests">fasting</a>. Let collection center staff know if you have not followed the instructions for any reason.</p>
+<p>Follow any instructions given to you about the test. For some tests, you need special preparation such as fasting. Let collection center staff know if you have not followed the instructions for any reason.</p>
 <p>Let your doctor know about any medications you are taking, including herbal or over-the-counter (non-prescription) medications.</p>
 <p>If you have other questions about the tests, or are not sure of what you need to do, it is best to check with your doctor or call the pathology collection center.</p>
 <p><strong>Reading the test results</strong></p>

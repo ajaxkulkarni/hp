@@ -657,5 +657,12 @@ public class HPCustomerControllerWeb implements Constants {
 		manager.setResult(null);
 		return BLOG_2_PAGE;
 	}
+	@RequestMapping(value = "/" + Offer_GET_URL, method = RequestMethod.GET)
+	public String initOffer(ModelMap model) {
+		model.addAttribute(MODEL_USER, manager.getUser());
+		model.addAttribute(MODEL_RESULT, manager.getResult());
+		manager.setResult(null);
+		return OFFER_PAGE;
+	}
 
 }

@@ -159,7 +159,8 @@ s0.parentNode.insertBefore(s1,s0);
                                         </a> 
                                         <ul class="dropdown-menu" style="background-color:#a4dbf4">
                                         	<li class="dropdown" style="margin:4px"><a href="<%=Constants.BLOG1_GET_URL%>"> <i class="fa fa-pencil-square fa-fw"></i>Pathology Test and Importance</a></li>
- 											<li class="dropdown"style="margin:4px"><a href="<%=Constants.BLOG2_GET_URL%>"> <i class="fa fa-pencil-square fa-fw"></i>Blood Group and Types</a></li>                                       
+ 											<li class="dropdown"style="margin:4px"><a href="<%=Constants.BLOG2_GET_URL%>"> <i class="fa fa-pencil-square fa-fw"></i>Blood Group and Types</a></li>
+ 											<li class="dropdown"style="margin:4px"><a href="<%=Constants.Offer_GET_URL%>"> <i class="fa fa-pencil-square fa-fw"></i>Offers page</a></li>                                        
                                         </ul>
                                     </li>
                                     <!-- /.dropdown -->

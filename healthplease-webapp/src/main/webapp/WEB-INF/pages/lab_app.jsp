@@ -49,7 +49,24 @@
 	float: left;
 }
 .classInnerPoint li{
-/*	    background: #414243;*/
+font-family:calibri;
+    font-size:20px;
+    font-weight:900;
+	background: #006daa;
+    padding:5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: -28px 0 0 #14A7DF;
+    margin-bottom: 0px;
+    margin-left: -15px;
+    float: left;
+    width: 100%;
+    clear: both;
+    font-weight: 100;
+    
+    
+    
+    
+   /*  background: #414243;
     background: #006DAA;
     padding:5px 10px;
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -61,9 +78,12 @@
     clear: both;
     font-size: 16px;
     color:#fff;
-  /*   color: rgba(255, 255, 255, 0.87); */
-         font-family: 'Roboto', sans-serif;
+    color: rgba(255, 255, 255, 0.87); 
+    font-family: 'Roboto', sans-serif;
     font-weight: 300;
+     */
+    
+    
 }
 .classPtSpan{
 	font-size: 18px;
@@ -481,15 +501,16 @@ body{
 			 </c:if> 
          </div>
 			<div class="row">
-                <div class="col-xs-12">
-                  <label class="" id="classHeader1"><span class="first_letter1">P</span>athology & <span class="first_letter1">D</span>iagnostics <span class="first_letter1">L</span>ab management software on <span class="first_letter1">C</span>loud</label>
+                
+                <div class="col-xs-12" style="color:#222;font-family:calibri;"><div style="border-bottom:0.5px solid red"><h1>Pathology Diagnostics Lab management software on Cloud</h1></div></div>
+                 <!--  <label class="" id="classHeader1"><span class="first_letter1">P</span>athology & <span class="first_letter1">D</span>iagnostics <span class="first_letter1">L</span>ab management software on <span class="first_letter1">C</span>loud</label> -->
 							<br/>
                 </div>
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 classWColor">
                               
-							<h5 class="" style="color:#000;font-size:20px;">
-								<p>HealthPlease.in is proud to introduce a Cloud Based App for Labs </br>that helps them manage their In Centre and Home Visit appointments,</br> Test Reporting and Finances more efficiently and conveniently.</p>
-							</h5>
+							<h3 class="" style="color:#222;font-family:calibri;font-size:28px">
+								<p>HealthPlease.in is proud to introduce a Cloud Based App for Labs that helps them manage their In Centre and Home Visit appointments, Test Reporting and Finances more efficiently<br/>and conveniently.</p>
+							</h3>
 							<ul class="classPoint" >
 								<li class="classW12">
 									<span class="classPtSpan"><i class="fa fa-circle" aria-hidden="true"></i> Online Presence</span>
@@ -498,7 +519,7 @@ body{
 									</ol>
 								</li>
 								<li class="classW12">
-									<span class="classPtSpan"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Track Appointments</span>
+									<span class="classPtSpan"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Track Appointments</span>
  									<ol class="classInnerPoint">
 										<li>Easy User Interface to Track and Manage your In centre and Home visits appointments </li>
 										<li>Get instant information of Today's, Pending, Completed, Cancelled and Total Appointments</li>
